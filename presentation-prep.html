@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Plan Your Talk</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --ok:#2f7d54; --oksoft:#e4f1e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --ok:#7ac598; --oksoft:#14301f; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #pp{max-width:780px; margin:0 auto; padding:28px 20px 80px}
+  #pp h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #pp .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #pp .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #pp .sub{color:var(--muted); margin:6px 0 0}
+  #pp .prin{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:14px; font-size:.93rem}
+  #pp .prin b{color:var(--accent)}
+  #pp h2.sec{font-size:.8rem; letter-spacing:.09em; text-transform:uppercase; color:var(--accent); font-weight:800; margin:22px 0 6px}
+  #pp .panel{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:10px 0}
+  #pp label.fld{display:block; font-weight:700; font-size:.93rem; margin:12px 0 3px}
+  #pp label.fld .n{color:var(--muted); font-weight:600; font-size:.85rem}
+  #pp .take label.fld{margin-top:0}
+  #pp input[type=text], #pp textarea{width:100%; font:inherit; color:var(--ink); background:var(--field); border:1.5px solid var(--line); border-radius:8px; padding:9px 11px}
+  #pp textarea{min-height:44px; resize:vertical; line-height:1.5}
+  #pp input:focus, #pp textarea:focus{outline:none; border-color:var(--accent)}
+  #pp .hint{color:var(--muted); font-size:.85rem; margin:2px 0 0}
+  #pp .screen{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
+  #pp .screen .take{font-family:Georgia,"Iowan Old Style",serif; font-size:1.15rem; color:var(--accent); border-bottom:1px solid var(--line); padding-bottom:8px; margin-bottom:8px}
+  #pp .screen ol{margin:0; padding-left:1.3rem} #pp .screen li{margin:.35rem 0}
+  #pp .screen li b{color:var(--accent)}
+  #pp .screen .empty{color:var(--muted); font-style:italic}
+  #pp .time{font-size:.86rem; color:var(--muted); margin-top:8px}
+  #pp .check{list-style:none; padding:0; margin:6px 0}
+  #pp .check li{display:flex; align-items:flex-start; gap:9px; padding:7px 0; border-top:1px solid var(--line)}
+  #pp .check li:first-child{border-top:0}
+  #pp .check input{width:19px; height:19px; margin-top:2px; accent-color:var(--ok); flex:none}
+  #pp .check .lbl{font-size:.95rem}
+  #pp .ready{font-weight:700; color:var(--ok)}
+  #pp .minibtn{font:inherit; font-weight:600; cursor:pointer; border:1.5px solid var(--accent); background:var(--field); color:var(--accent); border-radius:8px; padding:8px 13px; margin:8px 6px 0 0}
+  #pp .minibtn:hover{background:var(--accent-soft)}
+  #pp .minibtn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #pp .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #pp .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  #pp .done{margin-top:20px; background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 16px; font-size:.95rem}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="pp">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 15</p>
+    <h1>Plan Your Talk</h1>
+    <p class="sub">Your presentation isn't your report read aloud. It's about five minutes to make <em>one</em> point land. Build the talk here, beat by beat, and it writes your speaker notes for you. Everything stays on your device.</p>
+  </header>
+
+  <div class="prin">A research talk is a compressed <button type="button" class="term" data-pop="imrad">IMRAD</button>: hook, question, what you did, what you found, so what, close. Don't try to say everything, you can't. Pick the <button type="button" class="term" data-pop="takeaway">one thing</button> you want the room to remember, and build every beat to serve it.</div>
+
+  <div class="panel take">
+    <label class="fld" for="f_take">The one thing they should remember <span class="n">(say this out loud, twice, in your talk)</span></label>
+    <input type="text" id="f_take" placeholder="e.g., Shoppers trust 'organic' far more than 'natural,' and stores could fix that with one label change.">
+  </div>
+
+  <h2 class="sec">Build your six beats</h2>
+  <div class="panel">
+    <label class="fld" for="f_hook">1 · Hook <span class="n">open so they care</span></label>
+    <textarea id="f_hook" placeholder="e.g., Seventy percent of new grocery products carry an 'eco' claim. Almost none mean what shoppers think."></textarea>
+    <p class="hint">A number, a question, or a quick real moment. Not "Hi, my project is about…"</p>
+
+    <label class="fld" for="f_gap">2 · The question &amp; why it matters <span class="n">your gap</span></label>
+    <textarea id="f_gap" placeholder="e.g., Do sustainability labels actually inform shoppers, and who gets misled? Little research asks local shoppers."></textarea>
+
+    <label class="fld" for="f_did">3 · What you did <span class="n">method, one line</span></label>
+    <textarea id="f_did" placeholder="e.g., I surveyed 42 shoppers and coded 15 product labels for how specific their claims were."></textarea>
+
+    <label class="fld" for="f_found">4 · What you found <span class="n">one or two findings + your best <button type='button' class='term' data-pop='visual'>visual</button></span></label>
+    <textarea id="f_found" placeholder="e.g., 62% look for an organic seal, but only 31% trust 'natural' (show Figure 1). One wrote: 'It's on everything.'"></textarea>
+
+    <label class="fld" for="f_sowhat">5 · So what <span class="n">your recommendation</span></label>
+    <textarea id="f_sowhat" placeholder="e.g., Stores should flag which claims are third-party certified, so shoppers can tell a standard from a slogan."></textarea>
+
+    <label class="fld" for="f_close">6 · Close <span class="n">one memorable last line + thanks</span></label>
+    <textarea id="f_close" placeholder="e.g., A label should tell the truth about the food. Right now, some don't. Thank you."></textarea>
+  </div>
+
+  <h2 class="sec">Your talk, on one screen</h2>
+  <div class="screen" id="screen" aria-live="polite"></div>
+  <button type="button" class="minibtn" id="download">⬇ Download my speaker notes (.txt)</button>
+
+  <h2 class="sec">Ready to present?</h2>
+  <div class="panel">
+    <ul class="check" id="checks">
+      <li><input type="checkbox"><span class="lbl">I have <b>one</b> clear takeaway, and I say it out loud in the talk.</span></li>
+      <li><input type="checkbox"><span class="lbl">My best figure is on a slide, big and <button type="button" class="term" data-pop="visual">captioned</button>.</span></li>
+      <li><input type="checkbox"><span class="lbl">I can say it without <button type="button" class="term" data-pop="deliver">reading</button> from a script.</span></li>
+      <li><input type="checkbox"><span class="lbl">I have a strong first line and a strong last line.</span></li>
+      <li><input type="checkbox"><span class="lbl">I <button type="button" class="term" data-pop="practice">practiced out loud</button> and timed it, it's under five minutes.</span></li>
+      <li><input type="checkbox"><span class="lbl">I can answer "what would you do differently?" and "what surprised you?"</span></li>
+    </ul>
+    <p class="time ready" id="readycount"></p>
+  </div>
+
+  <div class="done">
+    <b>The nerves are normal.</b> You're the person in the room who knows the most about your study, nobody else collected your data or read your labels. You're not performing; you're telling us what you found. Know your first line cold, breathe, and talk to us like people.</div>
+
+  <dialog class="pop" id="pop-imrad"><h3>A talk is a compressed IMRAD</h3><p>Your report's structure still runs underneath your talk, just shorter. Hook and question do the work of the <b>Introduction</b>; "what you did" is the <b>Methods</b>; "what you found" is the <b>Results</b>; "so what" is the <b>Discussion</b>. Same arc, five minutes, one main point.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-takeaway"><h3>One takeaway</h3><p>People forget almost everything in a five-minute talk except one idea, if you're lucky. So choose that idea on purpose and repeat it, near the start and again at the end. If your audience remembers only your takeaway, the talk worked. Trying to convey everything usually conveys nothing.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-visual"><h3>Show one strong visual</h3><p>Put your single best chart or table on a slide, large, with its caption ("Figure 1. …, N = 42"). A clear visual does more in three seconds than a paragraph of talking. Skip slides full of text; the audience can't read and listen at once. One figure they can grasp beats five bullet points they can't.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-deliver"><h3>Talk, don't read</h3><p>Reading a script word for word flattens your voice and loses the room. Use a few notes (like the ones this tool makes) as reminders, not a script, and speak to your audience. You know this material better than anyone here; trust that. Looking up and talking to people beats a perfect paragraph read to the floor.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-practice"><h3>Practice out loud and time it</h3><p>Rehearse the whole thing aloud at least twice, on a clock. It's the only way to know your real length (talks always run long) and to smooth the rough spots before you're in front of people. Practicing in your head doesn't count; your mouth needs the reps. Aim to finish comfortably under your limit.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+(function(){
+  var BEATS = [
+    ['f_hook','Hook'],['f_gap','Question & why it matters'],['f_did','What I did'],
+    ['f_found','What I found'],['f_sowhat','So what'],['f_close','Close']
+  ];
+  function val(id){ return (document.getElementById(id).value||'').trim(); }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function render(){
+    var take = val('f_take');
+    var html = '<div class="take">'+(take ? '&#9733; '+esc(take) : '<span class="empty">Your one takeaway goes here.</span>')+'</div>';
+    html += '<ol>';
+    BEATS.forEach(function(b){
+      var v = val(b[0]);
+      html += '<li><b>'+esc(b[1])+':</b> '+(v ? esc(v) : '<span class="empty">(add this beat)</span>')+'</li>';
+    });
+    html += '</ol>';
+    var filled = BEATS.filter(function(b){ return val(b[0]); }).length;
+    html += '<p class="time">'+filled+' of 6 beats drafted. Aim for about five minutes total, roughly 45 seconds a beat, so keep each one tight.</p>';
+    document.getElementById('screen').innerHTML = html;
+  }
+
+  function tallyChecks(){
+    var boxes = document.querySelectorAll('#checks input[type=checkbox]');
+    var n = 0; boxes.forEach(function(b){ if(b.checked) n++; });
+    var el = document.getElementById('readycount');
+    el.textContent = n===boxes.length ? 'All set. You’re ready. Go tell them what you found.' : (n+' of '+boxes.length+' ready.');
+  }
+
+  document.querySelectorAll('#pp input[type=text], #pp textarea').forEach(function(el){ el.addEventListener('input', render); });
+  document.querySelectorAll('#checks input[type=checkbox]').forEach(function(b){ b.addEventListener('change', tallyChecks); });
+
+  document.getElementById('download').addEventListener('click', function(){
+    var lines = ['ENG 3090 · Speaker Notes', '================================', ''];
+    lines.push('MY ONE TAKEAWAY:'); lines.push('  '+(val('f_take')||'(none yet)')); lines.push('');
+    BEATS.forEach(function(b,i){ lines.push((i+1)+'. '+b[1].toUpperCase()); lines.push('  '+(val(b[0])||'(add this beat)')); lines.push(''); });
+    lines.push('Reminder: say the takeaway near the start and again at the end. Aim under 5 minutes. Talk, don’t read.');
+    var blob = new Blob([lines.join('\n')], {type:'text/plain;charset=utf-8'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a'); a.href=url; a.download='my-speaker-notes.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+  });
+
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+
+  render(); tallyChecks();
+})();
+</script>
+</body>
+</html>

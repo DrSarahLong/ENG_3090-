@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Syllabus · ENG 3090</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --gold:#a3771f; --good:#2f7d54; --navbg:#ffffffee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --gold:#d8b168; --good:#7ac598; --navbg:#12151aee; }
+  }
+  *{box-sizing:border-box} html,body{margin:0} html{scroll-behavior:smooth}
+  body{background:var(--paper); color:var(--ink); font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  a{color:var(--accent)}
+  .nav{position:sticky; top:0; z-index:20; background:var(--navbg); backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
+  .nav .inner{max-width:1000px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; gap:8px 18px; flex-wrap:wrap}
+  .nav .brand{font-family:Georgia,"Iowan Old Style",serif; font-weight:700; font-size:1.05rem; color:var(--ink); text-decoration:none; margin-right:auto}
+  .nav .brand small{display:block; font-family:system-ui,sans-serif; font-weight:600; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+  .nav a.lnk{color:var(--ink); text-decoration:none; font-weight:600; font-size:.93rem; padding:4px 2px; border-bottom:2px solid transparent}
+  .nav a.lnk:hover{border-bottom-color:var(--accent); color:var(--accent)}
+  .nav a.lnk[aria-current="page"]{color:var(--accent); border-bottom-color:var(--accent)}
+  .nav a.lms{background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:.9rem; border-radius:8px; padding:8px 14px; white-space:nowrap}
+  .nav a.lms:hover{filter:brightness(1.06)}
+
+  .wrap{max-width:820px; margin:0 auto; padding:0 20px 70px}
+  .masthead{padding:36px 0 18px; border-bottom:2px solid var(--ink); margin-bottom:8px}
+  .masthead .kick{font-size:.78rem; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); font-weight:800; margin:0 0 6px}
+  .masthead h1{font-family:Georgia,"Iowan Old Style",serif; font-size:2rem; margin:0 0 6px; line-height:1.12}
+  .masthead .term{color:var(--muted); font-weight:600}
+  .info{display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; margin:14px 0 0; font-size:.95rem}
+  .info .lab{color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase}
+  @media (max-width:560px){ .info{grid-template-columns:1fr} }
+
+  h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.4rem; margin:30px 0 8px; padding-top:8px}
+  h3{font-size:1.05rem; margin:18px 0 4px}
+  p{margin:.6rem 0}
+  .lead{font-size:1.05rem}
+  .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:12px 0}
+  .box.accent{border-left:5px solid var(--accent)}
+  .box.lens{border-left:5px solid var(--gold)}
+  ul{margin:.5rem 0; padding-left:1.2rem} li{margin:.4rem 0}
+
+  table{width:100%; border-collapse:collapse; margin:10px 0; font-size:.95rem}
+  th{text-align:left; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); font-weight:800; padding:8px 10px; border-bottom:2px solid var(--line)}
+  td{border-bottom:1px solid var(--line); padding:9px 10px; vertical-align:top}
+  td.p{font-weight:800; color:var(--accent); white-space:nowrap}
+  td.w{font-weight:800; text-align:center; white-space:nowrap}
+  .tablewrap{overflow-x:auto}
+  .scale{font-variant-numeric:tabular-nums; font-size:.95rem; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 14px}
+  .pol dt{font-weight:700; color:var(--accent); margin-top:10px}
+  .pol dd{margin:2px 0 0 0}
+  .cta{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:11px 18px; margin:6px 8px 6px 0}
+  .cta.ghost{background:transparent; color:var(--accent); border:1.5px solid var(--accent)}
+  footer{color:var(--muted); font-size:.9rem; margin-top:34px; padding-top:16px; border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="inner">
+      <a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+      <a class="lnk" href="index.html">Home</a>
+      <a class="lnk" href="syllabus.html" aria-current="page">Syllabus</a>
+      <a class="lnk" href="schedule.html">Schedule</a>
+      <a class="lnk" href="projects.html">Major Project Rubrics</a>
+      <a class="lnk" href="readings.html">Readings</a>
+      <a class="lnk" href="research-notebook.html">Notebook</a>
+      <a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <header class="masthead">
+      <p class="kick">Appalachian State University · Fall 2026</p>
+      <h1>ENG 3090: Research Methods in Rhetoric &amp; Technical Writing</h1>
+      <p class="term">Syllabus</p>
+      <div class="info">
+        <div><span class="lab">Instructor</span><br>Dr. Sarah Long, Professor of Writing, Rhetoric &amp; Technical Communication</div>
+        <div><span class="lab">Email</span><br><a href="mailto:longsb1@appstate.edu">longsb1@appstate.edu</a></div>
+        <div><span class="lab">Office hours</span><br>By appointment, on campus and virtually</div>
+        <div><span class="lab">Meets</span><br>Tuesday (on campus) &amp; Thursday (remote via Zoom). Weeks 1&ndash;2: both days on campus.</div>
+        <div><span class="lab">Thursday Zoom</span><br><a href="https://appstate.zoom.us/my/drsarahlong" target="_blank" rel="noopener">Dr. Long's Zoom Room</a> (link also on AsULearn)</div>
+      </div>
+    </header>
+
+    <h2>Course description</h2>
+    <p class="lead">This course prepares you to become a responsible, well-informed researcher in rhetoric and technical writing. Over the semester you'll design and carry out <b>your own mixed-methods study</b> on a single topic of your choosing and write it up as a professional <b>IMRAD report</b>, a portfolio-quality artifact you can show an employer or a grad program. Along the way we cover the historical and definitional links between rhetoric and technical writing, philosophical orientations to research, and real research methods, both critical/qualitative and empirical/quantitative.</p>
+    <div class="box lens">
+      <p><b>Our lens: social justice.</b> We study these methods through a social justice frame, because technical writing is never neutral. The documents, data, and interfaces we build decide who gets access, who carries risk, and whose story gets told. You'll choose a semester topic that lives inside that frame, and we'll treat research as a tool for noticing and addressing inequity, not just describing the world.</p>
+    </div>
+
+    <h2>Course objectives</h2>
+    <p><b>General education:</b> critical thinking (investigate problems from multiple viewpoints using credible sources); creative thinking (extend ideas across boundaries); effective communication (tailor context, audience, form, purpose); evidence-based arguments (integrate credible sources).</p>
+    <p><b>Course-specific:</b> define and apply RTW research methods; conduct responsible, ethical research; understand research design as an iterative process; build portfolio-worthy artifacts.</p>
+
+    <h2>How this course works</h2>
+    <p>Each week has two distinct parts:</p>
+    <div class="box accent">
+      <p><b>Tuesday (in class, Boone):</b> a short, hands-on concept session. I introduce the week's key idea through a live worked example and a guided Research Notebook you fill in as we go, then we practice it together in an in-class exercise. This is where the concept lands and you can ask questions live.</p>
+      <p><b>Thursday (remote via Zoom):</b> we still meet, just online. I open our Zoom Room with a short orientation to the day's module, then you work through it on your own while I stay on Zoom for questions; we come back together at the end for anything unresolved. You can pop in and out as you need, and I expect you to join. The module reinforces Tuesday's concept and scaffolds your next deliverable, never busywork.</p>
+    </div>
+    <p><b>The first two weeks are different.</b> We meet on campus <i>both</i> days for Weeks 1 and 2. That's where we get grounded, you choose the topic you'll carry all semester, and I walk you through exactly how the Thursday Zoom work days run. Starting <b>Week 3</b>, we shift to the regular rhythm.</p>
+
+    <h3>The weekly work &amp; your Research Notebook (20%)</h3>
+    <p>Each week's module goes into your <a href="research-notebook.html">Research Notebook</a>, the running digital notebook you build all semester. Modules are <b>completion only</b>: there are no wrong answers; the point is that you <i>do the thinking</i>, because that's what sets you up to succeed on the projects. You turn the notebook in just <b>twice</b>, once at midterm and once at the end of term. You type in the browser, your work saves in your browser on your own computer as you go, and at each check-in you hit <b>Download everything</b> and submit it to AsULearn (as a PDF or a Google Doc, your choice). Do each module <i>as we go</i>: the work compounds, and a crammed notebook shows.</p>
+
+    <h2>The major project</h2>
+    <p>You'll choose <b>one research topic</b> early and carry it through the whole semester as an <b>individual</b> mixed-methods study. It builds in four stacked deliverables that assemble into your final report. The weekly modules keep things fresh by practicing each skill on wildly different examples, but your study stays on one topic.</p>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>#</th><th>Project</th><th>Weight</th><th>In short</th></tr></thead>
+      <tbody>
+        <tr><td class="p">P1</td><td>Literature Review</td><td class="w">15%</td><td>Synthesize 10+ credible sources on your topic; find the gap your study will address. 2+ single-spaced pp.</td></tr>
+        <tr><td class="p">P2</td><td>Qualitative / Discourse Analysis</td><td class="w">15%</td><td>Design and run a discourse or content analysis; report the meaning and power your data reveal. 3+ pp.</td></tr>
+        <tr><td class="p">P3</td><td>Quantitative Analysis</td><td class="w">15%</td><td>Design an instrument, collect data, analyze and visualize it. 2+ pp plus visuals.</td></tr>
+        <tr><td class="p">Final</td><td>IMRAD Report</td><td class="w">35%</td><td>Integrate all three into a professional IMRAD report with actionable recommendations. 15&ndash;20 sources.</td></tr>
+        <tr><td class="p">&mdash;</td><td>Research Notebook (completion)</td><td class="w">20%</td><td>Your weekly module work, turned in at midterm and end of term.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Full rubrics and examples for each project live on the <a href="projects.html">Major Project Rubrics</a> page. Where and how to submit each piece is on the <a href="turn-in-guide.html">What's Due &amp; Where</a> guide, in short: <b>P1, P2, and P3 come in as Google Docs</b> (so you get inline comments), and the <b>final report is a PDF</b>.</p>
+
+    <h2>Grading scale</h2>
+    <p class="scale">A 93&ndash;100 · A&minus; 90&ndash;92 · B+ 88&ndash;89 · B 83&ndash;87 · B&minus; 80&ndash;82 · C+ 78&ndash;79 · C 73&ndash;77 · C&minus; 70&ndash;72 · D+ 68&ndash;69 · D 63&ndash;67 · D&minus; 60&ndash;62 · F below 60</p>
+
+    <h2>Teaching approach</h2>
+    <p>I'm a "guide on the side" more than a "sage on the stage," but on Tuesdays I <i>will</i> teach the core concept directly, and the modules lead you through the doing. I design curriculum that engages different learning styles, choose readings that aren't obtuse, and build assignments that help you apply theory. What I won't do is hold your hand or police your attendance. <b>Success in this course, however you define it, is your responsibility.</b> I'll do everything in my power to support students who take that seriously.</p>
+
+    <h2>Policies</h2>
+    <dl class="pol">
+      <dt>Individual work</dt><dd>All projects this semester are individual. Your study, your topic, your report.</dd>
+      <dt>Attendance</dt><dd>Tuesdays matter, that's where the concept lands and where you can ask questions. Consistent participation is expected. I'm not the police, but I'll reach out when I notice a pattern of absences.</dd>
+      <dt>The notebook &amp; deadlines</dt><dd>Do each week's module as we go; it's the on-ramp to your next project step. You turn the whole notebook in twice (midterm and end of term) for a completion grade worth 20%.</dd>
+      <dt>Late work</dt><dd>Late project work is not accepted except under extraordinary, documented circumstances. Talk to me <i>early</i>, not after.</dd>
+      <dt>AI / ChatGPT</dt><dd>Using AI is not plagiarism in this class, but I expect you to use it appropriately and ethically (guide provided). Learning to use it well is part of the professional skill set.</dd>
+      <dt>Academic integrity</dt><dd>Follow the App State Academic Integrity Code: no lying, cheating, or plagiarism.</dd>
+      <dt>Accommodations</dt><dd>Students needing accommodations for a documented disability should contact the Office of Disability Services (<a href="https://ods.appstate.edu" target="_blank" rel="noopener">ods.appstate.edu</a> · 828-262-3056).</dd>
+      <dt>Religious observance</dt><dd>Two excused absences for religious observance; request in writing within three weeks of the first class.</dd>
+      <dt>Title IX</dt><dd>App State faculty are required to report instances of interpersonal violence to the Office of Title IX Compliance (<a href="https://titleix.appstate.edu" target="_blank" rel="noopener">titleix.appstate.edu</a> · 828-262-2144). Support and resources are available.</dd>
+    </dl>
+
+    <h2>Required materials</h2>
+    <ul>
+      <li><b>Textbook:</b> <i>A Research Primer for Technical Communication</i>, Hayhoe &amp; Brewer (via the Library / provided PDFs).</li>
+      <li>Supplementary readings (links/PDFs provided in the modules and on the <a href="readings.html">Readings</a> page).</li>
+      <li>LinkedIn Learning modules (assigned).</li>
+      <li>Access to AsULearn and Google Drive, and a <b>laptop you bring to class</b>. Our in-class exercises and your Research Notebook are digital.</li>
+      <li>Analysis tools we'll use: AntConc, Voyant, QDAMiner Lite, Google Sheets, and AI, all with how-to guides in the modules.</li>
+    </ul>
+
+    <h2>Support</h2>
+    <p>Belk Library · University Writing Center · Office of Disability Services · Dean of Students (Food Pantry &amp; Free Store) · Student Veteran Services.</p>
+
+    <h2>The semester at a glance</h2>
+    <p>The full week-by-week schedule, with every module, tool, and deadline, lives on the Schedule page.</p>
+    <p>
+      <a class="cta" href="schedule.html">See the full Schedule &rarr;</a>
+      <a class="cta ghost" href="turn-in-guide.html">What's Due &amp; Where</a>
+    </p>
+
+    <footer>
+      ENG 3090 · Research Methods in Rhetoric &amp; Technical Writing · Appalachian State University · Fall 2026<br>
+      This syllabus is subject to reasonable change; any changes will be announced via email.
+    </footer>
+
+  </div>
+</body>
+</html>

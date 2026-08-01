@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Card Sort: Strong or Weak?</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --good:#2f7d54; --goodsoft:#e4f1e8; --weak:#a3541f; --weaksoft:#f6ebe1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --goodsoft:#14301f; --weak:#e0a878; --weaksoft:#2c2013; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #cq{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #cq h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #cq .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #cq .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #cq .sub{color:var(--muted); margin:6px 0 0}
+  #cq .how{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:18px}
+  #cq .how p{margin:.3rem 0}
+  #cq .prog{font-weight:700; color:var(--accent)}
+  #cq .card{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:16px 18px; margin:14px 0}
+  #cq .num{font-size:.78rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:700}
+  #cq .qtext{font-size:1.12rem; font-weight:600; margin:4px 0 12px}
+  #cq .choices{display:flex; gap:10px}
+  #cq .choice{flex:1; font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:10px; border:1.5px solid var(--line); background:var(--field); color:var(--ink)}
+  #cq .choice:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #cq .choice.pick-strong{border-color:var(--good); background:var(--goodsoft); color:var(--good)}
+  #cq .choice.pick-weak{border-color:var(--weak); background:var(--weaksoft); color:var(--weak)}
+  #cq details{margin-top:12px; border-top:1px dashed var(--line); padding-top:10px}
+  #cq summary{cursor:pointer; font-weight:600; color:var(--accent); list-style:none}
+  #cq summary::-webkit-details-marker{display:none}
+  #cq summary:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:6px}
+  #cq .verdict{margin:8px 0 0; border-radius:8px; padding:10px 12px}
+  #cq .verdict.s{background:var(--goodsoft)} #cq .verdict.w{background:var(--weaksoft)}
+  #cq .verdict .lab{font-weight:800; text-transform:uppercase; letter-spacing:.06em; font-size:.8rem}
+  #cq .verdict.s .lab{color:var(--good)} #cq .verdict.w .lab{color:var(--weak)}
+  #cq .done{margin-top:22px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  #cq .done b{color:var(--accent)}
+  #cq .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #cq .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop a{color:var(--accent)}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="cq">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 2, Tuesday</p>
+    <h1>Card Sort: Strong or Weak?</h1>
+    <p class="sub">Six <button type="button" class="term" data-pop="research-question">research questions</button> on our food-label theme. On your own, decide: is each one <b>strong</b> (a question you could actually research) or <b>weak</b>? Then be ready to defend one call to the room.</p>
+  </header>
+
+  <div class="how">
+    <p><b>Sort first, peek later.</b> Don't open "Reveal the verdict" until we debrief as a class, wrestling with the call yourself is the point.</p>
+    <p>Sorted: <span class="prog"><span id="count">0</span> / 6</span></p>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Card 1</p>
+    <p class="qtext">Is organic food better?</p>
+    <div class="choices"><button type="button" class="choice" data-pick="strong">Strong</button><button type="button" class="choice" data-pick="weak">Weak</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict w"><span class="lab">Weak</span>, "Better" is undefined and the question is enormous. Better how, for whom, measured how? There's no data that could ever settle it as written. Narrow it and it can work.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Card 2</p>
+    <p class="qtext">Which claims on egg cartons at the Boone Walmart are USDA-regulated terms, and which are unregulated marketing?</p>
+    <div class="choices"><button type="button" class="choice" data-pick="strong">Strong</button><button type="button" class="choice" data-pick="weak">Weak</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict s"><span class="lab">Strong</span>: <button type="button" class="term" data-pop="scoped">Scoped</button> to a real, gatherable set of labels, and answerable by analyzing the text itself (content analysis). You know exactly what data you'd collect.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Card 3</p>
+    <p class="qtext">Are big food companies evil?</p>
+    <div class="choices"><button type="button" class="choice" data-pick="strong">Strong</button><button type="button" class="choice" data-pick="weak">Weak</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict w"><span class="lab">Weak</span>: Loaded and not answerable with evidence. "Evil" isn't something you can measure. This is an opinion looking for a fight, not a research question.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Card 4</p>
+    <p class="qtext">How do App State first-year students interpret the word "natural" on food packaging?</p>
+    <div class="choices"><button type="button" class="choice" data-pick="strong">Strong</button><button type="button" class="choice" data-pick="weak">Weak</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict s"><span class="lab">Strong</span>: Scoped to a specific group and answerable by asking people (survey or interview). It hands you real, collectable data.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Card 5</p>
+    <p class="qtext">What is sustainable agriculture?</p>
+    <div class="choices"><button type="button" class="choice" data-pick="strong">Strong</button><button type="button" class="choice" data-pick="weak">Weak</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict w"><span class="lab">Weak</span>, as a <em>research question.</em> You'd answer this by reading what others have written, not by running a study. It's a great <b>background</b> question for your literature review, just not the engine of your project.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Card 6</p>
+    <p class="qtext">Do "regenerative" claims on beef sold in local groceries match any third-party certification standard?</p>
+    <div class="choices"><button type="button" class="choice" data-pick="strong">Strong</button><button type="button" class="choice" data-pick="weak">Weak</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict s"><span class="lab">Strong</span>: Scoped, and checkable against real certification standards (content analysis). It also pairs naturally with asking producers or shoppers, so it fits more than one method.</div>
+    </details>
+  </div>
+
+  <div class="done">
+    <p>Notice the pattern? The <b>strong</b> ones are scoped, point to data you could actually collect, and often fit more than one method. The <b>weak</b> ones aren't bad <em>topics</em>, they just need narrowing before they can carry a study. That's exactly what you'll do next, in Entry 2a.</p>
+  </div>
+
+  <dialog class="pop" id="pop-research-question"><h3>Research question</h3><p>The specific, answerable question your whole study is built to answer. Not a topic (food labels) and not an opinion (are big companies evil), but a question you could actually settle with data you're able to collect.</p><p>A good one tells you what you'd go measure, ask, or count.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-scoped"><h3>Scoped</h3><p>Scoped means narrowed down far enough that you could actually answer it with data you can realistically get.</p><p>"Is organic food better?" is unscoped: too big, too vague. "Which egg-carton claims at one store are USDA-regulated?" is scoped: you know exactly what to go collect.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#cq [data-card]'));
+  var count = document.getElementById('count');
+  function tally(){ count.textContent = cards.filter(function(c){ return c.querySelector('.choice.pick-strong, .choice.pick-weak'); }).length; }
+  cards.forEach(function(card){
+    var btns = card.querySelectorAll('.choice');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var pick = b.getAttribute('data-pick');
+        btns.forEach(function(x){ x.classList.remove('pick-strong','pick-weak'); });
+        b.classList.add(pick==='strong' ? 'pick-strong' : 'pick-weak');
+        tally();
+      });
+    });
+  });
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+})();
+</script>
+</body>
+</html>

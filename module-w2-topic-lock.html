@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Module: Meet the Modules + Lock Your Topic</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:26px 0 8px}
+  #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
+  #mod .sub{color:var(--muted); margin:6px 0 0}
+  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:24px}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
+  #mod .box.accent{border-left:5px solid var(--accent)}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.35rem 0}
+  #mod .check{list-style:none; padding-left:0}
+  #mod .check li{display:flex; gap:10px; align-items:flex-start; margin:.5rem 0}
+  #mod .check .n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.9rem}
+  #mod .talk{background:var(--talksoft); border:1px solid var(--line); border-left:5px solid var(--talk); border-radius:12px; padding:14px 16px; margin:16px 0}
+  #mod .talk .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--talk); display:block; margin-bottom:3px}
+  #mod .talk p{margin:.2rem 0}
+  #mod .talk .aside{color:var(--muted); font-size:.86rem; margin-top:6px}
+  #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
+  #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #mod .note{color:var(--muted); font-size:.9rem}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:22px}
+  #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop a{color:var(--accent)}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="mod">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 2 · Thursday Module</p>
+    <h1>Meet the Modules, and Lock Your Topic</h1>
+    <p class="sub">Your first module. We're doing this one together in class, so you'll always know how they work.</p>
+  </header>
+
+  <p class="step">First: how these modules work</p>
+  <div class="box accent">
+    <ul>
+      <li><b>Read a little, do a little.</b> Every Thursday you'll work through one of these on your own time. Short teaching, then something you actually write.</li>
+      <li><b>Your writing lands in your Research Notebook,</b> which saves on your own computer. Nothing is transmitted anywhere.</li>
+      <li><b>Completion only.</b> No grade on the writing itself, just that you did the thinking.</li>
+      <li><b>You only turn the notebook in twice</b> all semester: at midterm and at the end. Not every week.</li>
+    </ul>
+    <p style="margin:.7rem 0 0; padding-top:.7rem; border-top:1px solid var(--line)"><b>But do them every week anyway.</b> Two reasons. First, each module builds a piece of your major project, so skipping them means building the whole thing from scratch later, under deadline. Second, together they are worth a considerable chunk of your grade (a full fifth). Cramming them all right before a check-in defeats the point: this way of learning only works when the reps are spread out.</p>
+  </div>
+
+  <div class="talk">
+    <span class="lab">🗣 Talk it out · #1</span>
+    <p><b>Say your topic in one sentence.</b> Just one. If it takes you three sentences, that's a sign it's still too big, and that's useful to know right now.</p>
+    <p class="aside">In class we'll go around the room. On your own, say it out loud to yourself anyway, it works.</p>
+  </div>
+
+  <p class="step">Next: what makes a topic "lockable"</p>
+  <p>You're about to commit to one topic for the whole semester. Before you do, it has to pass a simple test. A lockable topic gives you all four of these:</p>
+  <div class="box">
+    <ul class="check">
+      <li><span class="n">1</span><div><b>Texts you can analyze.</b> Labels, manuals, posts, policies, ads, packaging, something <button type="button" class="term" data-pop="discourse">made of language</button> you can actually get your hands on.</div></li>
+      <li><span class="n">2</span><div><b>People you can ask.</b> A group you can realistically survey or interview.</div></li>
+      <li><span class="n">3</span><div><b>A justice angle.</b> Who holds power here, who's served, and whose voice is missing?</div></li>
+      <li><span class="n">4</span><div><b>A strong <button type="button" class="term" data-pop="research-question">research question</button></b>, the one you built in the Strengthener.</div></li>
+    </ul>
+  </div>
+  <p class="note">If any of the four is blank, your topic isn't wrong, it just needs tightening. That's what today is for.</p>
+
+  <div class="talk">
+    <span class="lab">🗣 Talk it out · #2</span>
+    <p><b>Whose topic feels too big?</b> Volunteer one, and we'll shrink it together, from "food labels" down to something you could actually finish, like "sustainability claims on egg cartons at one store."</p>
+    <p class="aside">On your own: which of the four boxes above is hardest for your topic? Start there.</p>
+  </div>
+
+  <p class="step">Now: lock it in</p>
+  <p>Open your Research Notebook and complete <b>Entry 2b: Lock your topic</b>. Bring your strengthened question with you.</p>
+  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook →</a></p>
+  <p class="note">Fill in your topic, your question, the texts you could analyze, the people you could ask, and the justice angle. Save happens automatically.</p>
+
+  <div class="talk">
+    <span class="lab">🗣 Talk it out · #3</span>
+    <p><b>Read your locked topic and question to the room</b>, then answer two things out loud: what will you analyze, and who will you ask? If you can't answer both, your topic needs one more pass.</p>
+  </div>
+
+  <div class="close">
+    <p><b>Last thing: practice the turn-in.</b> In your notebook, scroll to the bottom and hit <b>Download everything</b> once. That's the exact move you'll make at the two check-ins (midterm and end of term). Do it now, with help in the room, so it's never a mystery later.</p>
+    <p class="note">Next Thursday's module is the same drill, on your own: the Literature Review begins.</p>
+  </div>
+
+  <dialog class="pop" id="pop-research-question"><h3>Research question</h3><p>The specific, answerable question your whole study is built to answer. Not a topic (food labels) and not an opinion (are big companies evil), but a question you could actually settle with data you're able to collect.</p><p>A good one tells you what you'd go measure, ask, or count.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-discourse"><h3>Discourse</h3><p>Discourse just means language in use: the actual words, framing, and design of real texts like labels, ads, manuals, and posts. It's what this course analyzes.</p><p>When you study how a carton says "farm fresh," you're doing discourse analysis, looking at how language does work in the world.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+<script>
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+</script>
+</body>
+</html>

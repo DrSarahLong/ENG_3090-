@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Read the Tool's Output</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9; --good:#2f7d54; --hi:#8a6d1f; --hisoft:#f7efd6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --hi:#d8b168; --hisoft:#2c2513; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #ro{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #ro h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #ro h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.25rem; margin:26px 0 8px}
+  #ro .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #ro .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #ro .sub{color:var(--muted); margin:6px 0 0}
+  #ro .panel{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #ro .caption{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin:0 0 8px}
+  #ro table.freq{width:100%; border-collapse:collapse; font-size:.95rem}
+  #ro table.freq td{padding:4px 8px; border-bottom:1px solid var(--line)}
+  #ro table.freq td.w{font-weight:600}
+  #ro table.freq td.n{text-align:right; font-variant-numeric:tabular-nums; color:var(--muted); width:60px}
+  #ro table.freq td.bar > span{display:inline-block; height:12px; background:var(--accent); border-radius:4px; vertical-align:middle}
+  #ro .cloud{line-height:1.9; text-align:center}
+  #ro .cloud span{display:inline-block; margin:2px 8px; color:var(--accent); font-weight:700}
+  #ro table.kwic{width:100%; border-collapse:collapse; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9rem}
+  #ro table.kwic td{padding:5px 6px; border-bottom:1px solid var(--line)}
+  #ro table.kwic td.l{text-align:right; color:var(--muted)}
+  #ro table.kwic td.k{text-align:center; font-weight:800; background:var(--hisoft); color:var(--hi); white-space:nowrap}
+  #ro table.kwic td.r{color:var(--muted)}
+  #ro .read{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-top:12px}
+  #ro .read b{color:var(--accent)}
+  #ro .sowhat{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--good); border-radius:12px; padding:16px 18px; margin-top:18px}
+  #ro .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #ro .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop a{color:var(--accent)}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="ro">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 7, Tuesday</p>
+    <h1>Read the Tool's Output</h1>
+    <p class="sub">You coded your corpus by hand. A tool like Voyant or AntConc does the counting in seconds, and finds patterns your eye slides past. Here's what it hands back, and how to read it. (Short texts like labels won't give a tool much, which is why you want longer texts, like news articles.)</p>
+  </header>
+
+  <h2>1. Word frequency</h2>
+  <p>Feed your <b>searchable</b> text to the tool and it counts every word. Here's the <button type="button" class="term" data-pop="freq">word-frequency</button> list from a set of a dozen news articles about food labeling (skipping "the," "a," and other filler):</p>
+  <div class="panel">
+    <p class="caption">Top words · 12 news articles</p>
+    <table class="freq">
+      <tr><td class="w">natural</td><td class="bar"><span style="width:180px"></span></td><td class="n">61</td></tr>
+      <tr><td class="w">label</td><td class="bar"><span style="width:150px"></span></td><td class="n">52</td></tr>
+      <tr><td class="w">food</td><td class="bar"><span style="width:132px"></span></td><td class="n">46</td></tr>
+      <tr><td class="w">organic</td><td class="bar"><span style="width:110px"></span></td><td class="n">38</td></tr>
+      <tr><td class="w">consumers</td><td class="bar"><span style="width:96px"></span></td><td class="n">33</td></tr>
+      <tr><td class="w">companies</td><td class="bar"><span style="width:82px"></span></td><td class="n">28</td></tr>
+      <tr><td class="w">claims</td><td class="bar"><span style="width:64px"></span></td><td class="n">22</td></tr>
+      <tr><td class="w">regulators</td><td class="bar"><span style="width:46px"></span></td><td class="n">16</td></tr>
+    </table>
+  </div>
+  <div class="read"><b>Read it:</b> the words at the top <em>are</em> the story, in numbers. These articles circle "natural," "label," and "organic" over and over. And notice what sits low or missing: "regulators" is way down, and "worker" and "cost" barely register. What a corpus <em>doesn't</em> say is data too.</div>
+
+  <h2>2. The same list, as a picture</h2>
+  <p>Most tools also draw a word cloud, where bigger means more frequent. Same data, faster to feel:</p>
+  <div class="panel cloud">
+    <span style="font-size:2.6rem">natural</span>
+    <span style="font-size:2.2rem">label</span>
+    <span style="font-size:1.9rem">food</span>
+    <span style="font-size:1.6rem">organic</span>
+    <span style="font-size:1.4rem">consumers</span>
+    <span style="font-size:1.2rem">companies</span>
+    <span style="font-size:1.2rem">claims</span>
+    <span style="font-size:1rem">regulators</span>
+    <span style="font-size:1rem">health</span>
+  </div>
+  <div class="read"><b>Careful:</b> a word cloud is pretty and a little dumb. It shows size, not meaning, and it strips every word from its context. Great for a first look, never the whole analysis.</div>
+
+  <h2>3. Concordance: how a word is actually used</h2>
+  <p>This is the powerful one. A <button type="button" class="term" data-pop="concordance">concordance</button> (or "KWIC") pulls every appearance of a word with the words around it, so you see <em>how</em> it's used, not just how often:</p>
+  <div class="panel">
+    <p class="caption">Concordance · "natural"</p>
+    <table class="kwic">
+      <tr><td class="l">the word</td><td class="k">natural</td><td class="r">has no legal meaning</td></tr>
+      <tr><td class="l">shoppers assume</td><td class="k">natural</td><td class="r">means healthier or safer</td></tr>
+      <tr><td class="l">companies put</td><td class="k">natural</td><td class="r">on almost anything</td></tr>
+      <tr><td class="l">critics say</td><td class="k">natural</td><td class="r">is marketing, not science</td></tr>
+      <tr><td class="l">unlike organic,</td><td class="k">natural</td><td class="r">is barely regulated</td></tr>
+    </table>
+  </div>
+  <div class="read"><b>Read it:</b> in these articles "natural" keeps company with <b>means, assume, regulated, word, marketing</b>, those are its <button type="button" class="term" data-pop="collocation">collocates</button>. Notice the difference from a label: here the corpus isn't <em>using</em> the word to sell, it's <em>interrogating</em> it. The collocates tell you at a glance that this is a debate about the label, not an ad.</div>
+
+  <div class="sowhat">
+    <h2 style="margin-top:0">So what? (still your job)</h2>
+    <p>The tool counted, drew, and pulled context in seconds. What it <b>cannot</b> do is tell you that "natural" is legally unregulated, or that this mood works on a tired shopper, or whose interest it serves. That reading is yours. Use the tool to find the pattern fast, then do the thinking the tool can't.</p>
+  </div>
+
+  <dialog class="pop" id="pop-freq"><h3>Word frequency</h3><p>A simple count of how often each word appears in your corpus, usually after tossing out filler words like "the" and "of." It's the fastest way to see what a set of texts keeps coming back to. Tools like <a href="https://voyant-tools.org" target="_blank" rel="noopener">Voyant</a> and AntConc make it in seconds.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-concordance"><h3>Concordance (KWIC)</h3><p>A list of every place a word appears, shown with the words on either side, so you can read how it's actually used. KWIC stands for "keyword in context." It's the single most useful thing a text tool does: frequency tells you <em>how often</em>, a concordance tells you <em>how</em>.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-collocation"><h3>Collocation</h3><p>The words that tend to show up right next to a given word, its regular company. If "natural" almost always travels with "fresh," "family," and "goodness," those collocates tell you what the word is really doing (setting a wholesome mood), even when the word itself claims nothing.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+</script>
+</body>
+</html>

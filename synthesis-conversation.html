@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · The Sources Are Talking</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --a:#1f6b86; --asoft:#e7f1f5; --b:#7a4da3; --bsoft:#efe8f6; --gap:#a3541f; --gapsoft:#f6ebe1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --a:#7fb9d4; --asoft:#16303b; --b:#c3a3e0; --bsoft:#231a30; --gap:#e0a878; --gapsoft:#2c2013; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #sc{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #sc h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #sc .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #sc .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #sc .sub{color:var(--muted); margin:6px 0 0}
+  #sc .how{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:16px}
+  #sc .how p{margin:.3rem 0}
+  #sc .legend{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+  #sc .chip{font-size:.82rem; font-weight:700; border-radius:999px; padding:3px 10px; border:1px solid var(--line)}
+  #sc .chip.a{background:var(--asoft); color:var(--a)} #sc .chip.b{background:var(--bsoft); color:var(--b)}
+  #sc .snip{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:14px 16px; margin:12px 0}
+  #sc .snip.pick-a{border-left-color:var(--a)} #sc .snip.pick-b{border-left-color:var(--b)}
+  #sc .snip .txt{font-size:1.04rem; margin-bottom:10px}
+  #sc .snip .src{color:var(--muted); font-size:.85rem}
+  #sc .choices{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap}
+  #sc .choice{flex:1; min-width:150px; font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:9px; border:1.5px solid var(--line); background:var(--field); color:var(--ink)}
+  #sc .choice:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #sc .snip.pick-a .choice[data-t="a"]{border-color:var(--a); background:var(--asoft); color:var(--a)}
+  #sc .snip.pick-b .choice[data-t="b"]{border-color:var(--b); background:var(--bsoft); color:var(--b)}
+  #sc .reveal{margin-top:20px}
+  #sc button.big{font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:12px 20px; border:1px solid var(--accent); background:var(--accent); color:#fff}
+  #sc button.big:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #sc .model{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:14px}
+  #sc .model h3{margin:.2rem 0 .4rem; font-size:1.05rem}
+  #sc .model .theme-a{color:var(--a); font-weight:700}
+  #sc .model .theme-b{color:var(--b); font-weight:700}
+  #sc .gapbox{background:var(--gapsoft); border:1px solid var(--line); border-left:5px solid var(--gap); border-radius:12px; padding:14px 16px; margin-top:14px}
+  #sc .gapbox .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--gap); display:block; margin-bottom:3px}
+  #sc [hidden]{display:none}
+  #sc .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #sc .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop a{color:var(--accent)}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="sc">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 4, Tuesday</p>
+    <h1>The Sources Are Talking</h1>
+    <p class="sub">Four findings from real research on food labels. They're already in conversation. Your job: hear it.</p>
+  </header>
+
+  <div class="how">
+    <p><b>On your own:</b> sort each snippet into one of two <button type="button" class="term" data-pop="theme">themes</button>. Then hit "Reveal the conversation" to see how they weave together, and where the <button type="button" class="term" data-pop="gap">gap</button> is.</p>
+    <div class="legend">
+      <span class="chip a">Theme A: what shoppers understand</span>
+      <span class="chip b">Theme B: who controls the words</span>
+    </div>
+  </div>
+
+  <div class="snip" data-snip>
+    <div class="txt">"A 2021 study found most shoppers believed 'natural' meant 'organic,' though the two are legally unrelated."</div>
+    <div class="src">Snippet 1</div>
+    <div class="choices"><button type="button" class="choice" data-t="a">Theme A</button><button type="button" class="choice" data-t="b">Theme B</button></div>
+  </div>
+  <div class="snip" data-snip>
+    <div class="txt">"Regulators define 'organic' tightly but leave 'natural' almost entirely unregulated, so marketers can use it freely."</div>
+    <div class="src">Snippet 2</div>
+    <div class="choices"><button type="button" class="choice" data-t="a">Theme A</button><button type="button" class="choice" data-t="b">Theme B</button></div>
+  </div>
+  <div class="snip" data-snip>
+    <div class="txt">"In focus groups, shoppers said 'farm fresh' made a product feel healthier, even when they admitted they had no idea what it meant."</div>
+    <div class="src">Snippet 3</div>
+    <div class="choices"><button type="button" class="choice" data-t="a">Theme A</button><button type="button" class="choice" data-t="b">Theme B</button></div>
+  </div>
+  <div class="snip" data-snip>
+    <div class="txt">"Industry trade groups have lobbied against stricter labeling rules, framing vague terms as consumer-friendly."</div>
+    <div class="src">Snippet 4</div>
+    <div class="choices"><button type="button" class="choice" data-t="a">Theme A</button><button type="button" class="choice" data-t="b">Theme B</button></div>
+  </div>
+
+  <div class="reveal">
+    <button type="button" class="big" id="reveal">Reveal the conversation</button>
+    <div id="model" hidden>
+      <div class="model">
+        <h3>Here's the conversation these four are having</h3>
+        <p><span class="theme-a">Theme A (what shoppers understand):</span> Snippets 1 and 3 agree that shoppers routinely misread vague terms, and that the feeling a label gives ("healthier," "organic") runs ahead of any real meaning.</p>
+        <p><span class="theme-b">Theme B (who controls the words):</span> Snippets 2 and 4 agree that this vagueness isn't an accident, it's protected. Regulators leave the terms loose, and industry fights to keep them that way.</p>
+        <p>Put together, the conversation says: shoppers are confused (A) <em>because</em> the words are deliberately left fuzzy by the people who profit from them (B). That's <button type="button" class="term" data-pop="synthesis">synthesis</button>, not a list. Notice you never wrote "Snippet 1 says..."; you wrote what the sources, together, reveal.</p>
+      </div>
+      <div class="gapbox">
+        <span class="lab">And the gap</span>
+        <p>All four study the shopper or the regulator. <b>None of them ask what the confusion does to the honest small producer</b>, the one doing real regenerative work who can't out-shout the greenwashing. None ask the shoppers with the least time or money to decode a label. <b>That silence is the opening for a study.</b> It's also a justice gap: a missing voice.</p>
+      </div>
+    </div>
+  </div>
+
+  <dialog class="pop" id="pop-synthesis"><h3>Synthesis</h3><p>Synthesis means putting sources into conversation and saying what they reveal together, as one combined point. It's the opposite of a list that summarizes source 1, then source 2, then source 3.</p><p>The tell: you're writing about the idea and the sources back you up, instead of marching through them one at a time.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-theme"><h3>Theme</h3><p>A theme is a shared idea that several sources have in common, the bucket you can group them into. Finding themes is how a pile of sources turns into a structure.</p><p>Here, two snippets share "what shoppers understand" and two share "who controls the words."</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-gap"><h3>The gap</h3><p>The gap is the question the existing research hasn't answered yet: the missing piece, the voice nobody asked. Naming it is how you justify a new study, because your work fills the gap.</p><p>In this course the gap is often a justice question: who got left out of the conversation?</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+(function(){
+  document.querySelectorAll('#sc [data-snip]').forEach(function(snip){
+    snip.querySelectorAll('.choice').forEach(function(b){
+      b.addEventListener('click', function(){
+        snip.classList.remove('pick-a','pick-b');
+        snip.classList.add('pick-' + b.getAttribute('data-t'));
+      });
+    });
+  });
+  var btn = document.getElementById('reveal');
+  btn.addEventListener('click', function(){
+    document.getElementById('model').hidden = false;
+    btn.hidden = true;
+    document.getElementById('model').scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+})();
+</script>
+</body>
+</html>

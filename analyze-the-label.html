@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Read Like an Analyst</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --mark:#8a6d1f; --marksoft:#f7efd6; --seen:#2f7d54; --good:#2f7d54;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --mark:#d8b168; --marksoft:#2c2513; --seen:#7ac598; --good:#7ac598; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #al{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #al h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #al .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #al .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #al .sub{color:var(--muted); margin:6px 0 0}
+  #al .how{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:16px}
+  #al .how p{margin:.3rem 0}
+  #al .prog{font-weight:700; color:var(--accent)}
+  #al .package{background:linear-gradient(160deg,#f3efe0,#e6ddc4); color:#2a2417; border:2px solid rgba(0,0,0,.12); border-radius:16px; padding:26px 24px; box-shadow:0 14px 40px rgba(0,0,0,.16); margin:8px 0 18px}
+  #al .package .brandline{font-family:Georgia,serif; font-weight:700; font-size:1.15rem; letter-spacing:.5px; margin-bottom:8px}
+  #al .package .copy{font-size:1.2rem; line-height:1.9}
+  #al .mark{background:var(--marksoft); border:1px dashed var(--mark); color:#2a2417; border-radius:6px; padding:1px 6px; font:inherit; font-weight:600; cursor:pointer}
+  #al .mark:hover{filter:brightness(.97)}
+  #al .mark:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #al .mark.seen{background:transparent; border-style:solid; border-color:var(--seen); color:#2a2417}
+  #al .mark.seen::after{content:" ✓"; color:var(--seen); font-weight:800}
+  #al .sowhat{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--good); border-radius:12px; padding:16px 18px; margin-top:8px}
+  #al .sowhat h3{margin:.1rem 0 .4rem; font-size:1.08rem}
+  #al .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #al .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop a{color:var(--accent)}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="al">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 5, Tuesday</p>
+    <h1>Read Like an Analyst</h1>
+    <p class="sub">Here's a carton like a hundred you've walked past. This is <button type="button" class="term" data-pop="discourse">discourse analysis</button> in miniature: tap each highlighted phrase and watch what the language is quietly doing.</p>
+  </header>
+
+  <div class="how">
+    <p><b>Tap every highlighted phrase.</b> Notice how little of it is a claim you could ever check.</p>
+    <p>Revealed: <span class="prog"><span id="count">0</span> / 8</span></p>
+  </div>
+
+  <div class="package">
+    <div class="brandline"><button type="button" class="mark" data-mark="brand" data-pop="p-brand">MEADOWLIGHT FARMS</button></div>
+    <div class="copy">Our eggs are <button type="button" class="mark" data-mark="natural" data-pop="p-natural">ALL-NATURAL</button> and <button type="button" class="mark" data-mark="farmfresh" data-pop="p-farmfresh">farm fresh</button>, gathered <button type="button" class="mark" data-mark="nature" data-pop="p-nature">the way nature intended</button>. Made with <button type="button" class="mark" data-mark="wholesome" data-pop="p-wholesome">real, wholesome goodness</button> <button type="button" class="mark" data-mark="family" data-pop="p-family">your family can trust</button>. <button type="button" class="mark" data-mark="funny" data-pop="p-funny">No funny business</button>, just good, <button type="button" class="mark" data-mark="honest" data-pop="p-honest">honest food</button>.</div>
+  </div>
+
+  <div class="sowhat">
+    <h3>So what?</h3>
+    <p>Add it up: almost nothing on this carton is a fact you could check. It's <button type="button" class="term" data-pop="framing">framing</button> and feeling, an <button type="button" class="term" data-pop="nature-appeal">appeal to nature</button>, a nudge of suspicion toward everyone else. That's not an accident, and it's not illegal. It's a design.</p>
+    <p>The analyst's questions: <b>What is each word doing? What's it making me feel or assume? And whose interest does that serve?</b> A shopper in a hurry buys the feeling. The honest producer who can't afford to out-market it loses. That's your discourse analysis, and your justice angle, in one carton.</p>
+  </div>
+
+  <!-- phrase dialogs -->
+  <dialog class="pop" id="p-brand"><h3>"Meadowlight Farms"</h3><p>The name conjures a small family farm in a green meadow. Nothing here promises that's true, and many "farm" brands are owned by large industrial operations. The name is doing the work a fact would have to.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="p-natural"><h3>"All-natural"</h3><p>Feels meaningful, means almost nothing. "Natural" is barely regulated on food, so it can sit on almost anything. It signals "good for you" without making a claim anyone could check.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="p-farmfresh"><h3>"Farm fresh"</h3><p>Another unregulated feel-good phrase. "Fresh" and "farm" evoke a morning harvest; the eggs may have shipped across the country weeks ago. It sells a picture, not a fact.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="p-nature"><h3>"The way nature intended"</h3><p>An appeal to nature: the idea that "natural" equals better or healthier. It's a comforting assumption, not evidence. Plenty of natural things will hurt you, and plenty of processed things are perfectly fine.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="p-wholesome"><h3>"Real, wholesome goodness"</h3><p>Virtue words with nothing behind them. "Real," "wholesome," and "goodness" can't be measured or checked. They're here to make you feel warm, not to inform you.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="p-family"><h3>"Your family can trust"</h3><p>An emotional appeal to care and safety. Notice it says nothing about the eggs themselves. It moves your feelings about your family onto the product.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="p-funny"><h3>"No funny business"</h3><p>This manufactures suspicion of everyone else. Without naming a single competitor, it implies the others are up to something shady, so this one must be the honest choice.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="p-honest"><h3>"Honest food"</h3><p>Food can't be honest or dishonest; only people can. This is moral framing: it borrows a human virtue and sticks it on a carton so the brand feels trustworthy.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+  <!-- glossary dialogs -->
+  <dialog class="pop" id="discourse"><h3>Discourse analysis</h3><p>A close, systematic look at how real texts make meaning: word choices, framing, what they include and leave out, and how they move power. You read like a detective to see what the language is doing, not just what it says. (Linguist James Paul Gee treats language as always <em>doing</em> something; Norman Fairclough's "critical discourse analysis" focuses on how it does power.)</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="framing"><h3>Framing</h3><p>How word choice steers what you notice and feel. Call something "farm fresh" and you picture a meadow; call the same eggs "mass-produced" and you don't. From the news: "estate tax" and "death tax" name the exact same policy but pull opposite feelings. (Sociologist Erving Goffman named framing; George Lakoff showed how politics runs on it.)</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="nature-appeal"><h3>Appeal to nature</h3><p>The (mistaken) assumption that "natural" automatically means good, safe, or healthy, and "unnatural" means bad. Marketers lean on it constantly. It feels obvious, but it isn't true: nature makes plenty of poisons.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+(function(){
+  var count = document.getElementById('count');
+  var seen = {};
+  document.querySelectorAll('#al .mark').forEach(function(m){
+    m.addEventListener('click', function(){
+      var k = m.getAttribute('data-mark');
+      if(!seen[k]){ seen[k] = true; m.classList.add('seen'); count.textContent = Object.keys(seen).length; }
+    });
+  });
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById(b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+})();
+</script>
+</body>
+</html>

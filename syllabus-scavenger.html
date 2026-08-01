@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Syllabus Hunt</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9; --good:#2f7d54;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2;
+      --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598;
+    }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #sh{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #sh h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #sh .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #sh .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #sh .sub{color:var(--muted); margin:6px 0 0}
+  #sh .how{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:18px}
+  #sh .how p{margin:.3rem 0}
+  #sh .prog{font-weight:700; color:var(--accent)}
+  #sh .q{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:16px 18px; margin:14px 0}
+  #sh .q .num{font-size:.78rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:700}
+  #sh .q label{display:block; font-weight:600; margin:4px 0 8px}
+  #sh input[type=text]{width:100%; background:var(--field); color:var(--ink); border:1px solid var(--line); border-radius:9px; padding:10px 12px; font:inherit}
+  #sh input[type=text]:focus{outline:3px solid var(--accent); outline-offset:1px; border-color:var(--accent)}
+  #sh details{margin-top:10px; border-top:1px dashed var(--line); padding-top:10px}
+  #sh summary{cursor:pointer; font-weight:600; color:var(--accent); list-style:none}
+  #sh summary::-webkit-details-marker{display:none}
+  #sh summary:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:6px}
+  #sh .ans{margin:8px 0 0; color:var(--ink); background:var(--accent-soft); border-radius:8px; padding:10px 12px}
+  #sh .ans b{color:var(--good)}
+  #sh .done{margin-top:22px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  #sh .done b{color:var(--accent)}
+  #sh .term{background:none; border:0; padding:0; font:inherit; color:var(--accent); font-weight:700; cursor:pointer; text-decoration:underline dotted; text-underline-offset:3px}
+  #sh .term:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:4px}
+  /* popover dialog */
+  dialog.pop{max-width:540px; width:calc(100% - 32px); border:1px solid var(--line); border-radius:14px;
+    background:var(--card); color:var(--ink); padding:22px 24px; box-shadow:0 24px 60px rgba(0,0,0,.35);
+    font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif; margin:0 0 8px; font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop .go{font-weight:700; margin-top:14px}
+  dialog.pop ul{margin:.3rem 0 0; padding-left:1.1rem}
+  dialog.pop li{margin:.45rem 0}
+  dialog.pop a{color:var(--accent)}
+  dialog.pop .gloss{color:var(--muted); font-size:.9rem}
+  dialog.pop form{margin-top:16px; text-align:right}
+  dialog.pop button{font:inherit; font-weight:600; cursor:pointer; border-radius:9px; padding:9px 16px; border:1px solid var(--accent); background:var(--accent); color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="sh">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 1, Tuesday</p>
+    <h1>Syllabus Hunt</h1>
+    <p class="sub">Find these eight answers in the syllabus. Type what you find, then open "Check it" to see if you nailed it.</p>
+  </header>
+
+  <div class="how">
+    <p><b>Why we're doing this instead of me reading the syllabus at you:</b> you'll actually remember what you had to go find. Work on your own, then we'll compare. Race the room if you want.</p>
+    <p>Answered: <span class="prog"><span id="count">0</span> / 8</span></p>
+  </div>
+
+  <div class="q">
+    <p class="num">Question 1</p>
+    <label for="q1">When is your final IMRAD report due, and what's surprising about when it's due?</label>
+    <input type="text" id="q1" data-q>
+    <details><summary>Check it</summary>
+      <p class="ans"><b>The week before Thanksgiving (Week 15)</b>, and it lands <em>before</em> the break, not after. The point is to kill the last-minute scramble: finish early, then just come back and present.</p>
+    </details>
+  </div>
+
+  <div class="q">
+    <p class="num">Question 2</p>
+    <label for="q2">After the first two weeks, how are Tuesdays different from Thursdays?</label>
+    <input type="text" id="q2" data-q>
+    <details><summary>Check it</summary>
+      <p class="ans"><b>Tuesdays:</b> in person, in Boone. <b>Thursdays:</b> an online, interactive module you do on your own time. (Weeks 1–2 are the exception, we meet in person both days.)</p>
+    </details>
+  </div>
+
+  <div class="q">
+    <p class="num">Question 3</p>
+    <label for="q3">What percent of your grade are the weekly modules, and how are they graded?</label>
+    <input type="text" id="q3" data-q>
+    <details><summary>Check it</summary>
+      <p class="ans"><b>20%</b>, graded <b>completion only</b>, did it / didn't, no wrong answers. And the good news: you only turn your notebook in <b>twice</b> all semester (midterm and end of term), not every week.</p>
+    </details>
+  </div>
+
+  <div class="q">
+    <p class="num">Question 4</p>
+    <label for="q4">Can you switch your research topic partway through the semester?</label>
+    <input type="text" id="q4" data-q>
+    <details><summary>Check it</summary>
+      <p class="ans"><b>No.</b> One topic, start to finish. The study is cumulative, each project builds on the last into your final report. (The weekly modules keep things varied so it never gets stale.)</p>
+    </details>
+  </div>
+
+  <div class="q">
+    <p class="num">Question 5</p>
+    <label for="q5">What's the policy on using AI / ChatGPT in this class?</label>
+    <input type="text" id="q5" data-q>
+    <details><summary>Check it</summary>
+      <p class="ans">Allowed, it's <b>not plagiarism</b> here, as long as you use it appropriately and ethically. Learning to use it well is part of the professional skill set.</p>
+    </details>
+  </div>
+
+  <div class="q">
+    <p class="num">Question 6</p>
+    <label for="q6">Through what lens do we study research methods in this course?</label>
+    <input type="text" id="q6" data-q>
+    <details><summary>Check it</summary>
+      <p class="ans"><b>A <button type="button" class="term" data-pop="sj">social justice lens</button>.</b> Technical writing is never neutral, the documents and data we build decide who gets access, who carries risk, and whose story gets told. Your semester topic lives inside that frame. (Tap the underlined words for what that actually means.)</p>
+    </details>
+  </div>
+
+  <div class="q">
+    <p class="num">Question 7</p>
+    <label for="q7">Where does your writing live, and how do you turn work in?</label>
+    <input type="text" id="q7" data-q>
+    <details><summary>Check it</summary>
+      <p class="ans">On <b>your own device.</b> You type in the browser and it saves on your computer as you go. You only turn it in <b>twice</b>, at midterm and at the end, by downloading your whole notebook and uploading it to <b>AsULearn</b>. Nothing's printed, and I only see it at those two check-ins.</p>
+    </details>
+  </div>
+
+  <div class="q">
+    <p class="num">Question 8</p>
+    <label for="q8">Name one support resource in the syllabus you might actually use this semester.</label>
+    <input type="text" id="q8" data-q>
+    <details><summary>Check it</summary>
+      <p class="ans">Any of: <b>Belk Library</b>, the <b>University Writing Center</b>, <b>Office of Disability Services</b>, the <b>Dean of Students</b> (Food Pantry &amp; Free Store), or <b>Student Veteran services</b>. No wrong answer, the point is you know they exist.</p>
+    </details>
+  </div>
+
+  <div class="done">
+    <p>Done? Nice work. You now know how this class actually runs, the deadlines, the grading, and the lens we work through. That was the whole point of today.</p>
+  </div>
+
+  <!-- ===== glossary popover ===== -->
+  <dialog class="pop" id="pop-sj">
+    <h3>What we mean by a "social justice lens"</h3>
+    <p>Technical writing is never neutral. Every document, form, chart, or interface makes choices about who can understand it, who it leaves out, and who carries the risk when it fails.</p>
+    <p>A social justice lens just means we keep asking those questions while we research and write: <b>Who holds power here? Who's served? Whose voice is missing?</b> It's not about scoring political points, it's about noticing that design has real consequences for real people, and doing something about it.</p>
+    <p class="go">Go deeper (free and open, no login, no paywall):</p>
+    <ul>
+      <li><a href="https://pressbooks.umn.edu/techwriting/part/technical-communication-social-justice-and-collective-access/" target="_blank" rel="noopener">Technical Communication, Social Justice, and Collective Access</a>, an open textbook chapter. <span class="gloss">A plain-language intro written for students: how the documents we design include or exclude people, and why access itself is a justice issue.</span></li>
+      <li><a href="https://techcommsocialjustice.org/" target="_blank" rel="noopener">Technical Communication and Social Justice</a>, a free, open-access journal. <span class="gloss">Browse it to see what real work in this area looks like. No subscription needed.</span></li>
+    </ul>
+    <form method="dialog"><button>Got it</button></form>
+  </dialog>
+
+</div>
+
+<script>
+(function(){
+  var inputs = Array.prototype.slice.call(document.querySelectorAll('#sh [data-q]'));
+  var count = document.getElementById('count');
+  function tally(){
+    count.textContent = inputs.filter(function(i){ return i.value.trim().length>0; }).length;
+  }
+  inputs.forEach(function(i){ i.addEventListener('input', tally); });
+
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var d = document.getElementById('pop-' + b.getAttribute('data-pop'));
+      if(d && d.showModal) d.showModal();
+    });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target === d) d.close(); });
+  });
+})();
+</script>
+</body>
+</html>

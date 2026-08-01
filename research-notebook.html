@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Research Notebook</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --focus:#1f6b86; --good:#2f7d54;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2;
+      --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b;
+      --focus:#7fb9d4; --good:#7ac598;
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--paper); color:var(--ink);
+    font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  #rn{max-width:820px; margin:0 auto; padding:28px 20px 80px}
+  #rn h1,#rn h2{font-family:Georgia,"Iowan Old Style",serif; font-weight:600; letter-spacing:.2px}
+  #rn .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:8px}
+  #rn .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #rn h1{font-size:1.9rem; margin:0}
+  #rn .sub{color:var(--muted); margin:6px 0 0}
+  #rn .badge{
+    display:inline-flex; align-items:center; gap:8px; margin-top:14px;
+    background:var(--accent-soft); color:var(--ink); border:1px solid var(--line);
+    padding:8px 12px; border-radius:999px; font-size:.85rem;
+  }
+  #rn .badge b{color:var(--accent)}
+  #rn .intro{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:20px 0 8px}
+  #rn .intro p{margin:.4rem 0}
+  #rn .entry{
+    background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent);
+    border-radius:12px; padding:20px 20px 8px; margin:22px 0;
+  }
+  #rn .entry > h2{font-size:1.3rem; margin:.1rem 0 .2rem}
+  #rn .when{font-size:.78rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:700}
+  #rn .lead{color:var(--muted); margin:.5rem 0 1.1rem}
+  #rn .runq{background:var(--accent-soft); border-radius:9px; padding:10px 14px; font-weight:600; color:var(--ink); margin:.6rem 0 1rem}
+  #rn .q{margin:0 0 18px}
+  #rn label.ask{display:block; font-weight:600; margin:0 0 6px}
+  #rn .hint{color:var(--muted); font-size:.9rem; margin:-2px 0 8px}
+  #rn textarea, #rn input[type=text]{
+    width:100%; background:var(--field); color:var(--ink);
+    border:1px solid var(--line); border-radius:9px; padding:11px 12px;
+    font:inherit; resize:vertical;
+  }
+  #rn textarea{min-height:78px}
+  #rn textarea:focus, #rn input[type=text]:focus{outline:3px solid var(--focus); outline-offset:1px; border-color:var(--focus)}
+  #rn .grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+  #rn .method{border:1px solid var(--line); border-radius:10px; padding:14px 15px; margin-bottom:14px; background:var(--paper)}
+  #rn .method .mtitle{font-weight:700; margin:0 0 6px; font-size:1.02rem}
+  #rn .method .mtitle span{color:var(--accent)}
+  #rn .method .exp{margin:.2rem 0 .5rem}
+  #rn .method .eg{margin:.2rem 0 .7rem; font-size:.94rem; color:var(--muted)}
+  #rn .method .eg b{color:var(--ink)}
+  #rn .method label.ask{font-weight:500; font-size:.92rem; color:var(--muted)}
+  #rn .entry-actions{display:flex; flex-wrap:wrap; gap:10px; align-items:center; border-top:1px solid var(--line); margin-top:8px; padding-top:14px}
+  #rn button{
+    font:inherit; font-weight:600; cursor:pointer; border-radius:9px; padding:10px 16px;
+    border:1px solid var(--accent); background:var(--accent); color:#fff;
+  }
+  #rn button.ghost{background:transparent; color:var(--accent)}
+  #rn button:focus-visible{outline:3px solid var(--focus); outline-offset:2px}
+  #rn .saved{font-size:.85rem; color:var(--good); font-weight:600; opacity:0; transition:opacity .2s}
+  @media (prefers-reduced-motion: reduce){#rn .saved{transition:none}}
+  #rn .saved.show{opacity:1}
+  #rn .global{position:sticky; bottom:0; background:linear-gradient(transparent, var(--paper) 30%); padding:16px 0 6px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:24px}
+  #rn .note{color:var(--muted); font-size:.85rem}
+  #rn .lock{color:var(--muted); text-align:center; border:1px dashed var(--line); border-radius:12px; padding:18px; margin-top:22px}
+  /* inline glossary term */
+  #rn .term{background:none; border:0; padding:0; font:inherit; color:var(--accent); font-weight:600; cursor:pointer; text-decoration:underline dotted; text-underline-offset:3px}
+  #rn .term:focus-visible{outline:3px solid var(--focus); outline-offset:2px; border-radius:4px}
+  /* popover dialog (top layer, styled outside #rn scope) */
+  dialog.pop{max-width:540px; width:calc(100% - 32px); border:1px solid var(--line); border-radius:14px;
+    background:var(--card); color:var(--ink); padding:22px 24px; box-shadow:0 24px 60px rgba(0,0,0,.35);
+    font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif; margin:0 0 8px; font-size:1.2rem; color:var(--ink)}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop .go{font-weight:700; margin-top:14px}
+  dialog.pop ul{margin:.3rem 0 0; padding-left:1.1rem}
+  dialog.pop li{margin:.45rem 0}
+  dialog.pop a{color:var(--accent)}
+  dialog.pop .gloss{color:var(--muted); font-size:.9rem}
+  dialog.pop form{margin-top:16px; text-align:right}
+  dialog.pop button{font:inherit; font-weight:600; cursor:pointer; border-radius:9px; padding:9px 16px; border:1px solid var(--accent); background:var(--accent); color:#fff}
+  @media (max-width:560px){ #rn .grid2{grid-template-columns:1fr} }
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="rn">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Research Methods in Rhetoric &amp; Technical Writing</p>
+    <h1>Your Research Notebook</h1>
+    <p class="sub">One page you'll come back to all semester. You think here, and the thinking becomes your project.</p>
+    <div class="badge">🔒 <span>Saves on <b>this computer only.</b> I never see it until you download it and turn it in.</span></div>
+  </header>
+
+  <div class="intro">
+    <p><b>How this works.</b> Type in the boxes. Your answers save automatically on this device as you go, so you can close the tab and come back all semester. You only turn this in <b>twice</b>, at <b>midterm</b> and at the <b>end of term</b>, so you're not uploading every week. At each check-in, hit <b>Download everything</b> at the bottom and upload that one file to <b>AsULearn</b>.</p>
+    <p><b>Rather type in Google Docs?</b> Totally fine. Hit <b>Copy for Google Docs</b> on any entry: it copies that entry (the prompts plus anything you've already written) and opens a blank Doc. Paste it in with Cmd/Ctrl+V, keep writing there, then download from Docs and upload to AsULearn.</p>
+    <p><b>No grades on the writing itself.</b> There are no wrong answers in here, the only thing that counts is that you did the thinking. So do it <b>as we go</b>: the work builds on itself, and a notebook crammed the night before a check-in is pretty obvious.</p>
+    <p><b>Writing a project draft?</b> Before you submit, paste it into the <a href="draft-check.html" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700">Draft Check</a>. It flags typos, quotes dropped in with no lead-in, inconsistent citations, and paragraphs with no evidence — the fixable stuff, so you fix it before it's graded.</p>
+  </div>
+
+  <!-- ================= ENTRY 0 ================= -->
+  <section class="entry" data-entry data-slug="entry-1a" data-entry-title="Entry 1a: What are you curious about?">
+    <p class="when">Week 1 · Tuesday</p>
+    <h2>Entry 1a: Before we start, what are you curious about?</h2>
+    <p class="lead">You'll carry one topic the whole semester, so we start planting seeds now. Don't overthink it. Curiosity first, questions later.</p>
+
+    <div class="q">
+      <label class="ask" for="e0_curious">Name 2–3 things in your field or future career you're genuinely curious about.</label>
+      <p class="hint">What do you wonder about? What seems interesting, weird, or worth a closer look?</p>
+      <textarea id="e0_curious" data-save data-label="Curiosities in my field"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="ask" for="e0_broken">Name one thing that seems <em>broken or unfair</em> in how information reaches people.</label>
+      <p class="hint">A form nobody can read, a warning nobody sees, an instruction that fails the people who need it most, a group left out of the conversation. This is our <button type="button" class="term" data-pop="sj">social justice lens</button>, starting on day one.</p>
+      <textarea id="e0_broken" data-save data-label="Something broken or unfair in how information reaches people"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="ask" for="e0_semester">If you had to pick ONE of these to sit with for a whole semester, which would it be, and why?</label>
+      <textarea id="e0_semester" data-save data-label="The one I'd spend a semester on"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 1a</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 1 ================= -->
+  <section class="entry" data-entry data-slug="entry-1b" data-entry-title="Entry 1b: What research is, and why we do it through a justice lens">
+    <p class="when">Week 1 · Thursday</p>
+    <h2>Entry 1b: What research is, and why we do it through a justice lens</h2>
+    <p class="lead">You might picture research as science experiments and giant surveys. In rhetoric and technical writing it usually looks different, and there are four everyday ways to answer a question. To keep it concrete, we'll follow one running example the whole course:</p>
+    <p class="runq">Do the sustainability claims on food labels, "natural," "organic," "local," "regenerative", actually tell shoppers the truth, and who gets misled?</p>
+    <p class="lead">Here's how each of the four research moves would take on that question. The example answers are filled in for you, read them, then change them to fit your own thinking.</p>
+
+    <div class="method">
+      <p class="mtitle"><span>1.</span> Read what others already found</p>
+      <p class="exp">Before you gather anything yourself, you find out what's already known. You track down articles, reports, and studies other people have written on your question. In our field this is a <b>literature review</b>, and it's where every real study starts.</p>
+      <p class="eg"><b>On our running question:</b> you'd search for research on eco-labels and "greenwashing", how well shoppers understand claims like "natural" versus certified "organic."</p>
+      <label class="ask" for="e1_m1">My one-line version (edit this):</label>
+      <input type="text" id="e1_m1" data-save data-label="Method 1, read what others found" value="Read existing research on eco-labels and greenwashing, how well shoppers understand claims like 'natural' vs. certified 'organic.'">
+    </div>
+
+    <div class="method">
+      <p class="mtitle"><span>2.</span> Analyze the text or design itself</p>
+      <p class="exp">Sometimes the thing you study <em>is</em> the document, its words, its layout, its choices. You look closely at how a text makes meaning and who it includes or leaves out. In our field this is often called <b>discourse or content analysis</b>.</p>
+      <p class="eg"><b>On our running question:</b> you'd gather real food packaging and analyze the claims, which terms are regulated, which are vague marketing, and how the design makes a product look greener than it is.</p>
+      <label class="ask" for="e1_m2">My one-line version (edit this):</label>
+      <input type="text" id="e1_m2" data-save data-label="Method 2, analyze the text/design" value="Gather 15–20 real food labels and analyze which sustainability claims are regulated, which are vague marketing, and how design shapes perception.">
+    </div>
+
+    <div class="method">
+      <p class="mtitle"><span>3.</span> Ask people</p>
+      <p class="exp">Other times you go straight to people and ask. <b>Interviews, surveys, and focus groups</b> let you hear directly from the people a document is supposed to serve.</p>
+      <p class="eg"><b>On our running question:</b> you'd ask shoppers, what do you think "regenerative" or "natural" means? Did you pay more for it? Were you right?</p>
+      <label class="ask" for="e1_m3">My one-line version (edit this):</label>
+      <input type="text" id="e1_m3" data-save data-label="Method 3, ask people" value="Survey or interview shoppers about what 'natural' or 'regenerative' means to them, and whether they paid more.">
+    </div>
+
+    <div class="method">
+      <p class="mtitle"><span>4.</span> Count and measure</p>
+      <p class="exp">And sometimes you count. You turn things into numbers you can compare and chart, how often something happens, how many people, how big the gap. This is the <b>quantitative</b> side.</p>
+      <p class="eg"><b>On our running question:</b> you'd count how many labels use unregulated buzzwords, score their reading level, and chart how many shoppers guessed a term's real meaning correctly.</p>
+      <label class="ask" for="e1_m4">My one-line version (edit this):</label>
+      <input type="text" id="e1_m4" data-save data-label="Method 4, count and measure" value="Count how many labels use unregulated buzzwords and chart how many shoppers guessed a term's real meaning correctly.">
+    </div>
+
+    <div class="q">
+      <label class="ask" for="e1_neutral">"Technical writing is never neutral." One example from today that surprised me:</label>
+      <textarea id="e1_neutral" data-save data-label="An example that technical writing is never neutral"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="ask" for="e1_power">Looking at a topic you might choose: who holds power here, who is served, and whose voice is missing?</label>
+      <p class="hint">You don't need perfect answers. Just start noticing where power sits in the documents and discourse around your topic. (That's the <button type="button" class="term" data-pop="sj">social justice lens</button> at work.)</p>
+      <textarea id="e1_power" data-save data-label="Power / served / missing in my topic"></textarea>
+    </div>
+
+    <div class="grid2">
+      <div class="q">
+        <label class="ask" for="e1_career">A career direction I'm considering:</label>
+        <textarea id="e1_career" data-save data-label="Career direction"></textarea>
+      </div>
+      <div class="q">
+        <label class="ask" for="e1_skill">Which of the four research skills matters most in that job?</label>
+        <textarea id="e1_skill" data-save data-label="Research skill that matters most for that career"></textarea>
+      </div>
+    </div>
+
+    <div class="q">
+      <label class="ask" for="e1_topics">My 2–3 candidate topics (in the justice frame), and where I could get data:</label>
+      <p class="hint">For each: what text or discourse could you analyze (labels, manuals, posts, policies, transcripts)? Who could you ask?</p>
+      <textarea id="e1_topics" data-save data-label="Candidate topics + possible data sources" style="min-height:110px"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 1b</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 2 ================= -->
+  <section class="entry" data-entry data-slug="entry-2a" data-entry-title="Entry 2a: Asking a researchable question">
+    <p class="when">Week 2 · Tuesday</p>
+    <h2>Entry 2a: Asking a researchable question</h2>
+    <p class="lead">A research question is the engine of your whole project. The strong ones share four traits, keep these next to you as you write.</p>
+
+    <div class="method">
+      <p class="mtitle">The four tests of a strong question</p>
+      <p class="exp"><b>1. Scoped</b>, small enough to actually answer. <b>2. Answerable with data you can get</b>, not just an opinion. <b>3. Not already obviously answered.</b> <b>4. Fits more than one method</b>, you can both analyze something <em>and</em> ask people.</p>
+    </div>
+
+    <div class="q">
+      <label class="ask" for="e2_def">In my own words, a research question is:</label>
+      <textarea id="e2_def" data-save data-label="A research question is (in my words)"></textarea>
+    </div>
+
+    <p class="runq">Watch: a weak question becomes a strong one (on our food-label example)</p>
+    <div class="grid2">
+      <div class="q">
+        <label class="ask" for="e2_weak">The weak version (from the board):</label>
+        <textarea id="e2_weak" data-save data-label="Weak version"></textarea>
+      </div>
+      <div class="q">
+        <label class="ask" for="e2_wrong">What's wrong with it:</label>
+        <textarea id="e2_wrong" data-save data-label="What's wrong with it"></textarea>
+      </div>
+    </div>
+    <div class="q">
+      <label class="ask" for="e2_strong">The stronger version:</label>
+      <textarea id="e2_strong" data-save data-label="Stronger version"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="ask" for="e2_topic">Now my turn, my topic is:</label>
+      <input type="text" id="e2_topic" data-save data-label="My topic">
+    </div>
+    <p class="hint">Draft 2–3 research questions for your topic. Then score each against the four tests above, scoped? answerable with data you can get? not already answered? fits more than one method?</p>
+    <div class="q">
+      <label class="ask" for="e2_rq1">Research question 1:</label>
+      <input type="text" id="e2_rq1" data-save data-label="RQ 1">
+    </div>
+    <div class="q">
+      <label class="ask" for="e2_rq2">Research question 2:</label>
+      <input type="text" id="e2_rq2" data-save data-label="RQ 2">
+    </div>
+    <div class="q">
+      <label class="ask" for="e2_rq3">Research question 3:</label>
+      <input type="text" id="e2_rq3" data-save data-label="RQ 3">
+    </div>
+    <div class="q">
+      <label class="ask" for="e2_keep">The one I'm keeping (for now), and why:</label>
+      <textarea id="e2_keep" data-save data-label="The one I'm keeping + why"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 2a</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 3 ================= -->
+  <section class="entry" data-entry data-slug="entry-2b" data-entry-title="Entry 2b: Lock your topic">
+    <p class="when">Week 2 · Thursday</p>
+    <h2>Entry 2b: Lock your topic</h2>
+    <p class="lead">This is the big one. Everything you do the rest of the semester runs on the topic and question you lock here. Pull your strongest question over from Entry 2a.</p>
+
+    <div class="q">
+      <label class="ask" for="e3_topic">My topic, in one sentence:</label>
+      <textarea id="e3_topic" data-save data-label="My locked topic"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e3_rq">My research question (the one I strengthened):</label>
+      <textarea id="e3_rq" data-save data-label="My research question"></textarea>
+    </div>
+
+    <div class="method">
+      <p class="mtitle">A lockable topic needs all four</p>
+      <p class="exp">Before you commit, make sure your topic gives you (1) <b>texts you can analyze</b>, (2) <b>people you can ask</b>, (3) a <b>justice angle</b> (who holds power, who's served, who's missing), and (4) the <b>strong question</b> above. If any of these is blank, we tighten it before you leave.</p>
+    </div>
+
+    <div class="q">
+      <label class="ask" for="e3_texts">Texts or discourse I could analyze:</label>
+      <p class="hint">Labels, manuals, posts, policies, ads, transcripts, packaging, signs.</p>
+      <textarea id="e3_texts" data-save data-label="Texts I could analyze"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e3_people">People or groups I could ask:</label>
+      <textarea id="e3_people" data-save data-label="People I could ask"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e3_justice">The justice angle: who holds power here, who's served, and whose voice is missing?</label>
+      <textarea id="e3_justice" data-save data-label="Justice angle (power / served / missing)"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e3_worry">Any worry about this topic? (Tell me now, not in November.)</label>
+      <textarea id="e3_worry" data-save data-label="Worries about this topic"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 2b</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 4 ================= -->
+  <section class="entry" data-entry data-slug="entry-3" data-entry-title="Entry 3: Finding your sources">
+    <p class="when">Week 3</p>
+    <h2>Entry 3: Finding your sources</h2>
+    <p class="lead">Your literature review starts with finding out what is already known. This is your search plan and your running source log. Find your first five here to learn the moves, then <b>keep adding all semester</b>: your Literature Review (P1) needs at least 10 credible sources, and your final report wants 15 to 20 (they don't all have to be scholarly).</p>
+
+    <div class="q">
+      <label class="ask" for="e4_terms">My search terms (the keywords I'll try, plus a few combinations):</label>
+      <textarea id="e4_terms" data-save data-label="Search terms"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e4_where">Where I looked and what I tried:</label>
+      <p class="hint">Belk Library databases, Google Scholar, an AI research tool (and the exact prompt you used). Note what worked.</p>
+      <textarea id="e4_where" data-save data-label="Where I looked / tools + prompts tried"></textarea>
+    </div>
+
+    <div class="method">
+      <p class="mtitle">For each source: vet it, then say why it earns a spot</p>
+      <p class="exp">Run each one through <b>SIFT</b> (Stop, Investigate the source, Find better coverage, Trace the claim to its origin). Then note what it actually contributes to your question, and whose perspective it represents or leaves out.</p>
+    </div>
+
+    <div class="q">
+      <label class="ask" for="e4_s1">Source 1 (author, year, title, where it's published), plus: is it credible, and why is it useful?</label>
+      <textarea id="e4_s1" data-save data-label="Source 1"></textarea>
+    </div>
+    <div class="q"><label class="ask" for="e4_s2">Source 2:</label><textarea id="e4_s2" data-save data-label="Source 2"></textarea></div>
+    <div class="q"><label class="ask" for="e4_s3">Source 3:</label><textarea id="e4_s3" data-save data-label="Source 3"></textarea></div>
+    <div class="q"><label class="ask" for="e4_s4">Source 4:</label><textarea id="e4_s4" data-save data-label="Source 4"></textarea></div>
+    <div class="q"><label class="ask" for="e4_s5">Source 5:</label><textarea id="e4_s5" data-save data-label="Source 5"></textarea></div>
+
+    <div class="q">
+      <label class="ask" for="e4_breadcrumb">The breadcrumb trick: at least one of your five above should come from mining another source's bibliography. Which one, and whose reference list did you find it in?</label>
+      <p class="hint">This is one reason we cite at all. Every reference list is a trail of breadcrumbs for the next researcher who wants to check, build on, or replicate the work. Follow someone else's trail, and leave a clear one of your own.</p>
+      <textarea id="e4_breadcrumb" data-save data-label="Which source came from a bibliography (and whose)"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="ask" for="e4_more">More sources (keep adding here as you find them, all semester, on your way to 10 for P1 and 15 to 20 for the final report):</label>
+      <textarea id="e4_more" data-save data-label="Additional sources" style="min-height:120px"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 3</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 5 ================= -->
+  <section class="entry" data-entry data-slug="entry-4a" data-entry-title="Entry 4a: From a pile of sources to a conversation">
+    <p class="when">Week 4</p>
+    <h2>Entry 4a: From a pile of sources to a conversation</h2>
+    <p class="lead">A literature review is not a list of summaries. It's the story of a conversation your sources are already having, and where that conversation goes quiet. That quiet spot is your gap, and your gap is the reason your study exists.</p>
+
+    <div class="method">
+      <p class="mtitle">The move: group, then map the conversation</p>
+      <p class="exp">Instead of "Source 1 says... Source 2 says...", cluster your sources into 2 or 3 <b>themes</b>. Within each theme, notice where they <b>agree</b>, where they <b>clash</b>, and what nobody has looked at yet. (This is a simple <b>WorkNet</b>: mapping how your sources connect through shared terms, shared citations, and shared themes.)</p>
+    </div>
+
+    <div class="q">
+      <label class="ask" for="e5_theme1">Theme 1 (what it's about) and which of my sources belong here:</label>
+      <textarea id="e5_theme1" data-save data-label="Theme 1 + sources"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e5_theme1ac">In Theme 1, where do they agree, and where do they clash?</label>
+      <textarea id="e5_theme1ac" data-save data-label="Theme 1 agreement / tension"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e5_theme2">Theme 2 and its sources:</label>
+      <textarea id="e5_theme2" data-save data-label="Theme 2 + sources"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e5_theme2ac">In Theme 2, agreement and tension:</label>
+      <textarea id="e5_theme2ac" data-save data-label="Theme 2 agreement / tension"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e5_theme3">Theme 3 (optional) and its sources:</label>
+      <textarea id="e5_theme3" data-save data-label="Theme 3 + sources"></textarea>
+    </div>
+
+    <div class="q">
+      <label class="ask" for="e5_gap">The gap: what has nobody answered yet? (This is what YOUR study will do.)</label>
+      <p class="hint">Through our lens, the gap is often a missing voice: a group the research overlooked, or a question no one thought to ask. Name yours.</p>
+      <textarea id="e5_gap" data-save data-label="The gap my study addresses"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e5_bridge">One sentence: "The research shows ___, but no one has ___, which is what I'll do."</label>
+      <textarea id="e5_bridge" data-save data-label="Gap-to-study bridge sentence"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 4a</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 6 ================= -->
+  <section class="entry" data-entry data-slug="entry-4b" data-entry-title="Entry 4b: Draft your lit review">
+    <p class="when">Week 4</p>
+    <h2>Entry 4b: Draft your lit review</h2>
+    <p class="lead">You have the skeleton (Entry 4a). Now write it as prose. Draft one theme as a paragraph, then come back and do the others. Three moves: report what they say (with a signal phrase), weave sources together, then turn toward your gap.</p>
+
+    <div class="q">
+      <label class="ask" for="e6_theme">Which theme am I writing?</label>
+      <input type="text" id="e6_theme" data-save data-label="Theme I'm drafting">
+    </div>
+    <div class="q">
+      <label class="ask" for="e6_draft">My paragraph (weave at least 2 sources with signal phrases):</label>
+      <p class="hint">Starters: "Smith (2021) argues that ___." · "Several studies (Smith; Jones) find ___, though Lee cautions ___." · "What this conversation has not addressed is ___."</p>
+      <textarea id="e6_draft" data-save data-label="Lit review paragraph draft" style="min-height:170px"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e6_readaloud">Read it aloud: does it sound like a conversation, or a list? One thing I'll fix:</label>
+      <textarea id="e6_readaloud" data-save data-label="Read-aloud check"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 4b</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 5a ================= -->
+  <section class="entry" data-entry data-slug="entry-5a" data-entry-title="Entry 5a: Designing your discourse analysis">
+    <p class="when">Week 5 · Tuesday</p>
+    <h2>Entry 5a: Designing your discourse analysis</h2>
+    <p class="lead">Your literature review is done. Now you stop reading what others found and become the analyst. <button type="button" class="term" data-pop="discourse">Discourse analysis</button> means looking closely at a set of real texts to see how their language makes meaning and moves power.</p>
+
+    <div class="method">
+      <p class="mtitle">Two lenses that strengthen each other</p>
+      <p class="exp"><button type="button" class="term" data-pop="discourse">Discourse analysis</button> reads closely for <em>how</em> the language works (the moves, the meaning). <button type="button" class="term" data-pop="content">Content analysis</button> <em>counts</em> how often each move shows up. Together they're stronger: the close reading tells you what's worth counting, and the counts prove your reading is a real pattern, not just a hunch. You design the reading now (Week 5) and do the counting in Week 6.</p>
+    </div>
+
+    <div class="q">
+      <label class="ask" for="e5a_corpus">What set of texts (my <button type="button" class="term" data-pop="corpus">corpus</button>) will I analyze?</label>
+      <p class="hint">Same kind of thing, at least 15, usually short: newspaper articles, egg-carton labels, ads, or policies. You'll cite these in <button type="button" class="term" data-pop="apa">APA</button> in Entry 5b, so save the source details as you gather.</p>
+      <p class="hint"><b>e.g.,</b> 15 egg-carton labels photographed at three local grocery stores; or 20 headlines about local farming from the Johnson City Press.</p>
+      <textarea id="e5a_corpus" data-save data-label="My corpus"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e5a_question">My analytical question (what am I trying to find out about these texts?):</label>
+      <p class="hint"><b>e.g.,</b> How do egg-carton labels use the idea of "nature" to build trust? · What do local news headlines about farmworkers emphasize, and what do they leave out? · How do fast-fashion brands talk about "sustainability" in their ads?</p>
+      <textarea id="e5a_question" data-save data-label="Analytical question"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e5a_look">What will I look for?</label>
+      <p class="hint">You don't have to look at everything, pick a few. <b>e.g.,</b> recurring words and phrases; emotional appeals (family, fear, nature); what's promised versus actually proven; who is pictured or named (and who isn't); and what these texts never mention.</p>
+      <textarea id="e5a_look" data-save data-label="What I'll look for"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e5a_power">Who is this language working on, and who benefits from it? (This is your justice angle.)</label>
+      <p class="hint"><b>e.g.,</b> These labels work on busy, budget-conscious shoppers. They benefit big producers who can afford slick packaging, and they make it harder for small honest farms to compete.</p>
+      <textarea id="e5a_power" data-save data-label="Who the language works on / who benefits"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 5a</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 5b ================= -->
+  <section class="entry" data-entry data-slug="entry-5b" data-entry-title="Entry 5b: Your corpus and first pass">
+    <p class="when">Week 5 · Thursday</p>
+    <h2>Entry 5b: Your corpus and first pass</h2>
+    <p class="lead">Gather your texts, then read them like a detective. You're not looking for what they say on the surface, you're looking for what their language is doing.</p>
+
+    <div class="q">
+      <label class="ask" for="e5b_corpus">My corpus, listed in <button type="button" class="term" data-pop="apa">APA</button> (at least 15):</label>
+      <p class="hint">Cite them now and it's done for your final paper. Not sure how to cite a label, an ad, or a post? Tap <button type="button" class="term" data-pop="apa">APA</button> above.</p>
+      <p class="hint"><b>e.g.,</b><br>Meadowlight Farms. (2024). <i>Large brown eggs</i> [Egg carton label]. Photographed at Ingles, Boone, NC.<br>Smith, J. (2024, March 4). Local farms fight to stay afloat. <i>Johnson City Press.</i></p>
+      <textarea id="e5b_corpus" data-save data-label="Corpus list (APA)" style="min-height:150px"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e5b_patterns">First-pass patterns I'm noticing (recurring words, framings, moves):</label>
+      <p class="hint"><b>e.g.,</b> Almost every label uses a "nature" word ("natural," "farm fresh"). Several imply other brands are dishonest. None of them mention price, or the people who do the work.</p>
+      <textarea id="e5b_patterns" data-save data-label="First-pass patterns"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e5b_close">One text, read closely: what is its language actually DOING (beyond what it literally says)?</label>
+      <p class="hint"><b>e.g.,</b> The word "wholesome" doesn't describe the eggs at all. It's there to make me feel like a good parent for buying them.</p>
+      <textarea id="e5b_close" data-save data-label="One text read closely"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 5b</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <dialog class="pop" id="pop-discourse"><h3>Discourse analysis</h3><p>A close, systematic look at how real texts make meaning: their word choices, their framing, what they include and leave out, and how they move power. You're not mainly counting things (that's content analysis); you're reading like a detective to see what the language is doing. (Linguist James Paul Gee treats language as always <em>doing</em> something; Norman Fairclough's "critical discourse analysis" focuses on how it does power.)</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-content"><h3>Content analysis</h3><p>The counting cousin of discourse analysis: how often a word, theme, or move shows up across your texts. Discourse analysis asks "how is this language working?"; content analysis asks "how often, and where?" Using both makes your project stronger: the close reading tells you what to count, and the counts prove the pattern is real. (Klaus Krippendorff's <em>Content Analysis</em> is the standard handbook.)</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-apa"><h3>Citing unusual sources in APA</h3><p>APA has clean formats for articles, but not for a cereal box. The trick is to give the same four things every citation gives: <b>who, when, what, where.</b></p><p><b>Newspaper article:</b> Author, A. A. (Year, Month Day). Headline of the article. <i>Newspaper Name.</i> https://…</p><p><b>Product label / packaging:</b> Brand Name. (Year or n.d.). <i>Product name</i> [Egg carton label]. Retailer, City, ST.</p><p><b>Advertisement:</b> Brand Name. (Year). <i>First few words or title</i> [Advertisement]. Platform or publication.</p><p><b>Social media post:</b> Author [@handle]. (Year, Month Day). First words of the post [Post]. Platform. URL</p><p>When in doubt, describe it in [brackets] so a reader could find it. If yours is genuinely strange, ask me.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-corpus"><h3>Corpus</h3><p>Your set of texts to analyze, gathered on purpose. For this project, aim for at least 15 (15 to 20 is better) items of the same kind (news articles, labels, ads, policies, posts) so real patterns can show up instead of one-off quirks. "Corpus" just means a "body" of texts, and corpus linguists like Paul Baker study language exactly this way.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+  <!-- ================= ENTRY 6a ================= -->
+  <section class="entry" data-entry data-slug="entry-6a" data-entry-title="Entry 6a: Build your codebook">
+    <p class="when">Week 6 · Tuesday</p>
+    <h2>Entry 6a: Build your codebook</h2>
+    <p class="lead">On your first pass you noticed patterns. Now you name them. A <button type="button" class="term" data-pop="codebook">codebook</button> is your list of codes, each with a short definition and an example, so your analysis stays consistent and someone else could repeat it. For example, if you noticed the labels keep leaning on "natural" and keep taking digs at other brands, those become two codes: "appeal to nature" and "manufactured distrust." (The in-class "Code These Labels" activity walks you through building one and shows a full model codebook.)</p>
+
+    <div class="q">
+      <label class="ask" for="e6a_codes">My codes: name each recurring move, with a one-line definition.</label>
+      <p class="hint">A good <button type="button" class="term" data-pop="code">code</button> is specific enough to apply the same way every time. Example: "Appeal to nature: claims that 'natural' equals better or safer."</p>
+      <textarea id="e6a_codes" data-save data-label="My codes + definitions" style="min-height:140px"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e6a_examples">For each code, a real example from my corpus:</label>
+      <textarea id="e6a_examples" data-save data-label="Examples for each code"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e6a_common">Which code seems most common so far?</label>
+      <input type="text" id="e6a_common" data-save data-label="Most common code so far">
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 6a</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 6b ================= -->
+  <section class="entry" data-entry data-slug="entry-6b" data-entry-title="Entry 6b: Apply your codes and interpret">
+    <p class="when">Week 6 · Thursday</p>
+    <h2>Entry 6b: Apply your codes and interpret</h2>
+    <p class="lead">Go through your whole corpus and tag every text with your codes. Count them. Then the real question, the one that separates analysis from a tally: what do the patterns mean?</p>
+
+    <div class="q">
+      <label class="ask" for="e6b_counts">My counts: how many texts use each code?</label>
+      <textarea id="e6b_counts" data-save data-label="Counts per code"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e6b_pattern">The biggest pattern, and what it means:</label>
+      <textarea id="e6b_pattern" data-save data-label="Biggest pattern + meaning"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e6b_justice">The justice reading: whose interest do these patterns serve, and who is missing?</label>
+      <textarea id="e6b_justice" data-save data-label="Justice reading of the patterns"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e6b_quotes">One or two exact quotes that capture the pattern:</label>
+      <textarea id="e6b_quotes" data-save data-label="Illustrative quotes"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 6b</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <dialog class="pop" id="pop-codebook"><h3>Codebook</h3><p>Your full list of codes, each with its definition and an example. It's what makes your analysis <em>systematic</em> rather than just your impression: hand your codebook to a classmate and they should be able to tag the same texts and land close to your results. (That's called intercoder reliability.)</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-code"><h3>A code</h3><p>One named category in your analysis, like "appeal to nature." A good code has a short definition and a clear example, so you (and anyone else) apply it the same way every time. Codes are the buckets you sort your texts into. (Johnny Saldaña's <em>Coding Manual for Qualitative Researchers</em> is the standard guide.)</p><form method="dialog"><button>Got it</button></form></dialog>
+
+  <!-- ================= ENTRY 7a ================= -->
+  <section class="entry" data-entry data-slug="entry-7a" data-entry-title="Entry 7a: Plan your tool pass">
+    <p class="when">Week 7 · Tuesday</p>
+    <h2>Entry 7a: Plan your tool pass</h2>
+    <p class="lead">A tool can count your whole corpus in seconds and surface patterns your eye misses. Plan how you'll use one. (You need your corpus saved as searchable text first.)</p>
+
+    <div class="q">
+      <label class="ask" for="e7a_tool">Which tool will I use, and why?</label>
+      <p class="hint"><b>e.g.,</b> Voyant (free, web-based, nothing to install) for word frequencies and a concordance; or AntConc for deeper concordance and collocation work; plus AI to help spot themes, and Google Sheets to chart my code counts.</p>
+      <textarea id="e7a_tool" data-save data-label="Tool + why"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e7a_ask">What will I ask the tool?</label>
+      <p class="hint"><b>e.g.,</b> What are the top 10 words? Run a concordance on "natural" and "fresh": what keeps showing up next to them? Which of my codes do the counts back up?</p>
+      <textarea id="e7a_ask" data-save data-label="What I'll ask the tool"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 7a</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 7b ================= -->
+  <section class="entry" data-entry data-slug="entry-7b" data-entry-title="Entry 7b: What the tools found">
+    <p class="when">Week 7 · Thursday</p>
+    <h2>Entry 7b: What the tools found</h2>
+    <p class="lead">Run your corpus through your tool and record what it shows. Remember: the tool counts and reveals; the meaning is still yours to write.</p>
+
+    <div class="q">
+      <label class="ask" for="e7b_top">Top words the tool found:</label>
+      <p class="hint"><b>e.g.,</b> natural (14), fresh (11), farm (9), family (7)… and nothing about price or workers.</p>
+      <textarea id="e7b_top" data-save data-label="Top words"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e7b_conc">A telling <button type="button" class="term" data-pop="concordance">concordance</button>: pick a key word. What does its context reveal?</label>
+      <p class="hint"><b>e.g.,</b> "natural" almost always sits next to "fresh," "family," and "goodness": it sets a mood, it doesn't make a claim.</p>
+      <textarea id="e7b_conc" data-save data-label="Telling concordance"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e7b_missed">What did the tool show that you'd have missed by eye?</label>
+      <textarea id="e7b_missed" data-save data-label="What the tool revealed"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e7b_ai">If you used AI: how did it help, and what did you verify yourself?</label>
+      <p class="hint"><b>e.g.,</b> AI suggested grouping "wholesome / real / pure" as one code; I checked each example myself before trusting it.</p>
+      <textarea id="e7b_ai" data-save data-label="AI help + what I verified"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 7b</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <dialog class="pop" id="pop-concordance"><h3>Concordance (KWIC)</h3><p>A list of every place a word appears in your corpus, shown with the words on either side, so you can read how it's actually used. KWIC means "keyword in context." Frequency tells you <em>how often</em> a word shows up; a concordance tells you <em>how</em> it's used. Tools like Voyant and AntConc build one in seconds.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+  <!-- ================= ENTRY 8 ================= -->
+  <section class="entry" data-entry data-slug="entry-8" data-entry-title="Entry 8: Assemble your P2">
+    <p class="when">Week 8 · Thursday</p>
+    <h2>Entry 8: Assemble your P2</h2>
+    <p class="lead">This is the week it becomes a paper. Your notebook already holds every piece. Here you lay them out in order, then expand each into prose.</p>
+
+    <div class="q">
+      <label class="ask" for="e8_intro">Introduction: my question, and why it matters (2 to 3 sentences).</label>
+      <p class="hint"><b>e.g.,</b> This analysis asks how egg-carton labels use the word "natural." It matters because the word is unregulated, and the shoppers most likely to trust it are the ones with the least time to check.</p>
+      <textarea id="e8_intro" data-save data-label="Introduction"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e8_methods">Methods: my <button type="button" class="term" data-pop="corpus">corpus</button> (how many, what kind), my <button type="button" class="term" data-pop="codebook">codebook</button>, and the tools I used.</label>
+      <p class="hint"><b>e.g.,</b> I analyzed 18 egg-carton labels from three stores. I coded them for four moves (appeal to nature, vague virtue words, manufactured distrust, emotion) and used Voyant to check word frequencies.</p>
+      <textarea id="e8_methods" data-save data-label="Methods"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e8_find1">Finding 1: the pattern + the count + one exact quote.</label>
+      <p class="hint"><b>e.g.,</b> Appeal to nature dominated: 14 of 18 labels used "natural" or "farm fresh." One read, "gathered the way nature intended."</p>
+      <textarea id="e8_find1" data-save data-label="Finding 1"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e8_find2">Finding 2: pattern + count + quote.</label>
+      <textarea id="e8_find2" data-save data-label="Finding 2"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e8_find3">Finding 3 (optional): pattern + count + quote.</label>
+      <textarea id="e8_find3" data-save data-label="Finding 3"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e8_disc">Discussion: what the patterns mean, whose interest they serve, and who is missing.</label>
+      <p class="hint"><b>e.g.,</b> The labels sell a feeling, not a fact. That benefits big producers who can print the words, and it drowns out small farms doing the real work. Nobody in these labels mentions cost, or the people who raise the food.</p>
+      <textarea id="e8_disc" data-save data-label="Discussion"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e8_limits">Limitations: what my analysis can't claim.</label>
+      <p class="hint"><b>e.g.,</b> Eighteen labels from three local stores can't speak for the whole industry, and I studied the labels, not whether shoppers were actually fooled.</p>
+      <textarea id="e8_limits" data-save data-label="Limitations"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 8</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 9a ================= -->
+  <section class="entry" data-entry data-slug="entry-9a" data-entry-title="Entry 9a: The ethics of my study">
+    <p class="when">Week 9 · Tuesday</p>
+    <h2>Entry 9a: The ethics of my study</h2>
+    <p class="lead">You're about to ask real people real questions. Before you collect a single response, plan how you'll do it right. This is the step that turns "bothering people" into research.</p>
+
+    <div class="q">
+      <label class="ask" for="e9a_who">Who will I recruit, and are any of them a <button type="button" class="term" data-pop="vulnerable">vulnerable group</button>?</label>
+      <p class="hint"><b>e.g.,</b> Adult shoppers at two grocery stores. No minors, no one in a dependent or high-risk situation.</p>
+      <textarea id="e9a_who" data-save data-label="Who I'll recruit / vulnerability"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e9a_consent">How will I get <button type="button" class="term" data-pop="consent">informed consent</button>? What will I tell them?</label>
+      <p class="hint"><b>e.g.,</b> A short intro: what the study is, that it's for a class, that it's voluntary, how long it takes, and that they can stop anytime.</p>
+      <textarea id="e9a_consent" data-save data-label="How I'll get consent"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e9a_privacy"><button type="button" class="term" data-pop="anon">Anonymous or confidential</button>? How will I protect their data?</label>
+      <p class="hint"><b>e.g.,</b> Anonymous: no names or emails collected. Responses stored on my own device, names never linked.</p>
+      <textarea id="e9a_privacy" data-save data-label="Anonymous/confidential + data protection"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e9a_harm">What's the risk, and how do I keep it low?</label>
+      <p class="hint"><b>e.g.,</b> Very low risk: questions about grocery habits aren't sensitive. I'll skip anything personal and let people decline any question.</p>
+      <textarea id="e9a_harm" data-save data-label="Risk + minimizing harm"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 9a</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 9b ================= -->
+  <section class="entry" data-entry data-slug="entry-9b" data-entry-title="Entry 9b: CITI + my recruitment plan">
+    <p class="when">Week 9 · Thursday</p>
+    <h2>Entry 9b: CITI + my recruitment plan</h2>
+    <p class="lead">Finish your CITI training, then write the two things you'll actually say to participants.</p>
+
+    <div class="q">
+      <label class="ask" for="e9b_citi">CITI training: done, and passed at 80% or higher? Keep your certificate. It stays on your record here for the rest of your time at App.</label>
+      <textarea id="e9b_citi" data-save data-label="CITI training status"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e9b_pitch">My recruitment pitch (the short invitation I'll send or say):</label>
+      <p class="hint"><b>e.g.,</b> "Hi, I'm a student at App State doing a class project on food labels. Would you take a 5-minute anonymous survey? It's voluntary and you can skip any question."</p>
+      <textarea id="e9b_pitch" data-save data-label="Recruitment pitch"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e9b_consentstmt">My consent statement (what participants read or hear before they agree):</label>
+      <textarea id="e9b_consentstmt" data-save data-label="Consent statement"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e9b_irb">A quick <button type="button" class="term" data-pop="irb">IRB</button> check: class projects like ours are <b>exempt</b> (no review process), but that means some topics are off-limits. Is my topic clear (adults, low-risk), or do I need to adjust it?</label>
+      <p class="hint"><b>e.g.,</b> Adults taking a voluntary survey: all clear. If I'd wanted to survey a high-school class, I'd switch to college students instead.</p>
+      <textarea id="e9b_irb" data-save data-label="IRB check"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 9b</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 10a ================= -->
+  <section class="entry" data-entry data-slug="entry-10a" data-entry-title="Entry 10a: Choose your method and draft your questions">
+    <p class="when">Week 10 · Tuesday</p>
+    <h2>Entry 10a: Choose your method and draft your questions</h2>
+    <p class="lead">Now you build the tool that gets you real data. Pick how you'll collect it, then draft the questions, and put each one through the same checks you used in the Question Clinic. This is the week you become a <button type="button" class="term" data-pop="primary">primary investigator</button>: up to now you analyzed research others produced, and now you generate your own.</p>
+
+    <div class="q">
+      <label class="ask" for="e10a_method">Which <button type="button" class="term" data-pop="instrument">instrument</button> will I use, survey, interview, focus group, or a mix, and why does it fit my question?</label>
+      <p class="hint"><b>e.g.,</b> A short anonymous survey. I want breadth (a lot of shoppers) and countable answers I can chart, so a survey fits better than a few interviews.</p>
+      <textarea id="e10a_method" data-save data-label="My method + why"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e10a_goal">What exactly do I want to find out? (My P3 question, inside my larger topic.)</label>
+      <p class="hint"><b>e.g.,</b> Do shoppers trust "natural" and "local" labels, and do they say those labels change what they buy?</p>
+      <textarea id="e10a_goal" data-save data-label="What I want to find out"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e10a_draft">Draft 3 to 5 questions (mostly <button type="button" class="term" data-pop="openclosed">closed</button>, so I can count them; one or two open for quotes).</label>
+      <p class="hint"><b>e.g.,</b> 1) How often do you look for a "certified organic" seal on produce? (Never/Rarely/Sometimes/Often/Always) &nbsp; 2) How much do you agree: "local" labels are trustworthy? (5-point) &nbsp; 3) Open: what's the one thing that makes you trust or distrust a label?</p>
+      <textarea id="e10a_draft" data-save data-label="Draft questions"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e10a_check">Self-check: I ran each question past the six flaws (leading, double-barreled, loaded, vague, jargon, unbalanced scale). What did I catch and fix?</label>
+      <p class="hint"><b>e.g.,</b> Q2 was leading ("Don't you agree local labels are trustworthy?"). Fixed it to a balanced agree/disagree scale. Need the clinic again? <a href="question-clinic.html" target="_blank" rel="noopener">Reopen it</a>.</p>
+      <textarea id="e10a_check" data-save data-label="Flaw self-check"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e10a_connect">How does this study connect back to the gap you found in your literature review (P1)? What will your own data add that reading sources couldn't?</label>
+      <p class="hint"><b>e.g.,</b> My sources argued labels confuse shoppers but mostly studied big national chains. My survey asks local App State shoppers directly, filling the gap with data nobody has collected here. That's the move from reading research to making it.</p>
+      <textarea id="e10a_connect" data-save data-label="How this connects to my lit review gap"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 10a</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 10b ================= -->
+  <section class="entry" data-entry data-slug="entry-10b" data-entry-title="Entry 10b: Build your full instrument">
+    <p class="when">Week 10 · Thursday</p>
+    <h2>Entry 10b: Build your full instrument</h2>
+    <p class="lead">Turn your drafted questions into the finished tool you'll send next week: the questions in order, on a platform, tested on one real person first. Next week these questions become real responses, the first data that's truly yours.</p>
+
+    <div class="q">
+      <label class="ask" for="e10b_types">What question types am I using?</label>
+      <p class="hint"><b>e.g.,</b> Mostly multiple choice and <button type="button" class="term" data-pop="likert">Likert scales</button>, two <button type="button" class="term" data-pop="openclosed">open</button> questions, and a few optional <button type="button" class="term" data-pop="demo">demographic</button> questions at the end.</p>
+      <textarea id="e10b_types" data-save data-label="Question types"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e10b_full">My full instrument, in order: consent intro &rarr; easy warm-up &rarr; core questions &rarr; demographics &rarr; thank-you.</label>
+      <p class="hint"><b>e.g.,</b> Paste the whole thing here, the consent line from Entry 9b, then every question in the order a participant will see it. This is what goes in your final report's appendix.</p>
+      <textarea id="e10b_full" data-save data-label="Full instrument (in order)"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e10b_platform">Platform, and how I'll keep responses anonymous and exportable:</label>
+      <p class="hint"><b>e.g.,</b> <button type="button" class="term" data-pop="gforms">Google Forms</button>, anonymous (no email collected), responses export to a Google Sheet I can chart in Week 12.</p>
+      <textarea id="e10b_platform" data-save data-label="Platform + anonymity/export"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e10b_pilot">Pilot test: who tried it, how long it took, and what I fixed afterward.</label>
+      <p class="hint"><b>e.g.,</b> My roommate took it in 4 minutes. She stumbled on Q3 ("what did 'regenerative' mean?"), so I added a one-line definition.</p>
+      <textarea id="e10b_pilot" data-save data-label="Pilot test + fixes"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 10b</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 11a ================= -->
+  <section class="entry" data-entry data-slug="entry-11a" data-entry-title="Entry 11a: Plan your recruitment and sample">
+    <p class="when">Week 11 · Tuesday</p>
+    <h2>Entry 11a: Plan your recruitment and sample</h2>
+    <p class="lead">Your instrument is ready. Before you send it, plan who you'll ask, because who you ask decides what you'll find. This is where the justice lens gets practical: build a sample that hears from more than just people like you.</p>
+
+    <div class="q">
+      <label class="ask" for="e11a_pop">Who is my question really about (my <button type="button" class="term" data-pop="sample">population</button>), and who am I actually trying to reach?</label>
+      <p class="hint"><b>e.g.,</b> My question is about everyday grocery shoppers. I'm trying to reach adults who buy their own groceries, not only college students.</p>
+      <textarea id="e11a_pop" data-save data-label="Population / who I'm reaching"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e11a_how">How and where will I recruit? (Which channels, and what's my rule for who gets asked?)</label>
+      <p class="hint"><b>e.g.,</b> Post the anonymous link in three different Facebook groups (budget grocery, local farm, campus parents), plus ask every third person at the dining-hall entrance.</p>
+      <textarea id="e11a_how" data-save data-label="Recruitment channels + rule"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e11a_missing">Whose voices am I likely to miss, and how will I widen my reach to include them?</label>
+      <p class="hint"><b>e.g.,</b> My channels skew young and online. I'll miss older shoppers and people who don't use Facebook. Fix: ask a few in person at a regular grocery store, and have participants share with an older relative (<button type="button" class="term" data-pop="snowball">snowball</button>).</p>
+      <textarea id="e11a_missing" data-save data-label="Voices I might miss + how I'll widen"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e11a_n">What's my realistic target: how many responses (or interviews) am I aiming for?</label>
+      <p class="hint"><b>e.g.,</b> Survey: aim for 35 to 50 responses. (If I were doing interviews instead, I'd aim for 6 to 8 in-depth ones.)</p>
+      <textarea id="e11a_n" data-save data-label="Sample-size target"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 11a</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 11b ================= -->
+  <section class="entry" data-entry data-slug="entry-11b" data-entry-title="Entry 11b: Launch and log your collection">
+    <p class="when">Week 11 · Thursday</p>
+    <h2>Entry 11b: Launch and log your collection</h2>
+    <p class="lead">Take it live and keep a short log while the data comes in. Don't analyze yet, that's next week. Right now the whole job is to gather clean responses and protect them.</p>
+
+    <div class="q">
+      <label class="ask" for="e11b_live">It's live: where did I share it, and is my consent language attached everywhere?</label>
+      <p class="hint"><b>e.g.,</b> Link posted in my three groups and a QR code taped by the dining hall. Consent intro is the first screen of the form, so everyone sees it before answering.</p>
+      <textarea id="e11b_live" data-save data-label="Launch: channels + consent"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e11b_log">Running log: how many responses so far, and any problems? (Junk responses, low turnout, a channel that isn't working.)</label>
+      <p class="hint"><b>e.g.,</b> 22 responses in two days. Two were gibberish (removed, noted why). The parents group is quiet, so I added a reminder and asked a friend to share with older coworkers.</p>
+      <textarea id="e11b_log" data-save data-label="Response log + problems"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e11b_clean">How am I keeping the data clean and safe? (Anonymous, not coaching anyone, backed up.)</label>
+      <p class="hint"><b>e.g.,</b> No names collected. When a friend asked "what should I put?" I said there's no right answer. Downloaded the response sheet twice as a backup.</p>
+      <textarea id="e11b_clean" data-save data-label="Data hygiene + backup"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e11b_stop">When will I stop collecting, and what's the honest limit of my sample?</label>
+      <p class="hint"><b>e.g.,</b> I'll close it at the end of the week around 40 responses. Honest limit: mostly younger, online shoppers, so my findings are suggestive, not the whole picture. I'll <button type="button" class="term" data-pop="limits">say so</button> in my report.</p>
+      <textarea id="e11b_stop" data-save data-label="Stop point + sample limits"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 11b</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 12a ================= -->
+  <section class="entry" data-entry data-slug="entry-12a" data-entry-title="Entry 12a: Turn your responses into results">
+    <p class="when">Week 12 · Tuesday</p>
+    <h2>Entry 12a: Turn your responses into results</h2>
+    <p class="lead">Your data has stopped coming in. Now you make it talk: count it, describe it, and pick the pictures that show it honestly. This is the first time your study answers its own question.</p>
+
+    <div class="q">
+      <label class="ask" for="e12a_counts">My <button type="button" class="term" data-pop="frequency">frequency counts</button>: for each main question, how many people chose each answer?</label>
+      <p class="hint"><b>e.g.,</b> "Look for an organic seal?" Never 3, Rarely 7, Sometimes 14, Often 12, Always 6 (N=42). (Tip: COUNTIF in your sheet tallies these fast.)</p>
+      <textarea id="e12a_counts" data-save data-label="Frequency counts"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e12a_stats">The basics: my N, the key percentages, and the most common answer for each question.</label>
+      <p class="hint"><b>e.g.,</b> N=42. 62% look for a seal at least "Often." Most common answer: "Sometimes" (33%).</p>
+      <textarea id="e12a_stats" data-save data-label="N, percentages, mode"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e12a_charts">Which <button type="button" class="term" data-pop="chartfit">chart</button> will I use for which question, and why?</label>
+      <p class="hint"><b>e.g.,</b> Bar chart for the "how often" question (comparing five answer choices). A pie for the yes/no trust question (two parts of one whole).</p>
+      <textarea id="e12a_charts" data-save data-label="Charts chosen + why"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e12a_findings">What jumps out? Two or three things the numbers actually show.</label>
+      <p class="hint"><b>e.g.,</b> 1) Most shoppers check labels only sometimes. 2) "Local" is trusted more than "natural." 3) Younger respondents trusted labels less than I expected.</p>
+      <textarea id="e12a_findings" data-save data-label="Key findings"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 12a</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 12b ================= -->
+  <section class="entry" data-entry data-slug="entry-12b" data-entry-title="Entry 12b: Write up P3">
+    <p class="when">Week 12 · Thursday</p>
+    <h2>Entry 12b: Write up P3</h2>
+    <p class="lead">Turn your findings into your P3 write-up (about two pages plus visuals), <b>due Sunday</b>. Numbers for the what, a quote or two for the why, and honesty about what it all can and can't claim.</p>
+
+    <div class="q">
+      <label class="ask" for="e12b_write">My key findings in plain sentences, each tied to a number and a chart.</label>
+      <p class="hint"><b>e.g.,</b> "A majority (62%, N=42) look for an organic seal often or always, yet only 31% said they trust 'natural' labels (see Figure 1)."</p>
+      <textarea id="e12b_write" data-save data-label="Findings write-up"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e12b_quote">A participant quote or two from my open responses that adds the <button type="button" class="term" data-pop="mixed">why</button> behind a number.</label>
+      <p class="hint"><b>e.g.,</b> One shopper wrote, "'Natural' means nothing to me, it's on everything." That voice sits next to my "only 31% trust 'natural'" stat.</p>
+      <textarea id="e12b_quote" data-save data-label="Quote(s) that add the why"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e12b_limits">My honest <button type="button" class="term" data-pop="limits">limitations</button>.</label>
+      <p class="hint"><b>e.g.,</b> Small (N=42), mostly younger online shoppers, convenience sample. Findings are suggestive, not proof, and can't speak for all consumers.</p>
+      <textarea id="e12b_limits" data-save data-label="Limitations"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e12b_answer">Does my data answer my question and fill the gap I found? What can I claim, and what can't I (<button type="button" class="term" data-pop="causation">careful with cause</button>)?</label>
+      <p class="hint"><b>e.g.,</b> It partly answers it: shoppers are skeptical of "natural" specifically. I can say trust <i>varies by label</i>. I can't say the labels <i>caused</i> anyone's choices, only that they're associated.</p>
+      <textarea id="e12b_answer" data-save data-label="What my data answers / claims"></textarea>
+    </div>
+    <p class="hint">Before you submit: run your draft through the <a href="draft-check.html" target="_blank" rel="noopener">Draft Check</a> to catch the fixable stuff first.</p>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 12b</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 13a ================= -->
+  <section class="entry" data-entry data-slug="entry-13a" data-entry-title="Entry 13a: Map and outline your report">
+    <p class="when">Week 13 · Tuesday</p>
+    <h2>Entry 13a: Map and outline your report</h2>
+    <p class="lead">You're not writing from scratch. You're assembling. Map the work you've already done into <button type="button" class="term" data-pop="imrad">IMRAD</button>, then sketch the outline of your full report.</p>
+
+    <div class="q">
+      <label class="ask" for="e13a_map">Where does each project go? Map my P1, P2, and P3 into the IMRAD sections.</label>
+      <p class="hint"><b>e.g.,</b> P1 lit review → Introduction. P2 coding + P3 survey → Methods &amp; Results. New writing → Discussion (meaning, recommendation, limits).</p>
+      <textarea id="e13a_map" data-save data-label="P1/P2/P3 → IMRAD map"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e13a_outline">My report outline (the full skeleton, in order).</label>
+      <p class="hint"><b>e.g.,</b> Title page · <button type="button" class="term" data-pop="abstract">Abstract</button> · Introduction · Methods · Results · Discussion · References (15-20) · <button type="button" class="term" data-pop="appendix">Appendix</button> (survey + data). Jot a line about what goes in each.</p>
+      <textarea id="e13a_outline" data-save data-label="Report outline"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e13a_spine">My study in one sentence: "Because [gap], I [method], and found [finding], so [recommendation]."</label>
+      <p class="hint"><b>e.g.,</b> Because shoppers say labels confuse them but few studies ask local ones, I surveyed 42 shoppers and coded 15 packages, and found "natural" is trusted far less than "organic," so stores should flag which claims are certified.</p>
+      <textarea id="e13a_spine" data-save data-label="One-sentence spine"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e13a_new">What still needs writing fresh (not just pasted in)?</label>
+      <p class="hint"><b>e.g.,</b> The whole Discussion, the abstract, and transition sentences between sections. Everything else I revise from P1/P2/P3.</p>
+      <textarea id="e13a_new" data-save data-label="What needs fresh writing"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 13a</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 13b ================= -->
+  <section class="entry" data-entry data-slug="entry-13b" data-entry-title="Entry 13b: Assemble and design your report">
+    <p class="when">Week 13 · Thursday</p>
+    <h2>Entry 13b: Assemble and design your report</h2>
+    <p class="lead">Pour the pieces into the container and make it look like real research. This is the draft you'll refine in Week 14.</p>
+
+    <div class="q">
+      <label class="ask" for="e13b_assembled">Assembly status: what have I pasted in and revised, and is my Discussion drafted?</label>
+      <p class="hint"><b>e.g.,</b> P1 revised into the Introduction, Methods and Results built from P2/P3. Discussion drafted (interpretation + recommendation + limits). Still smoothing transitions.</p>
+      <textarea id="e13b_assembled" data-save data-label="Assembly status"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e13b_design">Document-design check: headings, <button type="button" class="term" data-pop="caption">figure captions</button>, page numbers, consistent formatting, references (15-20 in APA)?</label>
+      <p class="hint"><b>e.g.,</b> IMRAD headings in place, Figure 1 captioned with its N, page numbers added, one consistent font. References at 16 so far, formatting them in APA.</p>
+      <textarea id="e13b_design" data-save data-label="Document-design check"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e13b_coherence">Coherence pass: does it read as one story? Where were the seams, and how did I fix them?</label>
+      <p class="hint"><b>e.g.,</b> Read it aloud; it jumped from lit review to survey with no bridge. Added a transition sentence so the question leads into the method.</p>
+      <textarea id="e13b_coherence" data-save data-label="Coherence / transitions"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e13b_appendix">Is my <button type="button" class="term" data-pop="appendix">appendix</button> ready (my instrument and my data)?</label>
+      <p class="hint"><b>e.g.,</b> Appendix A: my full Google Form. Appendix B: my summarized response counts. Both referenced from the Methods.</p>
+      <textarea id="e13b_appendix" data-save data-label="Appendix status"></textarea>
+    </div>
+    <p class="hint">When the draft is together, run it through the <a href="draft-check.html" target="_blank" rel="noopener">Draft Check</a> before Week 14's review.</p>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 13b</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 14a ================= -->
+  <section class="entry" data-entry data-slug="entry-14a" data-entry-title="Entry 14a: Reverse-outline and diagnose your draft">
+    <p class="when">Week 14 · Tuesday</p>
+    <h2>Entry 14a: Reverse-outline and diagnose your draft</h2>
+    <p class="lead">You have a full draft. Before you touch a single sentence, see its real structure. This is revision (re-seeing the whole), not editing (fixing sentences). Editing comes later.</p>
+
+    <div class="q">
+      <label class="ask" for="e14a_outline">My <button type="button" class="term" data-pop="reverse">reverse outline</button>: one line per paragraph, tagged to its section (paste it from the tool, or list it here).</label>
+      <p class="hint"><b>e.g.,</b> Intro: opens with eco-labels; names the gap; states the question. Methods: survey + coding. Results: seal-checking numbers; trust by label + quote. Discussion: interprets "natural" distrust; recommendation + limits.</p>
+      <textarea id="e14a_outline" data-save data-label="Reverse outline"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e14a_problems">What did the skeleton expose? (Missing section, repetition, out-of-order pieces, a thin section.)</label>
+      <p class="hint"><b>e.g.,</b> My Discussion is only one paragraph (thin). Two Results paragraphs say almost the same thing. I never actually state my recommendation.</p>
+      <textarea id="e14a_problems" data-save data-label="Structure problems found"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e14a_hoc">My top 2 or 3 <button type="button" class="term" data-pop="hoc">higher-order</button> fixes (structure/argument), to do before any sentence-polishing.</label>
+      <p class="hint"><b>e.g.,</b> 1) Split and grow the Discussion. 2) Merge the two repeated Results paragraphs. 3) Add a clear recommendation sentence.</p>
+      <textarea id="e14a_hoc" data-save data-label="Top higher-order fixes"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 14a</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 14b ================= -->
+  <section class="entry" data-entry data-slug="entry-14b" data-entry-title="Entry 14b: Revision log and polish">
+    <p class="when">Week 14 · Thursday</p>
+    <h2>Entry 14b: Revision log and polish</h2>
+    <p class="lead">Work big to small: structure first, sentences next, specks last. Log what you changed so you can watch the draft actually improve.</p>
+
+    <div class="q">
+      <label class="ask" for="e14b_revised">What I <button type="button" class="term" data-pop="revise">revised</button> (structure, argument, evidence, the big moves):</label>
+      <p class="hint"><b>e.g.,</b> Grew the Discussion to two paragraphs, moved the recommendation to the end, added a citation to the paragraph that had none.</p>
+      <textarea id="e14b_revised" data-save data-label="What I revised (big)"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e14b_edited">What I edited and proofread (sentences, tone, citations, captions, formatting):</label>
+      <p class="hint"><b>e.g.,</b> Cut contractions and "a lot," fixed two run-ons, made all citations APA, captioned Figure 1, added page numbers.</p>
+      <textarea id="e14b_edited" data-save data-label="What I edited (small)"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e14b_review">Self-review against the rubric: where is my report strongest, and where is it weakest?</label>
+      <p class="hint"><b>e.g.,</b> Strong: evidence and figures. Weak: transitions between sections still feel abrupt, need to smooth them.</p>
+      <textarea id="e14b_review" data-save data-label="Self-review (strong/weak)"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e14b_passes">Passes done? Reverse outline, <button type="button" class="term" data-pop="aloud">read-aloud</button>, Draft Check, and (optional) draft submitted for feedback.</label>
+      <p class="hint"><b>e.g.,</b> Reverse outline ✓. Read aloud, caught three clunky sentences ✓. Draft Check ✓. Submitting a draft for feedback this week.</p>
+      <textarea id="e14b_passes" data-save data-label="Revision passes done"></textarea>
+    </div>
+    <p class="hint">Want my eyes before the final? <a href="draft-check.html" target="_blank" rel="noopener">Draft Check</a> first, then submit a draft this week.</p>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 14b</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <!-- ================= ENTRY 15 ================= -->
+  <section class="entry" data-entry data-slug="entry-15" data-entry-title="Entry 15: The finish line">
+    <p class="when">Week 15</p>
+    <h2>Entry 15: The finish line</h2>
+    <p class="lead">You designed a study, ran it, analyzed it, and wrote it up. Two things left: turn it all in, and take a minute to notice how far you came.</p>
+
+    <div class="q">
+      <label class="ask" for="e15_report">Final IMRAD report: submitted to AsULearn? (All sections, title page, captioned figures, 15 to 20 references, appendix.)</label>
+      <p class="hint"><b>e.g.,</b> Submitted. Double-checked the appendix has my survey and my data.</p>
+      <textarea id="e15_report" data-save data-label="Final report submitted"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e15_checkin">Notebook check-in #2: I hit "Download everything" below and submitted it to AsULearn (as a PDF or Google Doc).</label>
+      <p class="hint">This whole notebook is your completion grade. Grab the file with the button at the bottom of the page, then submit it as a PDF or a Google Doc.</p>
+      <textarea id="e15_checkin" data-save data-label="Notebook check-in #2 done"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e15_surprise">Looking back: what surprised you about doing your own research?</label>
+      <p class="hint"><b>e.g.,</b> How much the wording of one survey question changed the answers I got.</p>
+      <textarea id="e15_surprise" data-save data-label="What surprised me"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e15_shift">How do you see "research" differently than you did in Week 1, when you were a <button type="button" class="term" data-pop="primary">reader</button> of it, not a maker?</label>
+      <p class="hint"><b>e.g.,</b> I used to think research was just finding sources. Now I know it's making new knowledge, and how careful you have to be to do it honestly.</p>
+      <textarea id="e15_shift" data-save data-label="How I see research now"></textarea>
+    </div>
+    <div class="q">
+      <label class="ask" for="e15_proud">One thing you're proud of.</label>
+      <p class="hint"><b>e.g.,</b> I reached shoppers outside my own bubble, and my findings are honest about their limits.</p>
+      <textarea id="e15_proud" data-save data-label="What I'm proud of"></textarea>
+    </div>
+
+    <div class="entry-actions">
+      <button type="button" data-download-entry>Download Entry 15</button>
+      <button type="button" class="ghost" data-gdoc>Copy for Google Docs</button>
+      <span class="saved" data-saved>Saved ✓</span>
+      <span class="saved" data-gmsg>Copied, paste into your Doc ✓</span>
+    </div>
+  </section>
+
+  <dialog class="pop" id="pop-instrument"><h3>Instrument</h3><p>The research tool you use to collect data from people: a survey, an interview guide, or a set of focus-group questions. In your final report, a copy of your instrument goes in the appendix so readers can see exactly what you asked. It's the difference between "I asked around" and "here is precisely how I measured this."</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-openclosed"><h3>Closed vs. open questions</h3><p><b>Closed</b> questions give set answer choices (multiple choice, a scale), so responses are countable and easy to chart. <b>Open</b> questions let people answer in their own words, richer, but slow to analyze. For P3 you want mostly closed questions (you have to count and visualize) plus a few open ones for quotes and surprises.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-likert"><h3>Likert scale</h3><p>The classic agree-to-disagree (or never-to-always) scale, named for psychologist Rensis Likert. Use an odd number of points so there's a genuine neutral middle, label every point (not just the ends), and keep the two sides balanced. It turns an opinion into a number you can average, chart, and compare in Week 12.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-demo"><h3>Demographic questions</h3><p>Questions about who the respondent is, age, gender, income, region. They let you compare groups ("do older shoppers trust labels more?"), but they can feel personal, so they go at the end and stay optional. Only ask for a demographic if your analysis will actually use it.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-gforms"><h3>Google Forms</h3><p>A free survey tool in your Google account. It can collect anonymous responses, supports multiple choice and scales, and drops every answer into a linked Google Sheet you can chart later. For most class projects it's the fastest path from question to countable data.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-primary"><h3>Primary vs. secondary research</h3><p><b>Secondary research</b> means working with what already exists: reading, evaluating, and analyzing sources other people produced. Your literature review and your analysis of food labels were both secondary. <b>Primary research</b> means generating new data yourself, by surveying, interviewing, or observing real people. When you design an instrument and collect responses, you stop being only a reader of research and become an investigator who produces it. Your final report leans on both: secondary work to find the gap, primary work to fill it.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-sample"><h3>Sample vs. population</h3><p>Your <b>population</b> is everyone your question is really about (say, "grocery shoppers"). You can't ask all of them, so you ask a <b>sample</b>, a smaller slice. The whole game is choosing a slice that fairly stands in for the whole. A skewed sample answers a narrower question than the one you meant to ask.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-snowball"><h3>Snowball sampling</h3><p>You ask each participant to pass your survey along to others. It's an easy way to grow a sample and reach people you couldn't find yourself. The catch: friends refer friends, so the snowball tends to stay similar. Nudge it wider by asking people to share with someone <i>unlike</i> them (a different age, a different kind of shopper).</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-limits"><h3>Naming your limitations</h3><p>Every study has them, and saying so out loud makes you <i>more</i> credible, not less. A small or convenience sample is a limitation, so in your report you write a sentence like, "This sample of 34 mostly-student shoppers can't represent all consumers, so these findings are suggestive, not conclusive." Honest limits are the mark of a real researcher.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-frequency"><h3>Frequency table</h3><p>A simple count of how many people chose each answer. If 14 of your 42 respondents picked "Sometimes," that's a frequency. Building one turns a column of individual responses into countable totals you can compare and chart, the first step of any quantitative analysis. In Google Sheets, COUNTIF tallies them for you.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-chartfit"><h3>Match the chart to the data</h3><p><b>Bar chart:</b> comparing separate answer choices (the safe default). <b>Pie chart:</b> parts of one whole that add to 100%, with only a few slices. <b>Line chart:</b> change over time. <b>Grouped or stacked bars:</b> comparing groups against each other. When in doubt, a clean bar chart is rarely wrong. Build yours in the Chart Your Data tool.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-mixed"><h3>Mixed methods</h3><p>Combining numbers and words so each covers the other's blind spot. Your closed questions give the <i>what</i> (percentages, charts); your open responses and any interviews give the <i>why</i> (quotes, reasons). Setting a participant's own words next to the matching statistic is what makes a quantitative write-up feel human and convincing.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-causation"><h3>Correlation vs. causation</h3><p>Two things moving together doesn't mean one caused the other. If label-readers also happen to exercise more, reading labels didn't necessarily cause it, some third thing might drive both. Report what's <i>associated</i> in your data, and don't write that one thing <i>made</i> another happen unless you actually tested it.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-imrad"><h3>IMRAD</h3><p>The standard structure of a research report: <b>I</b>ntroduction, <b>M</b>ethods, <b>R</b>esults, <b>a</b>nd <b>D</b>iscussion. Nearly every scientific and social-science paper uses it, so readers always know where to look. Your P1 becomes the Introduction, P2 and P3 become Methods and Results, and the Discussion is your new writing that ties it together.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-abstract"><h3>Abstract</h3><p>A short paragraph (roughly 150 to 250 words) summarizing your whole report: question, method, key finding, and takeaway. It sits near the top, but write it <i>last</i>, once you know what the report actually says. Think of it as the trailer for your study.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-appendix"><h3>Appendix</h3><p>The back-of-report home for material a reader might want but that would clog the main text: your full survey or interview guide, and your data. Including your instrument is what lets someone judge or repeat your study. Label them "Appendix A," "Appendix B," and refer to them from the Methods.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-caption"><h3>Figure captions</h3><p>Every chart or table gets a number and a caption ("Figure 1. How often shoppers look for an organic seal, N = 42"). Captions let a reader understand a visual without hunting through your text, and they make your report read like real research. Number them in the order they appear and mention each in the text.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-reverse"><h3>Reverse outlining</h3><p>Outlining a draft you've already written to reveal its real structure. Go paragraph by paragraph and note, in one line, the job each does. Lined up together, the outline exposes gaps, repetition, and bad order that finished prose hides. It's the most reliable revision tool there is, because rearranging a skeleton beats rewriting polished paragraphs.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-hoc"><h3>Higher- vs. lower-order concerns</h3><p>A writing-center framework for revising in the right order. <b>Higher-order concerns</b>: focus, argument, organization, development, the things that decide whether the report works. <b>Lower-order concerns</b>: grammar, spelling, citations, formatting. Fix higher-order first, there's no sense polishing sentences in a paragraph you may cut.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-revise"><h3>Revision vs. editing</h3><p>Different jobs. <b>Revision</b> ("re-seeing") works on ideas and structure: what's missing, repeated, out of order, unclear. <b>Editing</b> works on sentences; <b>proofreading</b> catches errors. Do them big to small. Most weak final drafts were edited and proofread but never truly revised.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-aloud"><h3>Reading aloud</h3><p>Reading your draft out loud (or having your device read it to you) forces you to process every word instead of skimming what you expect to see. It's uncannily good at catching clunky sentences, missing words, and joints where two ideas don't connect. If you stumble reading it, your reader will too. A 2025 study found it caught about three errors per ten-minute paragraph (Eckstein, Lung &amp; Gillette, <i>TESL-EJ</i>).</p><form method="dialog"><button>Got it</button></form></dialog>
+
+  <dialog class="pop" id="pop-consent"><h3>Informed consent</h3><p>Before anyone takes part, they get a plain-language explanation of what the study is, what you'll ask, how their data will be used and protected, and that they can stop anytime, and then they freely agree. "Informed" and "voluntary" are the whole idea. No consent, no data.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-anon"><h3>Anonymous vs. confidential</h3><p>Not the same thing. <b>Anonymous</b> means you never collect anything that could identify a person, not even you can link a response to a name. <b>Confidential</b> means you might know who said what, but you protect it and never reveal it. If your form asks for a name or email, you can only promise confidentiality.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-vulnerable"><h3>Vulnerable populations</h3><p>Groups who may not be able to freely consent, or who could be harmed more easily, and so get extra protection: children, prisoners, people with cognitive impairments, and people under economic, legal, or medical pressure. Farmworkers worried about their jobs and people in recovery can both qualify. Extra care, or a different topic.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-irb"><h3>IRB (Institutional Review Board)</h3><p>A committee at a university that reviews research with human participants before it begins, to keep it ethical. The key thing for you: student projects for a class at this level are <b>exempt</b>, so you will not go through IRB review. That's also why some topics are off the table: you can't study people in jails, schoolchildren, or other protected groups, because those need a full review a class project can't do. A short anonymous survey of adults is exactly the kind of thing that's fine.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+  <div class="lock">More entries unlock as the semester goes: your collected data, your charts, and your final report. This notebook grows with your project.</div>
+
+  <div class="global">
+    <button type="button" id="downloadAll">⬇ Download everything (.txt)</button>
+    <button type="button" class="ghost" id="clearAll">Clear this device</button>
+    <span class="note">Tip: "Download everything" is what you hand in at the two check-ins (midterm &amp; end of term), submitted as a PDF or a Google Doc, and it doubles as your backup. Grab one anytime. Not sure what's due or where it goes? See the <a href="turn-in-guide.html" target="_blank" rel="noopener">What's Due &amp; Where guide</a>.</span>
+  </div>
+
+  <!-- ===== glossary popovers ===== -->
+  <dialog class="pop" id="pop-sj">
+    <h3>What we mean by a "social justice lens"</h3>
+    <p>Technical writing is never neutral. Every document, form, chart, or interface makes choices about who can understand it, who it leaves out, and who carries the risk when it fails.</p>
+    <p>A social justice lens just means we keep asking those questions while we research and write: <b>Who holds power here? Who's served? Whose voice is missing?</b> It's not about scoring political points, it's about noticing that design has real consequences for real people, and doing something about it.</p>
+    <p class="go">Go deeper (free and open, no login, no paywall):</p>
+    <ul>
+      <li><a href="https://pressbooks.umn.edu/techwriting/part/technical-communication-social-justice-and-collective-access/" target="_blank" rel="noopener">Technical Communication, Social Justice, and Collective Access</a>, an open textbook chapter. <span class="gloss">A plain-language intro written for students: how the documents we design include or exclude people, and why access itself is a justice issue.</span></li>
+      <li><a href="https://techcommsocialjustice.org/" target="_blank" rel="noopener">Technical Communication and Social Justice</a>, a free, open-access journal. <span class="gloss">Browse it to see what real work in this area looks like. No subscription needed.</span></li>
+    </ul>
+    <form method="dialog"><button>Got it</button></form>
+  </dialog>
+
+</div>
+
+<script>
+(function(){
+  var PREFIX = "eng3090rn:";
+  var fields = Array.prototype.slice.call(document.querySelectorAll('#rn [data-save]'));
+
+  // restore (only overwrites the pre-filled example if the student saved something)
+  fields.forEach(function(el){
+    try{ var v = localStorage.getItem(PREFIX + el.id); if(v !== null) el.value = v; }catch(e){}
+  });
+
+  function flash(el){
+    if(!el) return;
+    el.classList.add('show');
+    clearTimeout(el._t); el._t = setTimeout(function(){ el.classList.remove('show'); }, 1100);
+  }
+  function savedSpan(el){ var e=el.closest('.entry'); return e ? e.querySelector('[data-saved]') : null; }
+
+  fields.forEach(function(el){
+    el.addEventListener('input', function(){
+      try{ localStorage.setItem(PREFIX + el.id, el.value); }catch(e){}
+      flash(savedSpan(el));
+    });
+  });
+
+  function stamp(){ try{ return new Date().toLocaleString(); }catch(e){ return ""; } }
+
+  function qOf(el){
+    var q = el.closest('.q');
+    var lab = q ? q.querySelector('.ask') : null;
+    return lab ? (lab.textContent || '').replace(/\s+/g,' ').trim() : (el.getAttribute('data-label') || el.id);
+  }
+
+  function entryText(entry){
+    var title = entry.getAttribute('data-entry-title') || 'Entry';
+    var rule = "------------------------------------------------";
+    var fields = entry.querySelectorAll('[data-save]');
+    var total = fields.length, blank = 0;
+    fields.forEach(function(el){ if(!(el.value || "").trim()) blank++; });
+    var status = (blank === 0) ? "[COMPLETE " + total + "/" + total + "]" : "[" + (total - blank) + "/" + total + " answered, " + blank + " BLANK]";
+    var lines = ["ENG 3090 · Research Notebook", title + "   " + status, "Saved: " + stamp(), rule, ""];
+    fields.forEach(function(el){
+      var val = (el.value || "").trim();
+      lines.push("Q: " + qOf(el));
+      lines.push("A: " + (val.length ? val : ">>> LEFT BLANK <<<"));
+      lines.push("");
+    });
+    return lines.join("\n");
+  }
+
+  function overallSummary(){
+    var entries = document.querySelectorAll('#rn .entry');
+    var totalFields = 0, answered = 0, incomplete = [];
+    entries.forEach(function(entry){
+      var fields = entry.querySelectorAll('[data-save]');
+      var blanks = 0;
+      fields.forEach(function(el){ totalFields++; if((el.value || "").trim()) answered++; else blanks++; });
+      if(blanks > 0) incomplete.push((entry.getAttribute('data-slug') || 'entry').replace('entry-','') + " (" + blanks + " blank)");
+    });
+    var rule = "================================================";
+    var lines = ["ENG 3090 · RESEARCH NOTEBOOK: COMPLETION SUMMARY",
+      answered + " of " + totalFields + " fields answered across " + entries.length + " entries.",
+      (incomplete.length ? "Entries with blanks: " + incomplete.join(", ") : "All fields answered."),
+      "Generated: " + stamp(), rule, ""];
+    return lines.join("\n");
+  }
+
+  function gdocPrompts(entry){
+    var title = entry.getAttribute('data-entry-title') || 'ENG 3090 Notebook';
+    var lines = ["ENG 3090 · " + title, ""];
+    entry.querySelectorAll('[data-save]').forEach(function(el){
+      var val = (el.value || "").trim();
+      lines.push(qOf(el));
+      lines.push(val);
+      lines.push("");
+    });
+    return lines.join("\n");
+  }
+
+  function copyText(t){
+    try{ if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t); return true; } }catch(e){}
+    try{
+      var ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); return true;
+    }catch(e){ return false; }
+  }
+
+  function download(name, text){
+    var blob = new Blob([text], {type:"text/plain;charset=utf-8"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a'); a.href=url; a.download=name;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+  }
+
+  document.querySelectorAll('#rn [data-download-entry]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var entry = btn.closest('.entry');
+      download('ENG3090-notebook-' + (entry.getAttribute('data-slug')||'entry') + '.txt', entryText(entry));
+    });
+  });
+
+  document.querySelectorAll('#rn [data-gdoc]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var entry = btn.closest('.entry');
+      copyText(gdocPrompts(entry));
+      flash(entry.querySelector('[data-gmsg]'));
+      window.open('https://docs.google.com/document/create','_blank','noopener');
+    });
+  });
+
+  document.getElementById('downloadAll').addEventListener('click', function(){
+    var all = [overallSummary()];
+    document.querySelectorAll('#rn .entry').forEach(function(entry){ all.push(entryText(entry)); });
+    download('ENG3090-research-notebook.txt', all.join("\n\n"));
+  });
+
+  document.getElementById('clearAll').addEventListener('click', function(){
+    if(!confirm("This erases your notebook from THIS computer only. Make sure you've downloaded anything you want to keep. Continue?")) return;
+    fields.forEach(function(el){ try{ localStorage.removeItem(PREFIX+el.id); }catch(e){} });
+    location.reload();
+  });
+
+  // popovers
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var d = document.getElementById('pop-' + b.getAttribute('data-pop'));
+      if(d && d.showModal) d.showModal();
+    });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target === d) d.close(); });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Module: Designing Your Instrument</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --good:#2f7d54; --due:#7a3b1f; --duesoft:#f6ebe1; --reflect:#3a5d86; --reflectsoft:#e8eef6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --due:#e0a878; --duesoft:#2c2013; --reflect:#9cc0e6; --reflectsoft:#16202c; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
+  #mod .sub{color:var(--muted); margin:6px 0 0}
+  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:26px}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:4px 0 8px}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #mod .box.accent{border-left:5px solid var(--accent)}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.45rem 0}
+  #mod ol.steps{margin:.4rem 0; padding-left:1.3rem} #mod ol.steps li{margin:.5rem 0}
+  #mod a{color:var(--accent)}
+  #mod .princ li b{color:var(--accent)}
+  #mod .order{list-style:none; padding-left:0; counter-reset:o}
+  #mod .order li{counter-increment:o; position:relative; padding:8px 0 8px 40px; border-top:1px solid var(--line)}
+  #mod .order li:first-child{border-top:0}
+  #mod .order li::before{content:counter(o); position:absolute; left:0; top:8px; width:26px; height:26px; border-radius:50%; background:var(--accent); color:#fff; font-weight:800; font-size:.85rem; display:flex; align-items:center; justify-content:center}
+  #mod .reflect{background:var(--reflectsoft); border:1px solid var(--line); border-left:5px solid var(--reflect); border-radius:12px; padding:14px 16px; margin:16px 0}
+  #mod .reflect .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--reflect); display:block; margin-bottom:3px}
+  #mod .duebox{background:var(--duesoft); border:1px solid var(--line); border-left:5px solid var(--due); border-radius:12px; padding:14px 16px; margin:14px 0}
+  #mod .duebox .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--due); display:block; margin-bottom:3px}
+  #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
+  #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #mod .note{color:var(--muted); font-size:.9rem}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:24px}
+  #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop a{color:var(--accent)}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="mod">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 10 · Thursday Module</p>
+    <h1>Designing Your Instrument</h1>
+    <p class="sub">In class you learned to spot a broken question. Now you build the whole thing: the survey or interview that will actually get you data worth analyzing. This is the start of P3. Budget about an hour.</p>
+  </header>
+
+  <div class="box accent">
+    <p><b>Notice what just happened.</b> Up to now you've been a <button type="button" class="term" data-pop="primary">secondary researcher</button>: reading, evaluating, and analyzing work other people already made, your literature review, your analysis of food labels. Starting this week you become a <button type="button" class="term" data-pop="primary">primary investigator</button>. You generate data that doesn't exist yet, and this instrument is the hinge the whole study turns on. That's a real promotion, and it raises the stakes on getting these questions right.</p>
+  </div>
+
+  <p class="step">Step 1: what an instrument is, and why it's the whole ballgame</p>
+  <p>Your <button type="button" class="term" data-pop="instrument">instrument</button> is the tool you use to collect data: a survey, an interview guide, a set of focus-group questions. It's the most important thing you'll build in P3, because everything downstream depends on it. You can't fix a bad question with clever analysis. If the question was leading or vague, the numbers it produced are leading and vague too. <b>Garbage in, garbage out.</b> So we spend real time here. And notice: the best instrument isn't invented from nothing. It's built to answer the exact gap you found in your literature review back in P1. The parts of this project are meant to talk to each other.</p>
+
+  <p class="step">Step 2: pick your method</p>
+  <div class="box accent">
+    <ul class="princ">
+      <li><b><button type="button" class="term" data-pop="survey">Survey</button>.</b> The workhorse, and what most of you will use. You reach a lot of people fast, and the answers come back countable, which you'll need for the visualizing step. Best when you want breadth.</li>
+      <li><b><button type="button" class="term" data-pop="interview">Interview</button>.</b> Fewer people, much deeper. You get the "why" behind the numbers, in their own words. Best when you want richness, and you're willing to do the slower work of analyzing what they say.</li>
+      <li><b><button type="button" class="term" data-pop="focus">Focus group</button>.</b> A guided group conversation. Powerful, but harder to schedule, consent, and record cleanly. For a class project it's usually more than you need, choose it only if the group dynamic is genuinely your point.</li>
+    </ul>
+  </div>
+  <p><b>For P3, pick one of these and do it well.</b> One clean survey (or one solid set of interviews) is exactly the right scope for this project, and it's what almost all of you should do. You <i>can</i> combine methods, a survey plus two or three short interviews, and it's a genuinely strong <button type="button" class="term" data-pop="mixed">mixed-methods</button> move. Be honest with yourself first, though: it's ambitious. Doable, and real research, but it's twice the recruiting, twice the consent, twice the analysis. Only reach for it if your one method is already rock-solid and you truly have the time. When in doubt, one method, done right.</p>
+
+  <p class="step">Step 3: closed questions to count, open questions to quote</p>
+  <p>Most of your survey should be <button type="button" class="term" data-pop="openclosed">closed</button> questions, multiple choice or a <button type="button" class="term" data-pop="likert">Likert scale</button>, because in Week 12 you have to turn answers into charts, and you can only chart what you can count. Then add one or two <button type="button" class="term" data-pop="openclosed">open</button> questions to catch the good quotes and the things you didn't think to ask about. A useful shape: mostly closed, a couple open, never all open.</p>
+
+  <p class="step">Step 4: build a scale that doesn't lie</p>
+  <div class="box">
+    <p>When you use a <button type="button" class="term" data-pop="likert">Likert scale</button>, three rules keep it honest:</p>
+    <ul>
+      <li><b>Balance it.</b> As much room to be negative as positive. No "Excellent / Very good / Good / Fair" one-sided ladders.</li>
+      <li><b>Give it a middle.</b> An odd number of points (usually 5) so people who are genuinely neutral have somewhere to go.</li>
+      <li><b>Label every point,</b> not just the ends. "Sometimes" and "Often" mean more to a respondent than a bare 3 and 4.</li>
+    </ul>
+  </div>
+
+  <p class="step">Step 5: the six ways a question goes wrong</p>
+  <p>These are the ones we diagnosed in class. Before any question makes the cut, check it against all six: <button type="button" class="term" data-pop="leading">leading</button>, <button type="button" class="term" data-pop="double">double-barreled</button>, <button type="button" class="term" data-pop="loaded">loaded</button>, <button type="button" class="term" data-pop="vague">vague</button>, <button type="button" class="term" data-pop="jargon">jargon</button>, <button type="button" class="term" data-pop="scale">unbalanced scale</button>. Want the practice again? The clinic is always open.</p>
+  <p><a class="btn" href="question-clinic.html" target="_blank" rel="noopener">Reopen the Question Clinic &rarr;</a></p>
+
+  <p class="step">Step 6: order matters</p>
+  <p>The sequence of questions shapes who finishes and how honestly. A reliable order:</p>
+  <ol class="order">
+    <li><b>Consent and intro.</b> What the study is, that it's voluntary and anonymous, how long it takes. (You wrote this in Week 9.)</li>
+    <li><b>An easy warm-up.</b> A simple, non-threatening question to get them rolling.</li>
+    <li><b>Your core questions.</b> The real ones, grouped by topic so it flows.</li>
+    <li><b>Sensitive and <button type="button" class="term" data-pop="demo">demographic</button> questions last.</b> Age, income, and the like go at the end, when trust is highest and a drop-off costs you the least. Only ask what your analysis will actually use.</li>
+    <li><b>A thank-you.</b> Close the loop. It's courtesy, and it's good research manners.</li>
+  </ol>
+
+  <p class="step">Step 7: pick a platform that gives you your data back</p>
+  <div class="box accent">
+    <p><b><button type="button" class="term" data-pop="gforms">Google Forms</button></b> is free, easy, can be anonymous, and exports every response straight to a spreadsheet, which is exactly what you'll analyze in Week 12. For most of you it's the right call.</p>
+    <p>App State also gives you <button type="button" class="term" data-pop="qualtrics">Qualtrics</button>, a professional survey platform, free through your account. It's more powerful (better logic, cleaner exports) and worth knowing if you're headed toward grad school or research work. A little heavier to learn.</p>
+    <p class="note">Either way, the rule is the same: your responses have to come back in a countable, exportable form (a spreadsheet), or Week 12 gets painful.</p>
+  </div>
+
+  <p class="step">Step 8: pilot it before you send it</p>
+  <p>Every real researcher <button type="button" class="term" data-pop="pilot">pilot tests</button>. Give your draft to one person, a roommate, a friend, and watch. Time it. Note every place they hesitate, re-read a question, or ask "what do you mean?" Those are your broken questions showing themselves while it's still cheap to fix them. Fix, then send it for real next week.</p>
+
+  <div class="reflect">
+    <span class="lab">✍ On your own</span>
+    <p>Read your draft instrument out loud as if you were the participant, a stranger who's doing you a favor and could quit at any moment. Where would you roll your eyes, get confused, or feel pushed toward an answer? Fix those spots first.</p>
+  </div>
+
+  <p class="step">Now: build it (Notebook Entry 10b)</p>
+  <p>Draft your full instrument in your notebook: your method, your question types, the questions in order, your platform, and your pilot notes.</p>
+  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
+
+  <div class="duebox">
+    <span class="lab">Coming up</span>
+    <p>Nothing is due this week, but you're now building toward <b>P3 (Quantitative Analysis)</b>, due at the end of Week 12. This week's instrument becomes next week's data. Build it well now and future-you collects clean data instead of cleaning up a mess.</p>
+  </div>
+
+  <div class="box">
+    <p><b>See the whole thing taking shape.</b> Your literature review found the gap. Your ethics plan made it safe to ask real people. This instrument is how you'll answer the question, and next week's responses become the results section of your final report. Each part strengthens the next: a sharper gap makes a sharper survey, and a cleaner survey makes results you can actually stand behind. You're not stacking up five separate assignments. You're building one study, and you're the one running it.</p>
+  </div>
+
+  <div class="close">
+    <p><b>What's next:</b> Week 11 you take this instrument live, recruit your participants ethically (the consent work from Week 9 pays off here) and collect real responses.</p>
+  </div>
+
+  <dialog class="pop" id="pop-primary"><h3>Primary vs. secondary research</h3><p><b>Secondary research</b> means working with what already exists: reading, evaluating, and analyzing sources other people produced. Your literature review and your analysis of food labels were both secondary. <b>Primary research</b> means generating new data yourself, by surveying, interviewing, or observing real people. When you design an instrument and collect responses, you stop being only a reader of research and become an investigator who produces it. Your final report leans on both: secondary work to find the gap, primary work to fill it.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-instrument"><h3>Instrument</h3><p>The research tool you use to collect data from people: a survey, an interview guide, or a set of focus-group questions. In your final IMRAD report, a copy of your instrument goes in the appendix so readers can see exactly what you asked. It's the difference between "I asked around" and "here is precisely how I measured this."</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-survey"><h3>Survey</h3><p>A set of standardized questions given to many people the same way. Its strength is breadth and countable answers: you can chart what a hundred people said. Its limit is depth, you learn what people picked, not always why. The best surveys are short, mostly closed-ended, and ruthlessly clear.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-interview"><h3>Interview</h3><p>A guided one-on-one conversation built from open questions. You reach fewer people but go far deeper, and you get answers in their own words, which is where the surprising, quotable material lives. Plan a short interview guide (five to eight questions) and let follow-ups happen naturally.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-focus"><h3>Focus group</h3><p>A small group (roughly five to eight people) discussing your topic with you facilitating. Useful when the interaction itself is the data, how people build on or push back against each other. It's harder to schedule, consent, and record than a survey or interview, so for a class project it's the advanced option, not the default.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-mixed"><h3>Mixed methods</h3><p>Combining approaches, most often some numbers (a survey) and some words (interviews or open responses), so each covers the other's blind spot. Two things to keep straight. <b>Across your whole project you're already doing mixed methods:</b> your P2 was qualitative and your P3 is quantitative, and the final report weaves them together. <b>Within P3 itself, pick one data-collection method and do it well.</b> Running a full survey <i>and</i> full interviews at once is ambitious for one project, take it on only if your main method is already rock-solid.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-openclosed"><h3>Closed vs. open questions</h3><p><b>Closed</b> questions give set answer choices (multiple choice, a scale), so responses are countable and easy to chart. <b>Open</b> questions let people answer in their own words, richer, but slow to analyze. For P3 you want mostly closed questions (you have to count and visualize) plus a few open ones for quotes and surprises.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-likert"><h3>Likert scale</h3><p>The classic agree-to-disagree (or never-to-always) scale, named for psychologist Rensis Likert. Use an odd number of points so there's a genuine neutral middle, label every point (not just the ends), and keep the two sides balanced. It turns an opinion into a number you can average, chart, and compare, exactly what you'll do in Week 12.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-leading"><h3>Leading question</h3><p>Worded so it nudges the respondent toward a particular answer ("Don't you agree that…"). It inflates whatever you hoped to find. Fix with neutral wording and a balanced set of choices, so agreeing and disagreeing feel equally allowed.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-double"><h3>Double-barreled question</h3><p>One question that asks about two things at once ("the accuracy <i>and</i> the price"). A single answer can't cover both cleanly. If an "and" or "or" joins two ideas you'd measure separately, split it into two questions.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-loaded"><h3>Loaded question</h3><p>Assumes something the respondent hasn't agreed to ("When did you stop…?" assumes they stopped). Anyone the assumption doesn't fit is stuck. Ask the prior question first, then branch to the follow-up only for the people it applies to.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-vague"><h3>Vague question</h3><p>Built on undefined words ("sustainable," "often," "healthy") that people read differently, so the same answer means different things. Define your terms in the question, or swap a fuzzy word for a concrete, countable one.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-jargon"><h3>Jargon</h3><p>Technical or academic language that belongs in your write-up, not in front of participants. If people have to decode the question, some guess and some quit. Write survey questions at the reading level of the person answering.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-scale"><h3>Balanced response scale</h3><p>The answer choices should offer as much room to be negative as positive. A scale that runs "Excellent · Very good · Good · Fair" has no bottom end, so it collects praise by design. Balance it (very negative → neutral → very positive) so the real distribution can show up.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-demo"><h3>Demographic questions</h3><p>Questions about who the respondent is, age, gender, income, region, and so on. They let you compare groups ("do older shoppers trust labels more?"), but they can feel personal, so they go at the end and stay optional. Only ask for a demographic if your analysis will actually use it; otherwise you're collecting risk for nothing.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-gforms"><h3>Google Forms</h3><p>A free survey tool in your Google account. It can collect anonymous responses, supports multiple choice and scales, and drops every answer into a linked Google Sheet you can chart later. For most class projects it's the fastest path from question to countable data. <a href="https://docs.google.com/forms" target="_blank" rel="noopener">docs.google.com/forms</a></p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-qualtrics"><h3>Qualtrics</h3><p>A professional survey platform App State provides free through your account. It offers more than Forms, cleaner exports, skip logic, better anonymity controls, and it's an industry-standard name worth having used if you're eyeing research or grad school. The trade-off is a steeper learning curve. Reach it through App State's software/technology portal.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-pilot"><h3>Pilot testing</h3><p>Running your instrument past one or two people before the real thing, to catch confusing wording, broken logic, and how long it actually takes. Professionals never skip it, because it's far cheaper to fix a question now than to discover after fifty responses that everyone misread it. Watch where your tester hesitates; that's a bug.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+</script>
+</body>
+</html>

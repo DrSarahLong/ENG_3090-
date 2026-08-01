@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Draft Check</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --good:#2f7d54; --goodsoft:#e4f1e8; --fix:#a3541f; --fixsoft:#f6ebe1; --tip:#3a5d86; --tipsoft:#e8eef6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --goodsoft:#14301f; --fix:#e0a878; --fixsoft:#2c2013; --tip:#9cc0e6; --tipsoft:#16202c; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #dc{max-width:780px; margin:0 auto; padding:28px 20px 90px}
+  #dc h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #dc .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #dc .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #dc .sub{color:var(--muted); margin:6px 0 0}
+  #dc .honest{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:11px 14px; font-size:.92rem; margin:14px 0 16px}
+  #dc textarea{width:100%; min-height:220px; background:var(--field); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:12px 14px; font:inherit; line-height:1.6; resize:vertical}
+  #dc textarea:focus{outline:3px solid var(--accent); outline-offset:1px; border-color:var(--accent)}
+  #dc .row{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px}
+  #dc button{font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:11px 18px; border:1px solid var(--accent); background:var(--accent); color:#fff}
+  #dc button.ghost{background:transparent; color:var(--accent); font-weight:600}
+  #dc button:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #dc .stats{color:var(--muted); font-size:.9rem}
+  #dc .result{margin-top:22px}
+  #dc .verdict{border-radius:12px; padding:14px 16px; font-weight:700; border:1px solid var(--line); margin-bottom:14px}
+  #dc .verdict.clean{background:var(--goodsoft); color:var(--good)}
+  #dc .verdict.work{background:var(--fixsoft); color:var(--fix)}
+  #dc .grp{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:12px 0}
+  #dc .grp h3{margin:0 0 8px; font-size:1.02rem}
+  #dc .grp h3 .c{font-size:.8rem; color:var(--muted); font-weight:600}
+  #dc .item{border-top:1px solid var(--line); padding:9px 0}
+  #dc .item:first-of-type{border-top:0}
+  #dc .item .k{font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; font-weight:800; border-radius:999px; padding:1px 8px; margin-right:6px}
+  #dc .item.fix .k{background:var(--fixsoft); color:var(--fix)}
+  #dc .item.tip .k{background:var(--tipsoft); color:var(--tip)}
+  #dc .item .msg{font-weight:600}
+  #dc .item .eg{color:var(--muted); font-size:.9rem; margin-top:3px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  #dc .item .eg b{color:var(--fix); font-family:inherit}
+  #dc .clean-grp{color:var(--good); font-size:.9rem; font-weight:600}
+  #dc .none{color:var(--muted)}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="dc">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Draft Check</p>
+    <h1>Draft Check</h1>
+    <p class="sub">Paste your draft. It flags what a tired reader catches first, coherence, academic tone, mechanics, and evidence, so you can fix them before I ever see them.</p>
+  </header>
+
+  <div class="honest">
+    <b>This is a first-pass digital editor that runs on your computer.</b> It flags common, fixable problems that trip up academic and research writing: mechanics and typos, weak transitions and coherence, informal or casual language, wordiness, dropped-in quotes, inconsistent citations, overclaiming, and paragraphs with no evidence. The checks are drawn from well-documented patterns in student academic and science writing. It can even flag a few language patterns tied to common reasoning slips, like claiming cause from correlation, or overclaiming. What it <em>can't</em> do is judge whether an argument is actually <em>good</em>, whether your logic holds, or whether a claim belongs in Results versus Discussion. Those still need a careful human reader. Fix what it flags, then read the draft aloud once. Nothing you paste leaves this computer.
+    <details style="margin-top:8px"><summary style="cursor:pointer;font-weight:600;color:var(--accent)">What it looks for</summary>
+      <ul style="margin:8px 0 0; padding-left:1.1rem">
+        <li><b>Mechanics &amp; typos</b>: spacing, repeated words, run-on sentences, confusables.</li>
+        <li><b>Coherence &amp; flow</b>: paragraphs that start cold with no transition, and vague "this/it" with no noun.</li>
+        <li><b>Academic voice &amp; style</b>: contractions, casual wording, "And/But/So" openers, "you," wordiness, passive voice.</li>
+        <li><b>Sources &amp; quotes</b>: dropped-in quotes, missing citations, source list-y writing.</li>
+        <li><b>Evidence &amp; argument</b>: claims with no support, thin interpretation, overclaiming, and causal overreach (correlation vs. causation).</li>
+        <li><b>Formatting consistency</b>: citation style, quotation marks, spacing.</li>
+      </ul>
+    </details>
+  </div>
+
+  <label for="draft" style="font-weight:600; display:block; margin-bottom:6px">Your draft</label>
+  <textarea id="draft" placeholder="Paste your whole draft here…"></textarea>
+  <div class="row">
+    <button type="button" id="check">Check my draft</button>
+    <button type="button" class="ghost" id="clear">Clear</button>
+    <span class="stats" id="stats"></span>
+  </div>
+
+  <div class="result" id="result" aria-live="polite"></div>
+
+</div>
+
+<script>
+(function(){
+  var draft = document.getElementById('draft');
+  var result = document.getElementById('result');
+  var statsEl = document.getElementById('stats');
+
+  var SIGNALS = /\b(say|says|said|argue|argues|argued|find|finds|found|note|notes|noted|write|writes|wrote|state|states|stated|according|report|reports|reported|show|shows|showed|observe|observes|observed|contend|contends|explain|explains|explained|claim|claims|claimed|suggest|suggests|add|adds|describe|describes|warn|warns|conclude|concludes|point)\b/i;
+  var REPORTVERB = /^(said|says|argues|argued|found|finds|notes|noted|wrote|writes|claims|claimed|reports|reported|observes|observed|suggests|suggested|contends|states|stated|explains|adds|shows|showed)\b/i;
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  function words(s){ return (s.match(/[A-Za-z0-9'’-]+/g)||[]).length; }
+  function uniq(arr){ var seen={}, out=[]; arr.forEach(function(x){ var k=x.toLowerCase(); if(!seen[k]){ seen[k]=1; out.push(k); } }); return out; }
+  function egList(arr, n){ return uniq(arr).slice(0, n).map(esc).join(', '); }
+
+  function analyze(text){
+    var mech=[], coh=[], voice=[], src=[], fmt=[], evid=[];
+    var t = text;
+    var tnq = t.replace(/[“"][^“”"]*[”"]/g, ' ');  // text minus quoted spans, for register checks
+
+    var sentences = t.replace(/\n/g,' ').split(/(?<=[.!?])\s+/).map(function(s){return s.trim();}).filter(Boolean);
+    var paras = t.split(/\n\s*\n/).map(function(s){return s.trim();}).filter(Boolean);
+    if(paras.length <= 1) paras = t.split(/\n/).map(function(s){return s.trim();}).filter(Boolean);
+
+    // ---- MECHANICS ----
+    var sbp = (t.match(/[A-Za-z0-9] [,.;:]/g)||[]);
+    if(sbp.length) mech.push({kind:'fix', msg:'Space before a comma or period ('+sbp.length+'). Delete the space.', eg:sbp.slice(0,3).map(esc).join('   ')});
+    var dbl = (t.match(/[^\n] {2,}[^\n]/g)||[]);
+    if(dbl.length>2) mech.push({kind:'tip', msg:'Double spaces between words ('+dbl.length+'). Make spacing consistent (one space).', eg:''});
+    var rep = []; var rm; var rre=/\b([A-Za-z']+)\s+\1\b/gi; while((rm=rre.exec(t))){ rep.push(rm[0]); }
+    if(rep.length) mech.push({kind:'fix', msg:'Repeated word ('+rep.length+').', eg:rep.slice(0,3).map(esc).join('   ')});
+    var bang = (t.match(/!/g)||[]).length;
+    if(bang) mech.push({kind:'tip', msg:'Exclamation point'+(bang>1?'s ('+bang+')':'')+'. Rare in academic writing, consider cutting.', eg:''});
+    var longS = sentences.filter(function(s){ return words(s) > 42; });
+    if(longS.length) mech.push({kind:'tip', msg:longS.length+' very long sentence'+(longS.length>1?'s':'')+' (42+ words). Read each aloud; if you run out of breath, split it.', eg:esc(longS[0].slice(0,90))+'…'});
+    var its = (tnq.match(/\bit'?s\b/gi)||[]).length, thr = (tnq.match(/\b(their|there|they'?re)\b/gi)||[]).length;
+    if(its>0 || thr>0) mech.push({kind:'tip', msg:"Easy-to-confuse words to double-check: its/it's ("+its+"), their/there/they're ("+thr+"). Make sure each one is right.", eg:''});
+
+    // ---- COHERENCE & FLOW ----
+    var CONNECT = /^(however|moreover|furthermore|therefore|thus|hence|consequently|nevertheless|nonetheless|meanwhile|similarly|likewise|conversely|additionally|in addition|for example|for instance|in contrast|by contrast|on the other hand|as a result|in particular|first|second|third|fourth|finally|next|ultimately|overall|in short|to summarize|in other words|specifically|notably|importantly|by comparison|in turn|although|though|while|because|since|despite|whereas|yet|still|indeed|rather)\b/i;
+    var LINKNOUN = /^(this|these|those|that|such)\s+(finding|findings|result|results|pattern|patterns|study|studies|data|evidence|approach|question|questions|issue|issues|point|idea|ideas|argument|arguments|claim|claims|analysis|shift|trend|trends|difference|differences|response|responses|participant|participants|shopper|shoppers|label|labels|section|number|numbers|theme|themes|gap|reason|reasons)\b/i;
+    var bodyParas = paras.filter(function(p){ return words(p) >= 40; });
+    if(bodyParas.length >= 3){
+      var cold = 0;
+      bodyParas.forEach(function(p){
+        var open = p.replace(/^[“"'(]+/,'').slice(0,60);
+        if(!CONNECT.test(open) && !LINKNOUN.test(open)) cold++;
+      });
+      if(cold > Math.ceil(bodyParas.length*0.6)) coh.push({kind:'tip', msg:cold+' of '+bodyParas.length+' paragraphs start cold, with no word linking them to the paragraph before. Open some with a transition or a tie-back ("However,…", "As a result,…", "These findings…") so ideas connect instead of just stacking. Coherence is the reader feeling the joins.', eg:''});
+    }
+    var vagueRe=/(?:^|[.!?]\s+)(This|These|It)\s+(is|are|was|were|shows?|suggests?|means?|reveals?|demonstrates?|indicates?|makes?|can|could|would|will|has|have|proves?|leads?|creates?|causes?|matters|explains?|highlights?|reflects?)\b/g;
+    var vagueN=0; while(vagueRe.exec(t)){ vagueN++; }
+    if(vagueN>=2) coh.push({kind:'tip', msg:vagueN+' sentences start with a bare "This," "These," or "It" (as in "This shows…"). Add the noun so the reader knows what you mean: "This finding shows…," "These results suggest…." A pronoun can\'t stand in for a whole previous sentence.', eg:''});
+
+    // ---- ACADEMIC VOICE & STYLE ----
+    var contr = tnq.match(/\b(can't|won't|don't|doesn't|didn't|isn't|aren't|wasn't|weren't|hasn't|haven't|hadn't|shouldn't|wouldn't|couldn't|it's|that's|there's|they're|we're|you're|i'm|let's|he's|she's|who's|what's|here's|we've|they've|i've|you've|we'll|they'll|i'll|you'll|can’t|won’t|don’t|doesn’t|didn’t|isn’t|it’s|they’re|we’re|you’re|i’m)\b/gi)||[];
+    if(contr.length) voice.push({kind:'fix', msg:'Contractions ('+contr.length+'): '+egList(contr,4)+'. Academic writing spells them out ("do not," "it is," "cannot"). Direct quotes can keep them.', eg:''});
+    var informal = tnq.match(/\b(a lot|lots of|tons of|kind of|kinda|sort of|sorta|stuff|things|big deal|nowadays|these days|okay|a bit|pretty much|you know|gonna|wanna|gotta)\b/gi)||[];
+    if(informal.length) voice.push({kind:'tip', msg:'Casual or informal wording ('+informal.length+'): '+egList(informal,5)+'. Swap for measured terms ("a lot"→"many," "things/stuff"→name them, "kind of"→"somewhat").', eg:''});
+    var intens = tnq.match(/\b(very|really|quite|basically|actually|literally|just|super|totally)\b/gi)||[];
+    if(intens.length>=4) voice.push({kind:'tip', msg:'Empty intensifiers ('+intens.length+'): '+egList(intens,4)+'. They pad without adding meaning. Cut most, or pick a precise word ("very important"→"critical").', eg:''});
+    var openers=0; sentences.forEach(function(s){ if(/^(and|but|so|also|plus|well)[ ,]/i.test(s)) openers++; });
+    if(openers>=2) voice.push({kind:'tip', msg:openers+' sentences open with "And," "But," or "So." In a report, prefer "In addition," "However," or "Therefore." (An occasional one is fine for rhythm.)', eg:''});
+    var you = tnq.match(/\b(you|your|you're|yours|yourself|you’re)\b/gi)||[];
+    if(you.length>=2) voice.push({kind:'tip', msg:'Second person "you/your" ('+you.length+'). Addressing the reader as "you" reads as informal in a report. Recast to the subject ("shoppers," "readers," "one"). Fine inside a direct quote.', eg:''});
+    var WORDY=[[/in order to/,'to'],[/due to the fact that/,'because'],[/in spite of the fact that/,'although'],[/the fact that/,'that'],[/at this point in time/,'now'],[/in the event that/,'if'],[/a (?:large|great) number of/,'many'],[/for the purpose of/,'to'],[/has the ability to/,'can'],[/in today'?s (?:society|world)/,'cut it']];
+    var wordy=[]; WORDY.forEach(function(w){ var m=tnq.match(new RegExp(w[0].source,'gi')); if(m){ wordy.push(m[0].toLowerCase()+' → '+w[1]); } });
+    if(wordy.length) voice.push({kind:'tip', msg:'Wordy phrasing you can tighten: '+wordy.slice(0,4).map(esc).join('; ')+'.', eg:''});
+    var passive = tnq.match(/\b(?:is|are|was|were|be|been|being)\s+(?:\w+ed|shown|seen|done|made|found|given|taken|known|written|held|built|drawn|conducted|chosen)\b/gi)||[];
+    if(passive.length>=5 && passive.length/Math.max(sentences.length,1) > 0.3) voice.push({kind:'tip', msg:'Frequent passive voice ('+passive.length+' instances). Passive is fine in Methods ("participants were surveyed"), but elsewhere name the actor: "the data show," not "it is shown."', eg:''});
+    var thereis=0; sentences.forEach(function(s){ if(/^there (?:is|are|was|were)\b/i.test(s)) thereis++; });
+    if(thereis>=2) voice.push({kind:'tip', msg:thereis+' sentences open with "There is/are." It buries the real subject. "There are three factors that matter" → "Three factors matter."', eg:''});
+
+    // ---- SOURCES & QUOTES ----
+    var quotes = []; var qm; var qre=/[“"]([^“”"]{4,600})[”"]/g;
+    while((qm=qre.exec(t))){ quotes.push({text:qm[1], index:qm.index, len:words(qm[1])}); }
+    var hasCitation = /\([A-Z][A-Za-z]+,?\s*\d{4}\)|[A-Z][A-Za-z]+\s+\(\d{4}\)|\bet al\.?/.test(t);
+    var dumps = 0, longq = 0;
+    quotes.forEach(function(q){
+      if(q.len < 4) return;
+      var window = t.slice(Math.max(0, q.index-90), q.index) + ' ' + t.slice(q.index, q.index+40);
+      if(!SIGNALS.test(window)) dumps++;
+      if(q.len > 40) longq++;
+    });
+    if(dumps) src.push({kind:'fix', msg:dumps+' quote'+(dumps>1?'s':'')+' dropped in with no lead-in. Introduce each: "Smith argues that…," "According to Jones…." Don\'t let a quote land on its own.', eg:''});
+    if(longq) src.push({kind:'fix', msg:longq+' very long quote'+(longq>1?'s':'')+' (40+ words). Trim to the words that matter, or paraphrase.', eg:''});
+    if(quotes.length && !hasCitation) src.push({kind:'fix', msg:'There are quotes but no citations (no "(Author, year)" or "Author (year)"). Every quote and borrowed idea needs a source.', eg:''});
+    var listers = sentences.filter(function(s){ var m=s.match(/^[A-Z][a-z]+\s+(\w+)/); return m && REPORTVERB.test(m[1]); }).length;
+    if(listers >= 3) src.push({kind:'tip', msg:'Several sentences start "Smith argues… Jones found… Lee notes…." That reads like a list of sources, not a synthesis. Try weaving them: "Two studies (Smith; Jones) agree…, though Lee cautions…."', eg:''});
+
+    // ---- FORMATTING ----
+    var straight = /"/.test(t), curly = /[“”]/.test(t);
+    if(straight && curly) fmt.push({kind:'tip', msg:'Mixed quotation marks (some straight ", some curly “”). Pick one and use it throughout.', eg:''});
+    var styleA = /\([A-Z][A-Za-z]+, \d{4}\)/.test(t);
+    var styleB = /\([A-Z][A-Za-z]+ \d{4}\)/.test(t);
+    var styleC = /[A-Z][A-Za-z]+ \(\d{4}\)/.test(t);
+    var styleCount = [styleA, styleB, styleC].filter(Boolean).length;
+    if(styleCount >= 2) fmt.push({kind:'fix', msg:'Your citations aren\'t in a consistent format (mixing things like "(Smith, 2021)", "(Smith 2021)", and "Smith (2021)"). Pick one style and match every citation to it.', eg:''});
+    var singleAfter = /[.?!] [A-Z]/.test(t), doubleAfter = /[.?!]  [A-Z]/.test(t);
+    if(singleAfter && doubleAfter) fmt.push({kind:'tip', msg:'You mix one space and two spaces after sentences. Pick one (one space is standard) and be consistent.', eg:''});
+    var emdash = /—/.test(t), spacedHyphen = / - /.test(t);
+    if(emdash && spacedHyphen) fmt.push({kind:'tip', msg:'You use both an em dash (—) and a spaced hyphen ( - ) for the same job. Choose one.', eg:''});
+
+    // ---- EVIDENCE & ARGUMENT ----
+    var bald = [];
+    paras.forEach(function(p){
+      if(words(p) < 45) return;
+      var hasQ = /[“"]/.test(p), hasNum = /\d/.test(p), hasCite = /\([A-Z][A-Za-z]+,?\s*\d{4}\)|[A-Z][A-Za-z]+\s+\(\d{4}\)|\bet al\.?/.test(p);
+      if(!hasQ && !hasNum && !hasCite) bald.push(p.slice(0,60));
+    });
+    if(bald.length) evid.push({kind:'fix', msg:bald.length+' paragraph'+(bald.length>1?'s':'')+' make claims with no evidence (no quote, number, or citation). Add support, or say less.', eg:esc(bald[0])+'…'});
+    var interp = /\b(this suggests|this shows|this means|this reveals|therefore|in other words|matters because|demonstrates|implies|which means|the pattern|whose interest|what this tells us)\b/i.test(t);
+    if(!interp && words(t) > 150) evid.push({kind:'tip', msg:"Little interpretation shows up, phrases like \"this suggests,\" \"this means,\" \"whose interest.\" Make sure you say what your evidence MEANS, not just what it is. That's the analysis.", eg:''});
+    var over = tnq.match(/\b(prove[sd]?|proof|obviously|clearly|undeniably|definitely|certainly|without a doubt|always|never|everyone|nobody|no one|impossible|guarantee[sd]?)\b/gi)||[];
+    if(over.length>=2) evid.push({kind:'tip', msg:'Absolute or overclaiming words ('+over.length+'): '+egList(over,4)+'. Data usually <em>suggests</em> or <em>indicates</em>; it rarely <em>proves</em>. Match the claim to the strength of your evidence ("proves"→"suggests," "always"→"often," "everyone"→"most").', eg:''});
+    var causal = tnq.match(/\b(causes?|caused|causing|leads? to|led to|results? in|resulted in|because of this|because of that|proves that|the cause of|responsible for)\b/gi)||[];
+    if(causal.length) evid.push({kind:'tip', msg:'Causal language ('+causal.length+'): '+egList(causal,4)+'. A first-pass checker can\'t judge your logic, but make sure your evidence shows cause and effect, not just that two things happen together. Correlation isn\'t causation.', eg:''});
+    var firstPersonHedge = (t.match(/\bI (think|feel|believe|guess)\b/gi)||[]);
+    if(firstPersonHedge.length > 2) evid.push({kind:'tip', msg:'"I think / I feel / I believe" ('+firstPersonHedge.length+'). Once or twice is fine; too many makes strong claims sound unsure. State it, then back it.', eg:''});
+
+    return {mech:mech, coh:coh, voice:voice, src:src, fmt:fmt, evid:evid, stats:{words:words(t), sentences:sentences.length, paras:paras.length}};
+  }
+
+  function renderGroup(title, items){
+    var html = '<div class="grp"><h3>'+title+' <span class="c">'+(items.length?('· '+items.length+' note'+(items.length>1?'s':'')):'· all clear')+'</span></h3>';
+    if(!items.length){ html += '<div class="clean-grp">Nothing flagged here. Nice.</div></div>'; return html; }
+    items.forEach(function(i){
+      html += '<div class="item '+i.kind+'"><span class="k">'+(i.kind==='fix'?'Fix':'Consider')+'</span><span class="msg">'+i.msg+'</span>';
+      if(i.eg) html += '<div class="eg">'+i.eg+'</div>';
+      html += '</div>';
+    });
+    return html + '</div>';
+  }
+
+  function check(){
+    var text = draft.value.trim();
+    if(text.length < 40){ result.innerHTML = '<div class="verdict work">Paste a real chunk of your draft (a few paragraphs at least), then hit Check.</div>'; return; }
+    var a = analyze(text);
+    var all = a.mech.concat(a.coh, a.voice, a.src, a.fmt, a.evid);
+    var fixN = all.filter(function(i){return i.kind==='fix';}).length;
+    var tipN = all.filter(function(i){return i.kind==='tip';}).length;
+    var v;
+    if(!all.length) v = '<div class="verdict clean">Clean pass. Nothing fixable turned up. That doesn\'t mean it\'s perfect, read it aloud once, but the common traps are handled.</div>';
+    else v = '<div class="verdict work">'+fixN+' thing'+(fixN===1?'':'s')+' to fix, '+tipN+' to consider. Work through them, then run it again.</div>';
+    result.innerHTML = v
+      + renderGroup('Mechanics &amp; typos', a.mech)
+      + renderGroup('Coherence &amp; flow', a.coh)
+      + renderGroup('Academic voice &amp; style', a.voice)
+      + renderGroup('Sources &amp; quotes', a.src)
+      + renderGroup('Evidence &amp; argument', a.evid)
+      + renderGroup('Formatting consistency', a.fmt);
+    statsEl.textContent = a.stats.words + ' words · ' + a.stats.sentences + ' sentences · ' + a.stats.paras + ' paragraphs';
+  }
+
+  document.getElementById('check').addEventListener('click', check);
+  document.getElementById('clear').addEventListener('click', function(){ draft.value=''; result.innerHTML=''; statsEl.textContent=''; draft.focus(); });
+})();
+</script>
+</body>
+</html>

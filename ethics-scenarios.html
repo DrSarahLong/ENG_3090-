@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Is This Ethical?</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --ok:#2f7d54; --oksoft:#e4f1e8; --fix:#a3771f; --fixsoft:#f6f0e1; --no:#a13a2d; --nosoft:#f6e6e3;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --ok:#7ac598; --oksoft:#14301f; --fix:#d8b168; --fixsoft:#2b2513; --no:#e08a7a; --nosoft:#2c1815; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #es{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #es h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #es .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #es .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #es .sub{color:var(--muted); margin:6px 0 0}
+  #es .prin{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:16px; font-size:.93rem}
+  #es .prin b{color:var(--accent)}
+  #es .how{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:14px}
+  #es .how p{margin:.3rem 0}
+  #es .prog{font-weight:700; color:var(--accent)}
+  #es .card{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:16px 18px; margin:14px 0}
+  #es .num{font-size:.78rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:700}
+  #es .scn{font-size:1.05rem; margin:6px 0 12px}
+  #es .choices{display:flex; gap:8px; flex-wrap:wrap}
+  #es .choice{flex:1; min-width:120px; font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:10px; border:1.5px solid var(--line); background:var(--field); color:var(--ink)}
+  #es .choice:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #es .choice.pick-ok{border-color:var(--ok); background:var(--oksoft); color:var(--ok)}
+  #es .choice.pick-fix{border-color:var(--fix); background:var(--fixsoft); color:var(--fix)}
+  #es .choice.pick-no{border-color:var(--no); background:var(--nosoft); color:var(--no)}
+  #es details{margin-top:12px; border-top:1px dashed var(--line); padding-top:10px}
+  #es summary{cursor:pointer; font-weight:600; color:var(--accent); list-style:none}
+  #es summary::-webkit-details-marker{display:none}
+  #es summary:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:6px}
+  #es .verdict{margin:8px 0 0; border-radius:8px; padding:10px 12px}
+  #es .verdict.ok{background:var(--oksoft)} #es .verdict.fix{background:var(--fixsoft)} #es .verdict.no{background:var(--nosoft)}
+  #es .verdict .lab{font-weight:800; text-transform:uppercase; letter-spacing:.05em; font-size:.78rem}
+  #es .verdict.ok .lab{color:var(--ok)} #es .verdict.fix .lab{color:var(--fix)} #es .verdict.no .lab{color:var(--no)}
+  #es .verdict .pr{font-size:.82rem; font-weight:700; color:var(--muted); margin-top:4px}
+  #es .done{margin-top:22px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  #es .done b{color:var(--accent)}
+  #es .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #es .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="es">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 9, Tuesday</p>
+    <h1>Is This Ethical?</h1>
+    <p class="sub">You're about to study real people. Six situations a lot like your own project. For each, decide: is it fine, does it need fixing first, or is it a hard no?</p>
+  </header>
+
+  <div class="prin">Judge against the three <button type="button" class="term" data-pop="belmont">Belmont</button> principles: <b>Respect for persons</b> (people choose freely, with full information), <b>Beneficence</b> (do good, minimize harm), and <b>Justice</b> (don't load the burdens onto the vulnerable). Two tools do most of the work: <button type="button" class="term" data-pop="consent">informed consent</button> and protecting privacy.</div>
+
+  <div class="how">
+    <p><b>On your own:</b> make your call, then open the verdict. We'll argue the gray ones as a class.</p>
+    <p>Judged: <span class="prog"><span id="count">0</span> / 6</span></p>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 1</p>
+    <p class="scn">A student surveys classmates about food-label habits with an anonymous Google Form. The form explains the purpose, says participation is voluntary, and collects no names.</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Fine</button><button type="button" class="choice" data-pick="fix">Fix it first</button><button type="button" class="choice" data-pick="no">Hard no</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict ok"><span class="lab">Fine</span> Voluntary, informed, and anonymous. This is the model: people know what they're joining and can walk away. <div class="pr">Respect for persons ✓</div></div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 2</p>
+    <p class="scn">A student records interviews with farmworkers about pesticide-label safety, but doesn't mention it's for a class project or ask their permission first.</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Fine</button><button type="button" class="choice" data-pick="fix">Fix it first</button><button type="button" class="choice" data-pick="no">Hard no</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict no"><span class="lab">Hard no</span> No <button type="button" class="term" data-pop="consent">informed consent</button>, and recording people without their knowledge. Worse, farmworkers can be a <button type="button" class="term" data-pop="vulnerable">vulnerable group</button> (job insecurity, language, immigration fears), so the stakes are higher. Get clear, up-front permission. <div class="pr">Violates respect for persons + justice</div></div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 3</p>
+    <p class="scn">A student's survey promises "your answers are anonymous," but then asks for your name and email "just in case I need to follow up."</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Fine</button><button type="button" class="choice" data-pick="fix">Fix it first</button><button type="button" class="choice" data-pick="no">Hard no</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Fix it first</span> That's not <button type="button" class="term" data-pop="anon">anonymous</button>, it's the opposite. If you collect names, the most you can promise is <button type="button" class="term" data-pop="anon">confidentiality</button>. Either drop the name field, or change the promise and lock the data down. Collect only what you truly need. <div class="pr">Respect for persons: keep your promises</div></div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 4</p>
+    <p class="scn">To study how people in an addiction-recovery group talk about food and health, a student joins the group without telling anyone she's researching them.</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Fine</button><button type="button" class="choice" data-pick="fix">Fix it first</button><button type="button" class="choice" data-pick="no">Hard no</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict no"><span class="lab">Hard no</span> Covert research on a <button type="button" class="term" data-pop="vulnerable">vulnerable group</button> with no consent and real potential for harm. This is exactly what an <button type="button" class="term" data-pop="irb">IRB</button> exists to stop, and it's the kind of study a class project can't do at all (we're exempt from review, which also means we can't get it). Choose a group you can study openly, with their yes. <div class="pr">Violates all three principles</div></div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 5</p>
+    <p class="scn">A student interviews adult shoppers about grocery habits. She explains the study, gets each person's verbal consent, and strips names from the transcripts before analyzing them.</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Fine</button><button type="button" class="choice" data-pick="fix">Fix it first</button><button type="button" class="choice" data-pick="no">Hard no</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict ok"><span class="lab">Fine</span> Informed, voluntary, low-risk, and she protects <button type="button" class="term" data-pop="anon">confidentiality</button> by de-identifying the data. This is what a clean, small study looks like. <div class="pr">Respect for persons ✓ · Beneficence ✓</div></div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 6</p>
+    <p class="scn">A student surveys a local high-school class about snack advertising, without asking the school or the students' parents.</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Fine</button><button type="button" class="choice" data-pick="fix">Fix it first</button><button type="button" class="choice" data-pick="no">Hard no</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Fix it first (really, switch topics)</span> Minors are a protected <button type="button" class="term" data-pop="vulnerable">vulnerable group</button>, and studying them needs parental permission, the school's okay, and full <button type="button" class="term" data-pop="irb">IRB</button> review, which a class project can't get (we're exempt). The easy fix: study adults instead. <div class="pr">Justice: extra protection for minors</div></div>
+    </details>
+  </div>
+
+  <div class="done">
+    <p>The through-line: before you collect a single response, ask three questions. <b>Do they know what they're joining, and did they say yes?</b> <b>Could this hurt them, and how do I keep it from doing so?</b> <b>Am I putting the burden on people who can least push back?</b> Answer those honestly and you're most of the way to ethical research.</p>
+  </div>
+
+  <dialog class="pop" id="pop-belmont"><h3>The Belmont Report</h3><p>A 1979 U.S. report, written after abuses like the Tuskegee syphilis study, that set the three principles all human-subjects research now follows: <b>respect for persons</b> (informed, voluntary participation), <b>beneficence</b> (maximize good, minimize harm), and <b>justice</b> (fairly share the risks and benefits, don't exploit the vulnerable). Your CITI training is built on it.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-consent"><h3>Informed consent</h3><p>Before anyone takes part, they get a plain-language explanation of what the study is, what you'll ask, how their data will be used and protected, and that they can stop anytime, and then they freely agree. "Informed" and "voluntary" are the whole idea. No consent, no data.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-anon"><h3>Anonymous vs. confidential</h3><p>These are not the same. <b>Anonymous</b> means you never collect anything that could identify a person, not even you can link a response to a name. <b>Confidential</b> means you might know who said what, but you protect it and never reveal it. If your form asks for a name or email, you can only promise confidentiality, not anonymity.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-irb"><h3>IRB (Institutional Review Board)</h3><p>A committee at a university that reviews research with human participants before it begins, to keep it ethical. The key thing for you: student projects for a class at this level are <b>exempt</b>, so you will not go through IRB review. That's also why some topics are off the table: you can't study people in jails, schoolchildren, or other protected groups, because those need a full review a class project can't do. A short anonymous survey of adults is exactly the kind of thing that's fine.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-vulnerable"><h3>Vulnerable populations</h3><p>Groups who may not be able to freely consent or who could be harmed more easily, and so get extra protection: children, prisoners, people with cognitive impairments, and people under pressure from their situation (economic, legal, medical). Farmworkers worried about their jobs and people in recovery can both qualify. Extra care, or a different topic.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#es [data-card]'));
+  var count = document.getElementById('count');
+  function tally(){ count.textContent = cards.filter(function(c){ return c.querySelector('.choice.pick-ok, .choice.pick-fix, .choice.pick-no'); }).length; }
+  cards.forEach(function(card){
+    var btns = card.querySelectorAll('.choice');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){ x.classList.remove('pick-ok','pick-fix','pick-no'); });
+        b.classList.add('pick-' + b.getAttribute('data-pick'));
+        tally();
+      });
+    });
+  });
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+})();
+</script>
+</body>
+</html>

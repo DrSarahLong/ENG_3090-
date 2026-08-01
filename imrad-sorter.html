@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Build the Report</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --ok:#2f7d54; --oksoft:#e4f1e8; --no:#a13a2d; --nosoft:#f6e6e3;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --ok:#7ac598; --oksoft:#14301f; --no:#e08a7a; --nosoft:#2c1815; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #im{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #im h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #im .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #im .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #im .sub{color:var(--muted); margin:6px 0 0}
+  #im .prin{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:14px; font-size:.93rem}
+  #im .prin b{color:var(--accent)}
+  #im .map{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px}
+  #im .mapcell{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:9px 12px; font-size:.86rem}
+  #im .mapcell b{color:var(--accent)}
+  #im .how{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:14px}
+  #im .how p{margin:.3rem 0}
+  #im .prog{font-weight:700; color:var(--accent)}
+  #im .card{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:16px 18px; margin:14px 0}
+  #im .num{font-size:.78rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:700}
+  #im .chunk{font-size:1.03rem; margin:6px 0 12px; font-style:italic}
+  #im .choices{display:flex; gap:7px; flex-wrap:wrap}
+  #im .choice{flex:1; min-width:120px; font:inherit; font-weight:700; font-size:.92rem; cursor:pointer; border-radius:9px; padding:9px 8px; border:1.5px solid var(--line); background:var(--field); color:var(--ink)}
+  #im .choice:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #im .choice.picked{border-color:var(--accent); background:var(--accent-soft); color:var(--accent)}
+  #im .choice.correct{border-color:var(--ok); background:var(--oksoft); color:var(--ok)}
+  #im .choice.wrong{border-color:var(--no); background:var(--nosoft); color:var(--no)}
+  #im details{margin-top:12px; border-top:1px dashed var(--line); padding-top:10px}
+  #im summary{cursor:pointer; font-weight:600; color:var(--accent); list-style:none}
+  #im summary::-webkit-details-marker{display:none}
+  #im summary:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:6px}
+  #im .verdict{margin:8px 0 0; border-radius:8px; padding:10px 12px; background:var(--oksoft)}
+  #im .verdict .lab{font-weight:800; text-transform:uppercase; letter-spacing:.05em; font-size:.78rem; color:var(--ok)}
+  #im .verdict .from{display:inline-block; font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--accent); border:1px solid var(--accent); border-radius:999px; padding:1px 9px; margin-left:6px; vertical-align:1px}
+  #im .skeleton{margin-top:24px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  #im .skeleton h3{margin:0 0 8px; font-family:Georgia,"Iowan Old Style",serif; font-size:1.15rem}
+  #im .skeleton ol{margin:0; padding-left:1.2rem} #im .skeleton li{margin:.35rem 0}
+  #im .skeleton .imr{color:var(--accent); font-weight:700}
+  #im .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #im .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="im">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 13, Tuesday</p>
+    <h1>Build the Report</h1>
+    <p class="sub">A research report has a shared shape so any reader can navigate it fast. It's called <button type="button" class="term" data-pop="imrad">IMRAD</button>. Below are ten pieces of a food-label study, scrambled. Drop each one into the section where it belongs.</p>
+  </header>
+
+  <div class="prin">The four sections each answer one question. <b><button type="button" class="term" data-pop="intro">Introduction</button>:</b> what's my question, and why does it matter? <b><button type="button" class="term" data-pop="methods">Methods</button>:</b> how did I study it? <b><button type="button" class="term" data-pop="results">Results</button>:</b> what did I find? <b><button type="button" class="term" data-pop="discussion">Discussion</button>:</b> so what, and now what?</div>
+
+  <div class="map">
+    <div class="mapcell"><b>Introduction</b> ← your P1 lit review</div>
+    <div class="mapcell"><b>Methods + Results</b> ← your P2 &amp; P3</div>
+    <div class="mapcell"><b>Discussion</b> ← new writing that ties it together</div>
+    <div class="mapcell"><b>Good news:</b> you've already written most of it</div>
+  </div>
+
+  <div class="how">
+    <p><b>On your own:</b> pick a section for each piece, then open the answer. Notice which project each piece came from, you're seeing your whole semester become one report.</p>
+    <p>Placed: <span class="prog"><span id="count">0</span> / 10</span></p>
+  </div>
+
+  <div class="card" data-card data-answer="intro">
+    <p class="num">Piece 1</p>
+    <p class="chunk">"Prior studies disagree on whether 'natural' labels shape shopper trust, and almost none look at small-town or student shoppers."</p>
+    <div class="choices"><button type="button" class="choice" data-sec="intro">Introduction</button><button type="button" class="choice" data-sec="methods">Methods</button><button type="button" class="choice" data-sec="results">Results</button><button type="button" class="choice" data-sec="discussion">Discussion</button></div>
+    <details><summary>Where does it go?</summary>
+      <div class="verdict"><span class="lab">Introduction</span><span class="from">from your P1</span> This is your literature review setting up the gap, what's known, what's missing, why your study is needed. That's the job of the Introduction.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card data-answer="intro">
+    <p class="num">Piece 2</p>
+    <p class="chunk">"This study asks: do sustainability labels actually inform shoppers, and who gets misled when they don't?"</p>
+    <div class="choices"><button type="button" class="choice" data-sec="intro">Introduction</button><button type="button" class="choice" data-sec="methods">Methods</button><button type="button" class="choice" data-sec="results">Results</button><button type="button" class="choice" data-sec="discussion">Discussion</button></div>
+    <details><summary>Where does it go?</summary>
+      <div class="verdict"><span class="lab">Introduction</span><span class="from">your research question</span> Your central question and its significance close out the Introduction. It tells the reader exactly what the rest of the report will answer.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card data-answer="methods">
+    <p class="num">Piece 3</p>
+    <p class="chunk">"I coded fifteen product packages for claim type and specificity, then surveyed forty-two adult shoppers with an anonymous Google Form."</p>
+    <div class="choices"><button type="button" class="choice" data-sec="intro">Introduction</button><button type="button" class="choice" data-sec="methods">Methods</button><button type="button" class="choice" data-sec="results">Results</button><button type="button" class="choice" data-sec="discussion">Discussion</button></div>
+    <details><summary>Where does it go?</summary>
+      <div class="verdict"><span class="lab">Methods</span><span class="from">from your P2 &amp; P3</span> Exactly how you studied it, both the qualitative coding and the quantitative survey, goes in Methods. Enough detail that someone could repeat your study.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card data-answer="methods">
+    <p class="num">Piece 4</p>
+    <p class="chunk">"Participants were recruited through three online groups and in person at a campus dining hall; no identifying information was collected."</p>
+    <div class="choices"><button type="button" class="choice" data-sec="intro">Introduction</button><button type="button" class="choice" data-sec="methods">Methods</button><button type="button" class="choice" data-sec="results">Results</button><button type="button" class="choice" data-sec="discussion">Discussion</button></div>
+    <details><summary>Where does it go?</summary>
+      <div class="verdict"><span class="lab">Methods</span><span class="from">your recruitment plan</span> How you recruited and how you protected participants is part of Methods too. It shows your study was systematic and ethical.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card data-answer="results">
+    <p class="num">Piece 5</p>
+    <p class="chunk">"Sixty-two percent of respondents said they look for an organic seal 'often' or 'always' (Figure 1)."</p>
+    <div class="choices"><button type="button" class="choice" data-sec="intro">Introduction</button><button type="button" class="choice" data-sec="methods">Methods</button><button type="button" class="choice" data-sec="results">Results</button><button type="button" class="choice" data-sec="discussion">Discussion</button></div>
+    <details><summary>Where does it go?</summary>
+      <div class="verdict"><span class="lab">Results</span><span class="from">from your P3</span> A number plus its figure, reported plainly with no interpretation yet. Results states what you found. What it <i>means</i> waits for the Discussion.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card data-answer="results">
+    <p class="num">Piece 6</p>
+    <p class="chunk">"Only 31% said they trust the word 'natural,' the lowest of any label tested. In open responses, several called it meaningless; one wrote, 'It's on everything.'"</p>
+    <div class="choices"><button type="button" class="choice" data-sec="intro">Introduction</button><button type="button" class="choice" data-sec="methods">Methods</button><button type="button" class="choice" data-sec="results">Results</button><button type="button" class="choice" data-sec="discussion">Discussion</button></div>
+    <details><summary>Where does it go?</summary>
+      <div class="verdict"><span class="lab">Results</span><span class="from">P3 numbers + quotes</span> Participant quotes are data. Presenting them next to the matching statistic still belongs in Results, that's your mixed-methods evidence. You interpret it in the Discussion.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card data-answer="discussion">
+    <p class="num">Piece 7</p>
+    <p class="chunk">"These results suggest shoppers are far more skeptical of vague claims like 'natural' than of certified ones like 'organic.'"</p>
+    <div class="choices"><button type="button" class="choice" data-sec="intro">Introduction</button><button type="button" class="choice" data-sec="methods">Methods</button><button type="button" class="choice" data-sec="results">Results</button><button type="button" class="choice" data-sec="discussion">Discussion</button></div>
+    <details><summary>Where does it go?</summary>
+      <div class="verdict"><span class="lab">Discussion</span><span class="from">your interpretation</span> The word "suggest" is the tell. Here you make sense of the numbers and connect them back to your question. Interpretation lives in the Discussion, not the Results.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card data-answer="discussion">
+    <p class="num">Piece 8</p>
+    <p class="chunk">"I recommend that stores mark which claims are third-party certified, so shoppers can tell a real standard from a marketing word at a glance."</p>
+    <div class="choices"><button type="button" class="choice" data-sec="intro">Introduction</button><button type="button" class="choice" data-sec="methods">Methods</button><button type="button" class="choice" data-sec="results">Results</button><button type="button" class="choice" data-sec="discussion">Discussion</button></div>
+    <details><summary>Where does it go?</summary>
+      <div class="verdict"><span class="lab">Discussion</span><span class="from">your recommendation</span> The "now what," a concrete, actionable recommendation, is where a good Discussion ends. This is also where your social-justice lens pays off: what should change, and for whom?</div>
+    </details>
+  </div>
+
+  <div class="card" data-card data-answer="discussion">
+    <p class="num">Piece 9</p>
+    <p class="chunk">"Because the sample was small and skewed young, these findings are suggestive rather than conclusive and can't speak for all shoppers."</p>
+    <div class="choices"><button type="button" class="choice" data-sec="intro">Introduction</button><button type="button" class="choice" data-sec="methods">Methods</button><button type="button" class="choice" data-sec="results">Results</button><button type="button" class="choice" data-sec="discussion">Discussion</button></div>
+    <details><summary>Where does it go?</summary>
+      <div class="verdict"><span class="lab">Discussion</span><span class="from">your limitations</span> Limitations usually sit near the end of the Discussion (some writers put them in Methods, either is defensible). Naming them makes you more credible, not less.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card data-answer="intro">
+    <p class="num">Piece 10</p>
+    <p class="chunk">"Roughly seventy percent of new grocery products now carry some kind of 'eco' claim, yet shoppers report growing confusion about what those claims mean."</p>
+    <div class="choices"><button type="button" class="choice" data-sec="intro">Introduction</button><button type="button" class="choice" data-sec="methods">Methods</button><button type="button" class="choice" data-sec="results">Results</button><button type="button" class="choice" data-sec="discussion">Discussion</button></div>
+    <details><summary>Where does it go?</summary>
+      <div class="verdict"><span class="lab">Introduction</span><span class="from">your opening context</span> The broad, real-world hook that opens the report and shows why the topic matters. Introductions start wide like this, then narrow to your specific question (Piece 2).</div>
+    </details>
+  </div>
+
+  <div class="skeleton">
+    <h3>The whole report, in order</h3>
+    <ol>
+      <li><b>Title page</b> (title, your name, course, date)</li>
+      <li><button type="button" class="term" data-pop="abstract">Abstract</button> (a short summary, written last)</li>
+      <li><span class="imr">I</span>ntroduction (question, significance, lit review)</li>
+      <li><span class="imr">M</span>ethods (how you studied it, qualitative and quantitative)</li>
+      <li><span class="imr">R</span>esults (what you found, with captioned <button type="button" class="term" data-pop="caption">figures</button>)</li>
+      <li><span class="imr">a</span>nd <span class="imr">D</span>iscussion (what it means, recommendations, limitations)</li>
+      <li>References (15 to 20 sources, APA)</li>
+      <li><button type="button" class="term" data-pop="appendix">Appendix</button> (your instrument and your data)</li>
+    </ol>
+  </div>
+
+  <dialog class="pop" id="pop-imrad"><h3>IMRAD</h3><p>The standard structure of a research report: <b>I</b>ntroduction, <b>M</b>ethods, <b>R</b>esults, <b>a</b>nd <b>D</b>iscussion. Nearly every scientific and social-science paper uses it, which means readers know exactly where to look for each thing. Learning IMRAD once lets you read, and write, research in any field.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-intro"><h3>Introduction</h3><p>Answers "what's my question, and why should anyone care?" It opens broad (real-world context), reviews what's already known (your literature review), names the gap, and lands on your specific research question. Most of this is your P1 work, revised to flow.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-methods"><h3>Methods</h3><p>Answers "how did I study it?" You describe your instrument, your participants and how you recruited them, and how you analyzed the data, both the qualitative and quantitative sides. The test: could someone repeat your study from this description? Written in past tense, plainly.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-results"><h3>Results</h3><p>Answers "what did I find?" Just the findings: your numbers, percentages, captioned figures, and participant quotes, reported without interpretation. Resist explaining what it all means here; that's the next section. Results is the evidence; Discussion is the argument.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-discussion"><h3>Discussion</h3><p>Answers "so what, and now what?" You interpret your results, connect them back to your question and your sources, admit your limitations, and, crucially for this course, make a concrete recommendation. This is the most original writing in the report, and often the most important.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-abstract"><h3>Abstract</h3><p>A short paragraph (roughly 150 to 250 words) summarizing the whole report: question, method, key finding, and takeaway. It sits near the top but you write it <i>last</i>, once you know what the report actually says. Think of it as the movie trailer for your study.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-caption"><h3>Figure captions</h3><p>Every chart or table gets a number and a caption ("Figure 1. How often shoppers look for an organic seal, N = 42"). Captions let a reader understand the visual without hunting through your text, and they make your report look, and read, like real research. Number them in the order they appear.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-appendix"><h3>Appendix</h3><p>The back-of-report home for material a reader might want but that would clog the main text: a copy of your full survey or interview guide, and your raw or summarized data. Putting your instrument in the appendix is what lets someone judge, or repeat, your study. Label them "Appendix A," "Appendix B," and refer to them from the Methods.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#im [data-card]'));
+  var count = document.getElementById('count');
+  function tally(){ count.textContent = cards.filter(function(c){ return c.querySelector('.choice.picked'); }).length; }
+  cards.forEach(function(card){
+    var ans = card.getAttribute('data-answer');
+    var btns = card.querySelectorAll('.choice');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){ x.classList.remove('picked'); });
+        b.classList.add('picked'); tally();
+      });
+    });
+    var det = card.querySelector('details');
+    det.addEventListener('toggle', function(){
+      if(!det.open) return;
+      btns.forEach(function(b){
+        b.classList.remove('correct','wrong');
+        if(b.getAttribute('data-sec')===ans) b.classList.add('correct');
+        else if(b.classList.contains('picked')) b.classList.add('wrong');
+      });
+    });
+  });
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+})();
+</script>
+</body>
+</html>

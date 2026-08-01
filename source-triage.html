@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Source Triage</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --solid:#2f7d54; --solidsoft:#e4f1e8; --dep:#a3771f; --depsoft:#f6f0e1; --skip:#a13a2d; --skipsoft:#f6e6e3;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --solid:#7ac598; --solidsoft:#14301f; --dep:#d8b168; --depsoft:#2b2513; --skip:#e08a7a; --skipsoft:#2c1815; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #st{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #st h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #st .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #st .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #st .sub{color:var(--muted); margin:6px 0 0}
+  #st .how{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:18px}
+  #st .how p{margin:.3rem 0}
+  #st .prog{font-weight:700; color:var(--accent)}
+  #st .card{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:16px 18px; margin:14px 0}
+  #st .num{font-size:.78rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:700}
+  #st .specimen{background:var(--field); border:1px solid var(--line); border-radius:9px; padding:12px 14px; margin:6px 0 12px}
+  #st .specimen .title{font-weight:700; font-size:1.05rem}
+  #st .specimen .byline{color:var(--muted); font-size:.9rem; margin-top:3px}
+  #st .specimen .kind{display:inline-block; margin-top:8px; font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--accent); background:var(--accent-soft); border-radius:999px; padding:2px 9px}
+  #st .choices{display:flex; gap:8px; flex-wrap:wrap}
+  #st .choice{flex:1; min-width:110px; font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:10px; border:1.5px solid var(--line); background:var(--field); color:var(--ink)}
+  #st .choice:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #st .choice.pick-solid{border-color:var(--solid); background:var(--solidsoft); color:var(--solid)}
+  #st .choice.pick-dep{border-color:var(--dep); background:var(--depsoft); color:var(--dep)}
+  #st .choice.pick-skip{border-color:var(--skip); background:var(--skipsoft); color:var(--skip)}
+  #st details{margin-top:12px; border-top:1px dashed var(--line); padding-top:10px}
+  #st summary{cursor:pointer; font-weight:600; color:var(--accent); list-style:none}
+  #st summary::-webkit-details-marker{display:none}
+  #st summary:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:6px}
+  #st .verdict{margin:8px 0 0; border-radius:8px; padding:10px 12px}
+  #st .verdict.solid{background:var(--solidsoft)} #st .verdict.dep{background:var(--depsoft)} #st .verdict.skip{background:var(--skipsoft)}
+  #st .verdict .lab{font-weight:800; text-transform:uppercase; letter-spacing:.06em; font-size:.78rem}
+  #st .verdict.solid .lab{color:var(--solid)} #st .verdict.dep .lab{color:var(--dep)} #st .verdict.skip .lab{color:var(--skip)}
+  #st .done{margin-top:22px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  #st .done b{color:var(--accent)}
+  #st .sift{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:16px; font-size:.92rem}
+  #st .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #st .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop a{color:var(--accent)}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="st">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 3, Tuesday</p>
+    <h1>Source Triage</h1>
+    <p class="sub">Six things you might find while researching our food-label question. For each one, decide: do you trust it, does it depend, or do you skip it as evidence?</p>
+  </header>
+
+  <div class="sift"><b>Use SIFT as you go:</b> <b>S</b>top · <b>I</b>nvestigate the source (who made this, and why?) · <b>F</b>ind better coverage · <b>T</b>race the claim to where it started. And ask our lens question: whose interest does this serve?</div>
+
+  <div class="how">
+    <p><b>Sort first, reveal later.</b> Make your own calls before you open the verdict. Then we argue them out as a class.</p>
+    <p>Sorted: <span class="prog"><span id="count">0</span> / 6</span></p>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Source 1</p>
+    <div class="specimen">
+      <div class="title">"Consumer Interpretation of 'Natural' Claims on Food Packaging"</div>
+      <div class="byline"><button type="button" class="term" data-pop="peer-reviewed">Peer-reviewed</button> article · Journal of Public Policy &amp; Marketing · 2021</div>
+      <div class="kind">Peer-reviewed study</div>
+    </div>
+    <div class="choices"><button type="button" class="choice" data-pick="solid">Trust it</button><button type="button" class="choice" data-pick="dep">Depends</button><button type="button" class="choice" data-pick="skip">Skip it</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict solid"><span class="lab">Trust it (and cite it)</span> Investigate: a peer-reviewed journal, independent researchers. This is the good stuff. Still Trace their actual data and note the sample, so you describe what they really found, not more.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Source 2</p>
+    <div class="specimen">
+      <div class="title">"Why You Can Trust the Labels on Your Eggs"</div>
+      <div class="byline">American Egg Board · industry association website</div>
+      <div class="kind">Industry / <button type="button" class="term" data-pop="trade-group">trade group</button></div>
+    </div>
+    <div class="choices"><button type="button" class="choice" data-pick="solid">Trust it</button><button type="button" class="choice" data-pick="dep">Depends</button><button type="button" class="choice" data-pick="skip">Skip it</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict dep"><span class="lab">Depends, read whose interest</span> Investigate: this is written by the industry it describes. Not worthless, it's great evidence of how producers frame their own labels, but never treat it as a neutral finding. This is exactly where our lens earns its keep.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Source 3</p>
+    <div class="specimen">
+      <div class="title">"Most shoppers misread 'natural' labels, study says"</div>
+      <div class="byline">National newspaper · 2023</div>
+      <div class="kind">News article</div>
+    </div>
+    <div class="choices"><button type="button" class="choice" data-pick="solid">Trust it</button><button type="button" class="choice" data-pick="dep">Depends</button><button type="button" class="choice" data-pick="skip">Skip it</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict dep"><span class="lab">Depends</span> A good lead, but the wrong thing to cite. This is reporting <em>about</em> a study. Trace it back to <button type="button" class="term" data-pop="primary-secondary">the original research</button> and cite that. The article is your breadcrumb, not your evidence.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Source 4</p>
+    <div class="specimen">
+      <div class="title">"Food Labels Are ALL Lies!! Here's What They Don't Want You to Know"</div>
+      <div class="byline">CleanLivingMama · personal blog · no author name, no sources</div>
+      <div class="kind">Anonymous blog</div>
+    </div>
+    <div class="choices"><button type="button" class="choice" data-pick="solid">Trust it</button><button type="button" class="choice" data-pick="dep">Depends</button><button type="button" class="choice" data-pick="skip">Skip it</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict skip"><span class="lab">Skip it as evidence</span> Investigate: no author credentials, no sources, strong agenda. It might point you toward a real claim worth chasing, but you cannot cite it. Find better coverage.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Source 5</p>
+    <div class="specimen">
+      <div class="title">"Use of the term 'Natural' on food labeling"</div>
+      <div class="byline">U.S. Food &amp; Drug Administration · federal guidance page</div>
+      <div class="kind">Government / regulator</div>
+    </div>
+    <div class="choices"><button type="button" class="choice" data-pick="solid">Trust it</button><button type="button" class="choice" data-pick="dep">Depends</button><button type="button" class="choice" data-pick="skip">Skip it</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict solid"><span class="lab">Trust it, for what it is</span> This is the authority on what the rules actually say (or don't). Perfect for establishing that "natural" is barely regulated. It tells you the law, not whether shoppers understand it, so pair it with your study.</div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Source 6</p>
+    <div class="specimen">
+      <div class="title">"According to a 2019 Harvard study, 73% of shoppers can't define 'natural'…"</div>
+      <div class="byline">An AI chatbot answer · confident, specific, no link</div>
+      <div class="kind">AI-generated</div>
+    </div>
+    <div class="choices"><button type="button" class="choice" data-pick="solid">Trust it</button><button type="button" class="choice" data-pick="dep">Depends</button><button type="button" class="choice" data-pick="skip">Skip it</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict dep"><span class="lab">Depends</span> It depends entirely on whether you can find the real thing. Trace it: AI confidently invents studies, statistics, and citations that do not exist. Maybe the Harvard study is real, maybe it isn't. Go find it, open it, read it. If it exists, cite the study itself. If you can't find it, it doesn't go in your paper.</div>
+    </details>
+  </div>
+
+  <div class="done">
+    <p>The pattern: almost nothing is simply "good" or "bad." The move is to <b>investigate who made it and why</b>, <b>trace claims to where they started</b>, and ask <b>whose interest it serves</b>. A trade-group page, a news article, even an AI answer can all be useful, as long as you know what each one actually is.</p>
+  </div>
+
+  <dialog class="pop" id="pop-peer-reviewed"><h3>Peer-reviewed</h3><p>Before a study runs in a scholarly journal, other experts in the field read it and check the methods and the reasoning. That vetting is peer review.</p><p>It doesn't make a study perfect, but it means the work cleared a bar a random blog post never faces. That's why peer-reviewed sources are your strongest evidence.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-trade-group"><h3>Trade group</h3><p>An association funded by the companies in an industry to promote their shared interests. The American Egg Board speaks for egg producers.</p><p>That doesn't make its pages worthless, but its job is to sell you on its members. Treat its claims as an interested party's, never as a neutral finding.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-primary-secondary"><h3>Primary vs. secondary source</h3><p>A primary source is the original: the actual study, the data, the document itself. A secondary source is someone reporting on it, like a news article about a study.</p><p>Chase the claim back to the primary source and cite that. The retelling can drop details or get it wrong.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#st [data-card]'));
+  var count = document.getElementById('count');
+  function tally(){ count.textContent = cards.filter(function(c){ return c.querySelector('.choice.pick-solid, .choice.pick-dep, .choice.pick-skip'); }).length; }
+  cards.forEach(function(card){
+    var btns = card.querySelectorAll('.choice');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){ x.classList.remove('pick-solid','pick-dep','pick-skip'); });
+        b.classList.add('pick-' + b.getAttribute('data-pick'));
+        tally();
+      });
+    });
+  });
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+})();
+</script>
+</body>
+</html>

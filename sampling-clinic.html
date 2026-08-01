@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Who Gets Asked?</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --ok:#2f7d54; --oksoft:#e4f1e8; --fix:#a3771f; --fixsoft:#f6f0e1; --no:#a13a2d; --nosoft:#f6e6e3;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --ok:#7ac598; --oksoft:#14301f; --fix:#d8b168; --fixsoft:#2b2513; --no:#e08a7a; --nosoft:#2c1815; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #sm{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #sm h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #sm .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #sm .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #sm .sub{color:var(--muted); margin:6px 0 0}
+  #sm .prin{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:16px; font-size:.93rem}
+  #sm .prin b{color:var(--accent)}
+  #sm .how{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:14px}
+  #sm .how p{margin:.3rem 0}
+  #sm .prog{font-weight:700; color:var(--accent)}
+  #sm .card{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:16px 18px; margin:14px 0}
+  #sm .num{font-size:.78rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:700}
+  #sm .scn{font-size:1.05rem; margin:6px 0 12px}
+  #sm .choices{display:flex; gap:8px; flex-wrap:wrap}
+  #sm .choice{flex:1; min-width:130px; font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:10px; border:1.5px solid var(--line); background:var(--field); color:var(--ink)}
+  #sm .choice:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #sm .choice.pick-ok{border-color:var(--ok); background:var(--oksoft); color:var(--ok)}
+  #sm .choice.pick-fix{border-color:var(--fix); background:var(--fixsoft); color:var(--fix)}
+  #sm .choice.pick-no{border-color:var(--no); background:var(--nosoft); color:var(--no)}
+  #sm details{margin-top:12px; border-top:1px dashed var(--line); padding-top:10px}
+  #sm summary{cursor:pointer; font-weight:600; color:var(--accent); list-style:none}
+  #sm summary::-webkit-details-marker{display:none}
+  #sm summary:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:6px}
+  #sm .verdict{margin:8px 0 0; border-radius:8px; padding:10px 12px}
+  #sm .verdict.ok{background:var(--oksoft)} #sm .verdict.fix{background:var(--fixsoft)} #sm .verdict.no{background:var(--nosoft)}
+  #sm .verdict .lab{font-weight:800; text-transform:uppercase; letter-spacing:.05em; font-size:.78rem}
+  #sm .verdict.ok .lab{color:var(--ok)} #sm .verdict.fix .lab{color:var(--fix)} #sm .verdict.no .lab{color:var(--no)}
+  #sm .verdict .pr{font-size:.82rem; font-weight:700; color:var(--muted); margin-top:4px}
+  #sm .done{margin-top:22px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  #sm .done b{color:var(--accent)}
+  #sm .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #sm .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="sm">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 11, Tuesday</p>
+    <h1>Who Gets Asked?</h1>
+    <p class="sub">You're about to collect real data. Who you ask decides what you'll find, and who you leave out decides what you'll miss. Eight recruiting choices below. For each, decide: does it represent your topic fairly, is it too narrow, or does it cross a line?</p>
+  </header>
+
+  <div class="prin">Two questions run under all of these. <b>Is this <button type="button" class="term" data-pop="representative">representative</button>?</b> Does my <button type="button" class="term" data-pop="sample">sample</button> fairly stand in for the people my question is about, or did I quietly stack it? And our lens: <b>whose voices are in, and whose are missing?</b> A sample that only hears from people like you answers a smaller question than you think.</div>
+
+  <div class="how">
+    <p><b>On your own:</b> make your call, then open the verdict. We'll argue the close ones as a class.</p>
+    <p>Judged: <span class="prog"><span id="count">0</span> / 8</span></p>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 1</p>
+    <p class="scn">A student surveys her roommates and volleyball teammates about food labels, twelve people who all shop the same two stores.</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Represents well</button><button type="button" class="choice" data-pick="fix">Too narrow</button><button type="button" class="choice" data-pick="no">Crosses a line</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Too narrow</span> Classic <button type="button" class="term" data-pop="convenience">convenience sample</button>: easy to reach, but everyone in it is basically the same shopper. Whatever they think will look like what "everyone" thinks. Push past your bubble, ask people who shop differently than you do. <div class="pr">Not representative: too homogeneous</div></div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 2</p>
+    <p class="scn">A student posts the anonymous survey link in three different Facebook groups: a budget-grocery group, a local-farm group, and a campus-parents group.</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Represents well</button><button type="button" class="choice" data-pick="fix">Too narrow</button><button type="button" class="choice" data-pick="no">Crosses a line</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict ok"><span class="lab">Represents well</span> Three groups with different priorities (price, sustainability, family) means different kinds of shoppers land in the sample. It's still not a random national poll, but for a class project this is a genuinely good <button type="button" class="term" data-pop="representative">spread</button>. <div class="pr">Reaching beyond one bubble ✓</div></div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 3</p>
+    <p class="scn">To study whether shoppers trust "local" labels, a student surveys only people at the Saturday farmers' market.</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Represents well</button><button type="button" class="choice" data-pick="fix">Too narrow</button><button type="button" class="choice" data-pick="no">Crosses a line</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Too narrow</span> Everyone at the farmers' market already drove there to buy local. Ask them if they value local labels and of course they'll say yes. That's <button type="button" class="term" data-pop="selection">selection bias</button>: the place you recruited pre-decided the answer. Also survey people at a regular grocery or a dollar store. <div class="pr">The sample is the conclusion</div></div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 4</p>
+    <p class="scn">A student stands outside the dining hall and approaches only the people who "look like they care about healthy eating."</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Represents well</button><button type="button" class="choice" data-pick="fix">Too narrow</button><button type="button" class="choice" data-pick="no">Crosses a line</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Too narrow</span> Hand-picking who "looks right" is <button type="button" class="term" data-pop="cherry">cherry-picking</button>, and you'll pick the people who confirm what you already believe. If you're recruiting in person, ask everyone, or every third person who walks by, and let the sample come to you. <div class="pr">Researcher bias in who gets asked</div></div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 5</p>
+    <p class="scn">To boost responses, a student shares the survey widely and enters everyone who finishes into a drawing for one $15 gift card.</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Represents well</button><button type="button" class="choice" data-pick="fix">Too narrow</button><button type="button" class="choice" data-pick="no">Crosses a line</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict ok"><span class="lab">Represents well (with care)</span> Wide sharing plus a small <button type="button" class="term" data-pop="incentive">incentive</button> is a normal, ethical way to lift your <button type="button" class="term" data-pop="response">response rate</button>. The only rule: keep the reward modest so it's a thank-you, not pressure, and mention it honestly in your recruitment pitch. <div class="pr">Fine when the incentive is small and disclosed</div></div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 6</p>
+    <p class="scn">A student surveys her coworkers at the restaurant where she works. Her manager tells the staff to fill it out during a shift meeting.</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Represents well</button><button type="button" class="choice" data-pick="fix">Too narrow</button><button type="button" class="choice" data-pick="no">Crosses a line</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict no"><span class="lab">Crosses a line</span> When the boss "encourages" it on the clock, it isn't voluntary anymore, that's <button type="button" class="term" data-pop="coercion">coercion</button>, and it breaks the informed-consent rule from Week 9. Power is in the room. Let people opt in on their own time, with no manager pushing, or recruit somewhere else. <div class="pr">Consent must be freely given</div></div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 7</p>
+    <p class="scn">A student collects eight survey responses, decides that's plenty, and starts writing up "what shoppers think."</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Represents well</button><button type="button" class="choice" data-pick="fix">Too narrow</button><button type="button" class="choice" data-pick="no">Crosses a line</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Too narrow</span> Eight people can't stand in for "shoppers." Your <button type="button" class="term" data-pop="samplesize">sample size</button> is too small to see a pattern or chart anything meaningful. For a survey, keep collecting, aim for a few dozen. (Interviews are different: there, a handful of deep conversations is the point.) <div class="pr">Too few to support a claim</div></div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Scenario 8</p>
+    <p class="scn">A student who wants to prove that "natural" labels are misleading shares the survey only in an online group for people who already call out greenwashing.</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Represents well</button><button type="button" class="choice" data-pick="fix">Too narrow</button><button type="button" class="choice" data-pick="no">Crosses a line</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Too narrow</span> She recruited the choir. A group that already distrusts labels will hand her the answer she wanted, which is <button type="button" class="term" data-pop="selection">selection bias</button> aimed straight at her hypothesis. Real research tries to <i>disprove</i> itself: go ask people who've never thought about greenwashing at all. <div class="pr">Sampling to confirm, not to find out</div></div>
+    </details>
+  </div>
+
+  <div class="done">
+    <p>The through-line: before you send that link, ask three things. <b>Do the people I'm reaching actually represent who my question is about?</b> <b>Whose voices am I missing, and how do I reach them?</b> <b>Am I collecting to find out, or to confirm what I already believe?</b> A study is only as trustworthy as the sample behind it, and you're the one who builds that sample.</p>
+  </div>
+
+  <dialog class="pop" id="pop-sample"><h3>Sample vs. population</h3><p>Your <b>population</b> is everyone your question is really about (say, "grocery shoppers"). You can't ask all of them, so you ask a <b>sample</b>, a smaller slice. The whole game is choosing a slice that fairly stands in for the whole. A skewed sample answers a narrower question than the one you meant to ask.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-representative"><h3>Representative sample</h3><p>A sample that mirrors the larger group you care about, so what you find in the sample is a fair guess about the population. Big professional studies use random sampling to get there. Class projects rarely can, so you aim for <i>reasonable spread</i> instead: deliberately reach several different kinds of people, and be honest in your write-up about who you did and didn't reach.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-convenience"><h3>Convenience sample</h3><p>Recruiting whoever is easiest to reach, your friends, your class, people walking by. It's what most class projects use, and that's okay, as long as you name its limit: the people who are easy for <i>you</i> to reach tend to resemble you, which quietly narrows your findings. Counter it by reaching into a few groups that aren't your usual circle.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-selection"><h3>Selection bias</h3><p>When <i>where</i> or <i>how</i> you recruit decides the answer before anyone responds. Survey only farmers'-market shoppers about local food and they'll love it, not because everyone does, but because you only asked people who already opted in. The fix is to recruit in places that don't pre-select for your expected answer.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-cherry"><h3>Cherry-picking participants</h3><p>Choosing who to ask based on who you think will give you the "right" answer (approaching only people who "look healthy," skipping people who seem skeptical). It stacks the deck with your own bias. If you recruit in person, use a simple rule, ask everyone or every nth person, so you're not the one deciding who counts.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-incentive"><h3>Incentives</h3><p>A small reward (a gift-card drawing, a few dollars) to thank people and lift your response rate. Perfectly ethical when it's modest and disclosed. It becomes a problem only if it's big enough to pressure someone into taking part they'd otherwise refuse, especially people who could really use the money. Keep it small, keep it honest.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-response"><h3>Response rate</h3><p>The share of people you invited who actually responded. Low response rates are normal, and they matter: if only the most passionate people bother to answer, your results tilt toward strong opinions. You lift it with clear invitations, a short survey, easy access (a link or QR code), a friendly reminder, and sometimes a small incentive.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-coercion"><h3>Coercion</h3><p>Any pressure that makes "no" feel unsafe or costly, a boss telling staff to take your survey, doing it on paid time, a professor surveying their own students for a grade. It breaks the voluntary part of informed consent (Week 9). Recruit where people can freely opt in or out, with no one in power leaning on them.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-samplesize"><h3>Sample size</h3><p>How many responses you gather. Too few and you can't tell a real pattern from random noise, or chart anything convincingly. There's no magic number, but for a class <i>survey</i>, aim for a few dozen and more if you can. <i>Interviews</i> work differently: five to eight rich conversations can be plenty, because depth, not count, is the point. Whatever you end with, report it honestly.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#sm [data-card]'));
+  var count = document.getElementById('count');
+  function tally(){ count.textContent = cards.filter(function(c){ return c.querySelector('.choice.pick-ok, .choice.pick-fix, .choice.pick-no'); }).length; }
+  cards.forEach(function(card){
+    var btns = card.querySelectorAll('.choice');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){ x.classList.remove('pick-ok','pick-fix','pick-no'); });
+        b.classList.add('pick-' + b.getAttribute('data-pick'));
+        tally();
+      });
+    });
+  });
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+})();
+</script>
+</body>
+</html>

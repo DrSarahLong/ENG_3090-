@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Chart Your Data</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --ok:#2f7d54; --oksoft:#e4f1e8; --no:#a13a2d; --nosoft:#f6e6e3; --warn:#a3771f; --warnsoft:#f6f0e1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --ok:#7ac598; --oksoft:#14301f; --no:#e08a7a; --nosoft:#2c1815; --warn:#d8b168; --warnsoft:#2b2513; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #ch{max-width:780px; margin:0 auto; padding:28px 20px 80px}
+  #ch h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #ch .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #ch .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #ch .sub{color:var(--muted); margin:6px 0 0}
+  #ch .prin{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:16px; font-size:.93rem}
+  #ch .prin b{color:var(--accent)}
+  #ch h2.sec{font-size:.8rem; letter-spacing:.09em; text-transform:uppercase; color:var(--accent); font-weight:800; margin:22px 0 6px}
+  #ch .panel{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:10px 0}
+  #ch label.fld{display:block; font-weight:600; font-size:.9rem; margin:0 0 4px}
+  #ch input[type=text], #ch input[type=number]{font:inherit; color:var(--ink); background:var(--field); border:1.5px solid var(--line); border-radius:8px; padding:8px 10px}
+  #ch input[type=text]:focus, #ch input[type=number]:focus{outline:none; border-color:var(--accent)}
+  #ch input#qTitle{width:100%; margin-bottom:8px}
+  #ch table{width:100%; border-collapse:collapse; margin:2px 0}
+  #ch th{text-align:left; font-size:.74rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); font-weight:700; padding:4px 6px}
+  #ch td{padding:3px 6px}
+  #ch td .lab{width:100%}
+  #ch td .cnt{width:78px}
+  #ch td.x{width:32px; text-align:center}
+  #ch .rowdel{font:inherit; cursor:pointer; border:1px solid var(--line); background:var(--field); color:var(--muted); border-radius:7px; padding:5px 9px; line-height:1}
+  #ch .rowdel:hover{border-color:var(--no); color:var(--no)}
+  #ch .minibtn{font:inherit; font-weight:600; cursor:pointer; border:1.5px solid var(--accent); background:var(--field); color:var(--accent); border-radius:8px; padding:7px 12px; margin:8px 6px 0 0}
+  #ch .minibtn:hover{background:var(--accent-soft)}
+  #ch .minibtn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #ch .seg{display:inline-flex; border:1.5px solid var(--line); border-radius:9px; overflow:hidden; margin:2px 0}
+  #ch .seg button{font:inherit; font-weight:700; cursor:pointer; border:0; background:var(--field); color:var(--ink); padding:9px 16px}
+  #ch .seg button[aria-pressed=true]{background:var(--accent); color:#fff}
+  #ch .seg button:focus-visible{outline:3px solid var(--accent); outline-offset:-3px}
+  #ch .toggle{display:flex; align-items:center; gap:8px; margin:12px 0 0; font-size:.93rem; cursor:pointer}
+  #ch .toggle input{width:18px; height:18px; accent-color:var(--no)}
+  #ch #chartWrap{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px; margin:10px 0; overflow-x:auto}
+  #ch svg{display:block; width:100%; height:auto; max-width:100%}
+  #ch svg text{fill:var(--ink); font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #ch svg .axis{stroke:var(--muted); stroke-width:1}
+  #ch svg .grid{stroke:var(--line); stroke-width:1}
+  #ch svg .title{font-weight:700}
+  #ch svg .warn{fill:var(--no); font-weight:700}
+  #ch svg .muted{fill:var(--muted)}
+  #ch .stats{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px 15px; margin:10px 0}
+  #ch .stats b{color:var(--accent)}
+  #ch .stats .row{display:flex; flex-wrap:wrap; gap:6px 18px; margin:2px 0}
+  #ch .notes{list-style:none; padding:0; margin:8px 0 0}
+  #ch .notes li{padding:8px 12px; border-radius:8px; margin:6px 0; font-size:.92rem; background:var(--warnsoft); border:1px solid var(--line)}
+  #ch .notes li.good{background:var(--oksoft)}
+  #ch .notes li.bad{background:var(--nosoft)}
+  #ch .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #ch .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  #ch .done{margin-top:20px; background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 16px; font-size:.95rem}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="ch">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 12, Tuesday</p>
+    <h1>Chart Your Data</h1>
+    <p class="sub">Your responses are just a pile of answers until you turn them into a picture. Type your tallies below, watch the chart build, and then make the honest version. Everything runs on your own device, nothing is uploaded.</p>
+  </header>
+
+  <div class="prin">Three moves turn raw responses into a result: <b>count</b> them into a <button type="button" class="term" data-pop="frequency">frequency table</button>, describe them with a <button type="button" class="term" data-pop="descriptive">number or two</button>, then pick the <button type="button" class="term" data-pop="chartfit">chart that fits</button>. And the rule that matters most in this class: a chart can mislead as easily as a food label can. <b>Don't be the label.</b></div>
+
+  <h2 class="sec">1 · Your data</h2>
+  <div class="panel">
+    <label class="fld" for="qTitle">Chart title (usually your survey question)</label>
+    <input type="text" id="qTitle" value="How often do you look for a 'certified organic' seal?">
+    <p style="font-size:.88rem;color:var(--muted);margin:2px 0 8px">Sample data is loaded. Replace the labels and counts with your own tallies, one row per answer choice.</p>
+    <table>
+      <thead><tr><th>Answer choice</th><th>Count</th><th></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <button type="button" class="minibtn" id="addRow">+ Add row</button>
+    <button type="button" class="minibtn" id="reset">Reset to sample</button>
+  </div>
+
+  <h2 class="sec">2 · Your chart</h2>
+  <div class="panel">
+    <div class="seg" role="group" aria-label="Chart type">
+      <button type="button" id="typeBar" aria-pressed="true">Bar chart</button>
+      <button type="button" id="typePie" aria-pressed="false">Pie chart</button>
+    </div>
+    <label class="toggle"><input type="checkbox" id="mislead"> Show a <button type="button" class="term" data-pop="truncate">misleading</button> version (bar chart only, for learning, never for your report)</label>
+    <div id="chartWrap" aria-live="polite"></div>
+    <button type="button" class="minibtn" id="download">⬇ Download chart (.svg)</button>
+    <span style="font-size:.86rem;color:var(--muted)">Drop it straight into your P3.</span>
+  </div>
+
+  <h2 class="sec">3 · What the numbers say</h2>
+  <div class="stats" id="stats"></div>
+  <ul class="notes" id="notes"></ul>
+
+  <div class="done">
+    <b>Before this goes in your report:</b> does the chart start at a fair baseline, is every axis and slice labeled, and did you state your <button type="button" class="term" data-pop="n">N</button>? A reader should get the true story at a glance, not the story you wish were true. That's the whole difference between analysis and spin.</div>
+
+  <dialog class="pop" id="pop-frequency"><h3>Frequency table</h3><p>A simple count of how many people chose each answer. If 14 of your 42 respondents picked "Sometimes," that's a frequency. Building one is the first step of any quantitative analysis: it turns a column of individual responses into countable totals you can compare and chart. In Google Sheets, <b>COUNTIF</b> tallies them for you.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-descriptive"><h3>Descriptive statistics</h3><p>Plain numbers that summarize your data, no advanced math required. The ones you'll actually use: the <b>count</b> (how many, your N), the <b>percentage</b> for each answer, and the <b>mode</b> (the most common answer). For genuinely numeric data you can add a <b>mean</b> (average) or <b>median</b> (middle value). You do not need regression or p-values for this project.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-chartfit"><h3>Match the chart to the data</h3><p><b>Bar chart:</b> comparing separate categories or answer choices (the workhorse, almost always safe). <b>Pie chart:</b> parts of one whole that add to 100%, and only when you have a few slices. <b>Line chart:</b> change over time. <b>Stacked or grouped bars:</b> comparing groups against each other. When in doubt, a clean bar chart is rarely wrong.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-truncate"><h3>The truncated-axis trick</h3><p>The most common way charts lie: instead of starting the vertical axis at zero, you start it near the data so small differences look enormous. A jump from 48% to 52% can be drawn to look like a landslide. Flip the toggle to see it happen to your own data. Then never do it, start bars at zero, and you can't accidentally deceive anyone.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-n"><h3>N (your sample size)</h3><p>N is how many responses your chart is built on. Always report it ("N = 42"), because a percentage means something very different at N = 8 than at N = 800. A small N isn't shameful, it's normal for a class project, but hiding it lets a reader assume more certainty than your data can support. State it, own it.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+(function(){
+  var PALETTE = ['#1f6b86','#a3771f','#2f7d54','#a13a2d','#5a4b8a','#3a5d86','#7a5230','#556b2f'];
+  var SAMPLE = [['Never',3],['Rarely',7],['Sometimes',14],['Often',12],['Always',6]];
+  var rowsEl = document.getElementById('rows');
+  var chartType = 'bar';
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function clip(s,n){ s=String(s); return s.length>n ? s.slice(0,n-1)+'…' : s; }
+
+  function addRow(label, count){
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td><input type="text" class="lab" value="'+esc(label||'')+'" placeholder="e.g., Often"></td>'+
+                   '<td><input type="number" class="cnt" min="0" step="1" value="'+(count===undefined?'':count)+'"></td>'+
+                   '<td class="x"><button type="button" class="rowdel" aria-label="Delete row">✕</button></td>';
+    rowsEl.appendChild(tr);
+    tr.querySelector('.rowdel').addEventListener('click', function(){ tr.remove(); render(); });
+    tr.querySelectorAll('input').forEach(function(i){ i.addEventListener('input', render); });
+  }
+  function loadSample(){ rowsEl.innerHTML=''; SAMPLE.forEach(function(r){ addRow(r[0], r[1]); }); }
+
+  function readData(){
+    var out=[];
+    rowsEl.querySelectorAll('tr').forEach(function(tr){
+      var label = tr.querySelector('.lab').value.trim();
+      var c = parseFloat(tr.querySelector('.cnt').value);
+      if(label && isFinite(c) && c>=0) out.push({label:label, count:c});
+    });
+    return out;
+  }
+  function total(d){ return d.reduce(function(s,x){ return s+x.count; },0); }
+
+  function barSVG(data, mislead){
+    var W=520,H=320,L=48,R=16,T=46,B=58;
+    var plotW=W-L-R, plotH=H-T-B, baseY=T+plotH;
+    var counts=data.map(function(d){return d.count;});
+    var max=Math.max.apply(null,counts); if(!(max>0)) max=1;
+    var base=0, warn='';
+    if(mislead){
+      var min=Math.min.apply(null,counts);
+      base=Math.max(0, Math.floor(min*0.9));
+      if(base>=max) base=0;
+      if(base>0) warn='⚠ Axis starts at '+base+', not 0. Differences look bigger than they are';
+    }
+    var span=max-base; if(span<=0) span=1;
+    var n=data.length, slot=plotW/n, bw=Math.min(slot*0.62, 74);
+    var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" xmlns="http://www.w3.org/2000/svg">';
+    s+='<rect x="0" y="0" width="'+W+'" height="'+H+'" fill="none"></rect>';
+    s+='<text class="title" x="'+(W/2)+'" y="22" text-anchor="middle" font-size="15">'+esc(clip(document.getElementById('qTitle').value||'Chart',60))+'</text>';
+    if(warn) s+='<text class="warn" x="'+(W/2)+'" y="39" text-anchor="middle" font-size="11">'+esc(warn)+'</text>';
+    // axes
+    s+='<line class="axis" x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+baseY+'"></line>';
+    s+='<line class="axis" x1="'+L+'" y1="'+baseY+'" x2="'+(L+plotW)+'" y2="'+baseY+'"></line>';
+    // y labels: base and max
+    s+='<text class="muted" x="'+(L-6)+'" y="'+(baseY+4)+'" text-anchor="end" font-size="10">'+base+'</text>';
+    s+='<text class="muted" x="'+(L-6)+'" y="'+(T+4)+'" text-anchor="end" font-size="10">'+max+'</text>';
+    data.forEach(function(d,i){
+      var h=(d.count-base)/span*plotH; if(h<0) h=0;
+      var x=L+slot*i+(slot-bw)/2, y=baseY-h;
+      s+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+h.toFixed(1)+'" fill="'+PALETTE[i%PALETTE.length]+'" rx="3"></rect>';
+      s+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(y-5).toFixed(1)+'" text-anchor="middle" font-size="11" font-weight="700">'+d.count+'</text>';
+      s+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(baseY+16)+'" text-anchor="middle" font-size="11">'+esc(clip(d.label,11))+'</text>';
+    });
+    return s+'</svg>';
+  }
+
+  function pieSVG(data){
+    var W=560,H=320, cx=170, cy=178, r=118;
+    var tot=total(data);
+    var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" xmlns="http://www.w3.org/2000/svg">';
+    s+='<text class="title" x="'+(W/2)+'" y="24" text-anchor="middle" font-size="15">'+esc(clip(document.getElementById('qTitle').value||'Chart',64))+'</text>';
+    if(tot<=0){ return s+'<text class="muted" x="'+(W/2)+'" y="170" text-anchor="middle" font-size="13">Enter some counts to draw a chart.</text></svg>'; }
+    if(data.length===1){
+      s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+PALETTE[0]+'"></circle>';
+    } else {
+      var ang=-Math.PI/2;
+      data.forEach(function(d,i){
+        var frac=d.count/tot, a=frac*2*Math.PI, end=ang+a;
+        var x1=cx+r*Math.cos(ang), y1=cy+r*Math.sin(ang);
+        var x2=cx+r*Math.cos(end), y2=cy+r*Math.sin(end);
+        var large=a>Math.PI?1:0;
+        if(d.count>0){
+          s+='<path d="M'+cx+','+cy+' L'+x1.toFixed(2)+','+y1.toFixed(2)+' A'+r+','+r+' 0 '+large+',1 '+x2.toFixed(2)+','+y2.toFixed(2)+' Z" fill="'+PALETTE[i%PALETTE.length]+'" stroke="#ffffff" stroke-width="1.5"></path>';
+        }
+        ang=end;
+      });
+    }
+    // legend
+    var lx=320, ly=74;
+    data.forEach(function(d,i){
+      var pct=tot?Math.round(d.count/tot*100):0;
+      s+='<rect x="'+lx+'" y="'+(ly-11)+'" width="13" height="13" rx="2" fill="'+PALETTE[i%PALETTE.length]+'"></rect>';
+      s+='<text x="'+(lx+20)+'" y="'+ly+'" font-size="12">'+esc(clip(d.label,20))+' · '+pct+'%</text>';
+      ly+=26;
+    });
+    return s+'</svg>';
+  }
+
+  function renderStats(data){
+    var el=document.getElementById('stats'), tot=total(data);
+    if(tot<=0){ el.innerHTML='<div class="row">Enter some counts above to see the numbers.</div>'; return; }
+    var maxc=Math.max.apply(null,data.map(function(d){return d.count;}));
+    var modes=data.filter(function(d){return d.count===maxc;}).map(function(d){return d.label;});
+    var pcts=data.map(function(d){ return esc(d.label)+' <b>'+Math.round(d.count/tot*100)+'%</b> ('+d.count+')'; });
+    el.innerHTML='<div class="row"><span><b>N</b> = '+tot+'</span><span><b>Most common:</b> '+esc(modes.join(', '))+'</span></div>'+
+                 '<div class="row">'+pcts.join(' &nbsp;·&nbsp; ')+'</div>';
+  }
+
+  function renderNotes(data){
+    var el=document.getElementById('notes'), tot=total(data), out=[];
+    if(tot<=0){ el.innerHTML=''; return; }
+    if(document.getElementById('mislead').checked && chartType==='bar'){
+      out.push(['bad','This axis doesn\'t start at zero, so the gaps look bigger than they are. Perfect for spotting the trick. Never ship it in your report.']);
+    }
+    if(chartType==='pie' && data.length>5){
+      out.push(['','A pie with '+data.length+' slices is hard to read. A bar chart would show this more clearly.']);
+    }
+    if(tot<20){
+      out.push(['','With only N = '+tot+', call your findings suggestive, not proof. Report the number and say so.']);
+    } else {
+      out.push(['good','Report your N (= '+tot+') next to the chart so readers know how much it rests on.']);
+    }
+    el.innerHTML = out.map(function(o){ return '<li class="'+o[0]+'">'+o[1]+'</li>'; }).join('');
+  }
+
+  function render(){
+    var data=readData();
+    var wrap=document.getElementById('chartWrap');
+    var mislead=document.getElementById('mislead').checked;
+    if(data.length===0){ wrap.innerHTML='<p style="color:var(--muted);padding:10px">Add at least one answer choice with a count.</p>'; }
+    else if(chartType==='bar'){ wrap.innerHTML=barSVG(data, mislead); }
+    else { wrap.innerHTML=pieSVG(data); }
+    renderStats(data);
+    renderNotes(data);
+  }
+
+  document.getElementById('typeBar').addEventListener('click', function(){
+    chartType='bar'; this.setAttribute('aria-pressed','true'); document.getElementById('typePie').setAttribute('aria-pressed','false'); render();
+  });
+  document.getElementById('typePie').addEventListener('click', function(){
+    chartType='pie'; this.setAttribute('aria-pressed','true'); document.getElementById('typeBar').setAttribute('aria-pressed','false'); render();
+  });
+  document.getElementById('mislead').addEventListener('change', render);
+  document.getElementById('qTitle').addEventListener('input', render);
+  document.getElementById('addRow').addEventListener('click', function(){ addRow('',''); });
+  document.getElementById('reset').addEventListener('click', function(){ loadSample(); document.getElementById('qTitle').value="How often do you look for a 'certified organic' seal?"; render(); });
+
+  document.getElementById('download').addEventListener('click', function(){
+    var svg=document.querySelector('#chartWrap svg');
+    if(!svg){ return; }
+    var clone=svg.cloneNode(true);
+    var vb=(clone.getAttribute('viewBox')||'0 0 520 320').split(/\s+/);
+    var w=vb[2], h=vb[3];
+    var SVGNS='http://www.w3.org/2000/svg';
+    // white background so the figure is self-contained for a report
+    var bg=document.createElementNS(SVGNS,'rect');
+    bg.setAttribute('x','0'); bg.setAttribute('y','0'); bg.setAttribute('width',w); bg.setAttribute('height',h); bg.setAttribute('fill','#ffffff');
+    clone.insertBefore(bg, clone.firstChild);
+    // inline styles so text/axes render without the page's CSS
+    var style=document.createElementNS(SVGNS,'style');
+    style.textContent='text{fill:#1c2230;font-family:system-ui,Arial,sans-serif}.muted{fill:#5b6472}.warn{fill:#a13a2d}.axis{stroke:#5b6472}';
+    clone.insertBefore(style, clone.firstChild);
+    var src='<?xml version="1.0" encoding="UTF-8"?>\n'+clone.outerHTML;
+    var blob=new Blob([src],{type:'image/svg+xml;charset=utf-8'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a'); a.href=url; a.download='my-chart.svg';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+  });
+
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+
+  loadSample();
+  render();
+})();
+</script>
+</body>
+</html>

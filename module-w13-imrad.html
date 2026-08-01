@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Module: IMRAD &amp; Assembling Your Report</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --good:#2f7d54; --due:#7a3b1f; --duesoft:#f6ebe1; --reflect:#3a5d86; --reflectsoft:#e8eef6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --due:#e0a878; --duesoft:#2c2013; --reflect:#9cc0e6; --reflectsoft:#16202c; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
+  #mod .sub{color:var(--muted); margin:6px 0 0}
+  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:26px}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:4px 0 8px}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #mod .box.accent{border-left:5px solid var(--accent)}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.45rem 0}
+  #mod ol.steps{margin:.4rem 0; padding-left:1.3rem} #mod ol.steps li{margin:.5rem 0}
+  #mod a{color:var(--accent)}
+  #mod .princ li b{color:var(--accent)}
+  #mod .imrad{list-style:none; padding-left:0}
+  #mod .imrad li{background:var(--card); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:10px; padding:10px 14px; margin:8px 0}
+  #mod .imrad .q{color:var(--muted); font-style:italic}
+  #mod .hour{display:flex; justify-content:center; margin:12px 0}
+  #mod .reflect{background:var(--reflectsoft); border:1px solid var(--line); border-left:5px solid var(--reflect); border-radius:12px; padding:14px 16px; margin:16px 0}
+  #mod .reflect .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--reflect); display:block; margin-bottom:3px}
+  #mod .duebox{background:var(--duesoft); border:1px solid var(--line); border-left:5px solid var(--due); border-radius:12px; padding:14px 16px; margin:14px 0}
+  #mod .duebox .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--due); display:block; margin-bottom:3px}
+  #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
+  #mod a.btn.ghost{background:transparent; color:var(--accent); border:1.5px solid var(--accent)}
+  #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #mod .note{color:var(--muted); font-size:.9rem}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:24px}
+  #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop a{color:var(--accent)}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="mod">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 13 · Thursday Module</p>
+    <h1>IMRAD &amp; Assembling Your Report</h1>
+    <p class="sub">The final report isn't a new writing project. It's the assembly of everything you've already made, into one shape readers know how to navigate. Budget about an hour, then start assembling.</p>
+  </header>
+
+  <div class="box accent">
+    <p><b>Read this first, it changes the whole week.</b> You are not starting a report from a blank page. You have a literature review (P1), a qualitative analysis (P2), and a quantitative analysis (P3) already written. This week you pour them into a standard container and write the connective tissue. As the <button type="button" class="term" data-pop="primary">investigator</button>, your job now is to make three strong pieces read as one whole study.</p>
+  </div>
+
+  <p class="step">Step 1: what IMRAD is, and why every field uses it</p>
+  <p><button type="button" class="term" data-pop="imrad">IMRAD</button> stands for <b>I</b>ntroduction, <b>M</b>ethods, <b>R</b>esults, <b>a</b>nd <b>D</b>iscussion. It's the shape of nearly every research report across the sciences and social sciences. The point is shared navigation: a reader who knows IMRAD can find your method or your findings in seconds, without hunting. Learn it once and you can read, and write, real research in any field.</p>
+
+  <p class="step">Step 2: the four sections, as four questions</p>
+  <ul class="imrad">
+    <li><b><button type="button" class="term" data-pop="intro">Introduction</button></b> <span class="q">what's my question, and why does it matter?</span></li>
+    <li><b><button type="button" class="term" data-pop="methods">Methods</button></b> <span class="q">how did I study it?</span></li>
+    <li><b><button type="button" class="term" data-pop="results">Results</button></b> <span class="q">what did I find?</span></li>
+    <li><b><button type="button" class="term" data-pop="discussion">Discussion</button></b> <span class="q">so what, and now what?</span></li>
+  </ul>
+  <p>Keep <b>Results</b> and <b>Discussion</b> distinct. Results reports the findings with no spin. Discussion is where you interpret them. Mixing the two is the most common way student reports lose a reader's trust.</p>
+
+  <p class="step">Step 3: how your three projects slot in</p>
+  <div class="box">
+    <ul class="princ">
+      <li><b>P1 (Literature Review)</b> becomes most of your <b>Introduction</b>, revised so it flows into your question.</li>
+      <li><b>P2 (Qualitative)</b> and <b>P3 (Quantitative)</b> supply your <b>Methods</b> and <b>Results</b>, both approaches, side by side.</li>
+      <li>The <b>Discussion</b> is your newest writing: what it all means, your recommendation, your limits.</li>
+    </ul>
+    <p class="note">So the actual new drafting this week is smaller than it looks: a strong Discussion, an Abstract, transitions between sections, and a design pass. The heavy lifting is already done.</p>
+  </div>
+
+  <p class="step">Step 4: the hourglass shape</p>
+  <p>A good report is shaped like an <button type="button" class="term" data-pop="hourglass">hourglass</button>. The Introduction opens <b>broad</b> (the real-world issue) and narrows to your exact question. Methods and Results are the <b>narrow</b>, specific middle. The Discussion widens back <b>out</b>, from your findings to what they mean for the world.</p>
+  <div class="hour">
+    <svg viewBox="0 0 260 150" width="260" height="150" role="img" aria-label="Hourglass diagram: broad introduction narrowing to methods and results, widening again to discussion">
+      <polygon points="20,12 240,12 150,60 110,60" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"></polygon>
+      <polygon points="110,60 150,60 150,90 110,90" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"></polygon>
+      <polygon points="110,90 150,90 240,138 20,138" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"></polygon>
+      <text x="130" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent)">Introduction (broad → narrow)</text>
+      <text x="130" y="79" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent)">Methods · Results</text>
+      <text x="130" y="126" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent)">Discussion (narrow → broad)</text>
+    </svg>
+  </div>
+
+  <p class="step">Step 5: the parts around IMRAD</p>
+  <div class="box">
+    <ul>
+      <li><b>Title page:</b> a clear, specific title, your name, the course, the date.</li>
+      <li><b><button type="button" class="term" data-pop="abstract">Abstract</button>:</b> a short summary of the whole thing. Write it <i>last</i>.</li>
+      <li><b>References:</b> your full source list in APA. By the final report this should reach <b>15 to 20 sources</b>, and they don't all need to be scholarly.</li>
+      <li><b><button type="button" class="term" data-pop="appendix">Appendix</button>:</b> your instrument (the actual survey or interview guide) and your data. This is what lets a reader judge or repeat your work.</li>
+    </ul>
+  </div>
+
+  <p class="step">Step 6: document design is access</p>
+  <p>This is a technical writing course, so how the report <i>looks</i> is part of the grade, and part of the ethics. Good <button type="button" class="term" data-pop="design">document design</button> decides who can actually use your report. A wall of gray text excludes tired, rushed, or struggling readers. Clear design includes them.</p>
+  <div class="box accent">
+    <ul>
+      <li><b>Headings</b> that match IMRAD, so readers can scan and jump.</li>
+      <li><b>Captioned <button type="button" class="term" data-pop="caption">figures</button></b> ("Figure 1. …"), numbered in order and referenced in the text.</li>
+      <li><b>Consistent formatting:</b> one font scheme, even spacing, aligned headings, page numbers.</li>
+      <li><b>White space.</b> Room to breathe is not wasted space; it's what makes a page readable.</li>
+    </ul>
+  </div>
+
+  <p class="step">Step 7: make it one story, not three stapled projects</p>
+  <p>The seams will show if you just paste P1, P2, and P3 together. Smooth them with <button type="button" class="term" data-pop="signpost">transitions</button> and one consistent voice. The report should read as a single arc: here's the gap I found, here's how I studied it, here's what I found, and here's what we should do about it. Read it start to finish out loud, and every place you stumble is a seam to fix.</p>
+
+  <div class="reflect">
+    <span class="lab">✍ On your own</span>
+    <p>Say your whole study in one sentence: "Because [gap], I [method], and found [finding], so [recommendation]." If you can say that cleanly, your report has a spine. If you can't yet, that's the thing to figure out before you assemble.</p>
+  </div>
+
+  <p class="step">Now: outline and assemble (Notebook Entries 13a &amp; 13b)</p>
+  <p>Map your P-work into the IMRAD skeleton, draft your outline, then start assembling and designing the full report. When your draft is together, run it through the checker before Week 14's review.</p>
+  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a>
+     <a class="btn ghost" href="draft-check.html" target="_blank" rel="noopener">Run Draft Check &rarr;</a></p>
+
+  <div class="duebox">
+    <span class="lab">Coming up</span>
+    <p>Nothing is due this week. The <b>final IMRAD report</b> is due at the end of Week 15 (about 15 to 20 sources, all sections, title page, figures, appendix). Week 14 is a full draft plus self and peer review, so the further you get now, the more feedback you can use.</p>
+  </div>
+
+  <div class="close">
+    <p><b>The study becomes a document.</b> Everything you've built this semester, the gap, the question, the two kinds of analysis, the findings, now lives in one professional report you could hand an employer or a grad program. Week 14 you polish it. Week 15 you present it. You're almost there.</p>
+  </div>
+
+  <dialog class="pop" id="pop-primary"><h3>Primary vs. secondary research</h3><p><b>Secondary research</b> analyzes sources others made (your literature review). <b>Primary research</b> generates new data (your survey and analysis). Your final report is the full arc of a primary study: you used secondary work to find the gap, then primary work to fill it. Assembling it is the last step of becoming the investigator, not just the reader.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-imrad"><h3>IMRAD</h3><p>The standard structure of a research report: <b>I</b>ntroduction, <b>M</b>ethods, <b>R</b>esults, <b>a</b>nd <b>D</b>iscussion. Nearly every scientific and social-science paper uses it, so readers always know where to look. Learn it once and you can navigate research in any field.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-intro"><h3>Introduction</h3><p>Answers "what's my question, and why care?" Opens broad with real-world context, reviews what's known (your literature review), names the gap, and lands on your specific question. Mostly your P1, revised to flow toward that question.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-methods"><h3>Methods</h3><p>Answers "how did I study it?" Your instrument, your participants and recruiting, and how you analyzed both the qualitative and quantitative data. The test: could someone repeat your study from this? Past tense, plain and complete.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-results"><h3>Results</h3><p>Answers "what did I find?" The findings only: numbers, percentages, captioned figures, participant quotes, with no interpretation. Save the meaning for the Discussion. Results is the evidence; Discussion is the argument built on it.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-discussion"><h3>Discussion</h3><p>Answers "so what, and now what?" Interpret your results, tie them back to your question and sources, admit limitations, and make a concrete recommendation. This is your most original writing, and where your social-justice lens turns findings into a call to change something.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-hourglass"><h3>The hourglass shape</h3><p>A way to picture a report's flow. Wide at the top (broad context), narrowing through your specific question, into the tight middle of Methods and Results, then widening again in the Discussion out to bigger implications. Start general, get specific, end general. It keeps readers oriented the whole way down.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-abstract"><h3>Abstract</h3><p>A short paragraph (roughly 150 to 250 words) summarizing question, method, key finding, and takeaway. It sits near the top, but write it <i>last</i>, once you know what your report actually says. It's the trailer for your study, the thing many people read instead of the whole paper.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-appendix"><h3>Appendix</h3><p>The back-of-report home for material a reader might want but that would clog the main text: your full survey or interview guide, and your raw or summarized data. Including your instrument is what lets someone judge or repeat your study. Label them "Appendix A," "Appendix B," and point to them from the Methods.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-caption"><h3>Figure captions</h3><p>Every chart or table gets a number and a caption ("Figure 1. How often shoppers look for an organic seal, N = 42"). A caption lets readers understand the visual without digging through your prose, and it makes the report read like real research. Number figures in the order they appear and mention each one in the text.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-design"><h3>Document design</h3><p>How a document looks and is organized on the page, headings, spacing, type, figures, alignment. In technical writing this isn't decoration; it's access. Design decides who can actually read and use your work. A clear, well-structured page welcomes readers; a dense, inconsistent one quietly turns them away.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-signpost"><h3>Signposting &amp; transitions</h3><p>The small cues that guide a reader between ideas and sections ("Having established the gap, I turn to how I studied it…"). They're what make separate pieces feel like one argument. Without them, an assembled report reads as three documents in a trench coat. A sentence of transition at each section seam does most of the work.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+</script>
+</body>
+</html>

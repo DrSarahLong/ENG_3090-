@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Major Project Rubrics · ENG 3090</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --good:#2f7d54; --gold:#a3771f; --no:#a13a2d; --navbg:#ffffffee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --gold:#d8b168; --no:#e08a7a; --navbg:#12151aee; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  a{color:var(--accent)}
+  .nav{position:sticky; top:0; z-index:20; background:var(--navbg); backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
+  .nav .inner{max-width:960px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; gap:8px 18px; flex-wrap:wrap}
+  .nav .brand{font-family:Georgia,"Iowan Old Style",serif; font-weight:700; font-size:1.05rem; color:var(--ink); text-decoration:none; margin-right:auto}
+  .nav .brand small{display:block; font-family:system-ui,sans-serif; font-weight:600; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+  .nav a.lnk{color:var(--ink); text-decoration:none; font-weight:600; font-size:.93rem; padding:4px 2px; border-bottom:2px solid transparent}
+  .nav a.lnk:hover{border-bottom-color:var(--accent); color:var(--accent)}
+  .nav a.lnk[aria-current="page"]{color:var(--accent); border-bottom-color:var(--accent)}
+  .nav a.lms{background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:.9rem; border-radius:8px; padding:8px 14px; white-space:nowrap}
+
+  .wrap{max-width:960px; margin:0 auto; padding:0 20px 70px}
+  .masthead{padding:34px 0 14px; border-bottom:2px solid var(--ink); margin-bottom:16px}
+  .masthead .kick{font-size:.78rem; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); font-weight:800; margin:0 0 6px}
+  .masthead h1{font-family:Georgia,"Iowan Old Style",serif; font-size:2rem; margin:0 0 6px}
+  .masthead p{color:var(--muted); margin:4px 0 0; max-width:72ch}
+
+  .howto{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:16px 0}
+  .howto b{color:var(--accent)}
+  .keyrow{display:flex; flex-wrap:wrap; gap:8px 14px; margin-top:8px; font-size:.86rem}
+  .keyrow span{font-weight:700}
+  .k-ex{color:var(--good)} .k-me{color:var(--accent)} .k-de{color:var(--gold)} .k-no{color:var(--no)}
+
+  details.proj{border:1px solid var(--line); border-radius:12px; margin:12px 0; background:var(--card); overflow:hidden}
+  details.proj > summary{cursor:pointer; padding:14px 16px; list-style:none; display:flex; align-items:center; gap:10px}
+  details.proj > summary::-webkit-details-marker{display:none}
+  details.proj > summary .chev{color:var(--accent); font-weight:800; transition:transform .2s}
+  details.proj[open] > summary .chev{transform:rotate(90deg)}
+  details.proj > summary .pname{font-family:Georgia,serif; font-weight:700; font-size:1.15rem}
+  details.proj > summary .wt{margin-left:auto; font-size:.8rem; color:#fff; background:var(--accent); border-radius:999px; padding:2px 10px; font-weight:800}
+  details.proj .body{padding:2px 16px 18px}
+  details.proj .lead{margin:.4rem 0 10px}
+  .sublab{font-size:.72rem; letter-spacing:.09em; text-transform:uppercase; color:var(--accent); font-weight:800; margin:16px 0 6px}
+
+  .crit{border:1px solid var(--line); border-radius:10px; padding:11px 13px; margin:9px 0; background:var(--field)}
+  .cname{font-weight:700; color:var(--accent); margin-bottom:8px}
+  .levels{display:grid; grid-template-columns:repeat(4,1fr); gap:8px}
+  @media (max-width:720px){ .levels{grid-template-columns:1fr 1fr} }
+  @media (max-width:460px){ .levels{grid-template-columns:1fr} }
+  .lvl{border:1px solid var(--line); border-top-width:3px; border-radius:8px; padding:8px 10px; font-size:.85rem; background:var(--card)}
+  .lvl .t{display:block; font-size:.66rem; text-transform:uppercase; letter-spacing:.05em; font-weight:800; margin-bottom:3px}
+  .lvl.exceeds{border-top-color:var(--good)} .lvl.exceeds .t{color:var(--good)}
+  .lvl.meets{border-top-color:var(--accent)} .lvl.meets .t{color:var(--accent)}
+  .lvl.dev{border-top-color:var(--gold)} .lvl.dev .t{color:var(--gold)}
+  .lvl.not{border-top-color:var(--no)} .lvl.not .t{color:var(--no)}
+
+  .example{background:var(--accent-soft); border:1px dashed var(--accent); border-radius:10px; padding:11px 14px; margin:14px 0 4px; font-size:.93rem}
+  .example b{color:var(--accent)}
+  footer{color:var(--muted); font-size:.9rem; margin-top:26px; padding-top:16px; border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="inner">
+      <a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+      <a class="lnk" href="index.html">Home</a>
+      <a class="lnk" href="syllabus.html">Syllabus</a>
+      <a class="lnk" href="schedule.html">Schedule</a>
+      <a class="lnk" href="projects.html" aria-current="page">Major Project Rubrics</a>
+      <a class="lnk" href="readings.html">Readings</a>
+      <a class="lnk" href="research-notebook.html">Notebook</a>
+      <a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <header class="masthead">
+      <p class="kick">How your work is graded</p>
+      <h1>Major Project Rubrics</h1>
+      <p>Your semester study builds in four graded pieces. Each one is scored on a handful of criteria, and each criterion has four performance levels. Tap a project to open its rubric.</p>
+    </header>
+
+    <div class="howto">
+      <b>How to read a rubric.</b> Each criterion is scored on one of four levels. <b>Meets</b> is the target, solid, full-credit work. Read <b>Meets</b> first; that's what you're aiming for on every line.
+      <div class="keyrow">
+        <span class="k-ex">Exceeds</span> goes beyond the target
+        <span class="k-me">Meets</span> the target (your goal)
+        <span class="k-de">Developing</span> partway there
+        <span class="k-no">Not yet</span> not present yet
+      </div>
+    </div>
+
+    <!-- ================= P1 ================= -->
+    <details class="proj" open>
+      <summary><span class="chev">&rsaquo;</span><span class="pname">P1 &middot; Literature Review</span><span class="wt">15%</span></summary>
+      <div class="body">
+        <p class="lead">Your starting move: find out what's already known about your question. Track down at least ten credible sources, <b>synthesize</b> them (group by theme and argument, not one-by-one), and name the <b>gap</b>, the question the existing research hasn't answered. That gap becomes the reason your study exists. Through our lens, you also ask who the existing research centers and who it overlooks. At least 2 single-spaced pages. Submitted as a Google Doc.</p>
+
+        <p class="sublab">The rubric</p>
+        <div class="crit"><div class="cname">Sources</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>12+ strong, varied, clearly credible sources</div>
+          <div class="lvl meets"><span class="t">Meets</span>10+ credible, relevant sources</div>
+          <div class="lvl dev"><span class="t">Developing</span>Too few, or some weak/unreliable</div>
+          <div class="lvl not"><span class="t">Not yet</span>Far too few, or not credible</div>
+        </div></div>
+        <div class="crit"><div class="cname">Synthesis (not summary)</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Sources genuinely in conversation; tensions surfaced</div>
+          <div class="lvl meets"><span class="t">Meets</span>Grouped by theme and argument</div>
+          <div class="lvl dev"><span class="t">Developing</span>Some grouping, mostly summary</div>
+          <div class="lvl not"><span class="t">Not yet</span>A list of source summaries</div>
+        </div></div>
+        <div class="crit"><div class="cname">The gap</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Precise gap that clearly motivates the study</div>
+          <div class="lvl meets"><span class="t">Meets</span>Names a clear, real gap</div>
+          <div class="lvl dev"><span class="t">Developing</span>Gap vague or only implied</div>
+          <div class="lvl not"><span class="t">Not yet</span>No gap identified</div>
+        </div></div>
+        <div class="crit"><div class="cname">Social-justice lens</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Thoughtfully weighs who's centered and overlooked</div>
+          <div class="lvl meets"><span class="t">Meets</span>Notes whose voices the research centers or misses</div>
+          <div class="lvl dev"><span class="t">Developing</span>Mentioned only in passing</div>
+          <div class="lvl not"><span class="t">Not yet</span>Absent</div>
+        </div></div>
+        <div class="crit"><div class="cname">Writing &amp; citation (APA)</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Polished and seamless; flawless citations</div>
+          <div class="lvl meets"><span class="t">Meets</span>Clear, organized; consistent APA</div>
+          <div class="lvl dev"><span class="t">Developing</span>Some lapses in clarity or citation</div>
+          <div class="lvl not"><span class="t">Not yet</span>Hard to follow; citations missing</div>
+        </div></div>
+
+        <div class="example"><b>Model example:</b> Acharya &amp; Dorpenyo, <a href="https://techcommsocialjustice.org/index.php/tcsj/article/view/15" target="_blank" rel="noopener">"Translation for Social Justice and Inclusivity: An Integrative Literature Review"</a> (<i>Technical Communication and Social Justice</i>, 2023, open access). Notice how it groups sources by theme instead of listing them one by one, and lands on a clear gap. That's the move to copy.</div>
+      </div>
+    </details>
+
+    <!-- ================= P2 ================= -->
+    <details class="proj">
+      <summary><span class="chev">&rsaquo;</span><span class="pname">P2 &middot; Qualitative / Discourse Analysis</span><span class="wt">15%</span></summary>
+      <div class="body">
+        <p class="lead">Now you look closely at language and design themselves. Choose a set of texts tied to your topic (documents, posts, transcripts, policies, interfaces) and analyze how they make meaning, how power moves through them, who they include, who they leave out. You design the method, build a codebook, run it, and report what you found with real examples. About 3 pages. Submitted as a Google Doc.</p>
+
+        <p class="sublab">The rubric</p>
+        <div class="crit"><div class="cname">Method &amp; codebook</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Method well justified; codebook precise and consistent</div>
+          <div class="lvl meets"><span class="t">Meets</span>Appropriate method and a workable codebook</div>
+          <div class="lvl dev"><span class="t">Developing</span>Method unclear or codebook thin</div>
+          <div class="lvl not"><span class="t">Not yet</span>No real method or codebook</div>
+        </div></div>
+        <div class="crit"><div class="cname">Corpus (your data)</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Well-chosen, well-described, appropriately sized</div>
+          <div class="lvl meets"><span class="t">Meets</span>Appropriate corpus, clearly described</div>
+          <div class="lvl dev"><span class="t">Developing</span>Corpus unclear or too small</div>
+          <div class="lvl not"><span class="t">Not yet</span>No defined corpus</div>
+        </div></div>
+        <div class="crit"><div class="cname">Analysis &amp; evidence</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Findings richly grounded in specific examples</div>
+          <div class="lvl meets"><span class="t">Meets</span>Claims backed by real examples from the data</div>
+          <div class="lvl dev"><span class="t">Developing</span>Some evidence, some assertion</div>
+          <div class="lvl not"><span class="t">Not yet</span>Assertions without evidence</div>
+        </div></div>
+        <div class="crit"><div class="cname">Meaning &amp; power</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Incisive on meaning, power, inclusion and exclusion</div>
+          <div class="lvl meets"><span class="t">Meets</span>Says what meaning and power the data reveal</div>
+          <div class="lvl dev"><span class="t">Developing</span>Mostly descriptive; little interpretation</div>
+          <div class="lvl not"><span class="t">Not yet</span>No interpretation</div>
+        </div></div>
+        <div class="crit"><div class="cname">Writing &amp; documentation</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Polished; corpus fully cited in APA</div>
+          <div class="lvl meets"><span class="t">Meets</span>Organized; corpus cited</div>
+          <div class="lvl dev"><span class="t">Developing</span>Lapses in clarity or citation</div>
+          <div class="lvl not"><span class="t">Not yet</span>Unclear or uncited</div>
+        </div></div>
+
+        <div class="example"><b>Model example:</b> Kirsten et al., <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0316194" target="_blank" rel="noopener">"Off the Charts"</a> (<i>PLOS ONE</i>, 2025, open access), a content analysis of science-news data visualizations. See how they build a seven-theme codebook, describe their coding step by step, and check inter-coder reliability, exactly what your Methods should show.</div>
+      </div>
+    </details>
+
+    <!-- ================= P3 ================= -->
+    <details class="proj">
+      <summary><span class="chev">&rsaquo;</span><span class="pname">P3 &middot; Quantitative Analysis</span><span class="wt">15%</span></summary>
+      <div class="body">
+        <p class="lead">Here you gather your own data and make it countable. Design an instrument (survey, interview, or focus group), recruit participants ethically (consent, privacy, anonymity), collect responses, then analyze and <b>visualize</b> what you find in clear charts, graphs, or tables. About 2 pages plus visuals. Submitted as a Google Doc.</p>
+
+        <p class="sublab">The rubric</p>
+        <div class="crit"><div class="cname">Instrument design</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Clean, unbiased, well-sequenced questions</div>
+          <div class="lvl meets"><span class="t">Meets</span>Clear questions; appropriate method</div>
+          <div class="lvl dev"><span class="t">Developing</span>Some leading or vague questions</div>
+          <div class="lvl not"><span class="t">Not yet</span>Flawed instrument</div>
+        </div></div>
+        <div class="crit"><div class="cname">Ethics &amp; sampling</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Consent/anonymity handled well; reaches beyond own bubble</div>
+          <div class="lvl meets"><span class="t">Meets</span>Ethical recruitment; sample described</div>
+          <div class="lvl dev"><span class="t">Developing</span>Gaps in consent, or a narrow sample</div>
+          <div class="lvl not"><span class="t">Not yet</span>Ethics or sampling not addressed</div>
+        </div></div>
+        <div class="crit"><div class="cname">Data &amp; analysis</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Accurate, appropriate descriptive stats</div>
+          <div class="lvl meets"><span class="t">Meets</span>Correct counts and percentages</div>
+          <div class="lvl dev"><span class="t">Developing</span>Some errors in the numbers</div>
+          <div class="lvl not"><span class="t">Not yet</span>Analysis missing or incorrect</div>
+        </div></div>
+        <div class="crit"><div class="cname">Visualization</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Clear, honest, well-labeled, well-chosen charts</div>
+          <div class="lvl meets"><span class="t">Meets</span>Labeled, appropriate charts</div>
+          <div class="lvl dev"><span class="t">Developing</span>Unclear or mislabeled visuals</div>
+          <div class="lvl not"><span class="t">Not yet</span>No or misleading visuals</div>
+        </div></div>
+        <div class="crit"><div class="cname">Interpretation &amp; limits</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Careful reading; names limits and correlation vs. causation</div>
+          <div class="lvl meets"><span class="t">Meets</span>States findings and names limitations</div>
+          <div class="lvl dev"><span class="t">Developing</span>Overclaims or ignores limits</div>
+          <div class="lvl not"><span class="t">Not yet</span>No real interpretation</div>
+        </div></div>
+
+        <div class="example"><b>Model example:</b> Mizrachi et al., <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0197444" target="_blank" rel="noopener">a worldwide survey of student reading preferences</a> (<i>PLOS ONE</i>, 2018, open access). A clear example of reporting survey results with descriptive statistics and plenty of tables and charts, on a topic you'll relate to (print vs. screen).</div>
+      </div>
+    </details>
+
+    <!-- ================= FINAL ================= -->
+    <details class="proj">
+      <summary><span class="chev">&rsaquo;</span><span class="pname">Final &middot; IMRAD Report</span><span class="wt">35%</span></summary>
+      <div class="body">
+        <p class="lead">Everything comes together. Integrate all three pieces into one professional report in <b>IMRAD</b> format (Introduction, Methods, Results, and Discussion), with a title page, headings, captioned visuals, and an appendix holding your instrument and data. It should read as one coherent story, from the gap you found, to how you studied it, to what you recommend. Your reference list should reach 15 to 20 sources. Submitted as a PDF.</p>
+
+        <p class="sublab">The rubric</p>
+        <div class="crit"><div class="cname">IMRAD structure</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Every section sharp and in its lane (Results reports, Discussion interprets)</div>
+          <div class="lvl meets"><span class="t">Meets</span>All sections present, in order, doing their job</div>
+          <div class="lvl dev"><span class="t">Developing</span>Sections blurred or missing</div>
+          <div class="lvl not"><span class="t">Not yet</span>Not in IMRAD form</div>
+        </div></div>
+        <div class="crit"><div class="cname">Integration &amp; coherence</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Reads as one seamless study; gap &rarr; findings &rarr; recommendation</div>
+          <div class="lvl meets"><span class="t">Meets</span>Coherent; transitions connect the sections</div>
+          <div class="lvl dev"><span class="t">Developing</span>Reads as three stapled pieces</div>
+          <div class="lvl not"><span class="t">Not yet</span>Disjointed</div>
+        </div></div>
+        <div class="crit"><div class="cname">Evidence &amp; rigor</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Qualitative + quantitative integrated; 15&ndash;20 strong sources; honest about limits</div>
+          <div class="lvl meets"><span class="t">Meets</span>Claims supported; both methods present; 15&ndash;20 sources</div>
+          <div class="lvl dev"><span class="t">Developing</span>Thin evidence or too few sources</div>
+          <div class="lvl not"><span class="t">Not yet</span>Unsupported</div>
+        </div></div>
+        <div class="crit"><div class="cname">Recommendations</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Specific, actionable, tied to findings and the justice lens</div>
+          <div class="lvl meets"><span class="t">Meets</span>A clear recommendation drawn from the findings</div>
+          <div class="lvl dev"><span class="t">Developing</span>Vague or unconnected to the data</div>
+          <div class="lvl not"><span class="t">Not yet</span>None</div>
+        </div></div>
+        <div class="crit"><div class="cname">Design &amp; mechanics</div><div class="levels">
+          <div class="lvl exceeds"><span class="t">Exceeds</span>Professional, portfolio-ready: title page, captioned figures, appendix, clean APA, polished prose</div>
+          <div class="lvl meets"><span class="t">Meets</span>Well-designed and complete; clean writing</div>
+          <div class="lvl dev"><span class="t">Developing</span>Rough design or mechanics</div>
+          <div class="lvl not"><span class="t">Not yet</span>Incomplete or unpolished</div>
+        </div></div>
+
+        <div class="example"><b>Model example:</b> Bredbenner &amp; Simon, <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0224697" target="_blank" rel="noopener">"Video abstracts and plain language summaries&hellip;"</a> (<i>PLOS ONE</i>, 2019, open access), a clean, self-contained study with unmistakable Introduction, Methods, Results, and Discussion sections. A good structural template. Run your own draft through the <a href="draft-check.html">Draft Check</a> before you submit.</div>
+      </div>
+    </details>
+
+    <footer>
+      ENG 3090 · Research Methods in Rhetoric &amp; Technical Writing · Appalachian State University · Fall 2026<br>
+      The Research Notebook (20%) is graded for completion, not on this rubric. See the <a href="turn-in-guide.html">What's Due &amp; Where</a> guide.
+    </footer>
+
+  </div>
+</body>
+</html>

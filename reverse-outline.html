@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Reverse Outline</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --ok:#2f7d54; --oksoft:#e4f1e8; --warn:#a3771f; --warnsoft:#f6f0e1; --no:#a13a2d; --nosoft:#f6e6e3;
+    --intro:#1f6b86; --methods:#2f7d54; --results:#a3771f; --discussion:#5a4b8a; --front:#5b6472;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --ok:#7ac598; --oksoft:#14301f; --warn:#d8b168; --warnsoft:#2b2513; --no:#e08a7a; --nosoft:#2c1815; --intro:#7fb9d4; --methods:#7ac598; --results:#d8b168; --discussion:#b3a4de; --front:#9aa4b2; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #rv{max-width:780px; margin:0 auto; padding:28px 20px 80px}
+  #rv h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #rv .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #rv .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #rv .sub{color:var(--muted); margin:6px 0 0}
+  #rv .prin{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:14px; font-size:.93rem}
+  #rv .prin b{color:var(--accent)}
+  #rv h2.sec{font-size:.8rem; letter-spacing:.09em; text-transform:uppercase; color:var(--accent); font-weight:800; margin:22px 0 6px}
+  #rv .panel{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:10px 0}
+  #rv table{width:100%; border-collapse:collapse}
+  #rv th{text-align:left; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); font-weight:700; padding:4px 6px}
+  #rv td{padding:3px 6px; vertical-align:middle}
+  #rv select, #rv input[type=text]{font:inherit; color:var(--ink); background:var(--field); border:1.5px solid var(--line); border-radius:8px; padding:8px 9px}
+  #rv select{width:130px} #rv input.line{width:100%}
+  #rv select:focus, #rv input:focus{outline:none; border-color:var(--accent)}
+  #rv td.ctrl{width:108px; text-align:right; white-space:nowrap}
+  #rv .rowmv, #rv .rowdel{font:inherit; cursor:pointer; border:1px solid var(--line); background:var(--field); color:var(--muted); border-radius:7px; padding:5px 8px; line-height:1; margin-left:3px}
+  #rv .rowmv:hover{border-color:var(--accent); color:var(--accent)}
+  #rv .rowdel:hover{border-color:var(--no); color:var(--no)}
+  #rv .minibtn{font:inherit; font-weight:600; cursor:pointer; border:1.5px solid var(--accent); background:var(--field); color:var(--accent); border-radius:8px; padding:7px 12px; margin:8px 6px 0 0}
+  #rv .minibtn:hover{background:var(--accent-soft)}
+  #rv .minibtn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #rv .skel{margin:6px 0}
+  #rv .skelsec{border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:10px; padding:10px 14px; margin:8px 0; background:var(--card)}
+  #rv .skelsec h4{margin:0 0 6px; font-size:.95rem; text-transform:uppercase; letter-spacing:.05em}
+  #rv .skelsec.intro{border-left-color:var(--intro)} #rv .skelsec.intro h4{color:var(--intro)}
+  #rv .skelsec.methods{border-left-color:var(--methods)} #rv .skelsec.methods h4{color:var(--methods)}
+  #rv .skelsec.results{border-left-color:var(--results)} #rv .skelsec.results h4{color:var(--results)}
+  #rv .skelsec.discussion{border-left-color:var(--discussion)} #rv .skelsec.discussion h4{color:var(--discussion)}
+  #rv .skelsec.front{border-left-color:var(--front)} #rv .skelsec.front h4{color:var(--front)}
+  #rv .skelsec ol{margin:0; padding-left:1.2rem} #rv .skelsec li{margin:.2rem 0}
+  #rv .skelsec.empty{border-left-style:dashed} #rv .skelsec.empty .miss{color:var(--no); font-weight:600; font-size:.9rem}
+  #rv .notes{list-style:none; padding:0; margin:8px 0 0}
+  #rv .notes li{padding:8px 12px; border-radius:8px; margin:6px 0; font-size:.92rem; background:var(--warnsoft); border:1px solid var(--line)}
+  #rv .notes li.good{background:var(--oksoft)} #rv .notes li.bad{background:var(--nosoft)}
+  #rv .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #rv .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  #rv .done{margin-top:20px; background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 16px; font-size:.95rem}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="rv">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 14, Tuesday</p>
+    <h1>Reverse Outline</h1>
+    <p class="sub">The best way to see your draft's real structure is to outline what you <em>actually</em> wrote, not what you meant to. One line per paragraph. The skeleton it reveals shows the gaps, repetition, and out-of-order pieces the prose hides.</p>
+  </header>
+
+  <div class="prin">This is <button type="button" class="term" data-pop="revise">revision</button>, not editing. Editing fixes sentences; revision re-sees the whole. Go through your draft paragraph by paragraph and write, in a few words, <b>the job that paragraph does</b> (not what it's about, what it <em>does</em>: "introduces the gap," "reports the survey numbers," "interprets the trust finding"). Tag each to its <button type="button" class="term" data-pop="imrad">IMRAD</button> section. Then read the skeleton.</div>
+
+  <h2 class="sec">1 · One line per paragraph</h2>
+  <div class="panel">
+    <p style="font-size:.88rem;color:var(--muted);margin:0 0 8px">Example rows are loaded. Replace them with your own paragraphs, one row each.</p>
+    <table>
+      <thead><tr><th>Section</th><th>What this paragraph <em>does</em></th><th></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <button type="button" class="minibtn" id="addRow">+ Add paragraph</button>
+    <button type="button" class="minibtn" id="reset">Reset to example</button>
+    <p style="font-size:.86rem;color:var(--muted);margin:8px 0 0">Tip: change a row's <b>section</b> and it jumps to the right group in your skeleton below. Use &#9650;&#9660; to reorder paragraphs within the list.</p>
+  </div>
+
+  <h2 class="sec">2 · Your report's skeleton</h2>
+  <div id="skel" class="skel" aria-live="polite"></div>
+  <ul class="notes" id="notes"></ul>
+  <button type="button" class="minibtn" id="download">⬇ Download my reverse outline (.txt)</button>
+
+  <div class="done">
+    <b>Use it to revise, in this order:</b> fix the <button type="button" class="term" data-pop="hoc">big things</button> first, a missing section, paragraphs out of order, two paragraphs doing the same job, a section that's thin. Sentence and comma fixes come after. Rearranging a skeleton is a lot easier than rewriting finished prose, which is exactly why you outline backward.</div>
+
+  <dialog class="pop" id="pop-revise"><h3>Revision vs. editing</h3><p>They're different jobs. <b>Revision</b> (literally "re-seeing") works at the level of ideas and structure: Is the argument clear? Is anything missing, repeated, or out of order? <b>Editing</b> works at the sentence level, and <b>proofreading</b> catches typos. Do them in that order, big to small. Most weak drafts were edited but never truly revised.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-imrad"><h3>IMRAD</h3><p><b>I</b>ntroduction, <b>M</b>ethods, <b>R</b>esults, <b>a</b>nd <b>D</b>iscussion, the standard shape of a research report. Tagging each paragraph to its section is how you check that every section exists, that they run in order, and that nothing has wandered into the wrong room (interpretation stuck in Results, a finding buried in the Introduction).</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-hoc"><h3>Higher-order concerns first</h3><p>Writing centers sort revision into <b>higher-order concerns</b> (focus, organization, development, whether the argument holds) and <b>lower-order concerns</b> (grammar, citations, formatting). Fix the higher-order ones first, there's no point polishing the commas in a paragraph you're about to cut. The reverse outline is a higher-order tool by design.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+(function(){
+  var SECTIONS = [
+    {key:'front', label:'Title / Abstract / Refs / Appendix'},
+    {key:'intro', label:'Introduction'},
+    {key:'methods', label:'Methods'},
+    {key:'results', label:'Results'},
+    {key:'discussion', label:'Discussion'}
+  ];
+  var ORDER = {front:0, intro:1, methods:2, results:3, discussion:4};
+  var CORE = ['intro','methods','results','discussion'];
+  var LABEL = {}; SECTIONS.forEach(function(s){ LABEL[s.key]=s.label; });
+  var EXAMPLE = [
+    ['intro','Opens with the rise of eco-labels and shopper confusion'],
+    ['intro','Reviews prior studies and names the gap (few study local shoppers)'],
+    ['intro','States the research question'],
+    ['methods','Describes the survey and the label coding'],
+    ['results','Reports how often shoppers look for a seal (Figure 1)'],
+    ['results','Reports the trust numbers by label type, with a quote'],
+    ['discussion','Interprets why "natural" is trusted least'],
+    ['discussion','Gives the recommendation and states limitations']
+  ];
+  var rowsEl = document.getElementById('rows');
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  function addRow(sec, text){
+    var tr = document.createElement('tr');
+    var opts = SECTIONS.map(function(s){ return '<option value="'+s.key+'"'+(s.key===sec?' selected':'')+'>'+esc(s.label)+'</option>'; }).join('');
+    tr.innerHTML = '<td><select>'+opts+'</select></td>'+
+                   '<td><input type="text" class="line" value="'+esc(text||'')+'" placeholder="what this paragraph does"></td>'+
+                   '<td class="ctrl"><button type="button" class="rowmv" data-mv="up" aria-label="Move up" title="Move up">&#9650;</button>'+
+                   '<button type="button" class="rowmv" data-mv="down" aria-label="Move down" title="Move down">&#9660;</button>'+
+                   '<button type="button" class="rowdel" aria-label="Delete row" title="Delete">✕</button></td>';
+    rowsEl.appendChild(tr);
+    tr.querySelector('.rowdel').addEventListener('click', function(){ tr.remove(); render(); });
+    tr.querySelector('[data-mv="up"]').addEventListener('click', function(){ var p=tr.previousElementSibling; if(p){ rowsEl.insertBefore(tr, p); render(); } });
+    tr.querySelector('[data-mv="down"]').addEventListener('click', function(){ var n=tr.nextElementSibling; if(n){ rowsEl.insertBefore(n, tr); render(); } });
+    tr.querySelector('select').addEventListener('change', render);
+    tr.querySelector('input').addEventListener('input', render);
+  }
+  function loadExample(){ rowsEl.innerHTML=''; EXAMPLE.forEach(function(r){ addRow(r[0], r[1]); }); }
+
+  function readRows(){
+    var out=[];
+    rowsEl.querySelectorAll('tr').forEach(function(tr){
+      var sec=tr.querySelector('select').value;
+      var text=tr.querySelector('input').value.trim();
+      if(text) out.push({sec:sec, text:text});
+    });
+    return out;
+  }
+  function wordSet(s){ var w=(s.toLowerCase().match(/[a-z0-9]+/g)||[]).filter(function(x){ return x.length>3; }); var set={}; w.forEach(function(x){set[x]=1;}); return set; }
+  function jaccard(a,b){ var ka=Object.keys(a), kb=Object.keys(b); if(!ka.length||!kb.length) return 0; var inter=0; ka.forEach(function(x){ if(b[x]) inter++; }); return inter/(ka.length+kb.length-inter); }
+
+  function render(){
+    var rows=readRows();
+    var skel=document.getElementById('skel');
+    // skeleton grouped by section, in canonical order
+    var html='';
+    SECTIONS.forEach(function(s){
+      var mine=rows.filter(function(r){ return r.sec===s.key; });
+      var isCore = CORE.indexOf(s.key)>=0;
+      if(!mine.length){
+        if(isCore) html += '<div class="skelsec '+s.key+' empty"><h4>'+esc(s.label)+'</h4><div class="miss">No paragraphs tagged here yet.</div></div>';
+        return;
+      }
+      html += '<div class="skelsec '+s.key+'"><h4>'+esc(s.label)+'</h4><ol>'+
+              mine.map(function(r){ return '<li>'+esc(r.text)+'</li>'; }).join('')+'</ol></div>';
+    });
+    if(!rows.length) html='<div class="panel" style="color:var(--muted)">Add a line for each paragraph to see your skeleton.</div>';
+    skel.innerHTML=html;
+
+    // self-check notes
+    var notes=[], el=document.getElementById('notes');
+    if(rows.length){
+      var missing = CORE.filter(function(k){ return !rows.some(function(r){ return r.sec===k; }); });
+      if(missing.length) notes.push(['bad','Missing section'+(missing.length>1?'s':'')+': '+missing.map(function(k){return LABEL[k];}).join(', ')+'. Every IMRAD report needs all four.']);
+      // order check (core rows in document order)
+      var coreRows=rows.filter(function(r){ return CORE.indexOf(r.sec)>=0; });
+      var maxSeen=0, outOfOrder=false;
+      coreRows.forEach(function(r){ var o=ORDER[r.sec]; if(o<maxSeen) outOfOrder=true; if(o>maxSeen) maxSeen=o; });
+      if(outOfOrder) notes.push(['','Your sections jump around (for example, a Results paragraph before Methods). In a report they should run Introduction → Methods → Results → Discussion.']);
+      // repetition
+      var dupFound=false;
+      for(var i=0;i<rows.length && !dupFound;i++){
+        for(var j=i+1;j<rows.length;j++){
+          if(jaccard(wordSet(rows[i].text), wordSet(rows[j].text)) >= 0.6){
+            notes.push(['','Two paragraphs may be doing the same job ("'+esc(rows[i].text.slice(0,32))+'…" and "'+esc(rows[j].text.slice(0,32))+'…"). Merge them or cut one.']);
+            dupFound=true; break;
+          }
+        }
+      }
+      // thin sections
+      if(rows.length>=6){
+        CORE.forEach(function(k){
+          var n=rows.filter(function(r){ return r.sec===k; }).length;
+          if(n===1) notes.push(['','Only one paragraph in '+LABEL[k]+'. Is that enough, or is that section thin?']);
+        });
+      }
+      if(!notes.length) notes.push(['good','Skeleton looks sound: all four sections present, in order, no obvious repetition. Now read each line and ask if the paragraph truly does that one job.']);
+      notes.push(['good',rows.length+' paragraphs across '+(new Set(rows.map(function(r){return r.sec;}))).size+' sections.']);
+    }
+    el.innerHTML = notes.map(function(o){ return '<li class="'+o[0]+'">'+o[1]+'</li>'; }).join('');
+  }
+
+  document.getElementById('addRow').addEventListener('click', function(){ addRow('intro',''); });
+  document.getElementById('reset').addEventListener('click', function(){ loadExample(); render(); });
+  document.getElementById('download').addEventListener('click', function(){
+    var rows=readRows(); if(!rows.length) return;
+    var lines=['ENG 3090 · Reverse Outline','================================',''];
+    SECTIONS.forEach(function(s){
+      var mine=rows.filter(function(r){ return r.sec===s.key; });
+      if(!mine.length) return;
+      lines.push(s.label.toUpperCase()); mine.forEach(function(r,i){ lines.push('  '+(i+1)+'. '+r.text); }); lines.push('');
+    });
+    var blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a'); a.href=url; a.download='my-reverse-outline.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+  });
+
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+
+  loadExample();
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · The Question Clinic</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --ok:#2f7d54; --oksoft:#e4f1e8; --fix:#a3771f; --fixsoft:#f6f0e1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --ok:#7ac598; --oksoft:#14301f; --fix:#d8b168; --fixsoft:#2b2513; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #qc{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #qc h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #qc .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #qc .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #qc .sub{color:var(--muted); margin:6px 0 0}
+  #qc .prin{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:16px; font-size:.93rem}
+  #qc .prin b{color:var(--accent)}
+  #qc .how{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:14px}
+  #qc .how p{margin:.3rem 0}
+  #qc .prog{font-weight:700; color:var(--accent)}
+  #qc .card{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:16px 18px; margin:14px 0}
+  #qc .num{font-size:.78rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:700}
+  #qc .scn{font-size:1.05rem; margin:6px 0 4px}
+  #qc .qtxt{font-style:italic}
+  #qc .choices{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+  #qc .choice{flex:1; min-width:140px; font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:10px; border:1.5px solid var(--line); background:var(--field); color:var(--ink)}
+  #qc .choice:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #qc .choice.pick-ok{border-color:var(--ok); background:var(--oksoft); color:var(--ok)}
+  #qc .choice.pick-fix{border-color:var(--fix); background:var(--fixsoft); color:var(--fix)}
+  #qc details{margin-top:12px; border-top:1px dashed var(--line); padding-top:10px}
+  #qc summary{cursor:pointer; font-weight:600; color:var(--accent); list-style:none}
+  #qc summary::-webkit-details-marker{display:none}
+  #qc summary:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:6px}
+  #qc .verdict{margin:8px 0 0; border-radius:8px; padding:10px 12px}
+  #qc .verdict.ok{background:var(--oksoft)} #qc .verdict.fix{background:var(--fixsoft)}
+  #qc .verdict .lab{font-weight:800; text-transform:uppercase; letter-spacing:.05em; font-size:.78rem}
+  #qc .verdict.ok .lab{color:var(--ok)} #qc .verdict.fix .lab{color:var(--fix)}
+  #qc .verdict .flaw{display:inline-block; font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--fix); border:1px solid var(--fix); border-radius:999px; padding:1px 9px; margin-left:6px; vertical-align:1px}
+  #qc .verdict .rw{margin-top:6px} #qc .verdict .rw b{color:var(--ok)}
+  #qc .done{margin-top:22px; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  #qc .done b{color:var(--accent)}
+  #qc .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #qc .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="qc">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 10, Tuesday</p>
+    <h1>The Question Clinic</h1>
+    <p class="sub">A survey is only as good as its questions. A bad question quietly writes its own answer, and no analysis later can fix the data it gave you. Eight questions below, all about food labels. For each, decide: is it clean, or does it need work?</p>
+  </header>
+
+  <div class="prin">The rule of the room: <b>garbage in, garbage out</b>. Watch for the six usual suspects, <button type="button" class="term" data-pop="leading">leading</button>, <button type="button" class="term" data-pop="double">double-barreled</button>, <button type="button" class="term" data-pop="loaded">loaded</button>, <button type="button" class="term" data-pop="vague">vague</button>, <button type="button" class="term" data-pop="jargon">jargon</button>, and an <button type="button" class="term" data-pop="scale">unbalanced scale</button>. A clean question asks one clear thing, in plain words, without tipping its hand.</div>
+
+  <div class="how">
+    <p><b>On your own:</b> make your call, then open the verdict to see the flaw named and a rewrite. We'll argue the close ones as a class.</p>
+    <p>Judged: <span class="prog"><span id="count">0</span> / 8</span></p>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Question 1</p>
+    <p class="scn qtxt">"Don't you agree that misleading 'natural' labels are a problem for honest shoppers?"</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Clean</button><button type="button" class="choice" data-pick="fix">Needs work</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Needs work</span><span class="flaw">Leading</span>
+        <div>It hands the respondent the answer. "Don't you agree," "misleading," and "honest shoppers" all push toward yes. You'll get agreement you manufactured, not what people actually think. A <button type="button" class="term" data-pop="leading">leading question</button> inflates your own conclusion.</div>
+        <div class="rw"><b>Rewrite:</b> "How much do you agree or disagree that 'natural' labels are misleading?" with a balanced agree-to-disagree scale.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Question 2</p>
+    <p class="scn qtxt">"How satisfied are you with the accuracy and the pricing of organic products?"</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Clean</button><button type="button" class="choice" data-pick="fix">Needs work</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Needs work</span><span class="flaw">Double-barreled</span>
+        <div>It asks about two different things, accuracy and price, in one question. Someone who trusts the labels but hates the prices has no honest way to answer, and you can't tell which half their answer is about. A <button type="button" class="term" data-pop="double">double-barreled question</button> gives you data you can't interpret.</div>
+        <div class="rw"><b>Rewrite:</b> split it. One question on label accuracy, a separate one on price.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Question 3</p>
+    <p class="scn qtxt">"When you stopped buying products with fake sustainability claims, what made you switch?"</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Clean</button><button type="button" class="choice" data-pick="fix">Needs work</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Needs work</span><span class="flaw">Loaded</span>
+        <div>It smuggles in assumptions: that the person stopped buying these products, and that the claims are "fake." Someone who never stopped, or who trusts the claims, is stuck. A <button type="button" class="term" data-pop="loaded">loaded question</button> assumes facts not yet established.</div>
+        <div class="rw"><b>Rewrite:</b> ask first, "Have you changed what you buy because of sustainability labels?" Then, only for those who say yes, "What changed your mind?"</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Question 4</p>
+    <p class="scn qtxt">"Do you buy sustainable food?"</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Clean</button><button type="button" class="choice" data-pick="fix">Needs work</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Needs work</span><span class="flaw">Vague</span>
+        <div>"Sustainable" means ten different things to ten people, and "do you buy" flattens "once" and "every week" into the same yes. Two people can answer the same way and mean nothing alike. A <button type="button" class="term" data-pop="vague">vague question</button> gives you numbers that don't actually count anything.</div>
+        <div class="rw"><b>Rewrite:</b> define the term and ask frequency: "In a typical month, how often do you choose a product because it's labeled 'organic' or 'regenerative'? (Never / Rarely / Sometimes / Often / Always)"</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Question 5</p>
+    <p class="scn qtxt">"To what extent do eco-labels mitigate information asymmetry at the point of purchase?"</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Clean</button><button type="button" class="choice" data-pick="fix">Needs work</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Needs work</span><span class="flaw">Jargon</span>
+        <div>"Information asymmetry" and "at the point of purchase" belong in your paper, not your survey. If a respondent has to decode the question, some will guess and some will quit. A <button type="button" class="term" data-pop="jargon">jargon-heavy question</button> loses you both answers and people.</div>
+        <div class="rw"><b>Rewrite:</b> "When you're in the store, how much do labels like 'organic' or 'local' help you know what you're really buying?"</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Question 6</p>
+    <p class="scn qtxt">"How would you rate 'local' labels? &nbsp;Excellent &nbsp;·&nbsp; Very good &nbsp;·&nbsp; Good &nbsp;·&nbsp; Fair"</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Clean</button><button type="button" class="choice" data-pick="fix">Needs work</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Needs work</span><span class="flaw">Unbalanced scale</span>
+        <div>Every option is positive. There's no "poor," no "terrible," nowhere for a skeptic to land, so the results will look rosier than reality. An <button type="button" class="term" data-pop="scale">unbalanced scale</button> bakes the bias right into the answer choices.</div>
+        <div class="rw"><b>Rewrite:</b> a balanced <button type="button" class="term" data-pop="likert">Likert scale</button> with a neutral middle: Very negative · Negative · Neutral · Positive · Very positive.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Question 7</p>
+    <p class="scn qtxt">"Please explain in detail every factor that influences all of your grocery decisions."</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Clean</button><button type="button" class="choice" data-pick="fix">Needs work</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict fix"><span class="lab">Needs work</span><span class="flaw">Too broad</span>
+        <div>"Every factor," "all of your decisions," "in detail," on an <button type="button" class="term" data-pop="openclosed">open-ended</button> question, is a wall most people won't climb. You'll get one-word answers or blanks, and what you do get you can't count. Save open questions for one sharp thing you want in the participant's own words.</div>
+        <div class="rw"><b>Rewrite:</b> narrow it: "What's the one thing that most makes you trust, or distrust, a sustainability label?" Or make it a closed question with set options.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card" data-card>
+    <p class="num">Question 8</p>
+    <p class="scn qtxt">"How often do you look for a 'certified organic' seal when buying produce? &nbsp;Never &nbsp;·&nbsp; Rarely &nbsp;·&nbsp; Sometimes &nbsp;·&nbsp; Often &nbsp;·&nbsp; Always"</p>
+    <div class="choices"><button type="button" class="choice" data-pick="ok">Clean</button><button type="button" class="choice" data-pick="fix">Needs work</button></div>
+    <details><summary>Reveal the verdict</summary>
+      <div class="verdict ok"><span class="lab">Clean</span>
+        <div>One clear idea (looking for a specific seal), plain words, a specific product (produce), and a balanced, labeled <button type="button" class="term" data-pop="scale">scale</button> that runs from never to always. Everyone reads it the same way, and the answers are <button type="button" class="term" data-pop="openclosed">countable</button>. This is the model to aim for.</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="done">
+    <p>Before a question goes in your survey, run it past four checks. <b>Does it ask exactly one thing?</b> <b>Would someone who disagrees with me feel free to say so?</b> <b>Could two people read it two different ways?</b> <b>Can I actually count the answers?</b> If a question fails one, fix it now. It's a lot cheaper than discovering it after fifty people have answered.</p>
+  </div>
+
+  <dialog class="pop" id="pop-leading"><h3>Leading question</h3><p>A question worded so it nudges the respondent toward a particular answer, often with loaded phrasing or a built-in "right" side ("Don't you agree that…"). It inflates whatever you were hoping to find. The fix is neutral wording and a balanced set of answer choices, so agreeing and disagreeing feel equally allowed.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-double"><h3>Double-barreled question</h3><p>One question that actually asks about two things at once ("the accuracy <i>and</i> the price"). A single answer can't cleanly cover both, so you can't tell what the response means. If you see an "and" or an "or" joining two ideas you'd want to measure separately, split it into two questions.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-loaded"><h3>Loaded question</h3><p>A question that assumes something the respondent hasn't agreed to yet ("When did you stop…?" assumes they stopped). Anyone for whom the assumption is false has no honest way to answer. Ask the prior question first, then branch: only ask the follow-up of the people the assumption actually fits.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-vague"><h3>Vague question</h3><p>A question built on undefined words ("sustainable," "often," "healthy") that different people read differently. Two respondents can give the same answer and mean completely different things, which makes the data meaningless. Define your terms in the question, or replace a fuzzy word with a concrete, countable one.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-jargon"><h3>Jargon</h3><p>Technical or academic language ("information asymmetry," "point of purchase") that belongs in your write-up, not in front of participants. If people have to decode the question, some guess and some quit, and both wreck your data. Write survey questions at the reading level of the person answering, not the person grading.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-scale"><h3>Balanced response scale</h3><p>The answer choices should offer as much room to be negative as to be positive. A scale that runs "Excellent · Very good · Good · Fair" has no bottom end, so it collects praise by design. A balanced scale (very negative → neutral → very positive) lets the real distribution show up instead of tilting it for you.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-likert"><h3>Likert scale</h3><p>The classic agree-to-disagree (or never-to-always) scale, named for psychologist Rensis Likert. Use an odd number of points so there's a genuine neutral middle, label every point (not just the ends), and keep the two sides balanced. It turns an opinion into a number you can average, chart, and compare, which is exactly what you'll need in Week 12.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-openclosed"><h3>Closed vs. open questions</h3><p><b>Closed</b> questions give set answer choices (multiple choice, a scale), so responses are countable and easy to chart. <b>Open</b> questions let people answer in their own words, which is richer but slow to analyze. For P3 you want mostly closed questions (you have to count and visualize the results) plus a few open ones to catch quotes and surprises.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#qc [data-card]'));
+  var count = document.getElementById('count');
+  function tally(){ count.textContent = cards.filter(function(c){ return c.querySelector('.choice.pick-ok, .choice.pick-fix'); }).length; }
+  cards.forEach(function(card){
+    var btns = card.querySelectorAll('.choice');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){ x.classList.remove('pick-ok','pick-fix'); });
+        b.classList.add('pick-' + b.getAttribute('data-pick'));
+        tally();
+      });
+    });
+  });
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+})();
+</script>
+</body>
+</html>

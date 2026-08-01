@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · What's Due &amp; Where to Turn It In</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --good:#2f7d54; --goodsoft:#e4f1e8; --due:#7a3b1f; --duesoft:#f6ebe1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --goodsoft:#14301f; --due:#e0a878; --duesoft:#2c2013; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #tg{max-width:800px; margin:0 auto; padding:28px 20px 80px}
+  #tg h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #tg .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #tg .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #tg .sub{color:var(--muted); margin:6px 0 0}
+  #tg h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.25rem; margin:24px 0 8px}
+  #tg .lead{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:12px 15px; margin-bottom:8px}
+  #tg .lead b{color:var(--accent)}
+  #tg table{width:100%; table-layout:fixed; border-collapse:collapse; margin:8px 0; font-size:.95rem}
+  #tg th{text-align:left; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); font-weight:800; padding:8px 10px; border-bottom:2px solid var(--line)}
+  #tg td{border-bottom:1px solid var(--line); padding:10px; vertical-align:top; overflow-wrap:break-word}
+  #tg th:nth-child(1),#tg td:nth-child(1){width:20%}
+  #tg th:nth-child(2),#tg td:nth-child(2){width:48%}
+  #tg th:nth-child(3),#tg td:nth-child(3){width:32%}
+  #tg td.what{font-weight:700; color:var(--accent)}
+  #tg td .desc{color:var(--muted); font-size:.9rem; font-weight:400; margin-top:2px}
+  #tg .when{font-variant-numeric:tabular-nums}
+  #tg .tablewrap{overflow-x:auto}
+  #tg .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:12px 0}
+  #tg .box.how{border-left:5px solid var(--good)}
+  #tg .box.how h3{margin:0 0 6px; color:var(--good); font-size:1rem}
+  #tg ol{margin:.4rem 0; padding-left:1.3rem} #tg ol li{margin:.4rem 0}
+  #tg .note{color:var(--muted); font-size:.92rem}
+  #tg a{color:var(--accent)}
+  #tg .duebox{background:var(--duesoft); border:1px solid var(--line); border-left:5px solid var(--due); border-radius:12px; padding:14px 16px; margin:16px 0}
+  #tg .duebox .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--due); display:block; margin-bottom:3px}
+  #tg .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #tg .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="tg">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Reference</p>
+    <h1>What's Due &amp; Where to Turn It In</h1>
+    <p class="sub">One place for every graded piece: what it is, where it goes, and how to submit it. For the exact calendar dates, always check the syllabus, that's the official schedule.</p>
+  </header>
+
+  <div class="lead"><b>Two kinds of things you turn in.</b> The <b>projects</b> (P1, P2, P3, and the final report) are your graded writing. Your <b>Research Notebook</b> is your week-to-week work, collected only twice as a completion check. Everything goes to <button type="button" class="term" data-pop="asulearn">AsULearn</button>, nothing is turned in here.</p>
+
+  <h2>The graded pieces</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>What</th><th>Where</th><th>When</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="what">P1<div class="desc">Literature Review</div></td>
+        <td>AsULearn, as a <button type="button" class="term" data-pop="gdoc">Google Doc</button> <span class="note">(so you get comments)</span></td>
+        <td class="when">Week 5</td>
+      </tr>
+      <tr>
+        <td class="what">P2<div class="desc">Qualitative / Discourse Analysis</div></td>
+        <td>AsULearn, as a <button type="button" class="term" data-pop="gdoc">Google Doc</button> <span class="note">(so you get comments)</span></td>
+        <td class="when">Week 8</td>
+      </tr>
+      <tr>
+        <td class="what">P3<div class="desc">Quantitative Analysis (with your visuals)</div></td>
+        <td>AsULearn, as a <button type="button" class="term" data-pop="gdoc">Google Doc</button> <span class="note">(so you get comments)</span></td>
+        <td class="when">Week 12</td>
+      </tr>
+      <tr>
+        <td class="what">Final report<div class="desc">The full <button type="button" class="term" data-pop="imrad">IMRAD</button> report, title page, figures, references, appendix</div></td>
+        <td>AsULearn, as a <b>PDF</b> <span class="note">(graded, not marked up)</span></td>
+        <td class="when">Week 15<div class="desc">the Sunday before presentations</div></td>
+      </tr>
+      <tr>
+        <td class="what">Notebook<div class="desc">Completion check, collected twice</div></td>
+        <td>AsULearn, as a <b>PDF</b> or <button type="button" class="term" data-pop="gdoc">Google Doc</button> <span class="note">(your choice, see below)</span></td>
+        <td class="when">Week 8 &amp; Week 15<div class="desc">midterm &amp; end of term</div></td>
+      </tr>
+      <tr>
+        <td class="what">In class<div class="desc">Topic approvals, exercises, discussion</div></td>
+        <td>Nothing to upload <span class="note">(checked live, in the room)</span></td>
+        <td class="when">Ongoing</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Week numbers are the anchor; the syllabus has the exact calendar dates and any changes.</p>
+
+  <h2>How to turn in your notebook</h2>
+  <div class="box how">
+    <h3>Download once, submit once</h3>
+    <ol>
+      <li>Open your <a href="research-notebook.html" target="_blank" rel="noopener">Research Notebook</a>.</li>
+      <li>Scroll to the bottom and click <b>"Download everything."</b> This saves one file with all your entries and a summary showing what's complete.</li>
+      <li>Submit it to the AsULearn notebook dropbox as a <b>PDF</b> or a <b>Google Doc</b>, whichever's easier. It's a completion check, so the format is up to you.</li>
+    </ol>
+    <p class="note">Your notebook lives in your browser, on your own computer, so downloading is the only way it reaches me. Do it at each check-in, and grab a copy anytime as a backup.</p>
+  </div>
+
+  <h2>A few file tips</h2>
+  <ul>
+    <li><b>P1, P2, and P3 (the projects that get feedback):</b> submit as a <button type="button" class="term" data-pop="gdoc">Google Doc</button> so comments can land right on your lines. Share it set to "anyone with the link can comment," or use the Canvas Google Drive submission option.</li>
+    <li><b>The final report:</b> submit a <b>PDF</b> so your formatting, headings, and figures stay locked in place. (Export or "Save as PDF" from your writing app.) The final is graded, not marked up.</li>
+    <li><b>Notebook:</b> hit "Download everything," then submit that file as a <b>PDF</b> or a <b>Google Doc</b>. Don't retype it.</li>
+    <li><b>Name it</b> so it's easy to spot: <span class="note">Lastname-P1, Lastname-notebook.txt.</span></li>
+    <li>Not sure it went through? Re-open the AsULearn dropbox and confirm your submission is listed.</li>
+  </ul>
+
+  <div class="duebox">
+    <span class="lab">The one rule</span>
+    <p>When in doubt about a date, the <b>syllabus wins</b>. This page tells you <i>what</i> and <i>where</i>; the syllabus is the official <i>when</i>.</p>
+  </div>
+
+  <dialog class="pop" id="pop-gdoc"><h3>Why a Google Doc for drafts?</h3><p>The projects that get feedback (P1, P2, P3) come in as Google Docs so comments can attach to the exact line they're about, right where you're working. A PDF is a locked image of a page, great for a finished piece, but you can't leave a note on line 14 of one. Share your Doc so it can be commented on, then submit the link. Your <b>final report</b> is different: it's a PDF, because it's done.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-asulearn"><h3>AsULearn</h3><p>App State's online learning system, where this course lives: assignment dropboxes, the gradebook, and announcements. Every graded thing in this class is submitted through an AsULearn dropbox. (You may hear it called Moodle or Canvas depending on the year, same idea, same place.)</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-imrad"><h3>IMRAD</h3><p>The standard shape of a research report: <b>I</b>ntroduction, <b>M</b>ethods, <b>R</b>esults, <b>a</b>nd <b>D</b>iscussion, plus a title page, references, and an appendix holding your instrument and data. Your final report pulls P1, P2, and P3 together into this one format.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+</script>
+</body>
+</html>

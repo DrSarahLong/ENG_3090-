@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Research Question Strengthener</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --good:#2f7d54; --goodsoft:#e4f1e8; --warn:#a3541f; --warnsoft:#f6ebe1;
+    --tip:#3a5d86; --tipsoft:#e8eef6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --goodsoft:#14301f; --warn:#e0a878; --warnsoft:#2c2013; --tip:#9cc0e6; --tipsoft:#16202c; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #qs{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #qs h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #qs .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #qs .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #qs .sub{color:var(--muted); margin:6px 0 0}
+  #qs .honest{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:10px 14px; font-size:.9rem; margin:14px 0 18px}
+  #qs .starters{font-size:.9rem; color:var(--muted); margin:0 0 8px}
+  #qs .starters b{color:var(--accent)}
+  #qs textarea{width:100%; min-height:88px; background:var(--field); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:12px 14px; font:inherit; resize:vertical}
+  #qs textarea:focus{outline:3px solid var(--accent); outline-offset:1px; border-color:var(--accent)}
+  #qs .row{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px}
+  #qs button{font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:11px 18px; border:1px solid var(--accent); background:var(--accent); color:#fff}
+  #qs button.ghost{background:transparent; color:var(--accent); font-weight:600}
+  #qs button:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #qs .result{margin-top:20px}
+  #qs .verdict{display:flex; align-items:center; gap:12px; border-radius:12px; padding:14px 16px; font-weight:700; font-size:1.1rem; border:1px solid var(--line)}
+  #qs .verdict .dot{width:14px; height:14px; border-radius:50%; flex:none}
+  #qs .verdict.strong{background:var(--goodsoft); color:var(--good)} #qs .verdict.strong .dot{background:var(--good)}
+  #qs .verdict.getting{background:var(--warnsoft); color:var(--warn)} #qs .verdict.getting .dot{background:var(--warn)}
+  #qs .verdict.weak{background:var(--warnsoft); color:var(--warn)} #qs .verdict.weak .dot{background:var(--warn)}
+  #qs .verdict.empty{background:var(--card); color:var(--muted)} #qs .verdict.empty .dot{background:var(--muted)}
+  #qs .note{margin:10px 0 0; padding:12px 14px; border-radius:10px; border:1px solid var(--line)}
+  #qs .note h4{margin:0 0 3px; font-size:.98rem}
+  #qs .note p{margin:0; font-size:.94rem; color:var(--ink)}
+  #qs .note.hard{background:var(--warnsoft); border-left:4px solid var(--warn)}
+  #qs .note.tip{background:var(--tipsoft); border-left:4px solid var(--tip)}
+  #qs .note.good{background:var(--goodsoft); border-left:4px solid var(--good)}
+  #qs .note .kind{font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--muted)}
+  #qs .win{margin-top:12px; background:var(--goodsoft); border:1px solid var(--good); border-radius:12px; padding:14px 16px}
+  #qs .win button{margin-top:8px}
+  #qs .drafts{margin-top:26px; border-top:1px solid var(--line); padding-top:14px}
+  #qs .drafts h3{font-size:.82rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin:0 0 8px}
+  #qs .draft{display:flex; gap:10px; align-items:flex-start; padding:7px 0; border-bottom:1px dashed var(--line); font-size:.93rem}
+  #qs .draft .v{font-weight:800; color:var(--muted); flex:none}
+  #qs .pill{font-size:.7rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; border-radius:999px; padding:2px 8px; flex:none; align-self:center}
+  #qs .pill.strong{background:var(--goodsoft); color:var(--good)} #qs .pill.getting,#qs .pill.weak{background:var(--warnsoft); color:var(--warn)}
+  #qs .clearbtn{margin-top:10px}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="qs">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 2</p>
+    <h1>Research Question Strengthener</h1>
+    <p class="sub">Type a research question. It flags what's weak and helps you make it stronger, until it's ready to read to the class.</p>
+  </header>
+
+  <div class="honest">
+    <b>How it works.</b> Type your question and hit <b>Check</b>. You'll get a read on how strong it is, plus specific notes on what to fix. Revise it right in the box and check again. Each new draft is saved below, so you can watch your question get stronger. Everything stays on this computer.
+  </div>
+
+  <p class="starters">Strong questions often start: <b>How do…</b> · <b>Which…</b> · <b>To what extent…</b> · <b>In what ways…</b></p>
+  <label for="q" style="font-weight:600; display:block; margin-bottom:6px">Your research question</label>
+  <textarea id="q" placeholder="e.g., How do first-year students interpret the word &quot;natural&quot; on food labels?"></textarea>
+
+  <div class="row">
+    <button type="button" id="check">Check my question</button>
+    <button type="button" class="ghost" id="example">Try an example</button>
+  </div>
+
+  <div class="result" id="result" aria-live="polite"></div>
+
+  <div class="drafts" id="draftsWrap" hidden>
+    <h3>Your drafts (watch it get stronger)</h3>
+    <div id="drafts"></div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var result = document.getElementById('result');
+  var draftsWrap = document.getElementById('draftsWrap');
+  var draftsEl = document.getElementById('drafts');
+  var KEY = 'eng3090_qs_drafts';
+
+  function evaluate(raw){
+    var text = raw.trim();
+    if(!text) return {verdict:'empty'};
+    var low = text.toLowerCase();
+    var words = text.split(/\s+/);
+    var issues = [], positives = [];
+
+    var opinion = low.match(/\b(should|better|best|worse|worst|good|bad|evil|worth|deserves?|moral|immoral|right|wrong|ought|superior|inferior|amazing|terrible)\b/);
+    var isDefinition = /^\s*(what\s+is|what\s+are|what's|define|definition of)\b/.test(low) && !/\b(relationship|effect|impact|difference|connection|correlation|between|related|associat|role of|influence|predict)\b/.test(low);
+    var broad = low.match(/\b(everyone|everybody|all people|people in general|society|the world|the public|humanity|humans|mankind)\b/);
+    var yesno = /^\s*(is|are|do|does|did|can|could|will|would|has|have|had|was|were)\b/.test(low);
+    var opensWell = /^\s*(how|which|to what extent|in what ways|what factors|what patterns)\b/.test(low);
+    var hasNum = /\d/.test(text);
+    var hasQuote = /["'“”‘’]/.test(text);
+    var hasPlace = /\b(at|in|on|among|across)\s+[a-z0-9"“]/i.test(text);
+    var hasGroup = /\b(students?|freshmen|first[- ]?years?|workers?|farmers?|shoppers?|consumers?|customers?|patients?|residents?|users?|readers?|nurses?|doctors?|veterans?|women|men|children|teens?|adults?|parents?|voters?|employees?|clients?)\b/i.test(text);
+    var hasText = /\b(labels?|packaging|cartons?|eggs?|ads?|advertisements?|posts?|tweets?|policies|policy|manuals?|instructions?|websites?|web ?pages?|reports?|articles?|documents?|signs?|menus?|forms?|claims?|slogans?|captions?|emails?|packages?)\b/i.test(text);
+    var specificity = [hasNum, hasQuote, hasPlace, hasGroup, hasText].filter(Boolean).length;
+
+    if(opinion) issues.push({kind:'hard', k:'Opinion, not evidence', body:'The word "'+opinion[0]+'" asks for an opinion, not something you can observe or measure. Swap it for a specific outcome you could count, compare, or analyze. (Instead of "'+opinion[0]+'," what exactly would you look at?)'});
+    if(isDefinition) issues.push({kind:'hard', k:'This is a definition question', body:'Perfect for your literature review, but not your research question. Ask what you would go find out. Try: "How do [group] understand [term]?" or "Which [texts] [do what]?"'});
+    if(broad) issues.push({kind:'hard', k:'Too broad to study', body:'"'+broad[0]+'" is bigger than any study can reach. Name a specific group, place, or set of texts you could actually get to.'});
+    if(specificity === 0 && !isDefinition) issues.push({kind:'hard', k:'Who or what, exactly?', body:'Add a specific group (like "first-year students"), a place, or a set of texts (like "egg-carton labels") you could actually study.'});
+    if(words.length < 6) issues.push({kind:'hard', k:'Add specifics', body:'A strong question usually names both what you are studying and who or where. Give it more to grab onto.'});
+    if(yesno && !opinion) issues.push({kind:'tip', k:'Open up the yes/no', body:'As written, the answer is just yes or no. You will learn more if you start with "How," "Which," "To what extent," or "In what ways."'});
+    if(text.indexOf('?') < 0) issues.push({kind:'tip', k:'Make it a question', body:'Phrase it as an actual question, ending in a "?". It keeps you honest about what you are asking.'});
+
+    if(opensWell) positives.push('Starts open (how / which / to what extent), that invites real findings, not just yes or no.');
+    if(specificity >= 2) positives.push('Nicely scoped, you name what and who you are studying.');
+    if(hasText && hasGroup) positives.push('Fits more than one method, you could analyze the texts AND ask the people.');
+
+    var hard = issues.filter(function(i){ return i.kind==='hard'; }).length;
+    var verdict = hard === 0 ? 'strong' : (hard === 1 ? 'getting' : 'weak');
+    return {verdict:verdict, issues:issues, positives:positives};
+  }
+
+  var labels = {
+    strong:{t:'Strong enough to share', s:'You have cleared the common traps. Read this one to the class.'},
+    getting:{t:'Getting there', s:'One thing to fix, then you are ready. Work the note below and check again.'},
+    weak:{t:'Still weak, keep going', s:'Work the notes below and check again. That back-and-forth IS the skill.'},
+    empty:{t:'Type a question first', s:'Put a research question in the box above, then hit Check.'}
+  };
+
+  function render(ev, text){
+    var v = ev.verdict;
+    var html = '<div class="verdict '+v+'"><span class="dot"></span><div><div>'+labels[v].t+'</div><div style="font-weight:400;font-size:.9rem;margin-top:2px">'+labels[v].s+'</div></div></div>';
+    if(ev.positives && ev.positives.length){
+      ev.positives.forEach(function(p){ html += '<div class="note good"><span class="kind">Working</span><p>'+p+'</p></div>'; });
+    }
+    if(ev.issues){
+      ev.issues.sort(function(a,b){ return (a.kind==='hard'?0:1)-(b.kind==='hard'?0:1); });
+      ev.issues.forEach(function(i){
+        html += '<div class="note '+(i.kind==='hard'?'hard':'tip')+'"><span class="kind">'+(i.kind==='hard'?'Fix this':'Polish')+'</span><h4>'+i.k+'</h4><p>'+i.body+'</p></div>';
+      });
+    }
+    if(v === 'strong'){
+      html += '<div class="win"><b>🎉 Ready to share.</b> Copy this into Entry 2a of your notebook, and get ready to read it to the class.<br><button type="button" id="copyq">Copy my question</button></div>';
+    }
+    result.innerHTML = html;
+    var cb = document.getElementById('copyq');
+    if(cb) cb.addEventListener('click', function(){
+      try{ navigator.clipboard && navigator.clipboard.writeText(text); }catch(e){}
+      cb.textContent = 'Copied ✓';
+    });
+  }
+
+  function loadDrafts(){ try{ return JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){ return []; } }
+  function saveDrafts(d){ try{ localStorage.setItem(KEY, JSON.stringify(d.slice(-12))); }catch(e){} }
+  function renderDrafts(){
+    var d = loadDrafts();
+    if(!d.length){ draftsWrap.hidden = true; return; }
+    draftsWrap.hidden = false;
+    draftsEl.innerHTML = d.map(function(x,idx){
+      var pillText = {strong:'Strong', getting:'Getting there', weak:'Weak'}[x.verdict] || x.verdict;
+      return '<div class="draft"><span class="v">v'+(idx+1)+'</span><span style="flex:1">'+x.text.replace(/</g,'&lt;')+'</span><span class="pill '+x.verdict+'">'+pillText+'</span></div>';
+    }).join('');
+  }
+
+  function check(){
+    var text = q.value.trim();
+    var ev = evaluate(text);
+    render(ev, text);
+    if(ev.verdict !== 'empty'){
+      var d = loadDrafts();
+      if(!d.length || d[d.length-1].text !== text){ d.push({text:text, verdict:ev.verdict}); saveDrafts(d); renderDrafts(); }
+    }
+  }
+
+  document.getElementById('check').addEventListener('click', check);
+  document.getElementById('example').addEventListener('click', function(){ q.value = 'Is organic food better?'; q.focus(); check(); });
+  q.addEventListener('keydown', function(e){ if((e.metaKey||e.ctrlKey) && e.key === 'Enter'){ check(); } });
+
+  renderDrafts();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Code These Labels</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9; --good:#2f7d54;
+    --N:#2f7d54; --Nsoft:#e4f1e8; --V:#1f6b86; --Vsoft:#e7f1f5; --D:#a3771f; --Dsoft:#f6f0e1; --E:#7a4da3; --Esoft:#efe8f6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598;
+      --N:#7ac598; --Nsoft:#14301f; --V:#7fb9d4; --Vsoft:#16303b; --D:#d8b168; --Dsoft:#2b2513; --E:#c3a3e0; --Esoft:#231a30; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #cc{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #cc h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #cc .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #cc .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #cc .sub{color:var(--muted); margin:6px 0 0}
+  #cc .how{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:14px}
+  #cc .how p{margin:.3rem 0}
+  #cc .key{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+  #cc .k{font-size:.8rem; font-weight:700; border-radius:999px; padding:3px 10px; border:1px solid var(--line)}
+  #cc .k.N{background:var(--Nsoft); color:var(--N)} #cc .k.V{background:var(--Vsoft); color:var(--V)} #cc .k.D{background:var(--Dsoft); color:var(--D)} #cc .k.E{background:var(--Esoft); color:var(--E)}
+  #cc .card{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:14px 16px; margin:12px 0}
+  #cc .tag{font-size:1.1rem; font-weight:600; margin-bottom:10px}
+  #cc .codes{display:flex; gap:7px; flex-wrap:wrap}
+  #cc .code{font:inherit; font-weight:700; font-size:.85rem; cursor:pointer; border-radius:8px; padding:7px 11px; border:1.5px solid var(--line); background:var(--field); color:var(--ink)}
+  #cc .code:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #cc .code.pick{border-width:2px}
+  #cc .code[data-c="N"].pick{border-color:var(--N); background:var(--Nsoft); color:var(--N)}
+  #cc .code[data-c="V"].pick{border-color:var(--V); background:var(--Vsoft); color:var(--V)}
+  #cc .code[data-c="D"].pick{border-color:var(--D); background:var(--Dsoft); color:var(--D)}
+  #cc .code[data-c="E"].pick{border-color:var(--E); background:var(--Esoft); color:var(--E)}
+  #cc .ans{margin-top:10px; font-size:.92rem; color:var(--muted); display:none}
+  #cc .card.revealed .ans{display:block}
+  #cc .ans b{color:var(--ink)}
+  #cc .revealbtn{font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:12px 20px; border:1px solid var(--accent); background:var(--accent); color:#fff; margin-top:8px}
+  #cc .revealbtn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #cc .tally{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:16px; display:none}
+  #cc .tally.show{display:block}
+  #cc .tally h3{margin:.1rem 0 .5rem; font-size:1.08rem}
+  #cc .bar{display:flex; align-items:center; gap:8px; margin:.35rem 0}
+  #cc .bar .lab{width:200px; font-size:.9rem; font-weight:600}
+  #cc .bar .fill{height:16px; border-radius:6px}
+  #cc .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #cc .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  #cc .sech{font-family:Georgia,"Iowan Old Style",serif; font-size:1.25rem; margin:22px 0 8px}
+  #cc .build{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:8px 0}
+  #cc .samples{margin:.4rem 0 .8rem; padding-left:1.1rem}
+  #cc .samples li{margin:.3rem 0; font-weight:600}
+  #cc .blab{display:block; font-weight:600; margin:6px 0 5px}
+  #cc .build textarea{width:100%; min-height:70px; background:var(--field); color:var(--ink); border:1px solid var(--line); border-radius:9px; padding:10px 12px; font:inherit; resize:vertical}
+  #cc .build textarea:focus{outline:3px solid var(--accent); outline-offset:1px}
+  #cc .codebook{margin-top:14px; border-top:1px solid var(--line); padding-top:12px}
+  #cc .codebook table{width:100%; border-collapse:collapse; font-size:.92rem}
+  #cc .codebook th, #cc .codebook td{text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top}
+  #cc .codebook th{font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted)}
+  #cc [hidden]{display:none}
+  @media (max-width:560px){ #cc .bar .lab{width:130px} }
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="cc">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 6, Tuesday</p>
+    <h1>Code These Labels</h1>
+    <p class="sub">Last week you noticed patterns. Now you name them. This is <button type="button" class="term" data-pop="coding">coding</button>: tagging each text by the move it's making, so the pattern becomes countable.</p>
+  </header>
+
+  <div class="how">
+    <p><b>On your own, in two moves:</b> first name your own <button type="button" class="term" data-pop="code">codes</button> (Step 1), then use a shared <button type="button" class="term" data-pop="codebook">codebook</button> to tag six taglines and see which move runs the show (Step 2).</p>
+    <div class="key">
+      <span class="k N">N · Appeal to nature</span>
+      <span class="k V">V · Vague virtue words</span>
+      <span class="k D">D · Manufactured distrust</span>
+      <span class="k E">E · Emotion / family</span>
+    </div>
+  </div>
+
+  <h2 class="sech">Step 1 · Build the codes yourself</h2>
+  <div class="build">
+    <p>These taglines keep making the same handful of moves. Before you borrow anyone's labels, name your own. Read these four and jot 2 to 4 categories you'd use:</p>
+    <ul class="samples">
+      <li>"Gathered the way nature intended."</li>
+      <li>"Real, wholesome goodness in every bite."</li>
+      <li>"No funny business, just honest eggs."</li>
+      <li>"The eggs your family deserves."</li>
+    </ul>
+    <label class="blab" for="mycodes">The categories I'd name:</label>
+    <textarea id="mycodes" placeholder="e.g., nature words, feel-good words, digs at the competition, family feelings..."></textarea>
+    <button type="button" class="revealbtn" id="showbook">Compare with a model codebook</button>
+    <div class="codebook" id="codebook" hidden>
+      <h3>A model codebook (one good version)</h3>
+      <table>
+        <tr><th>Code</th><th>Definition</th><th>Example</th></tr>
+        <tr><td><b>N · Appeal to nature</b></td><td>Claims that "natural" or "farm fresh" means better or safer</td><td>"the way nature intended"</td></tr>
+        <tr><td><b>V · Vague virtue words</b></td><td>Warm words you can't measure or check</td><td>"real, wholesome goodness"</td></tr>
+        <tr><td><b>D · Manufactured distrust</b></td><td>Implies other brands are dishonest, without naming one</td><td>"no funny business"</td></tr>
+        <tr><td><b>E · Emotion / family</b></td><td>Moves feelings about loved ones onto the product</td><td>"the eggs your family deserves"</td></tr>
+      </table>
+      <p style="color:var(--muted);font-size:.9rem;margin-top:10px">Yours won't match word-for-word, and that's fine, there's no single right codebook. What matters is that each code is clear enough to apply the same way every time.</p>
+    </div>
+  </div>
+
+  <h2 class="sech">Step 2 · Now code with this codebook</h2>
+
+  <div class="card" data-card data-answer="N">
+    <div class="tag">"Gathered the way nature intended."</div>
+    <div class="codes"><button type="button" class="code" data-c="N">N</button><button type="button" class="code" data-c="V">V</button><button type="button" class="code" data-c="D">D</button><button type="button" class="code" data-c="E">E</button></div>
+    <div class="ans"><b>N · Appeal to nature.</b> "The way nature intended" tells you natural equals better, with no evidence.</div>
+  </div>
+
+  <div class="card" data-card data-answer="V">
+    <div class="tag">"Real, wholesome goodness in every bite."</div>
+    <div class="codes"><button type="button" class="code" data-c="N">N</button><button type="button" class="code" data-c="V">V</button><button type="button" class="code" data-c="D">D</button><button type="button" class="code" data-c="E">E</button></div>
+    <div class="ans"><b>V · Vague virtue words.</b> "Real," "wholesome," "goodness": warm words you can't measure or check.</div>
+  </div>
+
+  <div class="card" data-card data-answer="D">
+    <div class="tag">"No funny business, just honest eggs."</div>
+    <div class="codes"><button type="button" class="code" data-c="N">N</button><button type="button" class="code" data-c="V">V</button><button type="button" class="code" data-c="D">D</button><button type="button" class="code" data-c="E">E</button></div>
+    <div class="ans"><b>D · Manufactured distrust.</b> Implies the other brands <em>are</em> up to funny business, without naming one.</div>
+  </div>
+
+  <div class="card" data-card data-answer="E">
+    <div class="tag">"The eggs your family deserves."</div>
+    <div class="codes"><button type="button" class="code" data-c="N">N</button><button type="button" class="code" data-c="V">V</button><button type="button" class="code" data-c="D">D</button><button type="button" class="code" data-c="E">E</button></div>
+    <div class="ans"><b>E · Emotion / family.</b> Says nothing about the eggs; moves your feelings about your family onto them.</div>
+  </div>
+
+  <div class="card" data-card data-answer="N">
+    <div class="tag">"100% all-natural, farm fresh."</div>
+    <div class="codes"><button type="button" class="code" data-c="N">N</button><button type="button" class="code" data-c="V">V</button><button type="button" class="code" data-c="D">D</button><button type="button" class="code" data-c="E">E</button></div>
+    <div class="ans"><b>N · Appeal to nature.</b> "All-natural" and "farm fresh" are the nature move again, and both are unregulated.</div>
+  </div>
+
+  <div class="card" data-card data-answer="D">
+    <div class="tag">"Nothing to hide, unlike the other guys."</div>
+    <div class="codes"><button type="button" class="code" data-c="N">N</button><button type="button" class="code" data-c="V">V</button><button type="button" class="code" data-c="D">D</button><button type="button" class="code" data-c="E">E</button></div>
+    <div class="ans"><b>D · Manufactured distrust.</b> Even more direct: it names "the other guys" as the ones with something to hide.</div>
+  </div>
+
+  <button type="button" class="revealbtn" id="reveal">Reveal the codebook &amp; counts</button>
+
+  <div class="tally" id="tally">
+    <h3>What the counts show</h3>
+    <div class="bar"><span class="lab">N · Appeal to nature</span><span class="fill" style="width:120px;background:var(--N)"></span> 2</div>
+    <div class="bar"><span class="lab">D · Manufactured distrust</span><span class="fill" style="width:120px;background:var(--D)"></span> 2</div>
+    <div class="bar"><span class="lab">V · Vague virtue words</span><span class="fill" style="width:60px;background:var(--V)"></span> 1</div>
+    <div class="bar"><span class="lab">E · Emotion / family</span><span class="fill" style="width:60px;background:var(--E)"></span> 1</div>
+    <p style="margin-top:12px">Now the move that separates coding from just <button type="button" class="term" data-pop="content">counting</button>: <b>so what?</b> Two moves dominate, selling "nature" and stoking suspicion of everyone else. Neither is a claim you could check. The pattern isn't random; it's a strategy, and it works on the shopper with the least time to think. That sentence, backed by your counts, is the heart of your analysis.</p>
+  </div>
+
+  <dialog class="pop" id="pop-coding"><h3>Coding</h3><p>Tagging each text by the move it makes (an appeal, a framing, a recurring word) so patterns become countable instead of just a vibe. It turns "these labels feel manipulative" into "11 of 15 use an appeal to nature." (Johnny Saldaña's <em>Coding Manual for Qualitative Researchers</em> is the standard guide.)</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-code"><h3>A code</h3><p>One named category in your analysis, like "appeal to nature." A good code has a short definition and a clear example, so you (and anyone else) apply it the same way every time. Codes are the buckets you sort your texts into.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-codebook"><h3>Codebook</h3><p>Your full list of codes, each with its definition and an example. It's what makes your analysis <em>systematic</em> rather than just your impression: hand your codebook to a classmate and they should be able to tag the same texts and land close to your results. (That's called intercoder reliability.)</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-content"><h3>Content analysis</h3><p>The counting cousin of discourse analysis: how often each code shows up across your corpus. Discourse analysis asks "how is this working?"; content analysis asks "how often, and where?" Strong projects use both. (Klaus Krippendorff's <em>Content Analysis</em> is the standard handbook.)</p><form method="dialog"><button>Got it</button></form></dialog>
+
+</div>
+
+<script>
+(function(){
+  document.querySelectorAll('#cc [data-card]').forEach(function(card){
+    var btns = card.querySelectorAll('.code');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){ x.classList.remove('pick'); });
+        b.classList.add('pick');
+      });
+    });
+  });
+  document.getElementById('reveal').addEventListener('click', function(){
+    document.querySelectorAll('#cc [data-card]').forEach(function(c){ c.classList.add('revealed'); });
+    document.getElementById('tally').classList.add('show');
+    document.getElementById('tally').scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+  var showbook = document.getElementById('showbook');
+  if(showbook){ showbook.addEventListener('click', function(){ document.getElementById('codebook').hidden = false; showbook.hidden = true; }); }
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+})();
+</script>
+</body>
+</html>

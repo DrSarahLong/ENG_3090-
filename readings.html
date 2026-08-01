@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Readings · ENG 3090</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --gold:#a3771f; --navbg:#ffffffee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --gold:#d8b168; --navbg:#12151aee; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  a{color:var(--accent)}
+  .nav{position:sticky; top:0; z-index:20; background:var(--navbg); backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
+  .nav .inner{max-width:900px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; gap:8px 18px; flex-wrap:wrap}
+  .nav .brand{font-family:Georgia,"Iowan Old Style",serif; font-weight:700; font-size:1.05rem; color:var(--ink); text-decoration:none; margin-right:auto}
+  .nav .brand small{display:block; font-family:system-ui,sans-serif; font-weight:600; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+  .nav a.lnk{color:var(--ink); text-decoration:none; font-weight:600; font-size:.93rem; padding:4px 2px; border-bottom:2px solid transparent}
+  .nav a.lnk:hover{border-bottom-color:var(--accent); color:var(--accent)}
+  .nav a.lnk[aria-current="page"]{color:var(--accent); border-bottom-color:var(--accent)}
+  .nav a.lms{background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:.9rem; border-radius:8px; padding:8px 14px; white-space:nowrap}
+
+  .wrap{max-width:900px; margin:0 auto; padding:0 20px 70px}
+  .masthead{padding:34px 0 14px; border-bottom:2px solid var(--ink); margin-bottom:16px}
+  .masthead .kick{font-size:.78rem; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); font-weight:800; margin:0 0 6px}
+  .masthead h1{font-family:Georgia,"Iowan Old Style",serif; font-size:2rem; margin:0 0 6px}
+  .masthead p{color:var(--muted); margin:4px 0 0; max-width:70ch}
+
+  .howto{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:16px 0}
+  .howto b{color:var(--accent)}
+
+  .phase{font-family:Georgia,"Iowan Old Style",serif; font-size:1.15rem; color:var(--accent); margin:26px 0 6px; padding-bottom:4px; border-bottom:1px solid var(--line)}
+
+  .wk{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:10px 0}
+  .wktop{display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px; margin-bottom:8px}
+  .wktop .num{font-weight:800; color:var(--accent); font-size:.95rem}
+  .wktop .topic{color:var(--muted); font-weight:600; font-size:.9rem}
+  .reading{padding:8px 0; border-top:1px dashed var(--line)}
+  .reading:first-of-type{border-top:0; padding-top:0}
+  .reading .title{font-weight:700; font-size:1.02rem}
+  .reading .cite{color:var(--muted); font-size:.86rem; margin-top:1px}
+  .reading .why{margin:4px 0 0; font-size:.93rem}
+  .reading .oa{display:inline-block; font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--gold); border:1px solid var(--gold); border-radius:999px; padding:0 7px; margin-left:6px; vertical-align:1px}
+  footer{color:var(--muted); font-size:.9rem; margin-top:28px; padding-top:16px; border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="inner">
+      <a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+      <a class="lnk" href="index.html">Home</a>
+      <a class="lnk" href="syllabus.html">Syllabus</a>
+      <a class="lnk" href="schedule.html">Schedule</a>
+      <a class="lnk" href="projects.html">Major Project Rubrics</a>
+      <a class="lnk" href="readings.html" aria-current="page">Readings</a>
+      <a class="lnk" href="research-notebook.html">Notebook</a>
+      <a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <header class="masthead">
+      <p class="kick">One short read a week</p>
+      <h1>Readings</h1>
+      <p>The theory behind the doing. Each week has one short piece (a couple have two) that grounds that week's concept in the field. Every one is free and open, no textbook to buy. If you read one thing a week, read the one that catches you.</p>
+    </header>
+
+    <div class="howto">
+      <b>How to use these.</b> They're deliberately short and readable, the field's real voices, not dense theory. Read before or after that week's class; either works. They give you the <i>why</i> behind the tools and moves you're practicing. All links open freely (no login).
+    </div>
+
+    <p class="phase">Foundations &amp; the literature review</p>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 1</span><span class="topic">What research means in RTW + our social-justice lens</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://open.lib.umn.edu/techwriting/chapter/1-5-the-rhetorical-work-of-research-and-citation/" target="_blank" rel="noopener">The Rhetorical Work of Research and Citation</a> <span class="oa">Open</span></div>
+        <div class="cite">Brigitte Mussack · <i>Introduction to Technical and Professional Communication</i> (U. Minnesota OER), 2022</div>
+        <p class="why">Frames research as rhetorical work inside technical communication, exactly how the two halves of this course's title fit together.</p>
+      </div>
+      <div class="reading">
+        <div class="title"><a href="https://open.lib.umn.edu/techwriting/chapter/2-1-diversity-equity-and-inclusion/" target="_blank" rel="noopener">Diversity, Equity, and Inclusion</a> <span class="oa">Open</span></div>
+        <div class="cite">Brigitte Mussack · <i>Introduction to Technical and Professional Communication</i> (U. Minnesota OER), 2022</div>
+        <p class="why">A student-level introduction to social justice as a lens in technical communication, the frame we bring to every week.</p>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 2</span><span class="topic">Asking a researchable question</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://ohiostate.pressbooks.pub/choosingsources/chapter/narrowing-a-topic/" target="_blank" rel="noopener">Narrowing a Topic</a> <span class="oa">Open</span></div>
+        <div class="cite">Ohio State University Libraries · <i>Choosing &amp; Using Sources</i> (OER), 2016</div>
+        <p class="why">A concrete walkthrough of turning a big, vague topic into a focused, answerable research question.</p>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 3</span><span class="topic">Searching &amp; evaluating sources</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://hapgood.us/2019/06/19/sift-the-four-moves/" target="_blank" rel="noopener">SIFT (The Four Moves)</a> <span class="oa">Open</span></div>
+        <div class="cite">Mike Caulfield · <i>Hapgood</i>, 2019</div>
+        <p class="why">The quick, canonical method (Stop, Investigate, Find better coverage, Trace) for deciding whether a source is trustworthy.</p>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 4</span><span class="topic">Synthesis: sources in conversation</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://opentext.uoregon.edu/writingasinquiry/chapter/synthesizing-multiple-perspectives/" target="_blank" rel="noopener">Synthesizing Multiple Perspectives</a> <span class="oa">Open</span></div>
+        <div class="cite">Kara Clevinger &amp; Stephen Rust · <i>Writing as Inquiry</i> (U. Oregon OER)</div>
+        <p class="why">The difference between summary and synthesis, and how to put sources in conversation instead of listing them one by one.</p>
+      </div>
+    </div>
+
+    <p class="phase">Qualitative analysis</p>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 5</span><span class="topic">Qualitative research design</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://open.oregonstate.education/qualresearchmethods/chapter/ch2-research-design/" target="_blank" rel="noopener">Research Design</a> <span class="oa">Open</span></div>
+        <div class="cite">Allison Hurst · <i>Introduction to Qualitative Research Methods</i> (Oregon State OER), 2023</div>
+        <p class="why">How a qualitative study gets designed, and how you choose an approach that fits your question, before diving into a method.</p>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 6</span><span class="topic">Content analysis in depth</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://www.publichealth.columbia.edu/research/population-health-methods/content-analysis" target="_blank" rel="noopener">Content Analysis Method and Examples</a> <span class="oa">Open</span></div>
+        <div class="cite">Columbia Mailman School of Public Health</div>
+        <p class="why">A short, plain-language how-to on coding text for words, themes, and concepts, the method behind your P2.</p>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 7</span><span class="topic">Digital text-analysis tools</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://programminghistorian.org/en/lessons/corpus-analysis-voyant-tools" target="_blank" rel="noopener">Corpus Analysis with Voyant Tools</a> <span class="oa">Open</span></div>
+        <div class="cite">Silvia Gutiérrez De la Torre · <i>Programming Historian</i>, 2022</div>
+        <p class="why">A hands-on, no-install tutorial for building a corpus and reading text at a distance, the same tool you'll use this week.</p>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 8</span><span class="topic">Writing up qualitative findings</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://viva.pressbooks.pub/sociology-research-methods/chapter/11-3-writing-up-qualitative-results/" target="_blank" rel="noopener">Writing Up Qualitative Results</a> <span class="oa">Open</span></div>
+        <div class="cite">Victor Tan Chen et al. · <i>The Craft of Sociological Research</i> (OER)</div>
+        <p class="why">How to organize a findings section by theme and weave in quotes, instead of dumping raw data on the reader.</p>
+      </div>
+    </div>
+
+    <p class="phase">Ethics &amp; quantitative research</p>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 9</span><span class="topic">Research ethics &amp; human subjects</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://hpod.law.harvard.edu/pdf/Belmont-Report-Plain-Language-Summary.pdf" target="_blank" rel="noopener">The Belmont Report: Plain-Language Summary</a> <span class="oa">Open</span></div>
+        <div class="cite">U.S. National Commission (plain-language version, Harvard HPOD)</div>
+        <p class="why">The three principles behind all human-subjects research, respect for persons, beneficence, justice, in jargon-free English.</p>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 10</span><span class="topic">Designing surveys &amp; interviews</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://www.pewresearch.org/writing-survey-questions/" target="_blank" rel="noopener">Writing Survey Questions</a> <span class="oa">Open</span></div>
+        <div class="cite">Pew Research Center</div>
+        <p class="why">Real examples of how wording, order, and double-barreled questions skew answers, from the people who do this for a living.</p>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 11</span><span class="topic">Sampling &amp; who gets represented</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://www.pewresearch.org/short-reads/2023/05/08/when-surveying-small-populations-some-approaches-are-more-inclusive-than-others/" target="_blank" rel="noopener">When Surveying Small Populations, Some Approaches Are More Inclusive</a> <span class="oa">Open</span></div>
+        <div class="cite">Andrew Mercer &amp; Arnold Lau · Pew Research Center, 2023</div>
+        <p class="why">A non-technical look at how your sampling method decides who gets represented, and who gets left out.</p>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 12</span><span class="topic">Analyzing &amp; visualizing data</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://handsondataviz.org/how-to-lie-with-charts.html" target="_blank" rel="noopener">How to Lie with Charts</a> <span class="oa">Open</span></div>
+        <div class="cite">Jack Dougherty &amp; Ilya Ilyankou · <i>Hands-On Data Visualization</i></div>
+        <p class="why">Truncated axes and other tricks that mislead, so you learn to make honest charts by spotting the dishonest ones.</p>
+      </div>
+    </div>
+
+    <p class="phase">Reporting &amp; presenting</p>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 13</span><span class="topic">IMRAD &amp; document design</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://writingcenter.gmu.edu/writing-resources/imrad/writing-an-imrad-report" target="_blank" rel="noopener">Writing an IMRaD Report</a> <span class="oa">Open</span></div>
+        <div class="cite">George Mason University Writing Center</div>
+        <p class="why">Why research reports use Introduction, Methods, Results, and Discussion, and what each section is for.</p>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Week 14</span><span class="topic">Revision</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://writingcenter.unc.edu/tips-and-tools/revising-drafts/" target="_blank" rel="noopener">Revising Drafts</a> <span class="oa">Open</span></div>
+        <div class="cite">UNC Chapel Hill Writing Center</div>
+        <p class="why">The line between revising and proofreading, and why you fix the big things (focus, organization) first.</p>
+      </div>
+      <div class="reading">
+        <div class="title"><a href="https://writing.wisc.edu/handbook/process/reverseoutlines/" target="_blank" rel="noopener">Reverse Outlines</a> <span class="oa">Open</span></div>
+        <div class="cite">UW-Madison Writing Center</div>
+        <p class="why">The exact technique from this week's tool: outline what you actually wrote to test whether your structure holds.</p>
+      </div>
+    </div>
+
+    <div class="wk">
+      <div class="wktop"><span class="num">Weeks 15&ndash;16</span><span class="topic">Presenting your research</span></div>
+      <div class="reading">
+        <div class="title"><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0030077" target="_blank" rel="noopener">Ten Simple Rules for Making Good Oral Presentations</a> <span class="oa">Open</span></div>
+        <div class="cite">Philip E. Bourne · <i>PLOS Computational Biology</i>, 2007</div>
+        <p class="why">Ten quick, memorable rules (know your audience, less is more, tell a story, practice) that turn straight into a good talk.</p>
+      </div>
+    </div>
+
+    <footer>
+      ENG 3090 · Research Methods in Rhetoric &amp; Technical Writing · Appalachian State University · Fall 2026<br>
+      All readings are open-access. If a link ever breaks, let me know and I'll fix it.
+    </footer>
+
+  </div>
+</body>
+</html>

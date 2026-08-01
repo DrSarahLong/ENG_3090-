@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schedule &amp; Weekly Work · ENG 3090</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --due:#7a3b1f; --duesoft:#f6ebe1; --good:#2f7d54; --goodsoft:#e4f1e8; --navbg:#ffffffee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --due:#e0a878; --duesoft:#2c2013; --good:#7ac598; --goodsoft:#14301f; --navbg:#12151aee; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  a{color:var(--accent)}
+  .nav{position:sticky; top:0; z-index:20; background:var(--navbg); backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
+  .nav .inner{max-width:940px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; gap:8px 18px; flex-wrap:wrap}
+  .nav .brand{font-family:Georgia,"Iowan Old Style",serif; font-weight:700; font-size:1.05rem; color:var(--ink); text-decoration:none; margin-right:auto}
+  .nav .brand small{display:block; font-family:system-ui,sans-serif; font-weight:600; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+  .nav a.lnk{color:var(--ink); text-decoration:none; font-weight:600; font-size:.93rem; padding:4px 2px; border-bottom:2px solid transparent}
+  .nav a.lnk:hover{border-bottom-color:var(--accent); color:var(--accent)}
+  .nav a.lnk[aria-current="page"]{color:var(--accent); border-bottom-color:var(--accent)}
+  .nav a.lms{background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:.9rem; border-radius:8px; padding:8px 14px; white-space:nowrap}
+  .nav a.lms:hover{filter:brightness(1.06)}
+
+  .wrap{max-width:940px; margin:0 auto; padding:0 20px 70px}
+  .masthead{padding:34px 0 14px; border-bottom:2px solid var(--ink); margin-bottom:16px}
+  .masthead .kick{font-size:.78rem; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); font-weight:800; margin:0 0 6px}
+  .masthead h1{font-family:Georgia,"Iowan Old Style",serif; font-size:2rem; margin:0 0 6px}
+  .masthead p{color:var(--muted); margin:4px 0 0; max-width:70ch}
+
+  .deadlines{background:var(--duesoft); border:1px solid var(--line); border-left:5px solid var(--due); border-radius:12px; padding:14px 18px; margin:16px 0}
+  .deadlines h2{margin:0 0 8px; font-size:.82rem; letter-spacing:.08em; text-transform:uppercase; color:var(--due)}
+  .deadlines ol{margin:0; padding-left:1.3rem}
+  .deadlines li{margin:5px 0; font-size:.96rem}
+  .deadlines li b{color:var(--ink)}
+  .deadlines .d{color:var(--due); font-weight:800; font-variant-numeric:tabular-nums}
+  .deadlines .fmt{color:var(--muted); font-size:.85rem}
+
+  .zoombox{background:var(--accent-soft); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:14px 16px; margin:16px 0}
+  .zoombox b{color:var(--accent)}
+  .zoombox a.z{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:8px; padding:8px 14px; margin-top:8px}
+
+  .legend{display:flex; flex-wrap:wrap; gap:8px 18px; font-size:.88rem; color:var(--muted); margin:14px 0 6px}
+  .legend b{color:var(--accent)}
+
+  .weeks{display:flex; flex-direction:column; gap:10px; margin-top:6px}
+  .wk{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:13px 16px}
+  .wk.hasdue{border-left:5px solid var(--due)}
+  .wktop{display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px}
+  .wktop .num{font-weight:800; color:var(--accent); font-size:1.05rem}
+  .wktop .dates{color:var(--muted); font-weight:600; font-size:.85rem; font-variant-numeric:tabular-nums}
+  .wktop .badges{margin-left:auto; display:flex; flex-wrap:wrap; gap:5px; justify-content:flex-end}
+  .badge{display:inline-block; font-size:.76rem; font-weight:800; border-radius:999px; padding:2px 10px}
+  .badge.big{background:var(--duesoft); color:var(--due); border:1px solid var(--due)}
+  .badge.note{background:var(--goodsoft); color:var(--good); border:1px solid var(--good)}
+  .wk .focus{margin:6px 0 0; font-weight:600}
+  .days{display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:9px}
+  @media (max-width:560px){ .days{grid-template-columns:1fr} }
+  .day{background:var(--field); border:1px solid var(--line); border-radius:9px; padding:8px 11px}
+  .day .kind{display:block; font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); font-weight:700; margin-bottom:2px}
+  .day a{font-weight:700; text-decoration:none}
+  .day a:hover{text-decoration:underline}
+  .day a + a{display:block; margin-top:3px}
+  .day .off{color:var(--muted); font-style:italic}
+
+  .anchors{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:20px 0}
+  .anchors b{color:var(--accent)}
+  footer{color:var(--muted); font-size:.9rem; margin-top:26px; padding-top:16px; border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="inner">
+      <a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+      <a class="lnk" href="index.html">Home</a>
+      <a class="lnk" href="syllabus.html">Syllabus</a>
+      <a class="lnk" href="schedule.html" aria-current="page">Schedule</a>
+      <a class="lnk" href="projects.html">Major Project Rubrics</a>
+      <a class="lnk" href="readings.html">Readings</a>
+      <a class="lnk" href="research-notebook.html">Notebook</a>
+      <a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <header class="masthead">
+      <p class="kick">Fall 2026 · Aug 18 &ndash; Dec 1</p>
+      <h1>Schedule &amp; Weekly Work</h1>
+      <p>Every week in one place. Tuesdays we meet on campus in Boone. From Week 3 on, Thursdays are remote Zoom work days, we still meet, just online. Click any tool or module to open it.</p>
+    </header>
+
+    <div class="deadlines">
+      <h2>⚑ Key deadlines, in order</h2>
+      <ol>
+        <li><span class="d">Week 5</span> &middot; <b>P1: Literature Review</b> <span class="fmt">(Google Doc)</span></li>
+        <li><span class="d">Week 8</span> &middot; <b>P2: Discourse Analysis</b> <span class="fmt">(Google Doc)</span> + <b>Notebook check-in #1</b></li>
+        <li><span class="d">Week 9</span> &middot; <b>CITI certificate</b></li>
+        <li><span class="d">Sun, Nov 8</span> &middot; <b>P3: Quantitative Analysis</b> <span class="fmt">(Google Doc)</span></li>
+        <li><span class="d">Sun, Nov 22</span> &middot; <b>Final IMRAD report</b> <span class="fmt">(PDF)</span></li>
+        <li><span class="d">Week 15</span> &middot; <b>Notebook check-in #2</b> <span class="fmt">(PDF or Google Doc)</span></li>
+      </ol>
+    </div>
+
+    <div class="zoombox">
+      <p><b>Thursdays are Zoom work days (Week 3 on).</b> We still meet, just virtually. I open our Zoom Room with a short orientation to that day's module, then you work through it on your own while I stay on Zoom for questions. We come back together at the end for anything unresolved. You can pop in and out as you need, and I expect everyone to join. <span style="color:var(--muted)">(Weeks 1&ndash;2 we meet on campus both days.)</span></p>
+      <a class="z" href="https://appstate.zoom.us/my/drsarahlong" target="_blank" rel="noopener">Dr. Long's Zoom Room &rarr;</a>
+    </div>
+
+    <div class="legend">
+      <span><b>Tuesday</b> = on campus</span>
+      <span><b>Thursday</b> = Zoom work day (module)</span>
+      <span>Weeks 1&ndash;2: both days on campus</span>
+    </div>
+
+    <div class="weeks">
+
+      <article class="wk">
+        <div class="wktop"><span class="num">Week 1</span><span class="dates">Aug 18 &amp; 20</span></div>
+        <p class="focus">What "research" means in RTW; your professional goals</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="syllabus-scavenger.html">Syllabus Scavenger</a></div>
+          <div class="day"><span class="kind">Thu · on campus</span><a href="research-notebook.html">Start your Notebook</a></div>
+        </div>
+      </article>
+
+      <article class="wk">
+        <div class="wktop"><span class="num">Week 2</span><span class="dates">Aug 25 &amp; 27</span></div>
+        <p class="focus">Asking a researchable question; lock your topic</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="card-sort-questions.html">Card-Sort Questions</a><a href="question-strengthener.html">Question Strengthener</a></div>
+          <div class="day"><span class="kind">Thu · on campus</span><a href="module-w2-topic-lock.html">Lock Your Topic</a></div>
+        </div>
+      </article>
+
+      <article class="wk">
+        <div class="wktop"><span class="num">Week 3</span><span class="dates">Sep 1 &amp; 3</span></div>
+        <p class="focus">The literature review: searching &amp; evaluating sources</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="source-triage.html">Source Triage</a></div>
+          <div class="day"><span class="kind">Thu · Zoom</span><a href="module-w3-find-sources.html">Find Sources</a></div>
+        </div>
+      </article>
+
+      <article class="wk">
+        <div class="wktop"><span class="num">Week 4</span><span class="dates">Sep 8 &amp; 10</span></div>
+        <p class="focus">Working with sources (WorkNets) + synthesis</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="synthesis-conversation.html">Synthesis Conversation</a></div>
+          <div class="day"><span class="kind">Thu · Zoom</span><a href="module-w4-compose.html">Compose the Lit Review</a></div>
+        </div>
+      </article>
+
+      <article class="wk hasdue">
+        <div class="wktop"><span class="num">Week 5</span><span class="dates">Sep 15 &amp; 17</span><span class="badges"><span class="badge big">P1 due</span></span></div>
+        <p class="focus">Qualitative design + discourse/content analysis intro</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="analyze-the-label.html">Analyze the Label</a></div>
+          <div class="day"><span class="kind">Thu · Zoom</span><a href="module-w5-analyze.html">Design Your Analysis</a></div>
+        </div>
+      </article>
+
+      <article class="wk">
+        <div class="wktop"><span class="num">Week 6</span><span class="dates">Sep 22 &amp; 24</span></div>
+        <p class="focus">Discourse/content analysis in depth</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="code-the-corpus.html">Code the Corpus</a></div>
+          <div class="day"><span class="kind">Thu · Zoom</span><a href="module-w6-code.html">Build Your Codebook</a></div>
+        </div>
+      </article>
+
+      <article class="wk">
+        <div class="wktop"><span class="num">Week 7</span><span class="dates">Sep 29 &amp; Oct 1</span></div>
+        <p class="focus">Tools: AntConc, Voyant, QDAMiner, AI, Sheets</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="read-the-output.html">Read the Output</a></div>
+          <div class="day"><span class="kind">Thu · Zoom</span><a href="module-w7-tools.html">The Tools</a></div>
+        </div>
+      </article>
+
+      <article class="wk hasdue">
+        <div class="wktop"><span class="num">Week 8</span><span class="dates">Oct 6 &amp; 8</span><span class="badges"><span class="badge big">P2 due</span><span class="badge note">Notebook check-in #1</span></span></div>
+        <p class="focus">Writing up your qualitative analysis</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue</span><span class="off">Fall Break, no class</span></div>
+          <div class="day"><span class="kind">Thu · Zoom</span><a href="module-w8-writeup.html">Write Up P2</a></div>
+        </div>
+      </article>
+
+      <article class="wk hasdue">
+        <div class="wktop"><span class="num">Week 9</span><span class="dates">Oct 13 &amp; 15</span><span class="badges"><span class="badge big">CITI certificate</span></span></div>
+        <p class="focus">Ethics in human-subjects research + CITI training</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="ethics-scenarios.html">Is This Ethical?</a></div>
+          <div class="day"><span class="kind">Thu · Zoom</span><a href="module-w9-ethics.html">Ethics &amp; CITI</a></div>
+        </div>
+      </article>
+
+      <article class="wk">
+        <div class="wktop"><span class="num">Week 10</span><span class="dates">Oct 20 &amp; 22</span></div>
+        <p class="focus">Designing surveys &amp; interviews (instrument design)</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="question-clinic.html">The Question Clinic</a></div>
+          <div class="day"><span class="kind">Thu · Zoom</span><a href="module-w10-instrument.html">Design Your Instrument</a></div>
+        </div>
+      </article>
+
+      <article class="wk">
+        <div class="wktop"><span class="num">Week 11</span><span class="dates">Oct 27 &amp; 29</span></div>
+        <p class="focus">Recruiting participants + collecting data</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="sampling-clinic.html">Who Gets Asked?</a></div>
+          <div class="day"><span class="kind">Thu · Zoom</span><a href="module-w11-collect.html">Recruit &amp; Collect</a></div>
+        </div>
+      </article>
+
+      <article class="wk hasdue">
+        <div class="wktop"><span class="num">Week 12</span><span class="dates">Nov 3 &amp; 5</span><span class="badges"><span class="badge big">P3 due Sun Nov 8</span></span></div>
+        <p class="focus">Analyzing &amp; visualizing quantitative data</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="chart-your-data.html">Chart Your Data</a></div>
+          <div class="day"><span class="kind">Thu · Zoom</span><a href="module-w12-visualize.html">Analyze &amp; Visualize</a></div>
+        </div>
+      </article>
+
+      <article class="wk">
+        <div class="wktop"><span class="num">Week 13</span><span class="dates">Nov 10 &amp; 12</span></div>
+        <p class="focus">IMRAD format + document design; assemble your report</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="imrad-sorter.html">Build the Report</a></div>
+          <div class="day"><span class="kind">Thu · Zoom</span><a href="module-w13-imrad.html">IMRAD &amp; Assembly</a></div>
+        </div>
+      </article>
+
+      <article class="wk">
+        <div class="wktop"><span class="num">Week 14</span><span class="dates">Nov 17 &amp; 19</span><span class="badges"><span class="badge note">Optional draft</span></span></div>
+        <p class="focus">Draft, self-review &amp; polish the full IMRAD</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="reverse-outline.html">Reverse Outline</a></div>
+          <div class="day"><span class="kind">Thu · Zoom</span><a href="module-w14-revise.html">Revise &amp; Polish</a></div>
+        </div>
+      </article>
+
+      <article class="wk hasdue">
+        <div class="wktop"><span class="num">Week 15</span><span class="dates">Nov 24</span><span class="badges"><span class="badge big">Final due Sun Nov 22</span><span class="badge note">Notebook check-in #2</span></span></div>
+        <p class="focus">Presentations, Day 1 &middot; prep with the talk planner first</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><a href="presentation-prep.html">Plan Your Talk</a><a href="module-w15-present.html">Present Your Research</a></div>
+          <div class="day"><span class="kind">Thu</span><span class="off">Thanksgiving, no class</span></div>
+        </div>
+      </article>
+
+      <article class="wk">
+        <div class="wktop"><span class="num">Week 16</span><span class="dates">Dec 1</span></div>
+        <p class="focus">Presentations, Day 2 (last class)</p>
+        <div class="days">
+          <div class="day"><span class="kind">Tue · on campus</span><span class="off">Presentations</span></div>
+          <div class="day"><span class="kind">Thu</span><span class="off">Reading Day, no class</span></div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="anchors">
+      <b>Open any week:</b>
+      your <a href="research-notebook.html">Research Notebook</a> (it saves in your browser, on your own computer, as you work) ·
+      the <a href="draft-check.html">Draft Check</a> (run any project draft through it before submitting) ·
+      and the <a href="turn-in-guide.html">What's Due &amp; Where</a> guide.
+    </div>
+
+    <footer>
+      ENG 3090 · Research Methods in Rhetoric &amp; Technical Writing · Appalachian State University · Fall 2026<br>
+      Dates and deadlines are official as of the start of term; any changes are announced via email.
+    </footer>
+
+  </div>
+</body>
+</html>

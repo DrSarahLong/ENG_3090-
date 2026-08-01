@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Module: Enter the Conversation</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --good:#2f7d54; --reflect:#3a5d86; --reflectsoft:#e8eef6; --party:#7a4da3; --partysoft:#efe8f6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --reflect:#9cc0e6; --reflectsoft:#16202c; --party:#c3a3e0; --partysoft:#231a30; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
+  #mod .sub{color:var(--muted); margin:6px 0 0}
+  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:26px}
+  #mod .party{background:var(--partysoft); border:1px solid var(--line); border-left:5px solid var(--party); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #mod .move{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:12px 0}
+  #mod .move h3{margin:0 0 5px; font-size:1.05rem}
+  #mod .move .n{color:var(--accent); font-weight:800}
+  #mod .tpl{background:var(--field); border:1px solid var(--line); border-radius:8px; padding:8px 11px; font-style:italic; margin:.5rem 0 0}
+  #mod .verbs{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:10px 14px; margin:10px 0; font-size:.95rem}
+  #mod .verbs b{color:var(--accent)}
+  #mod .example{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--good); border-radius:12px; padding:14px 16px; margin:12px 0}
+  #mod .example .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--good); display:block; margin-bottom:5px}
+  #mod .example .anno{color:var(--muted); font-size:.88rem; margin-top:8px}
+  #mod .reflect{background:var(--reflectsoft); border:1px solid var(--line); border-left:5px solid var(--reflect); border-radius:12px; padding:14px 16px; margin:16px 0}
+  #mod .reflect .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--reflect); display:block; margin-bottom:3px}
+  #mod a{color:var(--accent)}
+  #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
+  #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #mod .note{color:var(--muted); font-size:.9rem}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:24px}
+  #mod .term{background:none; border:0; padding:0; font:inherit; color:var(--accent); font-weight:700; cursor:pointer; text-decoration:underline dotted; text-underline-offset:3px}
+  #mod .term:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:4px}
+  dialog.pop{max-width:540px; width:calc(100% - 32px); border:1px solid var(--line); border-radius:14px; background:var(--card); color:var(--ink); padding:22px 24px; box-shadow:0 24px 60px rgba(0,0,0,.35); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif; margin:0 0 8px; font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop a{color:var(--accent)}
+  dialog.pop form{margin-top:16px; text-align:right}
+  dialog.pop button{font:inherit; font-weight:600; cursor:pointer; border-radius:9px; padding:9px 16px; border:1px solid var(--accent); background:var(--accent); color:#fff}
+  /* ===== shared course nav (injected on every page) ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="mod">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Week 4 · Thursday Module</p>
+    <h1>Enter the Conversation</h1>
+    <p class="sub">You've planned your review (Entry 4a). Now you write it. By the end of this one you'll have drafted a real paragraph of P1. Budget about 45 minutes.</p>
+  </header>
+
+  <p class="step">Step 1: the dinner party</p>
+  <div class="party">
+    <p>Scholarship is a dinner party that started long before you walked in. People have been arguing about your topic for years. You don't burst through the door and shout your opinion over the appetizers.</p>
+    <p>You find a seat. You listen. You figure out who's saying what, and who disagrees. Then you join in a way that shows you were paying attention: "Smith and Jones have been making the case for X; Lee isn't convinced; here's what I'd add." (<button type="button" class="term" data-pop="burke">Kenneth Burke</button> called this the "unending conversation" in a parlor.)</p>
+    <p><b>Your literature review is you earning your seat at the table, before you say your own piece.</b></p>
+  </div>
+
+  <p class="step">Step 2: the three moves to join in</p>
+
+  <div class="move">
+    <h3><span class="n">1.</span> Report what they say, fairly</h3>
+    <p>Don't drop a quote and run. Frame it: who is talking, and what are they doing? A <button type="button" class="term" data-pop="signal">signal phrase</button> plus a precise verb does the work.</p>
+    <div class="verbs">Verbs that carry meaning: <b>argues, finds, shows, reports, observes, suggests, contends, warns, cautions, concludes.</b> ("Says" is fine in moderation, but the others tell your reader more.)</div>
+    <p class="tpl">Smith (2021) argues that shoppers routinely misread "natural."</p>
+  </div>
+
+  <div class="move">
+    <h3><span class="n">2.</span> Weave, don't list</h3>
+    <p>The difference between a summary and a <button type="button" class="term" data-pop="synth">synthesis</button> is putting voices in the same breath. Group agreement, name tension.</p>
+    <p class="tpl">Several studies (Smith 2021; Jones 2020) find that vague terms mislead shoppers, though Lee (2022) cautions that some see right through them.</p>
+  </div>
+
+  <div class="move">
+    <h3><span class="n">3.</span> Add your voice, turn to the gap</h3>
+    <p>Once the conversation is on the page, step in. This is where your review points at your own study.</p>
+    <p class="tpl">What this conversation has not addressed is ___, which is where my study enters.</p>
+  </div>
+
+  <div class="example">
+    <span class="lab">All three moves, one paragraph</span>
+    <p>"Research on food labeling consistently finds that shoppers misread vague terms: Smith (2021) shows that most read 'natural' as 'organic,' and Jones (2020) reports the same confusion around 'farm fresh.' This is less a failure of attention than of design. Regulators leave 'natural' almost undefined (FDA, 2022), and industry groups have fought to keep it that way (Lee, 2023). What this conversation has not asked is what that engineered confusion costs the small, honest producer, the very question this study takes up."</p>
+    <p class="anno">Notice: report (Smith shows, Jones reports), weave (two voices in one sentence, then a second pair), turn to the gap (what nobody asked). You never wrote "Source 1 says."</p>
+  </div>
+
+  <div class="reflect">
+    <span class="lab">✍ On your own</span>
+    <p>Read your paragraph aloud when you're done. Does it sound like you joined a conversation, or like a list of people talking past each other? Fix the spot where it turns back into a list.</p>
+  </div>
+
+  <p class="step">Now: do it (Notebook Entry 4b)</p>
+  <p>Open your Research Notebook and fill out <b>Entry 4b</b>: take one theme from your skeleton and write it as a paragraph, using all three moves. Then come back and do your other themes.</p>
+  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
+  <p class="note">Free and open: <a href="https://wac.colostate.edu/books/writingspaces2/stedman--annoying-ways.pdf" target="_blank" rel="noopener">"Annoying Ways People Use Sources"</a> by Kyle Stedman (Writing Spaces) is a short, funny, genuinely useful read on doing exactly this well. Want the classic book-length version? <em>They Say / I Say</em> (Graff &amp; Birkenstein) is at Belk Library in print (not available digitally).</p>
+
+  <div class="close">
+    <p><b>What you just built:</b> a real paragraph of your Literature Review. Do this for each theme, add a short intro (your question and why it matters), and you have a draft of <b>P1, due in Week 5.</b></p>
+    <p class="note">You've planned it and drafted it. You're most of the way there, keep going.</p>
+    <p class="note">Before you submit P1, paste it into the <a href="draft-check.html" target="_blank" rel="noopener">Draft Check</a> and fix what it flags, cheaper than losing points on typos and dropped-in quotes.</p>
+  </div>
+
+  <dialog class="pop" id="pop-signal">
+    <h3>Signal phrase</h3>
+    <p>A few words that name who is talking and frame their point before you quote or paraphrase: "Smith argues...," "According to Jones...," "As the FDA notes...." It hands your reader the source's identity and your take on it in one move, so a quote never lands out of nowhere.</p>
+    <form method="dialog"><button>Got it</button></form>
+  </dialog>
+  <dialog class="pop" id="pop-synth">
+    <h3>Synthesis</h3>
+    <p>Combining several sources into a single point (what they reveal together) instead of summarizing them one at a time. "Three studies agree X, but one complicates it" is synthesis. "Smith says... Jones says... Lee says..." is a list. Synthesis is the whole job of a literature review.</p>
+    <form method="dialog"><button>Got it</button></form>
+  </dialog>
+  <dialog class="pop" id="pop-burke">
+    <h3>Who is Kenneth Burke?</h3>
+    <p>An American literary theorist (1897–1993). His famous "parlor" image: you show up at a party where a heated conversation is already going. Nobody stops to catch you up. You listen a while, get the drift, and then put in your oar. Scholarship works exactly like that, and so does your literature review.</p>
+    <form method="dialog"><button>Got it</button></form>
+  </dialog>
+
+</div>
+
+<script>
+  document.querySelectorAll('[data-pop]').forEach(function(b){
+    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
+  });
+  document.querySelectorAll('dialog.pop').forEach(function(d){
+    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+  });
+</script>
+</body>
+</html>
