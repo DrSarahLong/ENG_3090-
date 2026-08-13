@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · The Source & Claim Transfer Drill</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --good:#2f7d54; --goodsoft:#e4f1e8; --no:#a3541f; --nosoft:#f6ebe1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --goodsoft:#14301f; --no:#e0a878; --nosoft:#2c2013; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #td{max-width:750px; margin:0 auto; padding:28px 20px 90px}
+  #td h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
+  #td .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #td .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
+  #td .sub{color:var(--muted); margin:8px 0 0}
+  #td .honest{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:11px 14px; font-size:.92rem; margin:14px 0}
+  #td .part{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin:26px 0 4px; padding-top:8px; border-top:1px solid var(--line)}
+  #td h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:2px 0 8px}
+  #td .prog{color:var(--muted); font-size:.85rem; font-weight:700; margin:6px 0 0}
+  #td .q{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:10px 0}
+  #td .q .line{font-weight:600; font-style:italic; margin-bottom:8px}
+  #td .opts{display:flex; flex-direction:column; gap:7px}
+  #td .opt{text-align:left; font:inherit; font-weight:600; font-size:.92rem; cursor:pointer; border-radius:8px; padding:9px 11px; border:1.5px solid var(--line); background:var(--field); color:var(--ink)}
+  #td .opt.pick{border-color:var(--accent); background:var(--accent-soft); color:var(--accent)}
+  #td .q.right .opt.pick{border-color:var(--good); background:var(--goodsoft); color:var(--good)}
+  #td .q.wrong .opt.pick{border-color:var(--no); background:var(--nosoft); color:var(--no)}
+  #td .fb{margin-top:8px; font-size:.9rem; color:var(--muted)} #td .fb[hidden]{display:none}
+  #td button.check{font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:9px 15px; border:1px solid var(--accent); background:var(--accent); color:#fff; margin-top:8px}
+  #td .gate{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:14px 0}
+  #td label.fld{font-weight:600; display:block; margin:10px 0 6px}
+  #td input.line, #td textarea{width:100%; background:var(--field); color:var(--ink); border:1.5px solid var(--line); border-radius:9px; padding:10px 12px; font:inherit}
+  #td textarea{min-height:80px; line-height:1.6; resize:vertical}
+  #td input:focus, #td textarea:focus{outline:3px solid var(--accent); outline-offset:1px; border-color:var(--accent)}
+  #td .model{background:var(--goodsoft); border:1px solid var(--line); border-radius:8px; padding:9px 12px; font-size:.92rem; margin:8px 0}
+  #td .model b{color:var(--good)}
+  #td .judge{display:flex; gap:8px; flex-wrap:wrap; margin:8px 0}
+  #td .judge button{flex:1 1 auto; font:inherit; font-weight:700; font-size:.9rem; cursor:pointer; border-radius:8px; padding:9px 12px; background:var(--field); color:var(--ink); border:1.5px solid var(--line)}
+  #td .judge button.sel{border-color:var(--accent); background:var(--accent-soft); color:var(--accent)}
+  #td .tip{margin:8px 0; font-size:.92rem; color:var(--muted)} #td .tip[hidden]{display:none}
+  #td .priv{font-size:.82rem; color:var(--muted); margin-top:6px}
+  #td .saved{color:var(--good); font-size:.82rem; font-weight:700; opacity:0; transition:opacity .2s} #td .saved.show{opacity:1}
+  #td .note{color:var(--muted); font-size:.9rem}
+  #td .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lms" href="https://asulearn.appstate.edu/" target="_blank" rel="noopener">AsULearn &rarr;</a>
+</div></nav>
+
+<div id="td">
+  <header class="masthead">
+    <p class="kicker">ENG 3090 · Revision Tool</p>
+    <h1>The Source &amp; Claim Transfer Drill</h1>
+    <p class="sub">First you catch the weak spots in a stranger's research writing, where it is easy, because you are not attached. Then you turn that same eye on your own claim and evidence. That distance is the whole trick.</p>
+  </header>
+
+  <div class="honest">This has known answers built in for Part 1, so it can check your diagnosis there. For your own writing in Part 2, it only structures your judgment. It does not read your prose for meaning or grade it. This runs on your computer. Nothing you type leaves it.</div>
+
+  <p class="part">Part 1 · Diagnose a stranger's draft</p>
+  <p>Here are five lines from a weak draft about food labels. Name the problem in each. Clear all five to unlock Part 2.</p>
+  <p class="prog" id="prog">0 of 5 correct</p>
+
+  <div class="q" data-a="overclaim">
+    <p class="line">"Studies prove organic food is always healthier than conventional food."</p>
+    <div class="opts"></div>
+    <button type="button" class="check">Check</button>
+    <div class="fb" hidden><b>Overclaim.</b> "Prove" and "always" promise more than any set of studies delivers, and the evidence on organic nutrition is mixed. Scope it and hedge: "Some studies associate organic produce with lower pesticide residue, though findings on nutrition are mixed."</div>
+  </div>
+
+  <div class="q" data-a="uncited">
+    <p class="line">"Sixty percent of shoppers trust the word 'natural' on a package."</p>
+    <div class="opts"></div>
+    <button type="button" class="check">Check</button>
+    <div class="fb" hidden><b>Uncited assertion.</b> A specific number with no source is a red flag. Where did sixty percent come from? Add the citation, or cut the number and make a claim you can actually support.</div>
+  </div>
+
+  <div class="q" data-a="dumped">
+    <p class="line">Labels are barely regulated. "The term 'natural' has no legal definition on most foods." Shoppers deserve better.</p>
+    <div class="opts"></div>
+    <button type="button" class="check">Check</button>
+    <div class="fb" hidden><b>Dumped quote.</b> The quotation lands with no <button type="button" class="term" data-pop="signal">signal phrase</button> naming whose words they are, no citation, and no sentence saying what it means. Frame it: "As the FDA acknowledges, 'the term natural has no legal definition on most foods' (2018), which leaves the word free to imply whatever a marketer wants."</div>
+  </div>
+
+  <div class="q" data-a="biased">
+    <p class="line">"According to the Organic Trade Association's marketing blog, organic products are the only ethical choice."</p>
+    <div class="opts"></div>
+    <button type="button" class="check">Check</button>
+    <div class="fb" hidden><b>Biased or unvetted source.</b> An industry trade group's marketing blog profits from the claim and is not <button type="button" class="term" data-pop="peer">peer-reviewed</button>. Use it only as evidence of what the industry says, and corroborate any factual claim with an independent, vetted source.</div>
+  </div>
+
+  <div class="q" data-a="hedge">
+    <p class="line">"It could perhaps be argued that some labels might possibly mislead certain shoppers in some situations."</p>
+    <div class="opts"></div>
+    <button type="button" class="check">Check</button>
+    <div class="fb" hidden><b>Over-hedged.</b> So many qualifiers stacked together that the sentence says nothing. Hedging should match a claim to its evidence, not bury it. Commit: "In this sample, three label types were the most likely to be read as health claims."</div>
+  </div>
+
+  <div class="gate" id="gate" hidden>You just named an overclaim, an uncited assertion, a dumped quote, a biased source, and an over-hedged line, in someone else's writing. Now the real test: the same five live in most research drafts, including yours. Let's look.</div>
+
+  <div id="mine" hidden>
+    <p class="part">Part 2 · Now your own draft</p>
+
+    <h2>Your central claim</h2>
+    <div class="model"><b>Arguable + qualified:</b> "In this sample of local labels, nature appeals outnumbered verifiable health claims." &nbsp; <b>Overclaimed:</b> "Labels always trick everyone." &nbsp; <b>Uncited:</b> "Most shoppers are misled" (with no source or data).</div>
+    <label class="fld" for="myclaim">Paste your central claim:</label>
+    <input type="text" class="line" id="myclaim" placeholder="Your controlling claim…">
+    <div class="judge" data-for="claim"><button type="button" data-v="ok">Arguable + qualified</button><button type="button" data-v="over">Overclaimed</button><button type="button" data-v="unc">Uncited</button></div>
+    <div class="tip" data-for="claim" data-v="ok" hidden>Good, if a reasonable person could disagree and your evidence could support it. Check it is scoped to what you studied, not a claim about all food.</div>
+    <div class="tip" data-for="claim" data-v="over" hidden>Same move as the stranger's "always healthier." Swap the absolute for a hedge and scope it to your sample. Rewrite below.</div>
+    <div class="tip" data-for="claim" data-v="unc" hidden>If it rests on a fact or number, it needs a source. Add the citation, or narrow the claim to what your own data shows. Rewrite below.</div>
+    <label class="fld" for="myclaim_rw">Rewrite your claim so it is arguable, scoped, and supportable:</label>
+    <textarea id="myclaim_rw" placeholder="In this study of…, I argue that…"></textarea>
+    <div class="priv"><span class="saved" data-for="myclaim_rw">Saved &#10003;</span></div>
+
+    <h2 style="margin-top:22px">One evidence paragraph</h2>
+    <div class="model"><b>Framed, interpreted, cited:</b> As Nestle argues, "consumers cannot reliably tell greenwashing from genuine claims" (2013). In my corpus that gap showed up as eleven of eighteen labels leaning on "natural," a word with no legal definition. &nbsp; <b>Dumped / unvetted:</b> a quote with no lead-in, no citation, or a claim resting only on an industry blog.</div>
+    <label class="fld" for="myev">Paste one paragraph where you use a source or a finding as evidence:</label>
+    <textarea id="myev" placeholder="Paste one evidence paragraph…"></textarea>
+    <div class="judge" data-for="ev"><button type="button" data-v="ok">Framed + interpreted + cited</button><button type="button" data-v="dump">Dumped quote</button><button type="button" data-v="src">Source is unvetted</button></div>
+    <div class="tip" data-for="ev" data-v="ok" hidden>Good, if every quote has a signal phrase and a citation, and you say what it means for your argument. Read it once more to be sure the "so what" is there.</div>
+    <div class="tip" data-for="ev" data-v="dump" hidden>Same move as the stranger's dumped quote. Add the two missing slices: introduce whose words these are, then interpret them. Rewrite below.</div>
+    <div class="tip" data-for="ev" data-v="src" hidden>If the paragraph leans on a source that profits from the claim or was never vetted, corroborate it with an independent source before you build on it. Note your plan below.</div>
+    <label class="fld" for="myev_rw">Rewrite the paragraph as a full quote sandwich with a real citation (or note the source you will add):</label>
+    <textarea id="myev_rw" placeholder="As [source] notes, &quot;…&quot; (year). That matters because…"></textarea>
+    <div class="priv"><span class="saved" data-for="myev_rw">Saved &#10003;</span></div>
+
+    <p class="note" style="margin-top:14px">That is the drill: the weak spots are always easier to see in someone else's writing. Practicing on a stranger trains the eye you then turn on your own.</p>
+  </div>
+</div>
+
+<dialog class="pop" id="pop-signal"><h3>Signal phrase</h3><p>A few words that name whose voice you are quoting and frame their point before the quotation lands: "Smith argues that…," "According to the FDA…." It hands the reader the source's identity and your take in one move, so a quote never appears out of nowhere.</p><form method="dialog"><button>Got it</button></form></dialog>
+<dialog class="pop" id="pop-peer"><h3>Peer-reviewed</h3><p>Vetted by other experts in the field before publication. Not a guarantee of truth, but a real filter. A trade group's marketing blog, a press release, or a company's own "research" page has not been through that filter, so it needs corroboration before you lean on it, especially when the source profits from the claim.</p><form method="dialog"><button>Got it</button></form></dialog>
+
+<script>
+(function(){
+  var K="e3td:";
+  var OPTS=[['overclaim','Overclaim (says more than the evidence can)'],['uncited','Uncited assertion (a fact or number with no source)'],['dumped','Dumped quote (no signal phrase, no interpretation)'],['biased','Biased or unvetted source'],['hedge','Over-hedged (so vague it says nothing)'],['fine','Nothing wrong']];
+  var done={}, total=5, prog=document.getElementById('prog');
+  function updateProg(){ var n=Object.keys(done).length; prog.textContent=n+' of '+total+' correct'; if(n>=total){ document.getElementById('gate').hidden=false; document.getElementById('mine').hidden=false; } }
+
+  document.querySelectorAll('.q').forEach(function(q){
+    var box=q.querySelector('.opts');
+    OPTS.forEach(function(o){ var b=document.createElement('button'); b.type='button'; b.className='opt'; b.setAttribute('data-v',o[0]); b.textContent=o[1]; box.appendChild(b); });
+    var opts=q.querySelectorAll('.opt');
+    opts.forEach(function(o){ o.addEventListener('click', function(){ opts.forEach(function(x){x.classList.remove('pick');}); o.classList.add('pick'); q.dataset.pick=o.getAttribute('data-v'); q.classList.remove('right','wrong'); q.querySelector('.fb').hidden=true; }); });
+    q.querySelector('.check').addEventListener('click', function(){
+      if(!q.dataset.pick){ return; }
+      var right=q.dataset.pick===q.getAttribute('data-a');
+      q.classList.remove('right','wrong'); q.classList.add(right?'right':'wrong'); q.querySelector('.fb').hidden=false;
+      if(right){ done[q.getAttribute('data-a')]=1; updateProg(); }
+    });
+  });
+
+  document.querySelectorAll('#mine .judge').forEach(function(j){
+    var name=j.getAttribute('data-for'); var btns=j.querySelectorAll('button');
+    function paint(v){ btns.forEach(function(x){ x.classList.toggle('sel', x.getAttribute('data-v')===v); }); document.querySelectorAll('.tip[data-for="'+name+'"]').forEach(function(t){ t.hidden=t.getAttribute('data-v')!==v; }); }
+    btns.forEach(function(b){ b.addEventListener('click', function(){ var v=b.getAttribute('data-v'); try{ localStorage.setItem(K+'judge_'+name,v);}catch(e){} paint(v); }); });
+    try{ var jv=localStorage.getItem(K+'judge_'+name); if(jv) paint(jv); }catch(e){}
+  });
+  ['myclaim','myclaim_rw','myev','myev_rw'].forEach(function(id){
+    var el=document.getElementById(id);
+    try{ var v=localStorage.getItem(K+id); if(v!==null) el.value=v; }catch(e){}
+    var flag=document.querySelector('.saved[data-for="'+id+'"]');
+    el.addEventListener('input', function(){ try{ localStorage.setItem(K+id, el.value);}catch(e){} if(flag){ flag.classList.add('show'); clearTimeout(flag._t); flag._t=setTimeout(function(){flag.classList.remove('show');},1000);} });
+  });
+
+  document.querySelectorAll('[data-pop]').forEach(function(b){ b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); }); });
+  document.querySelectorAll('dialog.pop').forEach(function(d){ d.addEventListener('click', function(e){ if(e.target===d) d.close(); }); });
+})();
+</script>
+</body>
+</html>
