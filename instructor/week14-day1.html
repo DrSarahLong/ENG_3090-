@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 14 · Revise &amp; Polish</title>
+<style>
+  :root{
+    --bg:#0f141a; --panel:#161d26; --ink:#eef2f7; --soft:#9fb0c2; --line:#2a3542;
+    --accent:#6ea8d8; --accent2:#7fce9f; --gold:#e0b769; --field:#0b1016;
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  html{scroll-snap-type:y proximity; scroll-behavior:smooth}
+  body{background:var(--bg); color:var(--ink); font:18px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .panel{min-height:100vh; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:64px 6vw 48px; border-bottom:1px solid var(--line)}
+  .title h1{font-family:Georgia,serif; font-size:clamp(2.8rem,7.5vw,6rem); line-height:1.02; margin:0 0 14px; text-wrap:balance}
+  .title .idea{font-size:clamp(1.4rem,3vw,2.3rem); color:var(--soft); max-width:28ch}
+  .kick{font-size:clamp(1rem,1.5vw,1.15rem); letter-spacing:.22em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:16px}
+  .q{font-family:Georgia,serif; font-size:clamp(2.1rem,4.8vw,3.6rem); line-height:1.12; margin:0 0 10px; text-wrap:balance}
+  .sub{color:var(--soft); font-size:clamp(1.1rem,1.8vw,1.4rem); margin:0 0 24px}
+  .scene{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:40px; align-items:center}
+  @media (max-width:900px){ .scene{grid-template-columns:1fr; gap:24px} }
+  figure{margin:0}
+  figure img{width:100%; max-height:82vh; object-fit:contain; border-radius:10px; border:1px solid var(--line); cursor:zoom-in; background:#000}
+  figcaption{color:var(--soft); font-size:1rem; margin-top:8px; font-style:italic}
+  textarea{width:100%; min-height:36vh; background:var(--field); color:var(--ink); border:2px solid var(--line); border-radius:14px; padding:18px 20px; font:600 clamp(1.3rem,2.1vw,1.9rem)/1.5 -apple-system,system-ui,sans-serif; resize:vertical}
+  textarea:focus{outline:none; border-color:var(--accent)}
+  .scene textarea{min-height:46vh}
+  .defs{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:6px 0 30px}
+  @media (max-width:760px){ .defs{grid-template-columns:1fr} }
+  .def{background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:12px; padding:20px 24px}
+  .def h3{margin:0 0 8px; font-size:clamp(1.5rem,2.6vw,2rem); color:var(--accent)}
+  .def p{margin:0; color:var(--ink); font-size:clamp(1.1rem,1.7vw,1.35rem)}
+  .board{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:24px 28px; font-size:clamp(1.2rem,2.1vw,1.6rem); line-height:1.5}
+  .board .big{font-family:Georgia,serif; font-size:1.3em; color:var(--accent2); display:block; margin:14px 0}
+  .board .also{display:block; margin-top:16px; color:var(--soft); font-size:.92em}
+  .board .pair{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0}
+  @media (max-width:700px){ .board .pair{grid-template-columns:1fr} }
+  .board .cell{background:var(--field); border:1px solid var(--line); border-radius:10px; padding:14px 16px; font-size:.92em}
+  .board .cell .lab{display:block; color:var(--soft); font-size:.7em; letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px}
+  .prompts{counter-reset:p; font-size:clamp(1.35rem,2.5vw,2rem); line-height:1.4}
+  .prompts .p{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 22px; margin:14px 0; display:flex; gap:18px}
+  .prompts .p::before{counter-increment:p; content:counter(p); color:var(--accent); font-weight:800; font-family:Georgia,serif; font-size:1.4em; line-height:1}
+  .clear{position:fixed; bottom:16px; right:16px; z-index:40; background:rgba(22,29,38,.85); border:1px solid var(--line); color:var(--soft); border-radius:8px; padding:7px 12px; font:inherit; font-size:.8rem; cursor:pointer; opacity:.55}
+  .clear:hover{opacity:1; border-color:var(--accent); color:var(--accent)}
+  .lb{position:fixed; inset:0; background:rgba(0,0,0,.93); display:none; align-items:center; justify-content:center; z-index:100; cursor:zoom-out}
+  .lb img{max-width:96vw; max-height:96vh; object-fit:contain}
+  .lb.on{display:flex}
+</style>
+</head>
+<body>
+
+  <!-- 1 · TITLE -->
+  <section class="panel title">
+    <div class="kick">Week 14</div>
+    <h1>Revision Is Re-Seeing</h1>
+    <div class="idea">Nobody's first draft is their best one. Today we re-see the whole thing, not tidy it.</div>
+  </section>
+
+  <!-- 2 · SCENE 1 · the marked-up draft -->
+  <section class="panel">
+    <div class="scene">
+      <figure>
+        <img src="images/week14-day1-manuscript.jpg" alt="A printed manuscript page covered in handwritten copyediting corrections">
+        <figcaption>A copyedited manuscript. Photo: Phoebe (Wikimedia Commons, CC BY-SA 3.0).</figcaption>
+      </figure>
+      <div>
+        <h2 class="q">Revision is not editing. What is the difference?</h2>
+        <p class="sub">One re-sees the ideas and the structure. One cleans the sentences.</p>
+        <textarea data-k="w14-b1" aria-label="board"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · NAME IT · the three jobs -->
+  <section class="panel">
+    <div class="kick">Three jobs, done big to small</div>
+    <div class="defs">
+      <div class="def"><h3>Revise</h3><p>Ideas and structure. The big moves: focus, order, what to cut, what is missing.</p></div>
+      <div class="def"><h3>Edit</h3><p>Sentences. Clarity and flow, one line at a time.</p></div>
+      <div class="def"><h3>Proofread</h3><p>Errors. Typos, citations, formatting. Last, once the shape is settled.</p></div>
+    </div>
+  </section>
+
+  <!-- 4 · NAME IT · higher vs lower order -->
+  <section class="panel">
+    <div class="kick">Order of operations</div>
+    <div class="defs">
+      <div class="def"><h3>Higher-order concerns</h3><p>Focus, organization, evidence, and whether the draft actually answers its question. These come first.</p></div>
+      <div class="def"><h3>Lower-order concerns</h3><p>Grammar, citation format, page formatting. Real, but they come after the structure holds.</p></div>
+    </div>
+  </section>
+
+  <!-- 5 · QUESTION · why big before small -->
+  <section class="panel">
+    <h2 class="q">You have a paragraph you might cut. Should you fix its commas first?</h2>
+    <p class="sub">Why or why not?</p>
+    <textarea data-k="w14-b2" aria-label="board"></textarea>
+  </section>
+
+  <!-- 6 · BOARD · reverse outline, with a worked example -->
+  <section class="panel">
+    <div class="kick">The reverse outline</div>
+    <div class="board">
+      Go through your draft one paragraph at a time and write a single line for each: the <b>job</b> that paragraph does, not the topic it is about. The gaps and repeats jump right out.
+      <div class="pair">
+        <div class="cell"><span class="lab">Topic (what it is about)</span>This paragraph is about organic labels.</div>
+        <div class="cell"><span class="lab">Job (what it does)</span>Defines "organic" so the finding about mislabeling makes sense.</div>
+      </div>
+      <span class="also">Only the job version shows you whether the paragraph earns its place.</span>
+    </div>
+  </section>
+
+  <!-- 7 · PROMPTS · Entry 14a -->
+  <section class="panel">
+    <div class="kick">Notebook Entry 14a · on your own</div>
+    <h2 class="q" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">X-ray your own draft.</h2>
+    <div class="prompts">
+      <div class="p">Reverse-outline your latest draft: one line per paragraph, the job it does, tagged to its IMRAD section.</div>
+      <div class="p">Name the structural problems the outline exposed: a missing section, out-of-order pieces, repetition, a thin section.</div>
+      <div class="p">Pick your top 2 or 3 higher-order fixes, and start at the top of that list, not with the commas.</div>
+    </div>
+  </section>
+
+  <!-- 8 · QUESTION · share what the outline exposed -->
+  <section class="panel">
+    <h2 class="q">What did your reverse outline expose?</h2>
+    <p class="sub">A missing recommendation, a repeated paragraph, a Discussion that is only one line. Every draft has gaps.</p>
+    <textarea data-k="w14-b3" aria-label="board"></textarea>
+  </section>
+
+  <!-- 9 · CLOSE -->
+  <section class="panel title">
+    <div class="kick">Close</div>
+    <h1 style="font-size:clamp(2.2rem,5.5vw,4rem)">Start with the big one.</h1>
+    <div class="idea">Thursday: read it aloud, run Draft Check, log your revision. Want my eyes before the final? Submit a draft this week. It is optional, and it is the best deal in the course.</div>
+  </section>
+
+  <button class="clear" id="clear">Clear the boards</button>
+  <div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+  document.querySelectorAll('textarea[data-k]').forEach(function(ta){
+    var key = 'e3_instr_' + ta.dataset.k;
+    try{ var v = localStorage.getItem(key); if(v){ ta.value = v; } }catch(e){}
+    ta.addEventListener('input', function(){ try{ localStorage.setItem(key, ta.value); }catch(e){} });
+  });
+  document.getElementById('clear').addEventListener('click', function(){
+    if(!confirm('Clear everything typed on the boards?')) return;
+    document.querySelectorAll('textarea[data-k]').forEach(function(ta){
+      try{ localStorage.removeItem('e3_instr_' + ta.dataset.k); }catch(e){} ta.value='';
+    });
+  });
+  var lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+  document.querySelectorAll('figure img').forEach(function(img){
+    img.addEventListener('click', function(){ lbimg.src = img.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function(){ lb.classList.remove('on'); lbimg.src=''; });
+</script>
+</body>
+</html>
