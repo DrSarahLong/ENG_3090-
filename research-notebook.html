@@ -127,7 +127,7 @@
   </header>
 
   <div class="intro">
-    <p><b>How this works.</b> Type in the boxes. Your answers save automatically on this device as you go, so you can close the tab and come back all semester. You only turn this in <b>twice</b>, at <b>midterm</b> and at the <b>end of term</b>, so you're not uploading every week. At each check-in, hit <b>Download everything</b> at the bottom and upload that one file to <b>Canvas</b>.</p>
+    <p><b>How this works.</b> Type in the boxes. Your answers save automatically on this device as you go, so you can close the tab and come back all semester. You only turn this in <b>twice</b>, at <b>midterm</b> and at the <b>end of term</b>, so you're not uploading every week. At each check-in, use <b>Gather all my writing</b> at the bottom, paste everything into a Google Doc, and upload that to <b>Canvas</b>.</p>
     <p><b>No grades on the writing itself.</b> There are no wrong answers in here, the only thing that counts is that you did the thinking. So do it <b>as we go</b>: the work builds on itself, and a notebook crammed the night before a check-in is pretty obvious.</p>
     <p><b>Writing a project draft?</b> Before you submit, walk it through <a href="academic-editors-passes.html" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700">The Editor's Passes</a>. It pulls out your claim, your quotes, and any overclaiming word and makes you fix each one yourself. For structure, the <a href="reverse-outline-academic.html" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700">Reverse-Outline X-Ray</a> checks your sections sit in IMRAD order.</p>
   </div>
@@ -138,13 +138,19 @@
     <h2>Entry 1a: What research is, and why we do it through a justice lens</h2>
     <p class="lead">Welcome to your Research Notebook, this is your first entry, and you'll add to it all semester. You might picture research as science experiments and giant surveys. In rhetoric and technical writing it usually looks different, and there are four everyday ways to answer a question. To keep it concrete, we'll follow one running example the whole course:</p>
     <p class="runq">Do the sustainability claims on food labels, "natural," "organic," "local," "regenerative", actually tell shoppers the truth, and who gets misled?</p>
-    <p class="lead">Here's how each of the four research moves would take on that question. Read each example, then write your own one-line version in the box, the same move aimed at a topic you're starting to consider. (You lock your real topic next week, so a rough guess is fine.)</p>
+    <p class="lead">Here's how each of the four research moves would take on that question. But first, jot down what <em>you're</em> curious about — you'll aim each move at one of your own topics. (You lock your real topic next week, so rough guesses are fine.)</p>
+
+    <div class="q">
+      <label class="ask" for="e1_topics">Start here — my 2–3 candidate topics (in the justice frame), and where I could get data:</label>
+      <p class="hint">Curiosity first, questions come later. You'll carry <em>one</em> of these the whole semester, so jot what genuinely interests you. For each: what text or discourse could you analyze (labels, manuals, posts, policies, transcripts)? Who could you ask?</p>
+      <textarea id="e1_topics" data-save data-label="Candidate topics + possible data sources" style="min-height:110px"></textarea>
+    </div>
 
     <div class="method">
       <p class="mtitle"><span>1.</span> Read what others already found</p>
       <p class="exp">Before you gather anything yourself, you find out what's already known. You track down articles, reports, and studies other people have written on your question. In our field this is a <b>literature review</b>, and it's where every real study starts.</p>
       <p class="eg"><b>Example (the food-label study):</b> read existing research on eco-labels and "greenwashing", how well shoppers understand a claim like "natural" versus certified "organic."</p>
-      <label class="ask" for="e1_m1">Your turn: the same move, aimed at a topic you might study:</label>
+      <label class="ask" for="e1_m1">Your turn: the same move, aimed at one of the topics you just listed:</label>
       <input type="text" id="e1_m1" data-save data-label="Method 1, read what others found" placeholder="e.g., Read existing research on…">
     </div>
 
@@ -152,7 +158,7 @@
       <p class="mtitle"><span>2.</span> Analyze the text or design itself</p>
       <p class="exp">Sometimes the thing you study <em>is</em> the document, its words, its layout, its choices. You look closely at how a text makes meaning and who it includes or leaves out. In our field this is often called <b>discourse or content analysis</b>.</p>
       <p class="eg"><b>Example (the food-label study):</b> gather real food packaging and analyze the claims, which terms are regulated, which are vague marketing, and how the design makes a product look greener than it is.</p>
-      <label class="ask" for="e1_m2">Your turn: the same move, aimed at a topic you might study:</label>
+      <label class="ask" for="e1_m2">Your turn: the same move, aimed at one of the topics you just listed:</label>
       <input type="text" id="e1_m2" data-save data-label="Method 2, analyze the text/design" placeholder="e.g., Analyze the wording and design of…">
     </div>
 
@@ -160,7 +166,7 @@
       <p class="mtitle"><span>3.</span> Ask people</p>
       <p class="exp">Other times you go straight to people and ask. <b>Interviews, surveys, and focus groups</b> let you hear directly from the people a document is supposed to serve.</p>
       <p class="eg"><b>Example (the food-label study):</b> ask shoppers what they think "regenerative" or "natural" means, whether they paid more for it, and whether they were right.</p>
-      <label class="ask" for="e1_m3">Your turn: the same move, aimed at a topic you might study:</label>
+      <label class="ask" for="e1_m3">Your turn: the same move, aimed at one of the topics you just listed:</label>
       <input type="text" id="e1_m3" data-save data-label="Method 3, ask people" placeholder="e.g., Survey or interview… about…">
     </div>
 
@@ -168,18 +174,19 @@
       <p class="mtitle"><span>4.</span> Count and measure</p>
       <p class="exp">And sometimes you count. You turn things into numbers you can compare and chart, how often something happens, how many people, how big the gap. This is the <b>quantitative</b> side.</p>
       <p class="eg"><b>Example (the food-label study):</b> count how many labels use unregulated buzzwords, score their reading level, and chart how many shoppers guessed a term's real meaning correctly.</p>
-      <label class="ask" for="e1_m4">Your turn: the same move, aimed at a topic you might study:</label>
+      <label class="ask" for="e1_m4">Your turn: the same move, aimed at one of the topics you just listed:</label>
       <input type="text" id="e1_m4" data-save data-label="Method 4, count and measure" placeholder="e.g., Count and chart…">
     </div>
 
     <div class="q">
-      <label class="ask" for="e1_neutral">"Technical writing is never neutral." One example from today that surprised me:</label>
-      <textarea id="e1_neutral" data-save data-label="An example that technical writing is never neutral"></textarea>
+      <label class="ask" for="e1_neutral">"Technical writing is never neutral." One example from today that surprised me — and something in one of my topics that looks neutral but isn’t:</label>
+      <p class="hint">Every document quietly chooses who it serves and who it leaves out. Name what surprised you today, then look at your own subject: what part of it (a label, a form, a chart, a default setting) presents itself as just-the-facts while actually taking a side?</p>
+      <textarea id="e1_neutral" data-save data-label="Never neutral: an example, plus what looks neutral but isn't in my topic"></textarea>
     </div>
 
     <div class="q">
-      <label class="ask" for="e1_broken">Name one thing that seems <em>broken or unfair</em> in how information reaches people.</label>
-      <p class="hint">A form nobody can read, a warning nobody sees, an instruction that fails the people who need it most, a group left out of the conversation. This is our <button type="button" class="term" data-pop="sj">social justice lens</button>, starting on day one.</p>
+      <label class="ask" for="e1_broken">Look at one of your topics: name one thing that seems <em>broken or unfair</em> in how information reaches people around it.</label>
+      <p class="hint">A form nobody can read, a warning nobody sees, an instruction that fails the people who need it most, a group left out of the conversation. Find your topic’s version of this. That’s our <button type="button" class="term" data-pop="sj">social justice lens</button>, starting on day one.</p>
       <textarea id="e1_broken" data-save data-label="Something broken or unfair in how information reaches people"></textarea>
     </div>
 
@@ -188,6 +195,8 @@
       <p class="hint">You don't need perfect answers. Just start noticing where power sits in the documents and discourse around your topic. (That's the <button type="button" class="term" data-pop="sj">social justice lens</button> at work.)</p>
       <textarea id="e1_power" data-save data-label="Power / served / missing in my topic"></textarea>
     </div>
+
+    <p class="lead" style="border-left:4px solid var(--accent,#1f6b86);padding-left:14px;margin-top:4px">One more thing before you lock a topic. This semester’s report is more than a grade — it becomes a <b>portfolio sample</b> you can put in front of an employer. A finished IMRAD study proves you can find a real problem, gather evidence, and write it up clearly, exactly what a hiring manager wants to see in an interview. So it pays to pick a topic that both <b>matters to you</b> and <b>points toward the work you want to do</b>. These next two questions help you aim there.</p>
 
     <div class="grid2">
       <div class="q">
@@ -198,12 +207,6 @@
         <label class="ask" for="e1_skill">Which of the four research skills matters most in that job?</label>
         <textarea id="e1_skill" data-save data-label="Research skill that matters most for that career"></textarea>
       </div>
-    </div>
-
-    <div class="q">
-      <label class="ask" for="e1_topics">My 2–3 candidate topics (in the justice frame), and where I could get data:</label>
-      <p class="hint">Curiosity first, questions come later. You'll carry <em>one</em> of these the whole semester, so jot what genuinely interests you. For each: what text or discourse could you analyze (labels, manuals, posts, policies, transcripts)? Who could you ask?</p>
-      <textarea id="e1_topics" data-save data-label="Candidate topics + possible data sources" style="min-height:110px"></textarea>
     </div>
 
     <div class="entry-actions">
@@ -1055,8 +1058,8 @@
       <textarea id="e15_report" data-save data-label="Final report submitted"></textarea>
     </div>
     <div class="q">
-      <label class="ask" for="e15_checkin">Notebook check-in #2: I hit "Download everything" below and submitted it to Canvas (as a PDF or Google Doc).</label>
-      <p class="hint">This whole notebook is your completion grade. Grab the file with the button at the bottom of the page, then submit it as a PDF or a Google Doc.</p>
+      <label class="ask" for="e15_checkin">Notebook check-in #2: I used "Gather all my writing" below, copied it into a Google Doc, and submitted that to Canvas.</label>
+      <p class="hint">This whole notebook is your completion grade. Use the "Gather all my writing" button at the bottom of the page, paste everything into a Google Doc, and submit that.</p>
       <textarea id="e15_checkin" data-save data-label="Notebook check-in #2 done"></textarea>
     </div>
     <div class="q">
@@ -1110,9 +1113,7 @@
   <div class="lock">More entries unlock as the semester goes: your collected data, your charts, and your final report. This notebook grows with your project.</div>
 
   <div class="global">
-    <button type="button" id="downloadAll">⬇ Download everything (.txt)</button>
-    <button type="button" class="ghost" id="clearAll">Clear this device</button>
-    <span class="note">Tip: "Download everything" is what you hand in at the two check-ins (midterm &amp; end of term), submitted as a PDF or a Google Doc, and it doubles as your backup. Grab one anytime. Not sure what's due or where it goes? See the <a href="turn-in-guide.html" target="_blank" rel="noopener">What's Due &amp; Where guide</a>.</span>
+    <span class="note">Tip: use <b>Gather all my writing</b> at the bottom of this page to pull your entries into one box, then copy them into a Google Doc. That Doc is what you hand in at the two check-ins (midterm &amp; end of term). Not sure what's due or where it goes? See the <a href="turn-in-guide.html" target="_blank" rel="noopener">What's Due &amp; Where guide</a>.</span>
   </div>
 
   <!-- ===== glossary popovers ===== -->
@@ -1152,101 +1153,6 @@
       try{ localStorage.setItem(PREFIX + el.id, el.value); }catch(e){}
       flash(savedSpan(el));
     });
-  });
-
-  function stamp(){ try{ return new Date().toLocaleString(); }catch(e){ return ""; } }
-
-  function qOf(el){
-    var q = el.closest('.q');
-    var lab = q ? q.querySelector('.ask') : null;
-    return lab ? (lab.textContent || '').replace(/\s+/g,' ').trim() : (el.getAttribute('data-label') || el.id);
-  }
-
-  function entryText(entry){
-    var title = entry.getAttribute('data-entry-title') || 'Entry';
-    var rule = "------------------------------------------------";
-    var fields = entry.querySelectorAll('[data-save]');
-    var total = fields.length, blank = 0;
-    fields.forEach(function(el){ if(!(el.value || "").trim()) blank++; });
-    var status = (blank === 0) ? "[COMPLETE " + total + "/" + total + "]" : "[" + (total - blank) + "/" + total + " answered, " + blank + " BLANK]";
-    var lines = ["ENG 3090 · Research Notebook", title + "   " + status, "Saved: " + stamp(), rule, ""];
-    fields.forEach(function(el){
-      var val = (el.value || "").trim();
-      lines.push("Q: " + qOf(el));
-      lines.push("A: " + (val.length ? val : ">>> LEFT BLANK <<<"));
-      lines.push("");
-    });
-    return lines.join("\n");
-  }
-
-  function overallSummary(){
-    var entries = document.querySelectorAll('#rn .entry');
-    var totalFields = 0, answered = 0, incomplete = [];
-    entries.forEach(function(entry){
-      var fields = entry.querySelectorAll('[data-save]');
-      var blanks = 0;
-      fields.forEach(function(el){ totalFields++; if((el.value || "").trim()) answered++; else blanks++; });
-      if(blanks > 0) incomplete.push((entry.getAttribute('data-slug') || 'entry').replace('entry-','') + " (" + blanks + " blank)");
-    });
-    var rule = "================================================";
-    var lines = ["ENG 3090 · RESEARCH NOTEBOOK: COMPLETION SUMMARY",
-      answered + " of " + totalFields + " fields answered across " + entries.length + " entries.",
-      (incomplete.length ? "Entries with blanks: " + incomplete.join(", ") : "All fields answered."),
-      "Generated: " + stamp(), rule, ""];
-    return lines.join("\n");
-  }
-
-  function gdocPrompts(entry){
-    var title = entry.getAttribute('data-entry-title') || 'ENG 3090 Notebook';
-    var lines = ["ENG 3090 · " + title, ""];
-    entry.querySelectorAll('[data-save]').forEach(function(el){
-      var val = (el.value || "").trim();
-      lines.push(qOf(el));
-      lines.push(val);
-      lines.push("");
-    });
-    return lines.join("\n");
-  }
-
-  function copyText(t){
-    try{ if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t); return true; } }catch(e){}
-    try{
-      var ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0';
-      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); return true;
-    }catch(e){ return false; }
-  }
-
-  function download(name, text){
-    var blob = new Blob([text], {type:"text/plain;charset=utf-8"});
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a'); a.href=url; a.download=name;
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
-  }
-
-    btn.addEventListener('click', function(){
-      var entry = btn.closest('.entry');
-      download('ENG3090-notebook-' + (entry.getAttribute('data-slug')||'entry') + '.txt', entryText(entry));
-    });
-  });
-
-    btn.addEventListener('click', function(){
-      var entry = btn.closest('.entry');
-      copyText(gdocPrompts(entry));
-      window.open('https://docs.google.com/document/create','_blank','noopener');
-    });
-  });
-
-  document.getElementById('downloadAll').addEventListener('click', function(){
-    var all = [overallSummary()];
-    document.querySelectorAll('#rn .entry').forEach(function(entry){ all.push(entryText(entry)); });
-    download('ENG3090-research-notebook.txt', all.join("\n\n"));
-  });
-
-  document.getElementById('clearAll').addEventListener('click', function(){
-    if(!confirm("This erases your notebook from THIS computer only. Make sure you've downloaded anything you want to keep. Continue?")) return;
-    fields.forEach(function(el){ try{ localStorage.removeItem(PREFIX+el.id); }catch(e){} });
-    location.reload();
   });
 
   // popovers
