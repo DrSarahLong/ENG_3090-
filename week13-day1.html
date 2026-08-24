@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 13 · IMRAD &amp; Assembling the Report</title>
+<style>
+  :root{
+    --bg:#1a1214; --panel:#2b1d21; --ink:#f6ece9; --soft:#c6a9ae; --line:#433035;
+    --accent:#eb8f99; --accent2:#9ec6a6; --gold:#e8b567; --field:#140d0f;
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  html{scroll-snap-type:y proximity; scroll-behavior:smooth}
+  body{background:radial-gradient(1300px 850px at 72% -12%, #33202a 0%, var(--bg) 58%) fixed, var(--bg); color:var(--ink); font:18px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .panel{min-height:100vh; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:64px 6vw 48px; border-bottom:1px solid var(--line)}
+  .title h1{font-family:Georgia,serif; font-size:clamp(2.8rem,7.5vw,6rem); line-height:1.02; margin:0 0 14px; text-wrap:balance}
+  .title .idea{font-size:clamp(1.4rem,3vw,2.3rem); color:var(--soft); max-width:28ch}
+  .kick{font-size:clamp(1rem,1.5vw,1.15rem); letter-spacing:.22em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:16px}
+  .q{font-family:Georgia,serif; font-size:clamp(2.1rem,4.8vw,3.6rem); line-height:1.12; margin:0 0 10px; text-wrap:balance}
+  .sub{color:var(--soft); font-size:clamp(1.1rem,1.8vw,1.4rem); margin:0 0 24px}
+  .scene{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:40px; align-items:center}
+  @media (max-width:900px){ .scene{grid-template-columns:1fr; gap:24px} }
+  figure{margin:0}
+  figure img{width:100%; max-height:82vh; object-fit:contain; border-radius:10px; border:1px solid var(--line); cursor:zoom-in; background:#000}
+  figcaption{color:var(--soft); font-size:1rem; margin-top:8px; font-style:italic}
+  textarea{width:100%; min-height:36vh; background:var(--field); color:var(--ink); border:2px solid var(--line); border-radius:14px; padding:18px 20px; font:600 clamp(1.3rem,2.1vw,1.9rem)/1.5 -apple-system,system-ui,sans-serif; resize:vertical}
+  textarea:focus{outline:none; border-color:var(--accent)}
+  .scene textarea{min-height:46vh}
+  .defs{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:6px 0 30px}
+  @media (max-width:760px){ .defs{grid-template-columns:1fr} }
+  .def{background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:12px; padding:20px 24px}
+  .def h3{margin:0 0 8px; font-size:clamp(1.5rem,2.6vw,2rem); color:var(--accent)}
+  .def p{margin:0; color:var(--ink); font-size:clamp(1.1rem,1.7vw,1.35rem)}
+  .board{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:24px 28px; font-size:clamp(1.2rem,2.1vw,1.6rem); line-height:1.5}
+  .board .big{font-family:Georgia,serif; font-size:1.35em; color:var(--accent2); display:block; margin:14px 0}
+  .board .also{display:block; margin-top:16px; color:var(--soft); font-size:.92em}
+  .board .row{display:block; margin:10px 0}
+  .board .row b{color:var(--accent)}
+  .prompts{counter-reset:p; font-size:clamp(1.35rem,2.5vw,2rem); line-height:1.4}
+  .prompts .p{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 22px; margin:14px 0; display:flex; gap:18px}
+  .prompts .p::before{counter-increment:p; content:counter(p); color:var(--accent); font-weight:800; font-family:Georgia,serif; font-size:1.4em; line-height:1}
+  .clear{position:fixed; bottom:16px; right:16px; z-index:40; background:rgba(43,29,33,.85); border:1px solid var(--line); color:var(--soft); border-radius:8px; padding:7px 12px; font:inherit; font-size:.8rem; cursor:pointer; opacity:.55}
+  .clear:hover{opacity:1; border-color:var(--accent); color:var(--accent)}
+  .lb{position:fixed; inset:0; background:rgba(0,0,0,.93); display:none; align-items:center; justify-content:center; z-index:100; cursor:zoom-out}
+  .lb img{max-width:96vw; max-height:96vh; object-fit:contain}
+  .lb.on{display:flex}
+</style>
+</head>
+<body>
+
+  <!-- 1 · TITLE -->
+  <section class="panel title">
+    <div class="kick">Week 13</div>
+    <h1>Assembling, Not Starting Over</h1>
+    <div class="idea">You have already written most of your final report. Today, the container it goes in.</div>
+  </section>
+
+  <!-- DEBATE OPENER -->
+  <section class="panel">
+    <div class="kick" style="color:var(--gold)">Debate this</div>
+    <h2 class="q">"Format is bureaucratic busywork. If the findings are strong, the order of the sections shouldn't matter."</h2>
+    <textarea data-k="w13-debate" aria-label="board"></textarea>
+  </section>
+
+
+  <!-- 2 · SCENE 1 · running example -->
+  <section class="panel">
+    <div class="scene">
+      <figure>
+        <img src="images/week13-day1-shelves.jpg" alt="Rows of packaged products on supermarket shelves">
+        <figcaption>Supermarket shelves. Photo: Frankie Fouganthin (Wikimedia Commons, CC BY-SA 4.0).</figcaption>
+      </figure>
+      <div>
+        <h2 class="q">Our running study: do "natural / organic / local" labels tell shoppers the truth?</h2>
+        <p class="sub">A reader who has never met your project has to find its parts fast.</p>
+        <textarea data-k="w13-b1" aria-label="board"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · NAME IT · IMRAD as four questions -->
+  <section class="panel">
+    <div class="kick">IMRAD</div>
+    <h2 class="q" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">A research report has a shared shape, so any reader can navigate it.</h2>
+    <div class="defs">
+      <div class="def"><h3>Introduction</h3><p>What and why. The question, and the gap that makes it worth asking.</p></div>
+      <div class="def"><h3>Methods</h3><p>How. What you looked at and how you looked at it, so someone could follow your path.</p></div>
+      <div class="def"><h3>Results</h3><p>What you found. The findings themselves, reported plainly.</p></div>
+      <div class="def"><h3>Discussion</h3><p>So what, and now what. What the findings mean, and what you recommend.</p></div>
+    </div>
+  </section>
+
+  <!-- 4 · QUESTION · Results vs Discussion -->
+  <section class="panel">
+    <h2 class="q">Results is what you found. Discussion is what it means. Why keep them in separate rooms?</h2>
+    <p class="sub">Mixing the two is the most common slip in a research report.</p>
+    <textarea data-k="w13-b2" aria-label="board"></textarea>
+  </section>
+
+  <!-- 5 · SCENE 2 · the hourglass shape -->
+  <section class="panel">
+    <div class="scene">
+      <figure>
+        <img src="images/week13-day1-hourglass.jpg" alt="A wooden hourglass, wide at top and bottom, narrow in the middle">
+        <figcaption>Wooden hourglass. Photo: S Sepp (Wikimedia Commons, CC BY-SA 3.0).</figcaption>
+      </figure>
+      <div>
+        <h2 class="q">A report opens broad, narrows to your study, then opens broad again.</h2>
+        <p class="sub">Why would a report be shaped like this?</p>
+        <textarea data-k="w13-b3" aria-label="board"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · BOARD · the assembly map -->
+  <section class="panel">
+    <div class="kick">The good news</div>
+    <div class="board">
+      Most of your report is already written. You are pouring your project pieces into the four sections.
+      <span class="row"><b>Project 1</b> becomes your <b>Introduction</b></span>
+      <span class="row"><b>Projects 2 and 3</b> become your <b>Methods and Results</b></span>
+      <span class="row">New writing becomes your <b>Discussion</b></span>
+      <span class="big">Assembly plus connective tissue, not a blank page.</span>
+    </div>
+  </section>
+
+  <!-- 7 · QUESTION · sorter debrief -->
+  <section class="panel">
+    <h2 class="q">Which section does each piece of a study belong in, and how did you know?</h2>
+    <p class="sub">A tip that rarely fails: the word "suggests" almost always points to the Discussion.</p>
+    <textarea data-k="w13-b4" aria-label="board"></textarea>
+  </section>
+
+  <!-- 8 · NAME IT · front and back matter + design -->
+  <section class="panel">
+    <div class="kick">Around the four sections</div>
+    <div class="defs">
+      <div class="def"><h3>Title page &amp; abstract</h3><p>The abstract is a short summary of the whole report. Write it last, once you know what you actually said.</p></div>
+      <div class="def"><h3>References</h3><p>Your sources, in order. A study at this scale usually cites roughly 15 to 20.</p></div>
+      <div class="def"><h3>Appendix</h3><p>Your instrument and raw data: the survey, the coding sheet, the full label set.</p></div>
+      <div class="def"><h3>Document design = access</h3><p>Headings, captioned figures, and white space are not decoration. They are how a reader gets in.</p></div>
+    </div>
+  </section>
+
+  <!-- 9 · PROMPTS · Entry 13a -->
+  <section class="panel">
+    <div class="kick">Notebook Entry 13a · on your own</div>
+    <h2 class="q" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Map your study into the shape.</h2>
+    <div class="prompts">
+      <div class="p">Map your Project 1, 2, and 3 into IMRAD: write which piece feeds which section.</div>
+      <div class="p">Draft your report skeleton: the four section headings, one line under each for what goes there.</div>
+      <div class="p">Write your one-sentence spine: "Because [gap], I [method], found [finding], so [recommendation]."</div>
+    </div>
+  </section>
+
+  <!-- 10 · QUESTION · share the spine -->
+  <section class="panel">
+    <h2 class="q">Say your whole study in one sentence.</h2>
+    <p class="sub">If it holds together out loud, and carries all four beats, your report has a spine.</p>
+    <textarea data-k="w13-b5" aria-label="board"></textarea>
+  </section>
+
+  <!-- 11 · CLOSE -->
+  <section class="panel title">
+    <div class="kick">Close</div>
+    <h1 style="font-size:clamp(2.2rem,5.5vw,4rem)">The scary part is over.</h1>
+    <div class="idea">Thursday: pour the pieces into the structure, write the Discussion and abstract, and design the draft.</div>
+  </section>
+
+  <button class="clear" id="clear">Clear the boards</button>
+  <div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+  document.querySelectorAll('textarea[data-k]').forEach(function(ta){
+    var key = 'e3_instr_' + ta.dataset.k;
+    try{ var v = localStorage.getItem(key); if(v){ ta.value = v; } }catch(e){}
+    ta.addEventListener('input', function(){ try{ localStorage.setItem(key, ta.value); }catch(e){} });
+  });
+  document.getElementById('clear').addEventListener('click', function(){
+    if(!confirm('Clear everything typed on the boards?')) return;
+    document.querySelectorAll('textarea[data-k]').forEach(function(ta){
+      try{ localStorage.removeItem('e3_instr_' + ta.dataset.k); }catch(e){} ta.value='';
+    });
+  });
+  var lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+  document.querySelectorAll('figure img').forEach(function(img){
+    img.addEventListener('click', function(){ lbimg.src = img.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function(){ lb.classList.remove('on'); lbimg.src=''; });
+</script>
+</body>
+</html>

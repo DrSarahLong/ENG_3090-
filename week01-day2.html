@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 1 · The Label Autopsy</title>
+<style>
+  :root{
+    --bg:#1a1214; --panel:#2b1d21; --ink:#f6ece9; --soft:#c6a9ae; --line:#433035;
+    --accent:#eb8f99; --accent2:#9ec6a6; --gold:#e8b567; --field:#140d0f;
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  html{scroll-snap-type:y proximity; scroll-behavior:smooth}
+  body{background:radial-gradient(1300px 850px at 72% -12%, #33202a 0%, var(--bg) 58%) fixed, var(--bg); color:var(--ink); font:18px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .panel{min-height:100vh; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:64px 6vw 48px; border-bottom:1px solid var(--line)}
+  .title h1{font-family:Georgia,serif; font-size:clamp(2.8rem,7.5vw,6rem); line-height:1.02; margin:0 0 14px; text-wrap:balance}
+  .title .idea{font-size:clamp(1.4rem,3vw,2.3rem); color:var(--soft); max-width:28ch}
+  .kick{font-size:clamp(1rem,1.5vw,1.15rem); letter-spacing:.22em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:16px}
+  .q{font-family:Georgia,serif; font-size:clamp(2.1rem,4.8vw,3.6rem); line-height:1.12; margin:0 0 10px; text-wrap:balance}
+  .sub{color:var(--soft); font-size:clamp(1.1rem,1.8vw,1.4rem); margin:0 0 24px}
+  .scene{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:40px; align-items:center}
+  @media (max-width:900px){ .scene{grid-template-columns:1fr; gap:24px} }
+  figure{margin:0}
+  figure img{width:100%; max-height:82vh; object-fit:contain; border-radius:10px; border:1px solid var(--line); cursor:zoom-in; background:#000}
+  figcaption{color:var(--soft); font-size:1rem; margin-top:8px; font-style:italic}
+  textarea{width:100%; min-height:36vh; background:var(--field); color:var(--ink); border:2px solid var(--line); border-radius:14px; padding:18px 20px; font:600 clamp(1.3rem,2.1vw,1.9rem)/1.5 -apple-system,system-ui,sans-serif; resize:vertical}
+  textarea:focus{outline:none; border-color:var(--accent)}
+  .scene textarea{min-height:46vh}
+  .defs{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:6px 0 30px}
+  @media (max-width:760px){ .defs{grid-template-columns:1fr} }
+  .def{background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:12px; padding:20px 24px}
+  .def h3{margin:0 0 8px; font-size:clamp(1.5rem,2.6vw,2rem); color:var(--accent)}
+  .def p{margin:0; color:var(--ink); font-size:clamp(1.1rem,1.7vw,1.35rem)}
+  .board{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:24px 28px; font-size:clamp(1.2rem,2.1vw,1.6rem); line-height:1.5}
+  .board .big{font-family:Georgia,serif; font-size:1.35em; color:var(--accent2); display:block; margin:14px 0}
+  .board .also{display:block; margin-top:16px; color:var(--soft); font-size:.92em}
+  .prompts{counter-reset:p; font-size:clamp(1.35rem,2.5vw,2rem); line-height:1.4}
+  .prompts .p{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 22px; margin:14px 0; display:flex; gap:18px}
+  .prompts .p::before{counter-increment:p; content:counter(p); color:var(--accent); font-weight:800; font-family:Georgia,serif; font-size:1.4em; line-height:1}
+  .clear{position:fixed; bottom:16px; right:16px; z-index:40; background:rgba(43,29,33,.85); border:1px solid var(--line); color:var(--soft); border-radius:8px; padding:7px 12px; font:inherit; font-size:.8rem; cursor:pointer; opacity:.55}
+  .clear:hover{opacity:1; border-color:var(--accent); color:var(--accent)}
+  .lb{position:fixed; inset:0; background:rgba(0,0,0,.93); display:none; align-items:center; justify-content:center; z-index:100; cursor:zoom-out}
+  .lb img{max-width:96vw; max-height:96vh; object-fit:contain}
+  .lb.on{display:flex}
+  /* mock egg-carton label (stands in for a real carton photo; swap anytime) */
+  .carton{background:#d7cbb0; background-image:linear-gradient(0deg,rgba(0,0,0,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.035) 1px,transparent 1px); background-size:7px 7px; color:#2b2720; border:1px solid #b3a789; border-radius:14px; padding:28px 30px; box-shadow:0 12px 34px rgba(0,0,0,.5); min-height:46vh; display:flex; flex-direction:column; justify-content:center; gap:18px}
+  .carton .brand{font-family:Georgia,serif; font-weight:700; font-size:clamp(1.5rem,2.9vw,2.4rem); border-bottom:2px solid #7c6f4f; padding-bottom:10px}
+  .carton .brand span{display:block; font-family:-apple-system,system-ui,sans-serif; font-weight:700; font-size:.46em; letter-spacing:.24em; text-transform:uppercase; color:#6b5f43; margin-top:5px}
+  .carton .claims{display:flex; flex-wrap:wrap; gap:9px}
+  .carton .claims span{background:#efe7d3; border:1px solid #b9ac8a; border-radius:999px; padding:6px 15px; font-weight:700; font-size:clamp(1rem,1.7vw,1.35rem)}
+  .carton .seals{display:flex; gap:14px; margin-top:2px}
+  .carton .seal{width:clamp(74px,9vw,98px); height:clamp(74px,9vw,98px); border-radius:50%; border:3px solid #4f5b3a; color:#3c4630; display:flex; align-items:center; justify-content:center; text-align:center; font-weight:800; font-size:clamp(.74rem,1.1vw,.92rem); line-height:1.12; text-transform:uppercase; letter-spacing:.03em; background:#e7e0cb}
+  .carton .fine{font-size:.85rem; color:#6b5f43}
+</style>
+</head>
+<body>
+
+  <!-- 1 · TITLE -->
+  <section class="panel title">
+    <div class="kick">Week 1 · Thursday</div>
+    <h1>The Label Autopsy</h1>
+    <div class="idea">Every claim on a package is a choice someone made. Today, the four ways to find out if it's true.</div>
+  </section>
+
+  <!-- DEBATE OPENER -->
+  <section class="panel">
+    <div class="kick" style="color:var(--gold)">Debate this</div>
+    <h2 class="q">"If a shopper gets fooled by a vague label like 'all-natural,' that's on the shopper for not reading closely, not on the company for writing it that way."</h2>
+    <textarea data-k="w1-debate" aria-label="board"></textarea>
+  </section>
+
+
+  <!-- GOAL of the lecture -->
+  <section class="panel">
+    <div class="kick">Goal of today</div>
+    <h2 class="q">What you'll walk out with</h2>
+    <div class="def"><p>By the end of class you'll know the <b>four ways researchers answer a question</b>, and you'll see that technical writing is <b>never neutral</b>: a claim on a label is a choice someone made. You'll leave with your own first research topics, in your words, not mine.</p></div>
+  </section>
+
+  <!-- 2 · SCENE 1 · the vote -->
+  <section class="panel">
+    <div class="scene">
+      <figure data-note="add-image: real egg-carton photo with legible cage-free/organic claims; swap in your own carton">
+        <div class="carton" role="img" aria-label="Egg-carton label crowded with marketing claims and certification seals">
+          <div class="brand">Farmhouse Select <span>Grade A &middot; Large</span></div>
+          <div class="claims"><span>Farm Fresh</span><span>All-Natural</span><span>Cage-Free</span><span>Wholesome</span><span>No Added Hormones*</span><span>Vegetarian Fed</span></div>
+          <div class="seals"><span class="seal">USDA<br>Organic</span><span class="seal">Certified<br>Humane</span></div>
+          <div class="fine">*Federal regulations prohibit hormones in poultry.</div>
+        </div>
+        <figcaption>Illustrative egg-carton label (mock-up). Swap in a real carton photo anytime.</figcaption>
+      </figure>
+      <div>
+        <h2 class="q">Which is better for you and the planet, and which are just vibes?</h2>
+        <p class="sub"><b>Product A:</b> All-Natural, Farm Fresh, Cage-Free, Wholesome.</p>
+        <p class="sub"><b>Product B:</b> USDA Organic, Certified Humane, Certified Regenerative.</p>
+        <textarea data-k="w1d2-b1" aria-label="board"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- reveal: the real target (after they answer the vibes prompt) -->
+  <section class="panel">
+    <div class="def" style="border-left-color:var(--gold)"><p>We're doing this with eggs, but the real target is bigger: <b>how do you decide whether a claim is true?</b> That's the move you make all semester, and out in the field every time you run an experiment or test someone else's claim.</p></div>
+  </section>
+
+  <!-- how would you know (moved up, right after the vote) -->
+  <section class="panel">
+    <h2 class="q">So how would you actually know?</h2>
+    <p class="sub">Sounding better and being better aren't the same thing. If you had to prove which eggs are genuinely better for you and for the planet, and which claims are just vibes, where would you even start?</p>
+    <textarea data-k="w1d2-b2" aria-label="board"></textarea>
+  </section>
+
+  <!-- 6 · NAME IT · regulated vs fog -->
+  <section class="panel">
+    <div class="defs">
+      <div class="def"><h3>Defined &amp; regulated</h3><p>"USDA Organic," "Certified Humane," "Certified Regenerative," "Cage-Free." A body or a law defines the term and checks it.</p></div>
+      <div class="def"><h3>Legal fog</h3><p>"All-Natural," "Farm Fresh," "Wholesome," "Made with Real Goodness." They sound like something and mean almost nothing.</p></div>
+    </div>
+    <div class="board">
+      That fog is a design choice, and design choices are never neutral.
+    </div>
+  </section>
+
+  <!-- 7 · who gets fooled -->
+  <section class="panel">
+    <div class="scene">
+      <figure>
+        <img src="images/week01-day2-farmers-market.jpg" alt="Vendors selling produce at an outdoor farmers market">
+        <figcaption>Vendors at Market Square, Knoxville, Tennessee. Photo: Brian Stansberry, Wikimedia Commons (CC BY 3.0).</figcaption>
+      </figure>
+      <div>
+        <h2 class="q">So who gets fooled by the fog, and who gets drowned out by it?</h2>
+        <textarea data-k="w1d2-b4" aria-label="board"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · NAME IT · the four methods -->
+  <section class="panel">
+    <div class="kick">The four ways to answer a research question</div>
+    <div class="defs">
+      <div class="def"><h3>Read</h3><p>Literature review. Find what has already been written and published on the question.</p></div>
+      <div class="def"><h3>Analyze</h3><p>Discourse or content analysis. Study the texts, labels, and language themselves for patterns.</p></div>
+      <div class="def"><h3>Ask</h3><p>Surveys and interviews. Put the question to real people and record what they say.</p></div>
+      <div class="def"><h3>Count</h3><p>Quantitative. Measure it in numbers you can compare.</p></div>
+    </div>
+  </section>
+
+  <!-- NOTEBOOK · Entry 1a -->
+  <section class="panel">
+    <div class="kick">Your notebook · Entry 1a</div>
+    <h2 class="q" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">On your own, then we share as a class.</h2>
+    <p class="sub">Open your Research Notebook and go to <b>Entry 1a</b>.</p>
+    <div class="prompts">
+      <div class="p">Draft two or three topics you're curious about. For each: what text could you analyze, and who could you&nbsp;ask?</div>
+      <div class="p">Put the four methods in your own words, aimed at one of those topics: how would you read, analyze, ask, and count to answer&nbsp;it?</div>
+      <div class="p">Name a career direction you're considering. Which of the four research skills matters most in that&nbsp;job?</div>
+    </div>
+  </section>
+
+  <!-- LOOKING AHEAD · week 2 preview + due (at the end) -->
+  <section class="panel">
+    <div class="kick">Looking ahead</div>
+    <div class="defs">
+      <div class="def"><h3>Next: Week 2, Tuesday</h3><p>Asking a researchable question. A strong-vs-weak card sort, then turning a topic into a real research question (Notebook Entry 2a).</p></div>
+      <div class="def"><h3>Due / coming up</h3><p>Nothing due today. <b>P1 Literature Review:</b> Week 5. <b>Notebook check-ins:</b> midterm (Week 8) and end of term (Week 15).</p></div>
+    </div>
+  </section>
+
+  <!-- 9 · CLOSE -->
+  <section class="panel title">
+    <div class="kick">Close</div>
+    <h1 style="font-size:clamp(2.2rem,5.5vw,4rem)">The label is never neutral.</h1>
+    <div class="idea">Next: turning your curiosity into a research question you can actually answer.</div>
+  </section>
+
+  <button class="clear" id="clear">Clear the boards</button>
+  <div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+  document.querySelectorAll('textarea[data-k]').forEach(function(ta){
+    var key = 'e3_instr_' + ta.dataset.k;
+    try{ var v = localStorage.getItem(key); if(v){ ta.value = v; } }catch(e){}
+    ta.addEventListener('input', function(){ try{ localStorage.setItem(key, ta.value); }catch(e){} });
+  });
+  document.getElementById('clear').addEventListener('click', function(){
+    if(!confirm('Clear everything typed on the boards?')) return;
+    document.querySelectorAll('textarea[data-k]').forEach(function(ta){
+      try{ localStorage.removeItem('e3_instr_' + ta.dataset.k); }catch(e){} ta.value='';
+    });
+  });
+  var lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+  document.querySelectorAll('figure img').forEach(function(img){
+    img.addEventListener('click', function(){ lbimg.src = img.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function(){ lb.classList.remove('on'); lbimg.src=''; });
+</script>
+</body>
+</html>

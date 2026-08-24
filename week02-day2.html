@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 2 · Lock Your Topic</title>
+<style>
+  :root{
+    --bg:#1a1214; --panel:#2b1d21; --ink:#f6ece9; --soft:#c6a9ae; --line:#433035;
+    --accent:#eb8f99; --accent2:#9ec6a6; --gold:#e8b567; --field:#140d0f;
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  html{scroll-snap-type:y proximity; scroll-behavior:smooth}
+  body{background:radial-gradient(1300px 850px at 72% -12%, #33202a 0%, var(--bg) 58%) fixed, var(--bg); color:var(--ink); font:18px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .panel{min-height:100vh; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:64px 6vw 48px; border-bottom:1px solid var(--line)}
+  .title h1{font-family:Georgia,serif; font-size:clamp(2.8rem,7.5vw,6rem); line-height:1.02; margin:0 0 14px; text-wrap:balance}
+  .title .idea{font-size:clamp(1.4rem,3vw,2.3rem); color:var(--soft); max-width:26ch}
+  .kick{font-size:clamp(1rem,1.5vw,1.15rem); letter-spacing:.22em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:16px}
+  .q{font-family:Georgia,serif; font-size:clamp(2.1rem,4.8vw,3.6rem); line-height:1.12; margin:0 0 10px; text-wrap:balance}
+  .sub{color:var(--soft); font-size:clamp(1.1rem,1.8vw,1.4rem); margin:0 0 24px}
+  .scene{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:40px; align-items:center}
+  @media (max-width:900px){ .scene{grid-template-columns:1fr; gap:24px} }
+  figure{margin:0}
+  figure img{width:100%; max-height:82vh; object-fit:contain; border-radius:10px; border:1px solid var(--line); cursor:zoom-in; background:#000}
+  figcaption{color:var(--soft); font-size:1rem; margin-top:8px; font-style:italic}
+  textarea{width:100%; min-height:36vh; background:var(--field); color:var(--ink); border:2px solid var(--line); border-radius:14px; padding:18px 20px; font:600 clamp(1.3rem,2.1vw,1.9rem)/1.5 -apple-system,system-ui,sans-serif; resize:vertical}
+  textarea:focus{outline:none; border-color:var(--accent)}
+  .scene textarea{min-height:46vh}
+  .defs{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:6px 0 30px}
+  @media (max-width:760px){ .defs{grid-template-columns:1fr} }
+  .def{background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:12px; padding:20px 24px}
+  .def h3{margin:0 0 8px; font-size:clamp(1.5rem,2.6vw,2rem); color:var(--accent)}
+  .def p{margin:0; color:var(--ink); font-size:clamp(1.1rem,1.7vw,1.35rem)}
+  .board{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:24px 28px; font-size:clamp(1.2rem,2.1vw,1.6rem); line-height:1.5}
+  .board .big{font-family:Georgia,serif; font-size:1.35em; color:var(--accent2); display:block; margin:14px 0}
+  .board .also{display:block; margin-top:16px; color:var(--soft); font-size:.92em}
+  .prompts{counter-reset:p; font-size:clamp(1.35rem,2.5vw,2rem); line-height:1.4}
+  .prompts .p{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 22px; margin:14px 0; display:flex; gap:18px}
+  .prompts .p::before{counter-increment:p; content:counter(p); color:var(--accent); font-weight:800; font-family:Georgia,serif; font-size:1.4em; line-height:1}
+  .clear{position:fixed; bottom:16px; right:16px; z-index:40; background:rgba(43,29,33,.85); border:1px solid var(--line); color:var(--soft); border-radius:8px; padding:7px 12px; font:inherit; font-size:.8rem; cursor:pointer; opacity:.55}
+  .clear:hover{opacity:1; border-color:var(--accent); color:var(--accent)}
+  .lb{position:fixed; inset:0; background:rgba(0,0,0,.93); display:none; align-items:center; justify-content:center; z-index:100; cursor:zoom-out}
+  .lb img{max-width:96vw; max-height:96vh; object-fit:contain}
+  .lb.on{display:flex}
+</style>
+</head>
+<body>
+
+  <!-- 1 · TITLE -->
+  <section class="panel title">
+    <div class="kick">Week 2 · Thursday</div>
+    <h1>Lock Your Topic</h1>
+    <div class="idea">A topic you can actually research beats a topic you're just excited about.</div>
+  </section>
+
+  <!-- DEBATE OPENER -->
+  <section class="panel">
+    <div class="kick" style="color:var(--gold)">Debate this</div>
+    <h2 class="q">"Study whatever you're most passionate about and figure out the 'how' later. Picking a topic because it's doable is how research gets boring."</h2>
+    <textarea data-k="w2b-debate" aria-label="board"></textarea>
+  </section>
+
+
+  <!-- 2 · SCENE 1 + first question -->
+  <section class="panel">
+    <div class="scene">
+      <figure>
+        <img src="images/week02-day2-grocery.jpg" alt="A grocery store shelf filled with packaged food products">
+        <figcaption>A grocery shelf in Stockholm, 2021 (Wikimedia Commons, CC BY-SA 4.0).</figcaption>
+      </figure>
+      <div>
+        <h2 class="q">Every label on this shelf is a claim somebody could check.</h2>
+        <p class="sub">Your topic in one sentence. Just one.</p>
+        <textarea data-k="w2d2-b1" aria-label="board"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · NAME IT: what makes a topic lockable -->
+  <section class="panel">
+    <div class="kick">A lockable topic has four things</div>
+    <div class="defs">
+      <div class="def"><h3>Texts to analyze</h3><p>Real documents you can put under a lens: labels, ads, policies, posts.</p></div>
+      <div class="def"><h3>People to ask</h3><p>Someone real you could interview or survey, a live voice beyond the books.</p></div>
+      <div class="def"><h3>A justice angle</h3><p>Who is helped, who is misled, whose knowledge gets counted.</p></div>
+      <div class="def"><h3>A strong question</h3><p>Open, arguable, answerable in a semester. Not a yes or no.</p></div>
+    </div>
+  </section>
+
+  <!-- 4 · SCENE 2: model the shrink -->
+  <section class="panel">
+    <div class="scene">
+      <figure>
+        <img src="images/week02-day2-eggs.jpg" alt="Free-range eggs in a pulp carton">
+        <figcaption>Free-range eggs in a pulp carton (Wikimedia Commons, CC BY-SA 3.0).</figcaption>
+      </figure>
+      <div class="board">
+        <b>Too big:</b> "food labels."
+        <span class="big">Do the sustainability claims on egg cartons at one store tell shoppers the truth?</span>
+        One product, one store, one kind of claim. Now it's a semester, not a lifetime.
+        <span class="also">Small enough to finish. Real enough to matter.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · shrink yours -->
+  <section class="panel">
+    <h2 class="q">Got a topic that feels too big? Say it, and we'll shrink it together.</h2>
+    <p class="sub">Narrow by product, place, or one specific claim.</p>
+    <textarea data-k="w2d2-b2" aria-label="board"></textarea>
+  </section>
+
+  <!-- 6 · LOCK IT IN (Entry 2b prompts) -->
+  <section class="panel">
+    <div class="kick">Notebook · Entry 2b</div>
+    <h2 class="q" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Lock it in. Fill all five.</h2>
+    <p class="sub">On your own first, then we read a few to the room.</p>
+    <div class="prompts">
+      <div class="p">Your topic, in one sentence.</div>
+      <div class="p">Your research question. Open and arguable, not a yes or no.</div>
+      <div class="p">The texts you'll analyze. Name at least one you could pull up today.</div>
+      <div class="p">The people you could ask. Who would you interview or survey?</div>
+      <div class="p">Your justice angle. Who is helped, who is misled, whose voice is missing?</div>
+    </div>
+  </section>
+
+  <!-- 7 · READ IT TO THE ROOM -->
+  <section class="panel">
+    <h2 class="q">Read me your topic and question.</h2>
+    <p class="sub">Now tell me: what will you analyze, and who will you ask?</p>
+    <textarea data-k="w2d2-b3" aria-label="board"></textarea>
+  </section>
+
+  <!-- 8 · CLOSE -->
+  <section class="panel title">
+    <div class="kick">Close</div>
+    <h1 style="font-size:clamp(2.2rem,5.5vw,4rem)">You've got a topic you can work.</h1>
+    <div class="idea">Next week: the literature review begins. Who already tried to answer a question like yours?</div>
+  </section>
+
+  <button class="clear" id="clear">Clear the boards</button>
+  <div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+  document.querySelectorAll('textarea[data-k]').forEach(function(ta){
+    var key = 'e3_instr_' + ta.dataset.k;
+    try{ var v = localStorage.getItem(key); if(v){ ta.value = v; } }catch(e){}
+    ta.addEventListener('input', function(){ try{ localStorage.setItem(key, ta.value); }catch(e){} });
+  });
+  document.getElementById('clear').addEventListener('click', function(){
+    if(!confirm('Clear everything typed on the boards?')) return;
+    document.querySelectorAll('textarea[data-k]').forEach(function(ta){
+      try{ localStorage.removeItem('e3_instr_' + ta.dataset.k); }catch(e){} ta.value='';
+    });
+  });
+  var lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+  document.querySelectorAll('figure img').forEach(function(img){
+    img.addEventListener('click', function(){ lbimg.src = img.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function(){ lb.classList.remove('on'); lbimg.src=''; });
+</script>
+</body>
+</html>

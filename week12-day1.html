@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 12 · Analyze &amp; Visualize</title>
+<style>
+  :root{
+    --bg:#1a1214; --panel:#2b1d21; --ink:#f6ece9; --soft:#c6a9ae; --line:#433035;
+    --accent:#eb8f99; --accent2:#9ec6a6; --gold:#e8b567; --field:#140d0f;
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  html{scroll-snap-type:y proximity; scroll-behavior:smooth}
+  body{background:radial-gradient(1300px 850px at 72% -12%, #33202a 0%, var(--bg) 58%) fixed, var(--bg); color:var(--ink); font:18px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .panel{min-height:100vh; scroll-snap-align:start; display:flex; flex-direction:column; justify-content:center; padding:64px 6vw 48px; border-bottom:1px solid var(--line)}
+  .title h1{font-family:Georgia,serif; font-size:clamp(2.8rem,7.5vw,6rem); line-height:1.02; margin:0 0 14px; text-wrap:balance}
+  .title .idea{font-size:clamp(1.4rem,3vw,2.3rem); color:var(--soft); max-width:26ch}
+  .kick{font-size:clamp(1rem,1.5vw,1.15rem); letter-spacing:.22em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:16px}
+  .q{font-family:Georgia,serif; font-size:clamp(2.1rem,4.8vw,3.6rem); line-height:1.12; margin:0 0 10px; text-wrap:balance}
+  .sub{color:var(--soft); font-size:clamp(1.1rem,1.8vw,1.4rem); margin:0 0 24px}
+  .scene{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:40px; align-items:center}
+  @media (max-width:900px){ .scene{grid-template-columns:1fr; gap:24px} }
+  figure{margin:0}
+  figure img{width:100%; max-height:82vh; object-fit:contain; border-radius:10px; border:1px solid var(--line); cursor:zoom-in; background:#000}
+  figcaption{color:var(--soft); font-size:1rem; margin-top:8px; font-style:italic}
+  textarea{width:100%; min-height:36vh; background:var(--field); color:var(--ink); border:2px solid var(--line); border-radius:14px; padding:18px 20px; font:600 clamp(1.3rem,2.1vw,1.9rem)/1.5 -apple-system,system-ui,sans-serif; resize:vertical}
+  textarea:focus{outline:none; border-color:var(--accent)}
+  .scene textarea{min-height:46vh}
+  .defs{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:6px 0 30px}
+  @media (max-width:760px){ .defs{grid-template-columns:1fr} }
+  .def{background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:12px; padding:20px 24px}
+  .def h3{margin:0 0 8px; font-size:clamp(1.5rem,2.6vw,2rem); color:var(--accent)}
+  .def p{margin:0; color:var(--ink); font-size:clamp(1.1rem,1.7vw,1.35rem)}
+  .board{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:24px 28px; font-size:clamp(1.2rem,2.1vw,1.6rem); line-height:1.5}
+  .board .big{font-family:Georgia,serif; font-size:1.35em; color:var(--accent2); display:block; margin:14px 0}
+  .board .also{display:block; margin-top:16px; color:var(--soft); font-size:.92em}
+  .prompts{counter-reset:p; font-size:clamp(1.35rem,2.5vw,2rem); line-height:1.4}
+  .prompts .p{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 22px; margin:14px 0; display:flex; gap:18px}
+  .prompts .p::before{counter-increment:p; content:counter(p); color:var(--accent); font-weight:800; font-family:Georgia,serif; font-size:1.4em; line-height:1}
+  .clear{position:fixed; bottom:16px; right:16px; z-index:40; background:rgba(43,29,33,.85); border:1px solid var(--line); color:var(--soft); border-radius:8px; padding:7px 12px; font:inherit; font-size:.8rem; cursor:pointer; opacity:.55}
+  .clear:hover{opacity:1; border-color:var(--accent); color:var(--accent)}
+  .lb{position:fixed; inset:0; background:rgba(0,0,0,.93); display:none; align-items:center; justify-content:center; z-index:100; cursor:zoom-out}
+  .lb img{max-width:96vw; max-height:96vh; object-fit:contain}
+  .lb.on{display:flex}
+</style>
+</head>
+<body>
+
+  <!-- 1 · TITLE -->
+  <section class="panel title">
+    <div class="kick">Week 12 · Tuesday</div>
+    <h1>A Chart Can Mislead as Easily as a Food Label</h1>
+    <div class="idea">You collected it. You're the only one who's seen it. Today it talks.</div>
+  </section>
+
+  <!-- DEBATE OPENER -->
+  <section class="panel">
+    <div class="kick" style="color:var(--gold)">Debate this</div>
+    <h2 class="q">"A chart just shows the numbers. If the data is real, the chart can't lie."</h2>
+    <textarea data-k="w12-debate" aria-label="board"></textarea>
+  </section>
+
+
+  <!-- 2 · NAME IT -->
+  <section class="panel">
+    <div class="kick">Raw answers become findings in three moves</div>
+    <div class="defs">
+      <div class="def"><h3>Count</h3><p>Build a frequency table. How many people gave each answer? (COUNTIF does it in Sheets.)</p></div>
+      <div class="def"><h3>Describe</h3><p>Three numbers: N (how many), the percentage, and the mode (most common answer). Careful averaging a Likert scale.</p></div>
+      <div class="def"><h3>Picture</h3><p>Bar chart for categories. Pie only for a few parts of one whole. Match the chart to the data.</p></div>
+      <div class="def"><h3>Start at zero</h3><p>Begin the bars at zero and the picture can't lie. Cut the axis and small gaps look huge.</p></div>
+    </div>
+  </section>
+
+  <!-- 3 · SCENE 1 -->
+  <section class="panel">
+    <div class="scene">
+      <figure>
+        <img src="images/week12-day1-misleading-chart.png" alt="A bar graph with a truncated y-axis making a small difference look large">
+        <figcaption>Truncated-axis bar graph (Wikimedia Commons, CC0 / public domain).</figcaption>
+      </figure>
+      <div>
+        <h2 class="q">Same numbers. Two charts. Different stories.</h2>
+        <p class="sub">What makes this one lie, and how would you fix it?</p>
+        <textarea data-k="w12-b1" aria-label="board"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · QUESTION -->
+  <section class="panel">
+    <h2 class="q">A chart bends the truth the same way a label does, usually by accident.</h2>
+    <p class="sub">Where else have you seen a picture make a small thing look huge?</p>
+    <textarea data-k="w12-b2" aria-label="board"></textarea>
+  </section>
+
+  <!-- 5 · SCENE 2 · takeaway -->
+  <section class="panel">
+    <div class="scene">
+      <figure>
+        <img src="images/week12-day1-nutrition-label.png" alt="An FDA Nutrition Facts food label">
+        <figcaption>FDA Nutrition Facts label (Wikimedia Commons, public domain, U.S. federal government).</figcaption>
+      </figure>
+      <div class="board">
+        <b>A label and a chart mislead the same way:</b> by choosing what to show and what to hide.
+        <span class="big">What you put on the axis, and where you start it, is the argument.</span>
+        You've spent a semester on labels that mislead. Your own figure has to be the honest one.
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · YOUR RESULTS -->
+  <section class="panel">
+    <div class="kick">Your results · Notebook Entry 12a</div>
+    <h2 class="q" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Turn your pile of answers into findings.</h2>
+    <p class="sub">On your own first, then we share as a class.</p>
+    <div class="prompts">
+      <div class="p">Count: build a frequency table. How many gave each answer?</div>
+      <div class="p">Describe: your N, the percentages, the mode.</div>
+      <div class="p">Picture: pick the chart that fits, and start the axis at zero.</div>
+      <div class="p">Name two or three findings your data can actually carry.</div>
+    </div>
+  </section>
+
+  <!-- 7 · GUT CHECK -->
+  <section class="panel">
+    <h2 class="q">Say one finding in a single sentence, with the number.</h2>
+    <p class="sub">Now: does your data actually earn that sentence?</p>
+    <textarea data-k="w12-b3" aria-label="board"></textarea>
+  </section>
+
+  <!-- 8 · CLOSE -->
+  <section class="panel title">
+    <div class="kick">Close</div>
+    <h1 style="font-size:clamp(2.2rem,5.5vw,4rem)">Your study just answered its own question.</h1>
+    <div class="idea">Thursday: the write-up. Findings, a quote, honest limits. P3 is due Sunday.</div>
+  </section>
+
+  <button class="clear" id="clear">Clear the boards</button>
+  <div class="lb" id="lb"><img id="lbimg" src="" alt=""></div>
+
+<script>
+  document.querySelectorAll('textarea[data-k]').forEach(function(ta){
+    var key = 'e3_instr_' + ta.dataset.k;
+    try{ var v = localStorage.getItem(key); if(v){ ta.value = v; } }catch(e){}
+    ta.addEventListener('input', function(){ try{ localStorage.setItem(key, ta.value); }catch(e){} });
+  });
+  document.getElementById('clear').addEventListener('click', function(){
+    if(!confirm('Clear everything typed on the boards?')) return;
+    document.querySelectorAll('textarea[data-k]').forEach(function(ta){
+      try{ localStorage.removeItem('e3_instr_' + ta.dataset.k); }catch(e){} ta.value='';
+    });
+  });
+  var lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg');
+  document.querySelectorAll('figure img').forEach(function(img){
+    img.addEventListener('click', function(){ lbimg.src = img.src; lb.classList.add('on'); });
+  });
+  lb.addEventListener('click', function(){ lb.classList.remove('on'); lbimg.src=''; });
+</script>
+</body>
+</html>
