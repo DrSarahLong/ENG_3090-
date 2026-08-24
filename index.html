@@ -1,38 +1,166 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><title>ENG 3090 · Research Methods</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Research Methods in Rhetoric &amp; Technical Writing</title>
 <style>
- :root{--bg:#1a1214;--panel:#2b1d21;--ink:#f6ece9;--soft:#c6a9ae;--line:#433035;--accent:#eb8f99}
- *{box-sizing:border-box} body{margin:0;background:radial-gradient(1300px 850px at 72% -12%, #33202a 0%, var(--bg) 58%) fixed, var(--bg);color:var(--ink);font:18px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
- header{padding:48px 6vw 24px;border-bottom:1px solid var(--line)}
- .kick{letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;font-size:.9rem}
- h1{font-family:Georgia,serif;font-size:clamp(2rem,5vw,3.2rem);margin:8px 0 6px}
- header p{color:var(--soft);max-width:70ch;margin:6px 0 0}
- .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding:28px 6vw 70px}
- a.card{display:block;text-decoration:none;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;transition:border-color .15s,transform .15s}
- a.card:hover{border-color:var(--accent);transform:translateY(-2px)}
- a.card .wk{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
- a.card .t{font-family:Georgia,serif;font-size:1.45rem;margin-top:6px;line-height:1.15}
- footer{color:var(--soft);font-size:.9rem;padding:0 6vw 50px}
-</style></head><body>
-<header><div class="kick">Instructor Screens</div><h1>ENG 3090 · Research Methods</h1>
-<p>Open a week and project it. Scroll (or arrow keys) through the images and questions; type the class's answers right on the board. Read your beats and answer keys from the paper cheat sheet.</p></header>
-<div class="grid">
-  <a class="card" href="week01-day2.html"><div class="wk">Week 1 · Day 2</div><div class="t">The Label Autopsy</div></a>
-  <a class="card" href="week02-day1.html"><div class="wk">Week 2 · Day 1</div><div class="t">Asking a Researchable Question</div></a>
-  <a class="card" href="week02-day2.html"><div class="wk">Week 2 · Day 2</div><div class="t">Lock Your Topic</div></a>
-  <a class="card" href="week03-day1.html"><div class="wk">Week 3 · Day 1</div><div class="t">Finding &amp; Vetting Sources</div></a>
-  <a class="card" href="week04-day1.html"><div class="wk">Week 4 · Day 1</div><div class="t">A pile of sources isn't a lit review.</div></a>
-  <a class="card" href="week05-day1.html"><div class="wk">Week 5 · Day 1</div><div class="t">Stop reading the research. Start making it.</div></a>
-  <a class="card" href="week06-day1.html"><div class="wk">Week 6 · Day 1</div><div class="t">Coding the Corpus</div></a>
-  <a class="card" href="week07-day1.html"><div class="wk">Week 7 · Day 1</div><div class="t">The Tools</div></a>
-  <a class="card" href="week09-day1.html"><div class="wk">Week 9 · Day 1</div><div class="t">Ethics Comes First</div></a>
-  <a class="card" href="week10-day1.html"><div class="wk">Week 10 · Day 1</div><div class="t">You're the Investigator Now</div></a>
-  <a class="card" href="week11-day1.html"><div class="wk">Week 11 · Day 1</div><div class="t">Who You Ask Decides What You Find</div></a>
-  <a class="card" href="week12-day1.html"><div class="wk">Week 12 · Day 1</div><div class="t">A Chart Can Mislead as Easily as a Food Label</div></a>
-  <a class="card" href="week13-day1.html"><div class="wk">Week 13 · Day 1</div><div class="t">Assembling, Not Starting Over</div></a>
-  <a class="card" href="week14-day1.html"><div class="wk">Week 14 · Day 1</div><div class="t">Revision Is Re-Seeing</div></a>
-  <a class="card" href="week15-day1.html"><div class="wk">Week 15 · Day 1</div><div class="t">Presentations, Day 1</div></a>
-  <a class="card" href="week16-day1.html"><div class="wk">Week 16 · Day 1</div><div class="t">Presentations, Day 2 &amp; the Wrap</div></a>
-</div>
-<footer>Instructor screens · Dr. Sarah Long · Appalachian State University</footer>
-</body></html>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --gold:#a3771f; --good:#2f7d54; --navbg:#ffffffee;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --gold:#d8b168; --good:#7ac598; --navbg:#12151aee; }
+  }
+  *{box-sizing:border-box} html,body{margin:0} html{scroll-behavior:smooth}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  a{color:var(--accent)}
+
+  /* ---- shared nav (reused on every page) ---- */
+  .nav{position:sticky; top:0; z-index:20; background:var(--navbg); backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
+  .nav .inner{max-width:1000px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; gap:8px 18px; flex-wrap:wrap}
+  .nav .brand{font-family:Georgia,"Iowan Old Style",serif; font-weight:700; font-size:1.05rem; color:var(--ink); text-decoration:none; margin-right:auto; letter-spacing:.01em}
+  .nav .brand small{display:block; font-family:system-ui,sans-serif; font-weight:600; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+  .nav a.lnk{color:var(--ink); text-decoration:none; font-weight:600; font-size:.93rem; padding:4px 2px; border-bottom:2px solid transparent}
+  .nav a.lnk:hover{border-bottom-color:var(--accent); color:var(--accent)}
+  .nav a.lnk[aria-current="page"]{color:var(--accent); border-bottom-color:var(--accent)}
+  .nav a.lms{background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:.9rem; border-radius:8px; padding:8px 14px; white-space:nowrap}
+  .nav a.lms:hover{filter:brightness(1.06)}
+
+  .wrap{max-width:1000px; margin:0 auto; padding:0 20px}
+
+  /* ---- hero ---- */
+  .hero{padding:44px 0 26px; border-bottom:1px solid var(--line)}
+  .hero .kick{font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); font-weight:800; margin:0 0 8px}
+  .hero h1{font-family:Georgia,"Iowan Old Style",serif; font-size:2.5rem; line-height:1.1; margin:0 0 12px; text-wrap:balance}
+  .hero p.tag{font-size:1.2rem; color:var(--muted); max-width:60ch; margin:0}
+  @media (max-width:600px){ .hero h1{font-size:1.9rem} .hero p.tag{font-size:1.05rem} }
+
+  section{padding:34px 0; border-bottom:1px solid var(--line)}
+  h2.sec{font-family:Georgia,"Iowan Old Style",serif; font-size:1.5rem; margin:0 0 14px}
+  h2.sec .eye{display:block; font-family:system-ui,sans-serif; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-bottom:4px}
+
+  /* ---- bio ---- */
+  .bio{display:grid; grid-template-columns:300px 1fr; gap:26px; align-items:start}
+  .bio img{width:100%; border-radius:14px; border:1px solid var(--line); display:block}
+  .bio .who{margin:8px 0 0}
+  .bio .who .name{font-family:Georgia,serif; font-size:1.25rem; font-weight:700}
+  .bio .who .title{color:var(--muted); font-size:.95rem}
+  .bio p{margin:.6rem 0}
+  @media (max-width:640px){ .bio{grid-template-columns:1fr} .bio img{max-width:280px} }
+
+  .pubs{list-style:none; padding:0; margin:8px 0 0; display:grid; gap:8px}
+  .pubs li{background:var(--card); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:9px; padding:9px 13px; font-size:.96rem}
+  .pubs li b{color:var(--ink)}
+  .pubs li .honor{color:var(--gold); font-weight:700; font-size:.85rem}
+  .pubs li.book{border-left-color:var(--gold)}
+
+  .lead{font-size:1.06rem}
+  .build{list-style:none; padding:0; margin:14px 0 0; display:grid; grid-template-columns:1fr 1fr; gap:8px 20px}
+  .build li{padding-left:22px; position:relative}
+  .build li::before{content:"→"; position:absolute; left:0; color:var(--accent); font-weight:800}
+  @media (max-width:600px){ .build{grid-template-columns:1fr} }
+
+  /* ---- start-here cards ---- */
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:8px}
+  .cards a{display:block; text-decoration:none; color:var(--ink); background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; transition:border-color .15s, transform .15s}
+  .cards a:hover{border-color:var(--accent); transform:translateY(-2px)}
+  .cards a .t{font-weight:700; font-size:1.02rem; color:var(--accent); margin-bottom:3px}
+  .cards a .d{font-size:.9rem; color:var(--muted)}
+  @media (max-width:760px){ .cards{grid-template-columns:1fr 1fr} }
+  @media (max-width:480px){ .cards{grid-template-columns:1fr} }
+
+  footer{padding:26px 0 60px; color:var(--muted); font-size:.9rem}
+  .callout{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-top:14px}
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="inner">
+      <a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+      <a class="lnk" href="index.html" aria-current="page">Home</a>
+      <a class="lnk" href="syllabus.html">Syllabus</a>
+      <a class="lnk" href="schedule.html">Schedule</a>
+      <a class="lnk" href="projects.html">Major Project Rubrics</a>
+      <a class="lnk" href="readings.html">Readings</a>
+      <a class="lnk" href="research-notebook.html">Notebook</a>
+      <a class="lms" href="https://appstate.instructure.com/" target="_blank" rel="noopener">Canvas &rarr;</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <header class="hero">
+      <p class="kick">Appalachian State University</p>
+      <h1>Research Methods in Rhetoric &amp; Technical Writing</h1>
+      <p class="tag">A hands-on introduction to the theory and methods of technical communication, where you design and run your own research study, from a question worth asking to a report worth showing.</p>
+    </header>
+
+    <section id="about">
+      <h2 class="sec"><span class="eye">Your professor</span>Meet Dr. Long</h2>
+      <div class="bio">
+        <div>
+          <img src="dr-long.jpg" alt="Dr. Sarah Long writing in her study" data-note="instructor-site-url: instructor screens now live in their own repo (INSTRUCTOR-SITE-UPLOAD); rewire this photo to that site's URL when ready, or reach it via an unpublished Canvas link like 4100">
+          <div class="who">
+            <div class="name">Dr. Sarah Long</div>
+            <div class="title">Professor of Writing, Rhetoric &amp; Technical Communication</div>
+          </div>
+        </div>
+        <div>
+          <p>Hi, I'm Dr. Long. I've spent my career studying how the documents we make shape real decisions, from herbicide policy to the food labels in your grocery cart. My research uses discourse analysis and computational methods to trace how language moves change forward, or quietly blocks it. My Ph.D. work mapped fifty years of framing around the herbicide Agent Orange, and my computational-linguistics training comes from CASOS, the Center for Computational Analysis of Social and Organizational Systems, at Carnegie Mellon. Off campus, I work in <b>sustainable agriculture and food justice</b> and lead <b>Slow Food Tri-Cities</b>, so the questions we chase this semester, like what a "natural," "organic," or "local" label really promises a shopper, are ones I live with at the dinner table and on the farm.</p>
+          <p>I'm also a nonfiction writer. My memoir, <i>Uprooted: A Memoir of Belonging and Becoming</i>, is out now from Regal House Publishing (<a href="https://bookshop.org/p/books/uprooted-a-memoir-of-belonging-and-becoming-s-b-long/5b2f015417ce8c7e?ean=9781646037179&amp;bkshp-astro=t" target="_blank" rel="noopener">buy it on Bookshop.org</a>). My last book, <i>Woman at the Devil's Door</i>, was a nominee for the Bram Stoker Award.</p>
+          <p class="who"><span class="title">Curious about my life beyond campus? There's my writing at <a href="https://www.thewritingcure.com" target="_blank" rel="noopener">The Writing Cure</a> and my food work at <a href="https://www.slowfoodtricities.org" target="_blank" rel="noopener">Slow Food Tri-Cities</a>.</span></p>
+        </div>
+      </div>
+
+      <ul class="pubs">
+        <li><b>"All Vietnamese Men Are Brothers: Rhetorical Strategies and Community Engagement Practices,"</b> <i>Technical Communication</i> (2019) <span class="honor">· Winner, 2020 CCCC Best Research Award in Technical &amp; Professional Writing</span></li>
+        <li><b>"One Word of Heart Is Worth Three of Talent: Professional Communication in a Vietnamese Nonprofit,"</b> <i>Technical Communication Quarterly</i> (2019)</li>
+        <li><b>"Rigidity and Flexibility: Communicating Care for Vietnamese Agent Orange Victims,"</b> <i>Present Tense</i> (2019)</li>
+        <li><b>"Saving the Sea Socially,"</b> <i>Communication Design Quarterly</i> (2016) &nbsp;·&nbsp; <b>"Our (Electrate) Stories,"</b> <i>Kairos</i> (2014)</li>
+        <li><b>"The Tarot of Tech: Teaching Students to Imagine the Impacts of Their Designs,"</b> in <i>Equipping Technical Communicators for Social Justice Work</i> (Utah State UP, 2021)</li>
+        <li>Editor, special issues of <i>Technical Communication Quarterly</i> (ICT &amp; climate change, 2023) and <i>Communication Design Quarterly</i> (environmental communication, 2019)</li>
+        <li>Ph.D., Rhetoric &amp; Composition/Technical Communication, University of South Florida &nbsp;·&nbsp; computational-linguistics training at Carnegie Mellon's CASOS</li>
+        <li class="book"><b><i>Uprooted: A Memoir of Belonging and Becoming</i></b> (Regal House, 2026) <span class="honor">· Shortlisted, Bridport Prize in Memoir</span> &nbsp;·&nbsp; <a href="https://bookshop.org/p/books/uprooted-a-memoir-of-belonging-and-becoming-s-b-long/5b2f015417ce8c7e?ean=9781646037179&amp;bkshp-astro=t" target="_blank" rel="noopener">Bookshop.org</a></li>
+        <li class="book"><b><i>Woman at the Devil's Door</i></b> (Indiana University Press, 2018) <span class="honor">· Bram Stoker Award nominee</span></li>
+      </ul>
+    </section>
+
+    <section id="course">
+      <h2 class="sec"><span class="eye">The course</span>What ENG 3090 is</h2>
+      <p class="lead">This course introduces the foundational theories and methods of rhetoric and technical communication by having you do the real thing: design and carry out your own <b>mixed-methods research study</b>, then write it up as a professional <b>IMRAD report</b> you could hand to an employer or a graduate program.</p>
+      <p class="lead" style="margin-top:.8rem">We work all semester through one shared example, the sustainability claims on food labels (<i>natural, organic, local, regenerative</i>), and one guiding lens: who do these documents serve, who do they mislead, and whose voice is missing? The food label is our common reference point, but you'll choose your own topic to research across the semester.</p>
+      <p style="margin-top:1rem;font-weight:700;color:var(--accent)">By the end, you will have built:</p>
+      <ul class="build">
+        <li>A researchable question inside a real debate</li>
+        <li>A literature review of what's known</li>
+        <li>A qualitative discourse &amp; content analysis</li>
+        <li>An ethical, IRB-informed survey or interview study</li>
+        <li>Charts and evidence-tested findings</li>
+        <li>A full IMRAD report and a five-minute talk</li>
+      </ul>
+    </section>
+
+    <section id="start">
+      <h2 class="sec"><span class="eye">Get oriented</span>Start here</h2>
+      <div class="cards">
+        <a href="syllabus.html"><div class="t">Syllabus</div><div class="d">Policies, grading, and how the course works.</div></a>
+        <a href="schedule.html"><div class="t">Schedule &amp; Weekly Work</div><div class="d">Every week's module, tool, and deadline in one place.</div></a>
+        <a href="projects.html"><div class="t">Major Project Rubrics</div><div class="d">What each project asks for and how it's graded, with real examples.</div></a>
+        <a href="research-notebook.html"><div class="t">Research Notebook</div><div class="d">Your on-device workbook. It grows all semester.</div></a>
+        <a href="readings.html"><div class="t">Readings</div><div class="d">One short piece a week to ground the ideas.</div></a>
+        <a href="turn-in-guide.html"><div class="t">What's Due &amp; Where</div><div class="d">Every deliverable, how to submit it, when.</div></a>
+      </div>
+      <div class="callout"><b>How we meet:</b> Tuesdays in person in <b>Sanford Hall, Room 504</b>; Thursdays remote via <a href="https://appstate.zoom.us/my/drsarahlong" target="_blank" rel="noopener">Zoom</a>. Weeks 1 and 2 we meet on campus both days.</div>
+      <div class="callout"><b>Where you turn things in:</b> all assignments are submitted, and all grades are posted, in <b>Canvas</b>. Use the <b>Canvas</b> button up top anytime to log in.</div>
+    </section>
+
+    <footer>
+      ENG 3090 · Research Methods in Rhetoric &amp; Technical Writing · Appalachian State University
+    </footer>
+
+  </div>
+</body>
+</html>

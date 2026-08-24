@@ -9,51 +9,57 @@
     --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
     --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
     --good:#2f7d54; --goodsoft:#e4f1e8; --warn:#a3541f; --warnsoft:#f6ebe1;
-    --tip:#3a5d86; --tipsoft:#e8eef6;
+    --weak:#9a3535; --weaksoft:#f4e3e2; --tip:#3a5d86; --tipsoft:#e8eef6;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --goodsoft:#14301f; --warn:#e0a878; --warnsoft:#2c2013; --tip:#9cc0e6; --tipsoft:#16202c; }
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --goodsoft:#14301f; --warn:#e0a878; --warnsoft:#2c2013; --weak:#e29a97; --weaksoft:#2e1817; --tip:#9cc0e6; --tipsoft:#16202c; }
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  #qs{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #qs{max-width:780px; margin:0 auto; padding:28px 20px 90px}
   #qs h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.8rem; margin:0}
   #qs .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
   #qs .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
   #qs .sub{color:var(--muted); margin:6px 0 0}
-  #qs .honest{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:10px 14px; font-size:.9rem; margin:14px 0 18px}
-  #qs .starters{font-size:.9rem; color:var(--muted); margin:0 0 8px}
-  #qs .starters b{color:var(--accent)}
-  #qs textarea{width:100%; min-height:88px; background:var(--field); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:12px 14px; font:inherit; resize:vertical}
+  #qs .honest{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:12px 15px; font-size:.92rem; margin:14px 0 18px}
+  #qs .honest b{color:var(--ink)}
+  #qs label.qlab{font-weight:600; display:block; margin-bottom:6px}
+  #qs textarea{width:100%; min-height:84px; background:var(--field); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:12px 14px; font:inherit; resize:vertical}
   #qs textarea:focus{outline:3px solid var(--accent); outline-offset:1px; border-color:var(--accent)}
-  #qs .row{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px}
-  #qs button{font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:11px 18px; border:1px solid var(--accent); background:var(--accent); color:#fff}
+  #qs .starters{font-size:.9rem; color:var(--muted); margin:10px 0 0}
+  #qs .starters b{color:var(--accent)}
+
+  #qs .overall{position:sticky; top:0; z-index:5; background:var(--paper); padding:12px 0 8px; margin-top:20px; border-bottom:1px solid var(--line)}
+  #qs .bar{display:flex; gap:6px; margin:8px 0 6px}
+  #qs .bar span{flex:1; height:9px; border-radius:6px; background:var(--line)}
+  #qs .bar span.on{background:var(--good)}
+  #qs .overall .msg{font-weight:700}
+  #qs .overall .msg small{display:block; font-weight:400; font-size:.88rem; color:var(--muted); margin-top:2px}
+
+  #qs .crit{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:14px 0}
+  #qs .crit .top{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap}
+  #qs .crit h3{margin:0; font-size:1.12rem; font-family:Georgia,serif}
+  #qs .crit .what{color:var(--muted); font-size:.93rem; margin:4px 0 0}
+  #qs .crit .eg{font-size:.9rem; margin:8px 0 0; padding:8px 12px; background:var(--field); border:1px solid var(--line); border-radius:8px}
+  #qs .crit .eg .w{color:var(--weak); font-weight:700} #qs .crit .eg .s{color:var(--good); font-weight:700}
+  #qs .crit .tests{list-style:none; margin:12px 0 0; padding:0}
+  #qs .crit .tests li{margin:0 0 7px}
+  #qs .crit .tests label{display:flex; gap:10px; align-items:flex-start; cursor:pointer; font-size:.96rem}
+  #qs .crit .tests input{margin-top:3px; width:17px; height:17px; flex:none; accent-color:var(--accent)}
+  #qs .pill{margin-left:auto; font-size:.7rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; border-radius:999px; padding:3px 10px; align-self:center}
+  #qs .pill.strong{background:var(--goodsoft); color:var(--good)}
+  #qs .pill.shaky{background:var(--warnsoft); color:var(--warn)}
+  #qs .pill.weak{background:var(--weaksoft); color:var(--weak)}
+  #qs .fix{margin:10px 0 0; font-size:.9rem; padding:9px 12px; border-radius:8px; border-left:4px solid var(--warn); background:var(--warnsoft)}
+  #qs .fix.hide{display:none}
+
+  #qs .win{margin-top:18px; background:var(--goodsoft); border:1px solid var(--good); border-radius:12px; padding:15px 17px}
+  #qs .win.hide{display:none}
+  #qs button{font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:10px 16px; border:1px solid var(--accent); background:var(--accent); color:#fff; margin-top:8px}
   #qs button.ghost{background:transparent; color:var(--accent); font-weight:600}
-  #qs button:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
-  #qs .result{margin-top:20px}
-  #qs .verdict{display:flex; align-items:center; gap:12px; border-radius:12px; padding:14px 16px; font-weight:700; font-size:1.1rem; border:1px solid var(--line)}
-  #qs .verdict .dot{width:14px; height:14px; border-radius:50%; flex:none}
-  #qs .verdict.strong{background:var(--goodsoft); color:var(--good)} #qs .verdict.strong .dot{background:var(--good)}
-  #qs .verdict.getting{background:var(--warnsoft); color:var(--warn)} #qs .verdict.getting .dot{background:var(--warn)}
-  #qs .verdict.weak{background:var(--warnsoft); color:var(--warn)} #qs .verdict.weak .dot{background:var(--warn)}
-  #qs .verdict.empty{background:var(--card); color:var(--muted)} #qs .verdict.empty .dot{background:var(--muted)}
-  #qs .note{margin:10px 0 0; padding:12px 14px; border-radius:10px; border:1px solid var(--line)}
-  #qs .note h4{margin:0 0 3px; font-size:.98rem}
-  #qs .note p{margin:0; font-size:.94rem; color:var(--ink)}
-  #qs .note.hard{background:var(--warnsoft); border-left:4px solid var(--warn)}
-  #qs .note.tip{background:var(--tipsoft); border-left:4px solid var(--tip)}
-  #qs .note.good{background:var(--goodsoft); border-left:4px solid var(--good)}
-  #qs .note .kind{font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--muted)}
-  #qs .win{margin-top:12px; background:var(--goodsoft); border:1px solid var(--good); border-radius:12px; padding:14px 16px}
-  #qs .win button{margin-top:8px}
-  #qs .drafts{margin-top:26px; border-top:1px solid var(--line); padding-top:14px}
-  #qs .drafts h3{font-size:.82rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin:0 0 8px}
-  #qs .draft{display:flex; gap:10px; align-items:flex-start; padding:7px 0; border-bottom:1px dashed var(--line); font-size:.93rem}
-  #qs .draft .v{font-weight:800; color:var(--muted); flex:none}
-  #qs .pill{font-size:.7rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em; border-radius:999px; padding:2px 8px; flex:none; align-self:center}
-  #qs .pill.strong{background:var(--goodsoft); color:var(--good)} #qs .pill.getting,#qs .pill.weak{background:var(--warnsoft); color:var(--warn)}
-  #qs .clearbtn{margin-top:10px}
-  /* ===== shared course nav (injected on every page) ===== */
+  #qs .src{margin-top:26px; border-top:1px solid var(--line); padding-top:12px; font-size:.86rem; color:var(--muted)}
+  #qs .src a{color:var(--accent)}
+  /* ===== shared course nav ===== */
   .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
   .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
@@ -80,132 +86,169 @@
   <header class="masthead">
     <p class="kicker">ENG 3090 · Week 2</p>
     <h1>Research Question Strengthener</h1>
-    <p class="sub">Type a research question. It flags what's weak and helps you make it stronger, until it's ready to read to the class.</p>
+    <p class="sub">Run your question through the six things a strong research question does. You do the judging; the tool just keeps score and shows you where to work next.</p>
   </header>
 
   <div class="honest">
-    <b>How it works.</b> Type your question and hit <b>Check</b>. You'll get a read on how strong it is, plus specific notes on what to fix. Revise it right in the box and check again. Each new draft is saved below, so you can watch your question get stronger. Everything stays on this computer.
+    <b>How it works.</b> Type your research question so you can see it while you work. Then read each of the six checks below and, for each one, tick the boxes that are honestly <b>true of your question</b>. The tool tallies your answers and shows which checks are solid and which need work. It does not read your question for you, that judgment is yours, and it's the whole skill. Revise your question, re-tick the boxes, and watch it get stronger. Everything stays on this computer.
   </div>
 
-  <p class="starters">Strong questions often start: <b>How do…</b> · <b>Which…</b> · <b>To what extent…</b> · <b>In what ways…</b></p>
-  <label for="q" style="font-weight:600; display:block; margin-bottom:6px">Your research question</label>
-  <textarea id="q" placeholder="e.g., How do first-year students interpret the word &quot;natural&quot; on food labels?"></textarea>
+  <label class="qlab" for="q">Your research question</label>
+  <textarea id="q" placeholder="e.g., When first-year students read &quot;natural&quot; on an egg carton, can they say what it legally means?"></textarea>
+  <p class="starters">Strong questions often open: <b>How do…</b> · <b>Which…</b> · <b>To what extent…</b> · <b>In what ways…</b> &nbsp;(they invite findings, not just yes/no).</p>
 
-  <div class="row">
-    <button type="button" id="check">Check my question</button>
-    <button type="button" class="ghost" id="example">Try an example</button>
+  <div class="overall" id="overall">
+    <div class="bar" id="bar"></div>
+    <div class="msg" id="msg"></div>
   </div>
 
-  <div class="result" id="result" aria-live="polite"></div>
+  <div id="crits"></div>
 
-  <div class="drafts" id="draftsWrap" hidden>
-    <h3>Your drafts (watch it get stronger)</h3>
-    <div id="drafts"></div>
+  <div class="win hide" id="win">
+    <b>🎉 All six check out.</b> By your own honest reading, this question is scoped, answerable, and worth doing. Copy it into <b>Entry 2a</b> of your notebook and get ready to read it to the class.
+    <br><button type="button" id="copyq">Copy my question</button>
   </div>
+
+  <p class="src">The six checks adapt the widely used <b>FINER</b> criteria for a good research question, from Ratan, Anand &amp; Ratan, &ldquo;Formulation of Research Question, Stepwise Approach&rdquo; (<i>Journal of the Indian Association of Pediatric Surgeons</i>, 2019). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6322175/" target="_blank" rel="noopener">Read it free (open access)</a>.</p>
 
 </div>
 
 <script>
 (function(){
   var q = document.getElementById('q');
-  var result = document.getElementById('result');
-  var draftsWrap = document.getElementById('draftsWrap');
-  var draftsEl = document.getElementById('drafts');
-  var KEY = 'eng3090_qs_drafts';
+  var critsEl = document.getElementById('crits');
+  var barEl = document.getElementById('bar');
+  var msgEl = document.getElementById('msg');
+  var winEl = document.getElementById('win');
+  var KEY = 'eng3090_qs_v2';
 
-  function evaluate(raw){
-    var text = raw.trim();
-    if(!text) return {verdict:'empty'};
-    var low = text.toLowerCase();
-    var words = text.split(/\s+/);
-    var issues = [], positives = [];
+  var CRITERIA = [
+    { key:'clear', name:'Clear', what:'Precise wording. A reader gets your aim in one read, and every key term has one clear meaning.',
+      egW:'Are food labels good?', egS:'When shoppers read "natural" on an egg carton, can they say what it legally means?',
+      tests:[
+        'A classmate could repeat my question back accurately after reading it once.',
+        'Every important word has one clear meaning (no undefined "good," "better," "impact," "quality").',
+        'It names the specific thing I am studying, a group, a place, or a set of texts.'
+      ],
+      fix:'Cut the vague word and name exactly what you would look at. Swap "good" or "impact" for a specific thing you could observe.' },
+    { key:'focused', name:'Focused', what:'Zooms in on one problem or one relationship, scoped small enough to actually finish.',
+      egW:'Is our food system broken?', egS:'Which sustainability words on egg cartons at one Boone grocery are legally regulated, and which are not?',
+      tests:[
+        'It asks about ONE problem or ONE relationship, not several at once.',
+        'It is narrow enough to finish as a one-semester project.',
+        'I could not reasonably split it into two separate studies.'
+      ],
+      fix:'Pick one slice. Name a single group, place, or set of texts and let go of the rest for now.' },
+    { key:'complex', name:'Complex', what:'The answer takes analysis, comparison, or cause-and-effect, not a yes/no or a five-minute lookup.',
+      egW:'Is "organic" a regulated term?', egS:'How do "organic" and "natural" claims differ in what they actually promise a shopper?',
+      tests:[
+        'The answer is more than yes/no or a single fact I could look up in five minutes.',
+        'Answering it takes real analysis, comparison, or cause-and-effect.',
+        'Reasonable people could not be sure of the findings before the study.'
+      ],
+      fix:'If it is a quick fact, that belongs in your literature review. Turn it into a "how," "which," or "to what extent" that needs digging.' },
+    { key:'feasible', name:'Feasible', what:'You can get the data, texts, people, or numbers, with the time, tools, and access you have this semester.',
+      egW:'How do shoppers worldwide interpret eco-labels?', egS:'How do first-year students at App State interpret "regenerative" on a product?',
+      tests:[
+        'I can actually get the texts, people, or numbers I would need this semester.',
+        'I have, or can quickly learn, the tools and skills to collect and analyze it.',
+        'It needs no money, travel, or permissions I do not have.'
+      ],
+      fix:'Shrink the reach to what you can actually touch, one store, one group, a stack of texts you can get your hands on.' },
+    { key:'relevant', name:'Relevant &amp; significant', what:'Answers a real gap and matters to someone beyond you, a field, a community, a group of shoppers.',
+      egW:'What color are most egg cartons?', egS:'Do "local" produce signs match where the food is actually grown, and could that mislead buyers?',
+      tests:[
+        'It addresses something not already obviously answered.',
+        'Someone beyond me would care about the answer.',
+        'I can say in one sentence why the answer matters.'
+      ],
+      fix:'Ask "so what?" If you cannot say who is served by the answer, tie it to a real stake, who could be misled, helped, or harmed.' },
+    { key:'ethical', name:'Ethical', what:'You can investigate it safely, no harm, no deception, privacy protected, and no vulnerable group you cannot ethically study.',
+      egW:'Which classmates have eating disorders, and how do they read diet labels?', egS:'How do adult shoppers describe trusting or distrusting carton claims?',
+      tests:[
+        'I can investigate it without harming or deceiving anyone involved.',
+        'It protects privacy, I am not exposing data people would want kept private.',
+        'It avoids vulnerable groups (children, patients, prisoners), or I have a genuinely safe plan for them.'
+      ],
+      fix:'Steer toward adults who can freely consent and data no one would be hurt to share. When in doubt, change the population, not the ethics.' }
+  ];
 
-    var opinion = low.match(/\b(should|better|best|worse|worst|good|bad|evil|worth|deserves?|moral|immoral|right|wrong|ought|superior|inferior|amazing|terrible)\b/);
-    var isDefinition = /^\s*(what\s+is|what\s+are|what's|define|definition of)\b/.test(low) && !/\b(relationship|effect|impact|difference|connection|correlation|between|related|associat|role of|influence|predict)\b/.test(low);
-    var broad = low.match(/\b(everyone|everybody|all people|people in general|society|the world|the public|humanity|humans|mankind)\b/);
-    var yesno = /^\s*(is|are|do|does|did|can|could|will|would|has|have|had|was|were)\b/.test(low);
-    var opensWell = /^\s*(how|which|to what extent|in what ways|what factors|what patterns)\b/.test(low);
-    var hasNum = /\d/.test(text);
-    var hasQuote = /["'“”‘’]/.test(text);
-    var hasPlace = /\b(at|in|on|among|across)\s+[a-z0-9"“]/i.test(text);
-    var hasGroup = /\b(students?|freshmen|first[- ]?years?|workers?|farmers?|shoppers?|consumers?|customers?|patients?|residents?|users?|readers?|nurses?|doctors?|veterans?|women|men|children|teens?|adults?|parents?|voters?|employees?|clients?)\b/i.test(text);
-    var hasText = /\b(labels?|packaging|cartons?|eggs?|ads?|advertisements?|posts?|tweets?|policies|policy|manuals?|instructions?|websites?|web ?pages?|reports?|articles?|documents?|signs?|menus?|forms?|claims?|slogans?|captions?|emails?|packages?)\b/i.test(text);
-    var specificity = [hasNum, hasQuote, hasPlace, hasGroup, hasText].filter(Boolean).length;
+  function loadState(){ try{ return JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ return {}; } }
+  function saveState(s){ try{ localStorage.setItem(KEY, JSON.stringify(s)); }catch(e){} }
+  var state = loadState();
+  if(typeof state.q === 'string') q.value = state.q;
+  state.checks = state.checks || {};
 
-    if(opinion) issues.push({kind:'hard', k:'Opinion, not evidence', body:'The word "'+opinion[0]+'" asks for an opinion, not something you can observe or measure. Swap it for a specific outcome you could count, compare, or analyze. (Instead of "'+opinion[0]+'," what exactly would you look at?)'});
-    if(isDefinition) issues.push({kind:'hard', k:'This is a definition question', body:'Perfect for your literature review, but not your research question. Ask what you would go find out. Try: "How do [group] understand [term]?" or "Which [texts] [do what]?"'});
-    if(broad) issues.push({kind:'hard', k:'Too broad to study', body:'"'+broad[0]+'" is bigger than any study can reach. Name a specific group, place, or set of texts you could actually get to.'});
-    if(specificity === 0 && !isDefinition) issues.push({kind:'hard', k:'Who or what, exactly?', body:'Add a specific group (like "first-year students"), a place, or a set of texts (like "egg-carton labels") you could actually study.'});
-    if(words.length < 6) issues.push({kind:'hard', k:'Add specifics', body:'A strong question usually names both what you are studying and who or where. Give it more to grab onto.'});
-    if(yesno && !opinion) issues.push({kind:'tip', k:'Open up the yes/no', body:'As written, the answer is just yes or no. You will learn more if you start with "How," "Which," "To what extent," or "In what ways."'});
-    if(text.indexOf('?') < 0) issues.push({kind:'tip', k:'Make it a question', body:'Phrase it as an actual question, ending in a "?". It keeps you honest about what you are asking.'});
+  function ratingFor(n){ return n >= 3 ? 'strong' : (n === 2 ? 'shaky' : 'weak'); }
+  var pillText = {strong:'Solid', shaky:'Shaky', weak:'Needs work'};
 
-    if(opensWell) positives.push('Starts open (how / which / to what extent), that invites real findings, not just yes or no.');
-    if(specificity >= 2) positives.push('Nicely scoped, you name what and who you are studying.');
-    if(hasText && hasGroup) positives.push('Fits more than one method, you could analyze the texts AND ask the people.');
-
-    var hard = issues.filter(function(i){ return i.kind==='hard'; }).length;
-    var verdict = hard === 0 ? 'strong' : (hard === 1 ? 'getting' : 'weak');
-    return {verdict:verdict, issues:issues, positives:positives};
-  }
-
-  var labels = {
-    strong:{t:'Strong enough to share', s:'You have cleared the common traps. Read this one to the class.'},
-    getting:{t:'Getting there', s:'One thing to fix, then you are ready. Work the note below and check again.'},
-    weak:{t:'Still weak, keep going', s:'Work the notes below and check again. That back-and-forth IS the skill.'},
-    empty:{t:'Type a question first', s:'Put a research question in the box above, then hit Check.'}
-  };
-
-  function render(ev, text){
-    var v = ev.verdict;
-    var html = '<div class="verdict '+v+'"><span class="dot"></span><div><div>'+labels[v].t+'</div><div style="font-weight:400;font-size:.9rem;margin-top:2px">'+labels[v].s+'</div></div></div>';
-    if(ev.positives && ev.positives.length){
-      ev.positives.forEach(function(p){ html += '<div class="note good"><span class="kind">Working</span><p>'+p+'</p></div>'; });
-    }
-    if(ev.issues){
-      ev.issues.sort(function(a,b){ return (a.kind==='hard'?0:1)-(b.kind==='hard'?0:1); });
-      ev.issues.forEach(function(i){
-        html += '<div class="note '+(i.kind==='hard'?'hard':'tip')+'"><span class="kind">'+(i.kind==='hard'?'Fix this':'Polish')+'</span><h4>'+i.k+'</h4><p>'+i.body+'</p></div>';
-      });
-    }
-    if(v === 'strong'){
-      html += '<div class="win"><b>🎉 Ready to share.</b> Copy this into Entry 2a of your notebook, and get ready to read it to the class.<br><button type="button" id="copyq">Copy my question</button></div>';
-    }
-    result.innerHTML = html;
-    var cb = document.getElementById('copyq');
-    if(cb) cb.addEventListener('click', function(){
-      try{ navigator.clipboard && navigator.clipboard.writeText(text); }catch(e){}
-      cb.textContent = 'Copied ✓';
-    });
-  }
-
-  function loadDrafts(){ try{ return JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){ return []; } }
-  function saveDrafts(d){ try{ localStorage.setItem(KEY, JSON.stringify(d.slice(-12))); }catch(e){} }
-  function renderDrafts(){
-    var d = loadDrafts();
-    if(!d.length){ draftsWrap.hidden = true; return; }
-    draftsWrap.hidden = false;
-    draftsEl.innerHTML = d.map(function(x,idx){
-      var pillText = {strong:'Strong', getting:'Getting there', weak:'Weak'}[x.verdict] || x.verdict;
-      return '<div class="draft"><span class="v">v'+(idx+1)+'</span><span style="flex:1">'+x.text.replace(/</g,'&lt;')+'</span><span class="pill '+x.verdict+'">'+pillText+'</span></div>';
+  // build the cards
+  CRITERIA.forEach(function(c){
+    var card = document.createElement('div');
+    card.className = 'crit';
+    card.id = 'crit-' + c.key;
+    var tests = c.tests.map(function(t, i){
+      var id = 'ck-' + c.key + '-' + i;
+      var on = (state.checks[c.key] || [])[i] ? ' checked' : '';
+      return '<li><label><input type="checkbox" id="'+id+'" data-c="'+c.key+'" data-i="'+i+'"'+on+'><span>'+t+'</span></label></li>';
     }).join('');
+    card.innerHTML =
+      '<div class="top"><h3>'+c.name+'</h3><span class="pill" id="pill-'+c.key+'"></span></div>'+
+      '<p class="what">'+c.what+'</p>'+
+      '<p class="eg"><span class="w">Weak:</span> &ldquo;'+c.egW+'&rdquo; &nbsp;·&nbsp; <span class="s">Strong:</span> &ldquo;'+c.egS+'&rdquo;</p>'+
+      '<ul class="tests">'+tests+'</ul>'+
+      '<div class="fix hide" id="fix-'+c.key+'">'+c.fix+'</div>';
+    critsEl.appendChild(card);
+  });
+
+  function countChecks(key){
+    var arr = state.checks[key] || [];
+    return arr.filter(Boolean).length;
   }
 
-  function check(){
-    var text = q.value.trim();
-    var ev = evaluate(text);
-    render(ev, text);
-    if(ev.verdict !== 'empty'){
-      var d = loadDrafts();
-      if(!d.length || d[d.length-1].text !== text){ d.push({text:text, verdict:ev.verdict}); saveDrafts(d); renderDrafts(); }
+  function refresh(){
+    var solid = 0;
+    CRITERIA.forEach(function(c){
+      var n = countChecks(c.key);
+      var r = ratingFor(n);
+      if(r === 'strong') solid++;
+      var pill = document.getElementById('pill-'+c.key);
+      pill.className = 'pill ' + r;
+      pill.textContent = pillText[r];
+      var fix = document.getElementById('fix-'+c.key);
+      if(r === 'strong') fix.classList.add('hide'); else fix.classList.remove('hide');
+    });
+    // overall bar (one segment per criterion, lit when solid)
+    barEl.innerHTML = CRITERIA.map(function(c){
+      return '<span class="'+(ratingFor(countChecks(c.key))==='strong'?'on':'')+'"></span>';
+    }).join('');
+    if(solid === 6){
+      msgEl.innerHTML = 'All six check out. <small>Nice work, your question is ready to read to the class.</small>';
+      winEl.classList.remove('hide');
+    } else {
+      msgEl.innerHTML = solid + ' of 6 checks solid. <small>Keep revising the question and re-ticking, aim to turn every bar green.</small>';
+      winEl.classList.add('hide');
     }
   }
 
-  document.getElementById('check').addEventListener('click', check);
-  document.getElementById('example').addEventListener('click', function(){ q.value = 'Is organic food better?'; q.focus(); check(); });
-  q.addEventListener('keydown', function(e){ if((e.metaKey||e.ctrlKey) && e.key === 'Enter'){ check(); } });
+  critsEl.addEventListener('change', function(e){
+    var cb = e.target;
+    if(cb.type !== 'checkbox') return;
+    var key = cb.getAttribute('data-c'), i = +cb.getAttribute('data-i');
+    state.checks[key] = state.checks[key] || [];
+    state.checks[key][i] = cb.checked;
+    saveState(state);
+    refresh();
+  });
+  q.addEventListener('input', function(){ state.q = q.value; saveState(state); });
 
-  renderDrafts();
+  document.getElementById('copyq').addEventListener('click', function(){
+    var b = this;
+    try{ navigator.clipboard && navigator.clipboard.writeText(q.value.trim()); b.textContent = 'Copied ✓'; }
+    catch(e){ b.textContent = 'Select the box above and copy'; }
+  });
+
+  refresh();
 })();
 </script>
 </body>
