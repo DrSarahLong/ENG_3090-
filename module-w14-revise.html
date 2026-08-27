@@ -8,45 +8,47 @@
   :root{
     --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
     --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
-    --good:#2f7d54; --due:#7a3b1f; --duesoft:#f6ebe1; --reflect:#3a5d86; --reflectsoft:#e8eef6;
+    --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --due:#e0a878; --duesoft:#2c2013; --reflect:#9cc0e6; --reflectsoft:#16202c; }
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
   #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:30px 0 8px}
   #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
   #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
   #mod .sub{color:var(--muted); margin:6px 0 0}
-  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:26px}
-  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:4px 0 8px}
-  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
   #mod .box.accent{border-left:5px solid var(--accent)}
-  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.45rem 0}
-  #mod ol.steps{margin:.4rem 0; padding-left:1.3rem} #mod ol.steps li{margin:.5rem 0}
-  #mod a{color:var(--accent)}
-  #mod .princ li b{color:var(--accent)}
-  #mod .stack{display:grid; gap:8px; margin:10px 0}
-  #mod .layer{border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:var(--card)}
-  #mod .layer b{color:var(--accent)}
-  #mod .layer.big{border-left:5px solid var(--accent)}
-  #mod .layer.small{border-left:5px solid var(--muted)}
-  #mod .rubric{width:100%; border-collapse:collapse; margin:8px 0; font-size:.95rem}
-  #mod .rubric td{border:1px solid var(--line); padding:8px 10px; vertical-align:top}
-  #mod .rubric td:first-child{font-weight:700; color:var(--accent); width:34%}
-  #mod .reflect{background:var(--reflectsoft); border:1px solid var(--line); border-left:5px solid var(--reflect); border-radius:12px; padding:14px 16px; margin:16px 0}
-  #mod .reflect .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--reflect); display:block; margin-bottom:3px}
-  #mod .duebox{background:var(--duesoft); border:1px solid var(--line); border-left:5px solid var(--due); border-radius:12px; padding:14px 16px; margin:14px 0}
-  #mod .duebox .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--due); display:block; margin-bottom:3px}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.35rem 0}
+  #mod .check{list-style:none; padding-left:0}
+  #mod .check li{display:flex; gap:10px; align-items:flex-start; margin:.5rem 0}
+  #mod .check .n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.9rem}
+  #mod .debrief{background:var(--talksoft); border:1px solid var(--line); border-left:5px solid var(--talk); border-radius:12px; padding:14px 16px; margin:18px 0}
+  #mod .debrief .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--talk); display:block; margin-bottom:3px}
+  #mod .debrief p{margin:.2rem 0}
   #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
   #mod a.btn.ghost{background:transparent; color:var(--accent); border:1.5px solid var(--accent)}
   #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
   #mod .note{color:var(--muted); font-size:.9rem}
-  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:24px}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:22px}
   #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
   #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  /* ===== lesson-flow components ===== */
+  #mod .ground{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:14px 0}
+  #mod .bridge{color:var(--muted); font-style:italic; margin:16px 0 4px}
+  #mod .ex{background:var(--field); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .ex .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--good); margin-bottom:5px}
+  #mod .ex p{margin:.35rem 0}
+  #mod .read{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .read .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:5px}
+  #mod .read a{color:var(--accent); font-weight:700}
+  #mod .do{background:var(--card); border:1px dashed var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .do .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:4px}
+  #mod .do p{margin:.2rem 0}
   dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   dialog.pop::backdrop{background:rgba(12,16,24,.55)}
   dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
@@ -54,7 +56,7 @@
   dialog.pop a{color:var(--accent)}
   dialog.pop form{margin-top:16px;text-align:right}
   dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
-  /* ===== shared course nav (injected on every page) ===== */
+  /* ===== shared course nav ===== */
   .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
   .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
@@ -81,77 +83,115 @@
   <header class="masthead">
     <p class="kicker">ENG 3090 · Week 14 · Thursday Module</p>
     <h1>Revise, Review &amp; Polish</h1>
-    <p class="sub">You have a full draft. This week you turn it into the final. That takes real revision, seeing the whole thing again, not just fixing typos. Budget about ninety minutes across your draft.</p>
+    <p class="sub">You have a full draft. Today you turn it into the final, which means real revision, not just fixing typos.</p>
   </header>
 
+  <div class="ground"><b>Arrive.</b> Open your Research Notebook and your latest draft in other tabs, and take a breath. On Tuesday you finished a full IMRAD draft, start to finish. Today's job is to <b>re-see</b> it: the whole thing again, at the level of ideas and structure first, then sentences, then specks. Budget about ninety minutes across your own draft.</div>
+
+  <p class="bridge">A finished draft is the raw material, not the report. Today you make it read like the study you actually ran.</p>
+
   <div class="box accent">
-    <p><b>First, permission.</b> Your draft is allowed to be rough right now. The writer Anne Lamott has a famous name for the first version of anything: the <button type="button" class="term" data-pop="sfd">shitty first draft</button>. Her point is that nobody, not published researchers, not me, not you, writes a good draft first. You write a messy one so you have something to make good. The report you hand in next week won't be the one you have now, and that's exactly how it's supposed to work.</p>
+    <p><b>First, permission.</b> Your draft is allowed to be rough right now. The writer Anne Lamott, in <i>Bird by Bird</i> (1994), has a famous name for the first version of anything: the <button type="button" class="term" data-pop="sfd">shitty first draft</button>. Her point is that nobody, not published researchers, not me, not you, writes a good draft first. You write a messy one so you have something to make good. The report you hand in next week won't be the one you have now, and that's exactly how it's supposed to work.</p>
   </div>
 
-  <p class="step">Step 1: revise, edit, and proofread are three different jobs</p>
-  <p>Most students do only the last two and call it revising. Do all three, and do them <b>big to small</b>:</p>
-  <div class="stack">
-    <div class="layer big"><b><button type="button" class="term" data-pop="revise">Revise</button> (ideas &amp; structure).</b> Is the argument clear? Is anything missing, repeated, or out of order? Does each section do its job? This is where a draft actually gets better.</div>
-    <div class="layer small"><b>Edit (sentences).</b> Tighten wordy sentences, fix awkward phrasing, smooth transitions, warm up the academic tone.</div>
-    <div class="layer small"><b>Proofread (errors).</b> Typos, citation formatting, page numbers, figure captions. Last, because there's no sense polishing a paragraph you might cut.</div>
+  <h2>1 · Revise, edit, and proofread are three different jobs</h2>
+  <p>Most students do only the last two and call it revising. Do all three, and do them <b>big to small</b>, so you're not perfecting sentences you may end up cutting.</p>
+  <div class="box">
+    <ul class="check">
+      <li><span class="n">1</span><div><b><button type="button" class="term" data-pop="revise">Revise</button> (ideas &amp; structure).</b> Is the argument clear? Is anything missing, repeated, or out of order? Does each section do its job? This is where a draft actually gets better.</div></li>
+      <li><span class="n">2</span><div><b>Edit (sentences).</b> Tighten wordy sentences, fix awkward phrasing, smooth transitions, warm up the academic tone.</div></li>
+      <li><span class="n">3</span><div><b>Proofread (errors).</b> Typos, citation formatting, page numbers, figure captions. Last, because there's no sense polishing a paragraph you might&nbsp;cut.</div></li>
+    </ul>
   </div>
 
-  <p class="step">Step 2: fix the big things first</p>
-  <p>Writing centers call this <button type="button" class="term" data-pop="hoc">higher-order concerns before lower-order concerns</button>. Sort your problems and start at the top:</p>
+  <h2>2 · Fix the big things first</h2>
+  <p>Writing centers call this <button type="button" class="term" data-pop="hoc">higher-order concerns before lower-order concerns</button>. Sort your problems and start at the top.</p>
   <div class="box">
     <p><b>Higher-order (do first):</b> focus and argument, organization, whether each claim has evidence, whether the report answers its own question.</p>
     <p><b>Lower-order (do after):</b> grammar, word choice, citation style, formatting, typos.</p>
     <p class="note">There's no point perfecting the commas in a paragraph you're about to delete. Structure first, sentences second, specks last.</p>
   </div>
-
-  <p class="step">Step 3: X-ray your structure with a reverse outline</p>
-  <p>The fastest way to see your report's real bones is to <button type="button" class="term" data-pop="reverse">reverse-outline</button> it: go paragraph by paragraph and write, in one line, the job that paragraph does. Line them up and the gaps, repetition, and out-of-order pieces jump out. You did this in class; do it again on your latest draft.</p>
-  <p><a class="btn ghost" href="reverse-outline.html" target="_blank" rel="noopener">Open the Reverse Outline tool &rarr;</a></p>
-
-  <p class="step">Step 4: read your own draft like a skeptical stranger</p>
-  <p>You know what you <em>meant</em> to say, which is exactly why you can't see what's missing. Read your draft as a tired grader who knows nothing about your project would, against the same things it'll be judged on:</p>
-  <table class="rubric">
-    <tr><td>Question &amp; significance</td><td>Is there a clear research question, and is it obvious why it matters?</td></tr>
-    <tr><td>Sections &amp; structure</td><td>All of IMRAD present, in order, each doing its job? Results reports; Discussion interprets?</td></tr>
-    <tr><td>Evidence</td><td>Does every claim have support (a number, a source, a quote)? Are figures captioned?</td></tr>
-    <tr><td>Honesty</td><td>Are limitations named? Do claims match the evidence (suggests, not proves)?</td></tr>
-    <tr><td>Coherence &amp; voice</td><td>Do the sections connect? Is the tone consistent and academic throughout?</td></tr>
-    <tr><td>Design &amp; mechanics</td><td>Headings, page numbers, consistent citations (15 to 20 sources), clean prose?</td></tr>
-  </table>
-
-  <p class="step">Step 5: read it aloud</p>
-  <p>Your eyes skip what your ears catch. <button type="button" class="term" data-pop="aloud">Reading aloud</button> is one of the best ways to find clunky sentences, missing words, and places where two ideas don't connect. Every spot you stumble is a spot your reader will too. Mark them and fix them.</p>
-  <p class="note"><b>The research:</b> in a 2025 study, students who read their drafts aloud corrected about three errors per ten-minute paragraph that they'd otherwise have missed (Eckstein, Lung &amp; Gillette, <a href="https://tesl-ej.org/wordpress/issues/volume28/ej112/ej112a5/" target="_blank" rel="noopener">TESL-EJ</a>, open access). A free, five-minute habit with a real payoff.</p>
-
-  <p class="step">Step 6: run the revision tools</p>
-  <p>Three tools do the heavy lifting here, and each one makes you make the call. Start with the <a href="reverse-outline-academic.html" target="_blank" rel="noopener">Reverse-Outline X-Ray</a> to confirm your sections sit in IMRAD order with nothing missing. Then diagnose weak claims and sources in the <a href="source-transfer-drill.html" target="_blank" rel="noopener">Source &amp; Claim Transfer Drill</a>. Finish with <a href="academic-editors-passes.html" target="_blank" rel="noopener">The Editor's Passes</a>, which hands you your claim, your quotes, your hedging, your strongest source, and your signposting one at a time.</p>
-  <p><a class="btn ghost" href="academic-editors-passes.html" target="_blank" rel="noopener">Run the Editor's Passes &rarr;</a></p>
-
-  <p class="step">Step 7 (optional): trade a draft for feedback</p>
-  <p>This one's optional, and worth it. If you want my eyes on it before the final, <b>submit a draft this week</b> and I'll comment. A draft I read now is far more useful to you than a grade I give later.</p>
-
-  <div class="reflect">
-    <span class="lab">✍ On your own</span>
-    <p>Find the weakest paragraph in your draft, the one you'd least want a stranger to read first. Don't fix a comma in it. Ask what job it's supposed to do, and whether it does it. Then revise it to do that job, or cut it.</p>
+  <div class="read">
+    <div class="t">Read the real thing · 6 min</div>
+    <p><a href="https://writingcenter.unc.edu/tips-and-tools/revising-drafts/" target="_blank" rel="noopener">Revising Drafts</a> &mdash; UNC Chapel Hill Writing Center. Draws the line between revising and proofreading, and shows why you fix the big things (focus, organization) before the small ones.</p>
   </div>
 
-  <p class="step">Now: log your revision (Notebook Entry 14b)</p>
+  <h2>3 · X-ray your structure with a reverse outline</h2>
+  <p>The fastest way to see your report's real bones is to <button type="button" class="term" data-pop="reverse">reverse-outline</button> it: go paragraph by paragraph and write, in one line, the job that paragraph does. Line the jobs up and the gaps, repetition, and out-of-order pieces jump out. You did this in class; do it again on your latest draft.</p>
+  <div class="read">
+    <div class="t">Read the real thing · 5 min</div>
+    <p><a href="https://writing.wisc.edu/handbook/process/reverseoutlines/" target="_blank" rel="noopener">Reverse Outlines</a> &mdash; UW-Madison Writing Center. The exact technique behind this week's tool: outline what you actually wrote to test whether your structure holds.</p>
+  </div>
+  <div class="read">
+    <div class="t">Try the tool · 15 min</div>
+    <p>Two tools run this move. Start with the <a href="reverse-outline-academic.html" target="_blank" rel="noopener">Reverse-Outline X-Ray</a> to confirm your sections sit in IMRAD order with nothing missing, then use the <a href="reverse-outline.html" target="_blank" rel="noopener">Reverse Outline tool</a> to lay every paragraph's job in a single skeleton you can read at a glance. Both make you name each job yourself; the tool never judges your prose for you.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 14b</b>, write down the two biggest structural problems the reverse outline surfaced in your own draft (a missing section, a claim with no evidence, two paragraphs doing the same job), and what you'll do about each.</p>
+  </div>
+
+  <h2>4 · Read your own draft like a skeptical stranger</h2>
+  <p>You know what you <em>meant</em> to say, which is exactly why you can't see what's missing. Read your draft the way a tired grader who knows nothing about your project would, against the same things it'll be judged on.</p>
+  <div class="box">
+    <ul>
+      <li><b>Question &amp; significance.</b> Is there a clear research question, and is it obvious why it matters?</li>
+      <li><b>Sections &amp; structure.</b> All of IMRAD present, in order, each doing its job? Results reports; Discussion interprets?</li>
+      <li><b>Evidence.</b> Does every claim have support (a number, a source, a quote)? Are figures captioned?</li>
+      <li><b>Honesty.</b> Are limitations named? Do claims match the evidence (suggests, not proves)?</li>
+      <li><b>Coherence &amp; voice.</b> Do the sections connect? Is the tone consistent and academic throughout?</li>
+      <li><b>Design &amp; mechanics.</b> Headings, page numbers, consistent citations (15 to 20 sources), clean&nbsp;prose?</li>
+    </ul>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 14b</b>, name the one row above your draft is weakest on right now, and the first concrete change you'll make to fix it.</p>
+  </div>
+
+  <h2>5 · Read it aloud</h2>
+  <p>Your eyes skip what your ears catch. <button type="button" class="term" data-pop="aloud">Reading aloud</button> is one of the best ways to find clunky sentences, missing words, and places where two ideas don't connect. Every spot you stumble is a spot your reader will too.</p>
+  <div class="ex">
+    <div class="t">See it &mdash; the research</div>
+    <p>In a 2025 study, students who read their drafts aloud corrected about three errors per ten-minute paragraph that they'd otherwise have missed (Eckstein, Lung &amp; Gillette, <a href="https://tesl-ej.org/wordpress/issues/volume28/ej112/ej112a5/" target="_blank" rel="noopener">TESL-EJ</a>, open access). A free, five-minute habit with a real payoff.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>Read one full section of your draft out loud, or let your device read it to you. Mark every place you stumble, then fix each one. If you stumbled, your reader would&nbsp;have.</p>
+  </div>
+
+  <h2>6 · Run the diagnostic passes</h2>
+  <p>Two more tools take you from structure down into claims and sentences, and each one makes <em>you</em> make the call.</p>
+  <div class="read">
+    <div class="t">Try the tools · 20 min</div>
+    <p>Diagnose weak claims and thin sources in the <a href="source-transfer-drill.html" target="_blank" rel="noopener">Source &amp; Claim Transfer Drill</a>, which has you spot the problem in a stranger's lines before you turn the same lens on your own. Then run <a href="academic-editors-passes.html" target="_blank" rel="noopener">The Editor's Passes</a>, which hands you your claim, your quotes, your hedging, your strongest source, and your signposting one at a time so you judge and sharpen each.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>Find the weakest paragraph in your draft, the one you'd least want a stranger to read first. Don't fix a comma in it. Ask what job it's supposed to do, and whether it does it, then revise it to do that job or cut it. Note in <b>Entry 14b</b> what you decided.</p>
+  </div>
+
+  <h2>7 · Optional: trade a draft for feedback</h2>
+  <p>This one's optional, and worth it. If you want my eyes on it before the final, <b>submit a draft this week</b> and I'll comment. A draft I read now is far more useful to you than a grade I give later. Feedback goes on the draft; the grade comes on the final.</p>
+
+  <h2>8 · Log your revision (Entry 14b)</h2>
   <p>Record what you changed at the structure level and what you cleaned up at the sentence level, so you can see the draft actually improving.</p>
   <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
+  <p class="note">One line on the biggest structural fix, one line on the sentence-level cleanup. Save happens automatically.</p>
 
-  <div class="duebox">
-    <span class="lab">Coming up</span>
-    <p>The <b>final IMRAD report</b> is due at the end of Week 15 (all sections, title page, captioned figures, 15 to 20 references, appendix). Presentations start Week 15. Optional draft for feedback: this week.</p>
+  <div class="debrief">
+    <span class="lab">Class debrief · together at the end</span>
+    <p>We'll come back together as a class to close. Come ready to say, in one breath: <b>the one structural change your reverse outline made you make, and the rubric row your draft is still weakest on.</b> If you can't name a structural change yet, that's the tell that you edited sentences without re-seeing the whole thing.</p>
   </div>
 
   <div class="close">
-    <p><b>Almost there.</b> A polished draft now means next week is presenting and submitting, not scrambling. You built a real study from a gap to a recommendation. This week you make it read like one.</p>
+    <p><b>One reminder.</b> You'll turn your whole notebook in twice all semester, at the midterm and end-of-term check-ins. When each comes up, you gather everything from your notebook into a Google Doc and upload that to Canvas. Nothing to turn in today, aside from the optional draft if you want feedback.</p>
+    <p><b>A 10-minute prime for next week.</b> The final IMRAD report is due at the end of Week 15 (all sections, title page, captioned figures, 15 to 20 references, appendix), and <b>presentations start Week 15</b>. Before Tuesday, jot in your notebook the one finding you most want people to remember. That single sentence is the seed of next week's work: turning your study into a short talk.</p>
   </div>
 
   <dialog class="pop" id="pop-sfd"><h3>Shitty first drafts</h3><p>From Anne Lamott's <i>Bird by Bird</i> (1994). She (via a friend) calls the first draft the "down draft," where you just get it down; the second the "up draft," where you fix it up; and the third the "dental draft," where you check every tooth. The whole idea: let yourself write badly first, because you can't revise a blank page. <a href="https://wrd.as.uky.edu/sites/default/files/1-Shitty%20First%20Drafts.pdf" target="_blank" rel="noopener">Read the essay (free PDF)</a>.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-revise"><h3>Revision vs. editing</h3><p>Different jobs. <b>Revision</b> ("re-seeing") works on ideas and structure: what's missing, repeated, out of order, unclear. <b>Editing</b> works on sentences; <b>proofreading</b> catches errors. Do them big to small. Most weak final drafts were edited and proofread but never truly revised, the sentences are clean but the structure was never re-seen.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-hoc"><h3>Higher- vs. lower-order concerns</h3><p>A writing-center framework. <b>Higher-order concerns</b>: focus, argument, organization, development, audience, the stuff that decides whether the report works. <b>Lower-order concerns</b>: grammar, spelling, citations, formatting. Fix higher-order first. Polishing sentences in a section you'll end up cutting is wasted effort.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-reverse"><h3>Reverse outlining</h3><p>Outlining a draft you've already written to reveal its real structure. Go paragraph by paragraph and note, in one line, the job each does. Laid out together, the outline exposes gaps, repetition, and bad order that finished prose hides. It's the most reliable revision tool there is, because rearranging a skeleton beats rewriting polished paragraphs.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-reverse"><h3>Reverse outlining</h3><p>Outlining a draft you've already written to reveal its real structure. Go paragraph by paragraph and note, in one line, the job each does. Laid out together, the outline exposes gaps, repetition, and bad order that finished prose hides. It's the most reliable revision tool there is, because rearranging a skeleton beats rewriting polished paragraphs. Example: five Results paragraphs in a row, then a lone Methods paragraph stranded at the end, the skeleton makes the misfiling obvious in a way the prose never did.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-aloud"><h3>Reading aloud</h3><p>Reading your draft out loud (or having your device read it to you) forces you to process every word instead of skimming what you expect to see. It's uncannily good at surfacing clunky sentences, missing words, and joints where two ideas don't actually connect. If you stumble reading it, your reader will stumble too. A 2025 study found reading aloud caught about three errors per ten-minute paragraph (Eckstein, Lung &amp; Gillette, <i>TESL-EJ</i>).</p><form method="dialog"><button>Got it</button></form></dialog>
 
 </div>

@@ -8,41 +8,46 @@
   :root{
     --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
     --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
-    --good:#2f7d54; --due:#7a3b1f; --duesoft:#f6ebe1; --reflect:#3a5d86; --reflectsoft:#e8eef6;
+    --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --due:#e0a878; --duesoft:#2c2013; --reflect:#9cc0e6; --reflectsoft:#16202c; }
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
   #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:30px 0 8px}
   #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
   #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
   #mod .sub{color:var(--muted); margin:6px 0 0}
-  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:26px}
-  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:4px 0 8px}
-  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
   #mod .box.accent{border-left:5px solid var(--accent)}
-  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.45rem 0}
-  #mod ol.steps{margin:.4rem 0; padding-left:1.3rem} #mod ol.steps li{margin:.5rem 0}
-  #mod a{color:var(--accent)}
-  #mod .princ li b{color:var(--accent)}
-  #mod .imrad{list-style:none; padding-left:0}
-  #mod .imrad li{background:var(--card); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:10px; padding:10px 14px; margin:8px 0}
-  #mod .imrad .q{color:var(--muted); font-style:italic}
-  #mod .hour{display:flex; justify-content:center; margin:12px 0}
-  #mod .reflect{background:var(--reflectsoft); border:1px solid var(--line); border-left:5px solid var(--reflect); border-radius:12px; padding:14px 16px; margin:16px 0}
-  #mod .reflect .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--reflect); display:block; margin-bottom:3px}
-  #mod .duebox{background:var(--duesoft); border:1px solid var(--line); border-left:5px solid var(--due); border-radius:12px; padding:14px 16px; margin:14px 0}
-  #mod .duebox .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--due); display:block; margin-bottom:3px}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.35rem 0}
+  #mod .check{list-style:none; padding-left:0}
+  #mod .check li{display:flex; gap:10px; align-items:flex-start; margin:.5rem 0}
+  #mod .check .n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.9rem}
+  #mod .debrief{background:var(--talksoft); border:1px solid var(--line); border-left:5px solid var(--talk); border-radius:12px; padding:14px 16px; margin:18px 0}
+  #mod .debrief .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--talk); display:block; margin-bottom:3px}
+  #mod .debrief p{margin:.2rem 0}
   #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
-  #mod a.btn.ghost{background:transparent; color:var(--accent); border:1.5px solid var(--accent)}
   #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
   #mod .note{color:var(--muted); font-size:.9rem}
-  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:24px}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:22px}
   #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
   #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  /* ===== lesson-flow components ===== */
+  #mod .ground{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:14px 0}
+  #mod .bridge{color:var(--muted); font-style:italic; margin:16px 0 4px}
+  #mod .ex{background:var(--field); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .ex .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--good); margin-bottom:5px}
+  #mod .ex p{margin:.35rem 0}
+  #mod .read{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .read .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:5px}
+  #mod .read a{color:var(--accent); font-weight:700}
+  #mod .do{background:var(--card); border:1px dashed var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .do .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:4px}
+  #mod .do p{margin:.2rem 0}
   dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   dialog.pop::backdrop{background:rgba(12,16,24,.55)}
   dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
@@ -50,7 +55,7 @@
   dialog.pop a{color:var(--accent)}
   dialog.pop form{margin-top:16px;text-align:right}
   dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
-  /* ===== shared course nav (injected on every page) ===== */
+  /* ===== shared course nav ===== */
   .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
   .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
@@ -58,6 +63,13 @@
   .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
   .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
   .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+  /* ===== preserved report visuals ===== */
+  #mod a{color:var(--accent)}
+  #mod .princ li b{color:var(--accent)}
+  #mod .imrad{list-style:none; padding-left:0}
+  #mod .imrad li{background:var(--card); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:10px; padding:10px 14px; margin:8px 0}
+  #mod .imrad .q{color:var(--muted); font-style:italic}
+  #mod .hour{display:flex; justify-content:center; margin:12px 0}
 </style>
 </head>
 <body>
@@ -77,17 +89,22 @@
   <header class="masthead">
     <p class="kicker">ENG 3090 · Week 13 · Thursday Module</p>
     <h1>IMRAD &amp; Assembling Your Report</h1>
-    <p class="sub">The final report isn't a new writing project. It's the assembly of everything you've already made, into one shape readers know how to navigate. Budget about an hour, then start assembling.</p>
+    <p class="sub">Your final report is the assembly of everything you've already made, poured into one shape readers know how to navigate.</p>
   </header>
 
-  <div class="box accent">
-    <p><b>Read this first, it changes the whole week.</b> You are not starting a report from a blank page. You have a literature review (P1), a qualitative analysis (P2), and a quantitative analysis (P3) already written. This week you pour them into a standard container and write the connective tissue. As the <button type="button" class="term" data-pop="primary">investigator</button>, your job now is to make three strong pieces read as one whole study.</p>
+  <div class="ground"><b>Arrive.</b> Open your Research Notebook in another tab and take a breath. You already have three finished pieces of writing this semester: a literature review (P1), a qualitative analysis (P2), and a quantitative analysis (P3). Today you pour them into one standard container and write the connective tissue that makes three strong pieces read as one whole study.</div>
+
+  <p class="bridge">The hard writing is behind you. What's left is assembly: a shape called IMRAD, the few new pieces that turn three projects into one report, and a design pass so a reader can actually use it. That's today's work.</p>
+
+  <h2>1 · What IMRAD is, and why every field uses it</h2>
+  <p><button type="button" class="term" data-pop="imrad">IMRAD</button> stands for <b>I</b>ntroduction, <b>M</b>ethods, <b>R</b>esults, <b>a</b>nd <b>D</b>iscussion. It's the shape of nearly every research report across the sciences and social sciences. The point is shared navigation: a reader who knows IMRAD can find your method or your findings in seconds, without hunting. Learn it once and you can read, and write, real research in any field. Assembling yours is the last step of becoming the <button type="button" class="term" data-pop="primary">investigator</button>, not just the reader.</p>
+  <div class="read">
+    <div class="t">Read the real thing · 6 min</div>
+    <p><a href="https://writingcenter.gmu.edu/writing-resources/imrad/writing-an-imrad-report" target="_blank" rel="noopener">Writing an IMRaD Report</a> &mdash; George Mason University Writing Center. Why research reports use Introduction, Methods, Results, and Discussion, and what each section is for. Read it with your own study in mind, not eggs.</p>
   </div>
 
-  <p class="step">Step 1: what IMRAD is, and why every field uses it</p>
-  <p><button type="button" class="term" data-pop="imrad">IMRAD</button> stands for <b>I</b>ntroduction, <b>M</b>ethods, <b>R</b>esults, <b>a</b>nd <b>D</b>iscussion. It's the shape of nearly every research report across the sciences and social sciences. The point is shared navigation: a reader who knows IMRAD can find your method or your findings in seconds, without hunting. Learn it once and you can read, and write, real research in any field.</p>
-
-  <p class="step">Step 2: the four sections, as four questions</p>
+  <h2>2 · The four sections, as four questions</h2>
+  <p>The easiest way to hold IMRAD is to hear each section as a question it answers.</p>
   <ul class="imrad">
     <li><b><button type="button" class="term" data-pop="intro">Introduction</button></b> <span class="q">what's my question, and why does it matter?</span></li>
     <li><b><button type="button" class="term" data-pop="methods">Methods</button></b> <span class="q">how did I study it?</span></li>
@@ -95,18 +112,35 @@
     <li><b><button type="button" class="term" data-pop="discussion">Discussion</button></b> <span class="q">so what, and now what?</span></li>
   </ul>
   <p>Keep <b>Results</b> and <b>Discussion</b> distinct. Results reports the findings with no spin. Discussion is where you interpret them. Mixing the two is the most common way student reports lose a reader's trust.</p>
+  <div class="ex">
+    <div class="t">See it &mdash; the four questions, in our running example</div>
+    <p>Our semester-long food-label study, run through the four questions. Watch the move, then answer the same four for <b>your</b> topic.</p>
+    <p><b>Introduction:</b> do words like "natural" and "local" on egg cartons actually tell shoppers the truth, and who gets misled when they don't?</p>
+    <p><b>Methods:</b> I read the claims on twelve cartons at one Boone grocery and surveyed forty-two shoppers about what those words meant to them.</p>
+    <p><b>Results:</b> seven of twelve cartons used "natural" with no definition; sixty-eight percent of shoppers believed the word was government-regulated.</p>
+    <p><b>Discussion:</b> shoppers are paying more for a word that carries no guarantee, so stores and regulators share responsibility for the gap.</p>
+  </div>
 
-  <p class="step">Step 3: how your three projects slot in</p>
+  <h2>3 · How your three projects slot in</h2>
+  <p>The new drafting this week is smaller than it looks, because most of the report is already written.</p>
   <div class="box">
     <ul class="princ">
       <li><b>P1 (Literature Review)</b> becomes most of your <b>Introduction</b>, revised so it flows into your question.</li>
       <li><b>P2 (Qualitative)</b> and <b>P3 (Quantitative)</b> supply your <b>Methods</b> and <b>Results</b>, both approaches, side by side.</li>
       <li>The <b>Discussion</b> is your newest writing: what it all means, your recommendation, your limits.</li>
     </ul>
-    <p class="note">So the actual new drafting this week is smaller than it looks: a strong Discussion, an Abstract, transitions between sections, and a design pass. The heavy lifting is already done.</p>
+    <p class="note">So the actual new drafting is a strong Discussion, an Abstract, transitions between sections, and a design pass. The heavy lifting is already done.</p>
+  </div>
+  <div class="read">
+    <div class="t">Try the tool · 10 min</div>
+    <p><a href="imrad-sorter.html" target="_blank" rel="noopener">Build the Report</a> scrambles ten pieces of our food-label study and asks you to drop each one into the IMRAD section where it belongs, then tells you why. The eggs are just the example. What you're practicing is the sorting move: knowing at a glance which piece of a study is Introduction, which is Methods, which is Results, which is Discussion. Run it, then do the same sort in your head for your own three projects.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 13a</b>, map your own P-work into the IMRAD skeleton. Under each of the four headings, note which paragraphs of P1, P2, and P3 belong there, and flag anything that's still missing (usually the Discussion and Abstract, which you haven't written yet).</p>
   </div>
 
-  <p class="step">Step 4: the hourglass shape</p>
+  <h2>4 · The hourglass shape</h2>
   <p>A good report is shaped like an <button type="button" class="term" data-pop="hourglass">hourglass</button>. The Introduction opens <b>broad</b> (the real-world issue) and narrows to your exact question. Methods and Results are the <b>narrow</b>, specific middle. The Discussion widens back <b>out</b>, from your findings to what they mean for the world.</p>
   <div class="hour">
     <svg viewBox="0 0 260 150" width="260" height="150" role="img" aria-label="Hourglass diagram: broad introduction narrowing to methods and results, widening again to discussion">
@@ -119,7 +153,8 @@
     </svg>
   </div>
 
-  <p class="step">Step 5: the parts around IMRAD</p>
+  <h2>5 · The parts around IMRAD</h2>
+  <p>IMRAD is the body. A finished report wraps it in a few standard parts.</p>
   <div class="box">
     <ul>
       <li><b>Title page:</b> a clear, specific title, your name, the course, the date.</li>
@@ -128,8 +163,12 @@
       <li><b><button type="button" class="term" data-pop="appendix">Appendix</button>:</b> your instrument (the actual survey or interview guide) and your data. This is what lets a reader judge or repeat your work.</li>
     </ul>
   </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>Still in <b>Entry 13a</b>, list what you'll put in your References (count them, aim toward 15 to 20) and what belongs in your Appendix (your survey or interview guide, your data). Naming these now keeps them from becoming a last-night scramble.</p>
+  </div>
 
-  <p class="step">Step 6: document design is access</p>
+  <h2>6 · Document design is access</h2>
   <p>This is a technical writing course, so how the report <i>looks</i> is part of the grade, and part of the ethics. Good <button type="button" class="term" data-pop="design">document design</button> decides who can actually use your report. A wall of gray text excludes tired, rushed, or struggling readers. Clear design includes them.</p>
   <div class="box accent">
     <ul>
@@ -140,26 +179,26 @@
     </ul>
   </div>
 
-  <p class="step">Step 7: make it one story, not three stapled projects</p>
+  <h2>7 · Make it one story, not three stapled projects</h2>
   <p>The seams will show if you just paste P1, P2, and P3 together. Smooth them with <button type="button" class="term" data-pop="signpost">transitions</button> and one consistent voice. The report should read as a single arc: here's the gap I found, here's how I studied it, here's what I found, and here's what we should do about it. Read it start to finish out loud, and every place you stumble is a seam to fix.</p>
-
-  <div class="reflect">
-    <span class="lab">✍ On your own</span>
-    <p>Say your whole study in one sentence: "Because [gap], I [method], and found [finding], so [recommendation]." If you can say that cleanly, your report has a spine. If you can't yet, that's the thing to figure out before you assemble.</p>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 13b</b>, write your whole study as one sentence: "Because [gap], I [method], and found [finding], so [recommendation]." If you can say it cleanly, your report has a spine. If you can't yet, that's the thing to figure out before you assemble.</p>
   </div>
 
-  <p class="step">Now: outline and assemble (Notebook Entries 13a &amp; 13b)</p>
-  <p>Map your P-work into the IMRAD skeleton, draft your outline, then start assembling and designing the full report. When your draft is together, run it through the Reverse-Outline X-Ray: label each paragraph's job, and the stacked skeleton shows fast whether your sections sit in IMRAD order with nothing missing.</p>
-  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a>
-     <a class="btn ghost" href="reverse-outline-academic.html" target="_blank" rel="noopener">Run the Reverse-Outline X-Ray &rarr;</a></p>
+  <h2>8 · Outline and assemble</h2>
+  <p>Now put it together. Working from your Entry 13a map, draft your outline in the IMRAD skeleton, then start assembling and designing the full report in <b>Entry 13b</b>. When a draft is together, run it through the Reverse-Outline X-Ray: label each paragraph's job, and the stacked skeleton shows fast whether your sections sit in IMRAD order with nothing missing.</p>
+  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
+  <p><a href="reverse-outline-academic.html" target="_blank" rel="noopener">Run the Reverse-Outline X-Ray &rarr;</a></p>
 
-  <div class="duebox">
-    <span class="lab">Coming up</span>
-    <p>Nothing is due this week. The <b>final IMRAD report</b> is due at the end of Week 15 (about 15 to 20 sources, all sections, title page, figures, appendix). Week 14 is a full draft plus self and peer review, so the further you get now, the more feedback you can use.</p>
+  <div class="debrief">
+    <span class="lab">Class debrief · together at the end</span>
+    <p>We'll come back together as a class to close. Come ready to say your whole study in one breath: <b>"Because [gap], I [method], and found [finding], so [recommendation]."</b> Six of us, one sentence each. If yours doesn't land cleanly out loud, that's the tell for where the report still needs a pass before you assemble it.</p>
   </div>
 
   <div class="close">
-    <p><b>The study becomes a document.</b> Everything you've built this semester, the gap, the question, the two kinds of analysis, the findings, now lives in one professional report you could hand an employer or a grad program. Week 14 you polish it. Week 15 you present it. You're almost there.</p>
+    <p><b>One reminder.</b> You'll turn your whole notebook in twice all semester, at the midterm and end-of-term check-ins. When each comes up, you gather everything from your notebook into a Google Doc and upload that to Canvas. Nothing to upload week to week, and the final report has its own Canvas dropbox and deadline. Nothing to turn in today.</p>
+    <p><b>A 10-minute prime for next week.</b> Nothing is due this week, and the <b>final IMRAD report</b> is due at the end of Week 15 (about 15 to 20 sources, all sections, title page, figures, appendix). Next Thursday is <b>Revision</b>, where you bring a full draft for self and peer review, so the further you get assembling now, the more feedback you can use. Before Tuesday, get your outline and as much draft as you can into one document. You're almost there.</p>
   </div>
 
   <dialog class="pop" id="pop-primary"><h3>Primary vs. secondary research</h3><p><b>Secondary research</b> analyzes sources others made (your literature review). <b>Primary research</b> generates new data (your survey and analysis). Your final report is the full arc of a primary study: you used secondary work to find the gap, then primary work to fill it. Assembling it is the last step of becoming the investigator, not just the reader.</p><form method="dialog"><button>Got it</button></form></dialog>

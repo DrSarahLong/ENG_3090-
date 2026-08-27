@@ -8,34 +8,46 @@
   :root{
     --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
     --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
-    --good:#2f7d54; --reflect:#3a5d86; --reflectsoft:#e8eef6; --key:#a3541f; --keysoft:#f6ebe1;
+    --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --reflect:#9cc0e6; --reflectsoft:#16202c; --key:#e0a878; --keysoft:#2c2013; }
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
   #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:30px 0 8px}
   #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
   #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
   #mod .sub{color:var(--muted); margin:6px 0 0}
-  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:26px}
-  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:4px 0 8px}
-  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
   #mod .box.accent{border-left:5px solid var(--accent)}
-  #mod .keybox{background:var(--keysoft); border:1px solid var(--line); border-left:5px solid var(--key); border-radius:12px; padding:14px 16px; margin:14px 0}
-  #mod .keybox .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--key); display:block; margin-bottom:3px}
-  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.4rem 0}
-  #mod a{color:var(--accent)}
-  #mod .reflect{background:var(--reflectsoft); border:1px solid var(--line); border-left:5px solid var(--reflect); border-radius:12px; padding:14px 16px; margin:16px 0}
-  #mod .reflect .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--reflect); display:block; margin-bottom:3px}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.35rem 0}
+  #mod .check{list-style:none; padding-left:0}
+  #mod .check li{display:flex; gap:10px; align-items:flex-start; margin:.5rem 0}
+  #mod .check .n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.9rem}
+  #mod .debrief{background:var(--talksoft); border:1px solid var(--line); border-left:5px solid var(--talk); border-radius:12px; padding:14px 16px; margin:18px 0}
+  #mod .debrief .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--talk); display:block; margin-bottom:3px}
+  #mod .debrief p{margin:.2rem 0}
   #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
   #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
   #mod .note{color:var(--muted); font-size:.9rem}
-  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:24px}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:22px}
   #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
   #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  /* ===== lesson-flow components ===== */
+  #mod .ground{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:14px 0}
+  #mod .bridge{color:var(--muted); font-style:italic; margin:16px 0 4px}
+  #mod .ex{background:var(--field); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .ex .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--good); margin-bottom:5px}
+  #mod .ex p{margin:.35rem 0}
+  #mod .read{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .read .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:5px}
+  #mod .read a{color:var(--accent); font-weight:700}
+  #mod .do{background:var(--card); border:1px dashed var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .do .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:4px}
+  #mod .do p{margin:.2rem 0}
   dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   dialog.pop::backdrop{background:rgba(12,16,24,.55)}
   dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
@@ -43,7 +55,7 @@
   dialog.pop a{color:var(--accent)}
   dialog.pop form{margin-top:16px;text-align:right}
   dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
-  /* ===== shared course nav (injected on every page) ===== */
+  /* ===== shared course nav ===== */
   .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
   .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
@@ -70,54 +82,99 @@
   <header class="masthead">
     <p class="kicker">ENG 3090 · Week 6 · Thursday Module</p>
     <h1>Apply Your Codebook &amp; Interpret</h1>
-    <p class="sub">You built a codebook on Tuesday (Entry 6a). Now you run it across your whole corpus and, most important, say what the pattern means. Budget about 45 minutes.</p>
+    <p class="sub">You built a codebook on Tuesday. Today you run it across your whole corpus, count what you find, and say what the pattern means.</p>
   </header>
 
-  <p class="step">Step 1: code the whole corpus</p>
-  <p>Go through <b>every</b> text in your corpus and tag it with the <button type="button" class="term" data-pop="code">codes</button> from your <button type="button" class="term" data-pop="codebook">codebook</button>. A text can carry more than one. Keep your definitions next to you so you apply each code the same way every time, that consistency is what makes your results <button type="button" class="term" data-pop="reliability">trustworthy</button>.</p>
+  <div class="ground"><b>Arrive.</b> Open your Research Notebook in another tab and take a breath. On Tuesday you built your <button type="button" class="term" data-pop="codebook">codebook</button> in Entry 6a: your named codes, each with a definition and an example. Today you put it to work on every text you've gathered. There's no new theory to learn, this is the day the setup pays off.</div>
+
+  <p class="bridge">The codebook was the careful, slow half, and you've done it. Now it goes to work. By the end you'll have counts, a pattern, and one sentence that turns a pile of texts into an argument.</p>
+
+  <h2>1 · Code your whole corpus</h2>
+  <p>Go through <b>every</b> text in your corpus and tag it with the <button type="button" class="term" data-pop="code">codes</button> from your codebook. A single text can carry more than one. Keep your definitions right next to you so you apply each code the same way on every text, that consistency is what makes your results <button type="button" class="term" data-pop="reliability">trustworthy</button> rather than just your mood on a given afternoon.</p>
   <div class="box accent">
-    <p>Tip: a simple table does the job. One row per text, one column per code, a check where it applies. A plain-text file, a Google Sheet, or a table in your Doc all work.</p>
+    <p>A simple table does the whole job. One row per text, one column per code, a check where it applies. A plain-text file, a Google Sheet, or a table inside your notebook Doc all work fine.</p>
+  </div>
+  <div class="ex">
+    <div class="t">See it &mdash; our running example</div>
+    <p>For the egg-carton corpus, one carton's front panel might get tagged both <i>appeal to nature</i> ("farm fresh") and <i>vague virtue</i> ("wholesome goodness"). The next carton gets only <i>appeal to nature</i>. Same two definitions, applied the same way down the whole stack. That's coding.</p>
+    <p class="note">The carton is <b>our example</b> all semester, not your topic. Watch the move, then run it on the texts you actually gathered.</p>
+  </div>
+  <div class="read">
+    <div class="t">Read the real thing · 6 min</div>
+    <p><a href="https://www.publichealth.columbia.edu/research/population-health-methods/content-analysis" target="_blank" rel="noopener">Content Analysis Method and Examples</a> &mdash; Columbia Mailman School of Public Health (open access). A short, plain-language how-to on coding text for words, themes, and concepts. This is the method under your P2, read it before you start tagging so your passes stay consistent.</p>
+  </div>
+  <div class="read">
+    <div class="t">Try the tool · 10 min</div>
+    <p><a href="code-the-corpus.html" target="_blank" rel="noopener">Code These Labels</a> is a quick practice run of exactly this move: you name a couple of your own codes, then use a shared codebook to tag six taglines and watch which code runs the show. The taglines are our food-label example, so you don't have to care about eggs. What transfers is the discipline of applying the same definition every time. Do a lap here, then bring that steadiness to your own corpus.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>Back to <b>your</b> topic. In <b>Entry 6b</b>, code every text in your corpus with your own codebook. As you go, note which codes are common, which are rare, and any that surprised you.</p>
   </div>
 
-  <p class="step">Step 2: count</p>
-  <p>Now tally it up: how many of your texts use each code? This is the <button type="button" class="term" data-pop="content">content-analysis</button> side, the numbers that turn "it felt like a lot" into "12 of 15." Note which codes are common, which are rare, and any that surprised you.</p>
+  <h2>2 · Count what you found</h2>
+  <p>Now tally it. How many of your texts use each code? This is the <button type="button" class="term" data-pop="content">content-analysis</button> side of the work, the numbers that turn "it felt like a lot" into "12 of 15." The count isn't the analysis yet, but it's the evidence the analysis will stand on, so get it exact.</p>
+  <div class="ex">
+    <div class="t">See it &mdash; our running example</div>
+    <p>Across fifteen cartons: <i>appeal to nature</i> shows up on 12, <i>vague virtue</i> on 9, and a real, checkable claim (a certification with a standard behind it) on only 2. Written plainly: "12 of 15 cartons lean on nature words; 2 of 15 make a claim you could actually verify."</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In Entry 6b, write your tally: each code and how many of your texts carry it. Small corpus? Even "5 of 6" is a finding.</p>
+  </div>
 
-  <p class="step">Step 3: interpret (this is the analysis)</p>
-  <p>Here's where the grade lives. Counting is the easy part; <button type="button" class="term" data-pop="interpretation">interpretation</button> is the point. Ask:</p>
+  <h2>3 · Interpret &mdash; say what it means</h2>
+  <p>Here's where the grade lives. Counting is the easy part; <button type="button" class="term" data-pop="interpretation">interpretation</button> is the point. Your counts are facts. Interpretation says what those facts <em>mean</em>. Work these three questions against your numbers:</p>
   <div class="box">
-    <ul>
-      <li><b>What does the dominant pattern mean?</b> Not "appeal to nature appears 12 times," but what that <em>tells us</em> about how these texts work on a reader.</li>
-      <li><b>Whose interest does it serve?</b> Who benefits if the pattern works, and who pays?</li>
-      <li><b>What's absent?</b> What do these texts never say? Silence is data too.</li>
+    <ul class="check">
+      <li><span class="n">1</span><div><b>What does the dominant pattern mean?</b> Not "appeal to nature appears 12 times," but what that tells us about how these texts work on a reader.</div></li>
+      <li><span class="n">2</span><div><b>Whose interest does it serve?</b> Who benefits if the pattern works on people, and who pays?</div></li>
+      <li><span class="n">3</span><div><b>What's absent?</b> What do these texts never say? Silence is data too.</div></li>
     </ul>
   </div>
-  <div class="keybox">
-    <span class="lab">The move that makes it an analysis</span>
-    <p>Finish this, backed by your counts: <b>"Across my corpus, the language mostly does ___, which serves ___ at the expense of ___."</b> That sentence is the spine of your P2.</p>
+  <div class="ex">
+    <div class="t">See it &mdash; the three questions, worked</div>
+    <p><b>What it means:</b> the corpus mostly sells a feeling of "nature" instead of any checkable fact. <b>Whose interest:</b> that serves brands, who get a premium for a warm word, at the expense of shoppers with the least time to read fine print. <b>What's absent:</b> almost no carton names an actual standard or who audits it. The silence is the strategy.</p>
+  </div>
+  <div class="box accent">
+    <p><b>The move that makes it an analysis.</b> Finish this sentence, backed by your counts: <b>"Across my corpus, the language mostly does ___, which serves ___ at the expense of ___."</b> That one sentence is the spine of your P2. Everything else in the write-up supports it.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In Entry 6b, write your own "so what" sentence for your corpus, then read it out loud. If it only restates the count, it isn't done. Push it until it says something a reader couldn't have guessed without your analysis.</p>
   </div>
 
-  <p class="step">Step 4: pull your evidence</p>
-  <p>Grab 2 or 3 <b>exact quotes</b> from your texts that show the pattern in action. In your write-up, every claim you make will lean on a quote like these. No paraphrasing the evidence; use the real words.</p>
-
-  <div class="reflect">
-    <span class="lab">✍ On your own</span>
-    <p>Read your "so what" sentence out loud. If it only restates the count, it isn't done yet. Push it until it says something a reader couldn't have guessed without your analysis.</p>
+  <h2>4 · Pull your evidence</h2>
+  <p>Grab two or three <b>exact quotes</b> from your texts that show the pattern in action. In your write-up, every claim you make will lean on a quote like these. Don't paraphrase the evidence, use the real words, because the specific wording is what you're analyzing.</p>
+  <div class="ex">
+    <div class="t">See it &mdash; our running example</div>
+    <p>For the "sells nature, not fact" pattern: <i>"farm fresh goodness,"</i> <i>"the way eggs were meant to be,"</i> <i>"wholesome, natural, pure."</i> Three real phrases, each one an appeal to a feeling with nothing behind it to check.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In Entry 6b, paste your best two or three quotes, copied exactly, each with a note on which code it shows.</p>
   </div>
 
-  <p class="step">Now: do it (Notebook Entry 6b)</p>
-  <p>Open your Research Notebook and fill out <b>Entry 6b</b>: your counts, the biggest pattern and what it means, the justice reading, and your best quotes.</p>
+  <h2>5 · Put it together in Entry 6b</h2>
+  <p>Open your Research Notebook and complete <b>Entry 6b</b>: your counts, the biggest pattern and what it means, the justice reading (power / served / missing), and your best quotes. This entry is basically the findings and discussion of your <button type="button" class="term" data-pop="content">content</button>/discourse analysis (P2).</p>
   <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
+  <p class="note">Everything saves automatically on your own computer. Nothing is transmitted anywhere.</p>
+
+  <div class="debrief">
+    <span class="lab">Class debrief · together at the end</span>
+    <p>We'll come back together as a class to close. Come ready to say, in one breath: <b>your dominant pattern, your "so what" sentence, and the one quote that proves it.</b> If you can't say the "so what" without falling back on the raw count, that's the tell for where your interpretation still needs a pass.</p>
+  </div>
 
   <div class="close">
-    <p><b>Where this goes:</b> Entry 6b is basically the findings and discussion of your <b>Qualitative / Discourse Analysis (P2)</b>, due in Week 8. Next week you'll speed all of this up with real analysis tools.</p>
-    <p class="note">Nothing to submit today, it all saves on your computer for the next check-in.</p>
+    <p><b>One reminder.</b> You'll turn your whole notebook in twice all semester, at the midterm and end-of-term check-ins. When each comes up, you gather everything from your notebook into a Google Doc and upload that to Canvas. Nothing to submit today.</p>
+    <p><b>A 10-minute prime for next week.</b> You coded your corpus by hand today. Before Tuesday, drop the plain text of two or three of your texts into a single note or doc so it's ready to paste. Next Thursday we speed all of this up with <b>digital text-analysis tools</b>, feeding your corpus to Voyant to read hundreds of words at a distance and check the patterns your own eyes found.</p>
   </div>
 
-  <dialog class="pop" id="pop-code"><h3>A code</h3><p>One named category in your analysis, like "appeal to nature," with a short definition and a clear example so you apply it the same way every time. Codes are the buckets you sort your texts into. (Johnny Saldaña's <em>Coding Manual for Qualitative Researchers</em> is the standard guide.)</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-codebook"><h3>Codebook</h3><p>Your full list of codes, each with its definition and an example. It's what makes your analysis systematic rather than just your impression, and it lets someone else code the same texts and land close to your results.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-reliability"><h3>Intercoder reliability</h3><p>The check that your coding isn't just your opinion: if another person used your codebook on the same texts, would they tag them the same way? The tighter your definitions, the more your results hold up. You don't need a formal test for P2, but coding consistently is the same idea.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-content"><h3>Content analysis</h3><p>The counting cousin of discourse analysis: how often each code appears across your corpus. Discourse analysis asks "how is this working?"; content analysis asks "how often, and where?" Strong projects use both. (Klaus Krippendorff's <em>Content Analysis</em> is the standard handbook.)</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-interpretation"><h3>Interpretation</h3><p>The step that turns findings into meaning. Your counts are facts; interpretation says what they <em>mean</em>, why the pattern is there, whose interest it serves, and what it does to a reader. It's the difference between a report and an analysis, and it's where the real thinking (and the grade) lives.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-code"><h3>A code</h3><p>One named category in your analysis, like "appeal to nature," with a short definition and a clear example so you apply it the same way every time. Codes are the buckets you sort your texts into.</p><p>Example: the code <b>appeal to nature</b> = "words that sell a feeling of natural/wholesome/pure with nothing checkable behind them," and it catches phrases like "farm fresh" or "the way it was meant to be." (Johnny Saldaña's <em>Coding Manual for Qualitative Researchers</em>, 2009, is the standard guide.)</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-codebook"><h3>Codebook</h3><p>Your full list of codes, each with its definition and an example. It's what makes your analysis systematic rather than just your impression, and it lets someone else code the same texts and land close to your results.</p><p>Example: a three-code codebook might hold <i>appeal to nature</i>, <i>vague virtue</i>, and <i>verifiable claim</i>, each with a one-line definition and a sample phrase, so every text gets judged by the same yardstick.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-reliability"><h3>Intercoder reliability</h3><p>The check that your coding isn't just your opinion: if another person used your codebook on the same texts, would they tag them the same way? The tighter your definitions, the more your results hold up.</p><p>Example: if two people both tag "farm fresh" as <i>appeal to nature</i>, that's high agreement. If one calls it <i>appeal to nature</i> and the other <i>verifiable claim</i>, your definition needs sharpening. You don't need a formal test for P2, but coding consistently is the same idea.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-content"><h3>Content analysis</h3><p>The counting cousin of discourse analysis: how often each code appears across your corpus. Discourse analysis asks "how is this working?"; content analysis asks "how often, and where?" Strong projects use both.</p><p>Example: noticing that a carton sells a feeling instead of a fact is discourse analysis; reporting that 12 of 15 cartons do it is content analysis. (Klaus Krippendorff's <em>Content Analysis</em>, first edition 1980, is the standard handbook.)</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-interpretation"><h3>Interpretation</h3><p>The step that turns findings into meaning. Your counts are facts; interpretation says what they <em>mean</em>, why the pattern is there, whose interest it serves, and what it does to a reader.</p><p>Example: "appeal to nature: 12 of 15" is a finding. "These cartons sell a feeling of nature because a warm word earns a premium a real standard can't" is interpretation. It's the difference between a report and an analysis, and it's where the real thinking (and the grade) lives.</p><form method="dialog"><button>Got it</button></form></dialog>
 
 </div>
 

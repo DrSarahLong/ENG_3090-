@@ -8,36 +8,46 @@
   :root{
     --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
     --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
-    --good:#2f7d54; --due:#7a3b1f; --duesoft:#f6ebe1; --reflect:#3a5d86; --reflectsoft:#e8eef6;
+    --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --due:#e0a878; --duesoft:#2c2013; --reflect:#9cc0e6; --reflectsoft:#16202c; }
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
   #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:30px 0 8px}
   #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
   #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
   #mod .sub{color:var(--muted); margin:6px 0 0}
-  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:26px}
-  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:4px 0 8px}
-  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
   #mod .box.accent{border-left:5px solid var(--accent)}
-  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.45rem 0}
-  #mod ol.steps{margin:.4rem 0; padding-left:1.3rem} #mod ol.steps li{margin:.5rem 0}
-  #mod a{color:var(--accent)}
-  #mod .princ li b{color:var(--accent)}
-  #mod .reflect{background:var(--reflectsoft); border:1px solid var(--line); border-left:5px solid var(--reflect); border-radius:12px; padding:14px 16px; margin:16px 0}
-  #mod .reflect .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--reflect); display:block; margin-bottom:3px}
-  #mod .duebox{background:var(--duesoft); border:1px solid var(--line); border-left:5px solid var(--due); border-radius:12px; padding:14px 16px; margin:14px 0}
-  #mod .duebox .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--due); display:block; margin-bottom:3px}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.35rem 0}
+  #mod .check{list-style:none; padding-left:0}
+  #mod .check li{display:flex; gap:10px; align-items:flex-start; margin:.5rem 0}
+  #mod .check .n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.9rem}
+  #mod .debrief{background:var(--talksoft); border:1px solid var(--line); border-left:5px solid var(--talk); border-radius:12px; padding:14px 16px; margin:18px 0}
+  #mod .debrief .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--talk); display:block; margin-bottom:3px}
+  #mod .debrief p{margin:.2rem 0}
   #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
   #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
   #mod .note{color:var(--muted); font-size:.9rem}
-  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:24px}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:22px}
   #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
   #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  /* ===== lesson-flow components ===== */
+  #mod .ground{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:14px 0}
+  #mod .bridge{color:var(--muted); font-style:italic; margin:16px 0 4px}
+  #mod .ex{background:var(--field); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .ex .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--good); margin-bottom:5px}
+  #mod .ex p{margin:.35rem 0}
+  #mod .read{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .read .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:5px}
+  #mod .read a{color:var(--accent); font-weight:700}
+  #mod .do{background:var(--card); border:1px dashed var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .do .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:4px}
+  #mod .do p{margin:.2rem 0}
   dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   dialog.pop::backdrop{background:rgba(12,16,24,.55)}
   dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
@@ -45,7 +55,7 @@
   dialog.pop a{color:var(--accent)}
   dialog.pop form{margin-top:16px;text-align:right}
   dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
-  /* ===== shared course nav (injected on every page) ===== */
+  /* ===== shared course nav ===== */
   .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
   .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
@@ -72,66 +82,99 @@
   <header class="masthead">
     <p class="kicker">ENG 3090 · Week 9 · Thursday Module</p>
     <h1>Research Ethics &amp; Your CITI Training</h1>
-    <p class="sub">Next you'll collect data from real people. Before that, this. It's not paperwork, it's the line between research and just bothering strangers. Budget about an hour (plus your CITI course).</p>
+    <p class="sub">Before you collect data from real people, this. It's the line between research and just bothering strangers.</p>
   </header>
 
-  <p class="step">Step 1: why these rules exist</p>
-  <p>Every rule in research ethics is written in someone's harm. The <b>Nuremberg Code</b> (1947) followed the Nazi medical experiments. The <b>Tuskegee syphilis study</b> (1932 to 1972) let hundreds of Black men go untreated for decades without their informed consent. Out of that came the <button type="button" class="term" data-pop="belmont">Belmont Report</button> (1979), which set the three principles all human-subjects research still follows.</p>
+  <div class="ground"><b>Arrive.</b> Open your Research Notebook in another tab and take a breath. Soon you'll be asking real people real questions. Today you learn the rules that make that ethical, finish your <button type="button" class="term" data-pop="citi">CITI</button> training, and draft the two things you'll actually put in front of a participant: your invitation and your consent statement.</div>
 
-  <p class="step">Step 2: the three principles, applied to you</p>
-  <div class="box accent">
-    <ul class="princ">
-      <li><b>Respect for persons.</b> People decide freely whether to join, with full information. That's <button type="button" class="term" data-pop="consent">informed consent</button>.</li>
-      <li><b>Beneficence.</b> Do good, and minimize harm. Ask yourself what could go wrong for a participant, and prevent it.</li>
-      <li><b>Justice.</b> Share the burdens and benefits fairly. Don't run your study on the people who can least afford to say no. (Sound familiar? It's our lens.)</li>
-    </ul>
+  <p class="bridge">You have a locked topic and a question worth answering. Before anyone becomes a data point in it, you owe them a few things. Building those is today's work.</p>
+
+  <h2>1 · Why these rules exist</h2>
+  <p>Every rule in research ethics is written in someone's harm. The <b>Nuremberg Code</b> (1947) followed the Nazi medical experiments. The <b>Tuskegee syphilis study</b> (1932 to 1972) let hundreds of Black men go untreated for decades without their informed consent. Out of that came the <button type="button" class="term" data-pop="belmont">Belmont Report</button> (1979), which set the three principles all human-subjects research still follows.</p>
+  <div class="read">
+    <div class="t">Read the real thing · 6 min</div>
+    <p><a href="https://hpod.law.harvard.edu/pdf/Belmont-Report-Plain-Language-Summary.pdf" target="_blank" rel="noopener">The Belmont Report: Plain-Language Summary</a> &mdash; the actual 1979 report that human-subjects ethics rests on, rewritten in jargon-free English. The three principles behind all research with people: respect for persons, beneficence, justice. Read it now so the next section is a review, not a first meeting.</p>
   </div>
 
-  <p class="step">Step 3: the two tools you'll actually use</p>
+  <h2>2 · The three principles, applied to you</h2>
+  <p>Those three words from the reading are the whole framework. Here's what each one asks of a study like yours.</p>
+  <div class="box accent">
+    <ul>
+      <li><b>Respect for persons.</b> People decide freely whether to join, with full information. That's <button type="button" class="term" data-pop="consent">informed consent</button>.</li>
+      <li><b>Beneficence.</b> Do good, and minimize harm. Ask yourself what could go wrong for a participant, and prevent it.</li>
+      <li><b>Justice.</b> Share the burdens and benefits fairly. Don't run your study on the people who can least afford to say no. (Sound familiar? It's our justice lens, pointed at your own methods.)</li>
+    </ul>
+  </div>
+  <div class="ex">
+    <div class="t">See it &mdash; in our running example</div>
+    <p>Say you're surveying shoppers about the sustainability claims on egg cartons. <b>Respect</b> means telling them it's a class research survey and letting them decline. <b>Beneficence</b> means not secretly recording them or asking anything that could embarrass them. <b>Justice</b> means not cornering, say, the low-wage stockers on the clock, who can least afford to brush you off, and calling that a fair sample.</p>
+    <p class="note">The egg carton is our running example all semester, not your topic. Watch the move, then run it on your own study.</p>
+  </div>
+  <div class="read">
+    <div class="t">Try the tool · 12 min</div>
+    <p>Principles get real when you have to make a call. <a href="ethics-scenarios.html" target="_blank" rel="noopener">Is This Ethical?</a> gives you six situations a lot like your own project. For each, decide on your own whether it's fine, needs fixing first, or is a hard no, then open the verdict. Bring the ones that felt genuinely gray to the class debrief.</p>
+  </div>
+
+  <h2>3 · The two tools you'll actually use</h2>
+  <p>Two moves carry most of the ethics of a small study. Learn these and you're most of the way there.</p>
   <div class="box">
     <p><b><button type="button" class="term" data-pop="consent">Informed consent</button>:</b> tell people, in plain language, what the study is, what you'll ask, how long it takes, how you'll protect their data, and that they can stop anytime. Then let them freely say yes.</p>
     <p><b>Protect their privacy:</b> decide up front whether your study is <button type="button" class="term" data-pop="anon">anonymous or confidential</button>, and collect only the data you truly need. If you don't need a name, don't ask for one.</p>
   </div>
+  <div class="ex">
+    <div class="t">See it &mdash; only ask what you need</div>
+    <p>An egg-carton survey needs to know whether someone reads the claims and how they read them. It does <b>not</b> need their name, email, or address. Drop those fields and your survey is anonymous by design: there's nothing to leak, because you never collected it.</p>
+  </div>
 
-  <p class="step">Step 4: do your CITI training</p>
-  <p>Before you collect data, App State requires the <button type="button" class="term" data-pop="citi">CITI</button> human-subjects training. It's free, it's online, and the certificate is due this week. You need to <b>pass at 80% or higher</b>.</p>
+  <h2>4 · Do your CITI training</h2>
+  <p>Before you collect data, App State requires the <button type="button" class="term" data-pop="citi">CITI</button> human-subjects training. It's free, it's online, and you need to <b>pass at 80% or higher</b>. This is the same training real researchers do, and it carries with you.</p>
   <div class="box accent">
-    <ol class="steps">
-      <li>Start at App State's <a href="https://researchprotections.appstate.edu/human-subjects-irb/irb-training" target="_blank" rel="noopener">IRB training page</a>. It has the registration instructions and sends you to CITI. Register under <b>Appalachian State University</b> (not as an independent learner) so App State gets your completion.</li>
-      <li>Complete the <b>Social &amp; Behavioral Research</b> course and pass at <b>80% or higher</b>.</li>
-      <li><b>Download your completion certificate</b> and keep it. This one carries with you: it stays on your App State record, and if you go on to grad school and run a real study, you may just need CITI's quick <b>refresher</b> (required every three years).</li>
-    </ol>
+    <ul class="check">
+      <li><span class="n">1</span><div>Start at App State's <a href="https://researchprotections.appstate.edu/human-subjects-irb/irb-training" target="_blank" rel="noopener">IRB training page</a>. It has the registration instructions and sends you to CITI. Register under <b>Appalachian State University</b> (not as an independent learner) so App State gets your completion.</div></li>
+      <li><span class="n">2</span><div>Complete the <b>Social &amp; Behavioral Research</b> course and pass at <b>80% or higher</b>.</div></li>
+      <li><span class="n">3</span><div><b>Download your completion certificate</b> and keep it. It stays on your App State record, and if you go on to grad school and run a real study, you may just need CITI's quick <b>refresher</b> (required every three years).</div></li>
+    </ul>
   </div>
   <p class="note">Not sure which course to add or how to register? Message me first so you don't complete the wrong one.</p>
+  <div class="box"><p><b>Due this week:</b> your <b>CITI completion certificate</b>. You can't collect data without it, so don't let this be the thing you skip. Upload it where the schedule directs.</p></div>
 
-  <p class="step">Step 5: write what you'll actually say</p>
-  <p>Two short pieces of writing make your study real: a <b>recruitment pitch</b> (the invitation) and a <b>consent statement</b> (what people read before they agree). Draft both in Entry 9b. You don't have to invent the consent form from scratch. Model it on <a href="https://researchprotections.appstate.edu/human-subjects-irb/consent-guidance-and-templates" target="_blank" rel="noopener">App State's consent templates</a> (use the <b>exempt research</b> one, since that's us).</p>
-  <div class="box">
-    <p><b>About the <button type="button" class="term" data-pop="irb">IRB</button>:</b> you should understand what it is, but you won't go through it. Class projects at this level are <b>exempt</b> from IRB review. The catch is that some topics are off the table: you can't study people in jails, schoolchildren, or other protected groups, because those would need a full review a class can't do. A voluntary, anonymous survey of adults is exactly the kind of study you can run. If you're unsure whether your topic stays inside the lines, ask me.</p>
+  <h2>5 · A note on the IRB</h2>
+  <p>You should understand what the <button type="button" class="term" data-pop="irb">IRB</button> is, but you won't go through it. Class projects at this level are <b>exempt</b> from IRB review. The catch is that some topics are off the table: you can't study people in jails, schoolchildren, or other protected groups, because those would need a full review a class can't do. A voluntary, anonymous survey of adults is exactly the kind of study you can run.</p>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 9b</b>, write one or two sentences confirming your study stays inside the lines: adults only, voluntary, anonymous or confidential. If you're not sure your topic qualifies, note the worry there and ask me.</p>
   </div>
 
-  <div class="reflect">
-    <span class="lab">✍ On your own</span>
-    <p>Write your consent statement the way you'd want it written if a stranger were about to study you. Plain, honest, and short enough that someone would actually read it.</p>
+  <h2>6 · Write what you'll actually say</h2>
+  <p>Two short pieces of writing make your study real: a <b>recruitment pitch</b> (the invitation) and a <b>consent statement</b> (what people read before they agree). You don't have to invent the consent form from scratch. Model it on <a href="https://researchprotections.appstate.edu/human-subjects-irb/consent-guidance-and-templates" target="_blank" rel="noopener">App State's consent templates</a> (use the <b>exempt research</b> one, since that's us).</p>
+  <div class="ex">
+    <div class="t">See it &mdash; a plain consent opener</div>
+    <p>"Hi, I'm a student at App State doing a short class research survey about how shoppers read food-label claims. It takes about five minutes, it's anonymous, and you can skip any question or stop anytime. Want to take part?" Plain, honest, and short enough that someone would actually read it.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 9b</b>, draft <b>both</b> for your own study: your recruitment pitch and your consent statement. Write the consent statement the way you'd want it written if a stranger were about to study you. Save happens automatically.</p>
   </div>
 
-  <p class="step">Now: do it (Notebook Entry 9b)</p>
+  <h2>7 · Do it now</h2>
+  <p>Open your Research Notebook and complete <b>Entry 9b</b>: your IRB confirmation, your recruitment pitch, and your consent statement.</p>
   <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
 
-  <div class="duebox">
-    <span class="lab">⚠ Due this week</span>
-    <p>Your <b>CITI completion certificate</b>. You can't collect data without it, so don't let this be the thing you skip.</p>
+  <div class="debrief">
+    <span class="lab">Class debrief · together at the end</span>
+    <p>We'll come back together as a class to close. Come ready with <b>the scenario from the tool that felt genuinely gray to you</b> and how you'd fix it, plus <b>the one line of your consent statement you're least sure about</b>. Those two things are where the real ethical judgment lives, and arguing them out loud is how we sharpen it.</p>
   </div>
 
   <div class="close">
-    <p><b>What's next:</b> now that you can do it ethically, you build the instrument, the survey or interview questions that will get you real, usable data. That's Week 10.</p>
+    <p><b>One reminder.</b> You'll turn your whole notebook in twice all semester, at the midterm and end-of-term check-ins. When each comes up, you gather everything from your notebook into a Google Doc and upload that to Canvas. Nothing to upload week to week. The one thing due this week is your CITI certificate, separate from the notebook.</p>
+    <p><b>A 10-minute prime for next week.</b> Before Tuesday, look at your locked question and jot the <b>one thing you most want to ask your people</b>, the single question you'd hate to walk away without. That's exactly where next Thursday starts: <b>designing surveys and interviews</b>, turning your topic into questions that get you real, usable data.</p>
   </div>
 
   <dialog class="pop" id="pop-belmont"><h3>The Belmont Report</h3><p>A 1979 U.S. report, written after abuses like the Tuskegee study, that set the three principles all human-subjects research now follows: <b>respect for persons</b> (informed, voluntary participation), <b>beneficence</b> (maximize good, minimize harm), and <b>justice</b> (fairly share risks and benefits, don't exploit the vulnerable). Your CITI training is built on it.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-consent"><h3>Informed consent</h3><p>Before anyone takes part, they get a plain-language explanation of what the study is, what you'll ask, how their data will be used and protected, and that they can stop anytime, and then they freely agree. "Informed" and "voluntary" are the whole idea. No consent, no data.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-anon"><h3>Anonymous vs. confidential</h3><p>Not the same thing. <b>Anonymous</b> means you never collect anything that could identify a person, not even you can link a response to a name. <b>Confidential</b> means you might know who said what, but you protect it and never reveal it. If your form asks for a name or email, you can only promise confidentiality.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-consent"><h3>Informed consent</h3><p>Before anyone takes part, they get a plain-language explanation of what the study is, what you'll ask, how their data will be used and protected, and that they can stop anytime, and then they freely agree. "Informed" and "voluntary" are the whole idea. No consent, no data.</p><p>Example: a one-paragraph note at the top of your survey that says who you are, what the survey is about, how long it takes, that it's anonymous, and that they can quit anytime.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-anon"><h3>Anonymous vs. confidential</h3><p>Not the same thing. <b>Anonymous</b> means you never collect anything that could identify a person, not even you can link a response to a name. <b>Confidential</b> means you might know who said what, but you protect it and never reveal it. If your form asks for a name or email, you can only promise confidentiality.</p><p>Example: a survey with no name field is anonymous; an interview where you know who you talked to is, at best, confidential.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-irb"><h3>IRB (Institutional Review Board)</h3><p>A committee at a university that reviews research with human participants before it begins, to keep it ethical. The key thing for you: student projects for a class at this level are <b>exempt</b>, so you will not go through IRB review. That's also why some topics are off the table: you can't study people in jails, schoolchildren, or other protected groups, because those need a full review a class project can't do. A short anonymous survey of adults is exactly the kind of thing that's fine.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-citi"><h3>CITI</h3><p>The Collaborative Institutional Training Initiative, the standard online training in research ethics that most universities require before you work with human participants. You read short modules and pass quizzes (80% or higher), then download a completion certificate that's good for about three years. It's the same training real researchers do, so it's another line for your resume.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-citi"><h3>CITI</h3><p>The Collaborative Institutional Training Initiative, the standard online training in research ethics that most universities require before you work with human participants. You read short modules and pass quizzes (80% or higher), then download a completion certificate that's good for about three years.</p><p>Example: the <b>Social &amp; Behavioral Research</b> course you'll complete this week is the same training real researchers do, so it's another line for your resume.</p><form method="dialog"><button>Got it</button></form></dialog>
 
 </div>
 

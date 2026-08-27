@@ -8,36 +8,46 @@
   :root{
     --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
     --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
-    --good:#2f7d54; --due:#7a3b1f; --duesoft:#f6ebe1; --reflect:#3a5d86; --reflectsoft:#e8eef6;
+    --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --due:#e0a878; --duesoft:#2c2013; --reflect:#9cc0e6; --reflectsoft:#16202c; }
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
   #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:30px 0 8px}
   #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
   #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
   #mod .sub{color:var(--muted); margin:6px 0 0}
-  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:26px}
-  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:4px 0 8px}
-  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
   #mod .box.accent{border-left:5px solid var(--accent)}
-  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.45rem 0}
-  #mod ol.steps{margin:.4rem 0; padding-left:1.3rem} #mod ol.steps li{margin:.5rem 0}
-  #mod a{color:var(--accent)}
-  #mod .princ li b{color:var(--accent)}
-  #mod .reflect{background:var(--reflectsoft); border:1px solid var(--line); border-left:5px solid var(--reflect); border-radius:12px; padding:14px 16px; margin:16px 0}
-  #mod .reflect .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--reflect); display:block; margin-bottom:3px}
-  #mod .duebox{background:var(--duesoft); border:1px solid var(--line); border-left:5px solid var(--due); border-radius:12px; padding:14px 16px; margin:14px 0}
-  #mod .duebox .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--due); display:block; margin-bottom:3px}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.35rem 0}
+  #mod .check{list-style:none; padding-left:0}
+  #mod .check li{display:flex; gap:10px; align-items:flex-start; margin:.5rem 0}
+  #mod .check .n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.9rem}
+  #mod .debrief{background:var(--talksoft); border:1px solid var(--line); border-left:5px solid var(--talk); border-radius:12px; padding:14px 16px; margin:18px 0}
+  #mod .debrief .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--talk); display:block; margin-bottom:3px}
+  #mod .debrief p{margin:.2rem 0}
   #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
   #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
   #mod .note{color:var(--muted); font-size:.9rem}
-  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:24px}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:22px}
   #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
   #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  /* ===== lesson-flow components ===== */
+  #mod .ground{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:14px 0}
+  #mod .bridge{color:var(--muted); font-style:italic; margin:16px 0 4px}
+  #mod .ex{background:var(--field); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .ex .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--good); margin-bottom:5px}
+  #mod .ex p{margin:.35rem 0}
+  #mod .read{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .read .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:5px}
+  #mod .read a{color:var(--accent); font-weight:700}
+  #mod .do{background:var(--card); border:1px dashed var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .do .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:4px}
+  #mod .do p{margin:.2rem 0}
   dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   dialog.pop::backdrop{background:rgba(12,16,24,.55)}
   dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
@@ -45,7 +55,7 @@
   dialog.pop a{color:var(--accent)}
   dialog.pop form{margin-top:16px;text-align:right}
   dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
-  /* ===== shared course nav (injected on every page) ===== */
+  /* ===== shared course nav ===== */
   .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
   .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
@@ -72,71 +82,100 @@
   <header class="masthead">
     <p class="kicker">ENG 3090 · Week 11 · Thursday Module</p>
     <h1>Recruiting &amp; Collecting Your Data</h1>
-    <p class="sub">Your instrument is built. Now you take it into the world and gather real responses. This is the most hands-on week of the semester, you're fully in the field. Budget about an hour to set up, then the collecting runs on its own.</p>
+    <p class="sub">This is the most hands-on week of the semester. You take your instrument into the world and gather real responses.</p>
   </header>
 
-  <div class="box accent">
-    <p><b>You're in the field now.</b> Designing the survey was the last desk step. From here on you're a <button type="button" class="term" data-pop="primary">primary investigator</button> doing what primary investigators do: reaching real people, gathering data no one else has, and living with whatever it tells you. Nobody can hand you these results. You go get them.</p>
+  <div class="ground"><b>Arrive.</b> Open your Research Notebook in another tab and take a breath. On Tuesday your instrument was finished on the desk. Today's job is to get it in front of real people and start bringing back data that's entirely yours. Budget about an hour to set your recruitment live, then the collecting runs on its own for the next several days.</div>
+
+  <p class="bridge">You've spent weeks building toward data you could go get. Today you cross from planning into the field, and you become the one producing the knowledge.</p>
+
+  <h2>1 · You're in the field now</h2>
+  <p>Designing the survey was the last desk step. From here on you're a <button type="button" class="term" data-pop="primary">primary investigator</button> doing what primary investigators do: reaching real people, gathering data no one else has, and living with whatever it tells you. Nobody can hand you these results. You go get them.</p>
+
+  <h2>2 · Sample vs. population</h2>
+  <p>Your <button type="button" class="term" data-pop="sample">population</button> is everyone your question is about. You obviously can't ask all of them, so you ask a <b>sample</b>, a smaller slice. Everything rides on whether that slice fairly stands in for the whole. Ask the wrong slice and your findings quietly shrink to "what my friends think," even though your report says "what my population thinks."</p>
+  <div class="ex">
+    <div class="t">See it</div>
+    <p>In our running food-label example, the population might be "grocery shoppers in Boone." No one can reach all of them, so the study asks a sample, maybe shoppers leaving one store on two afternoons. If that sample is all students, the honest finding is about students, not shoppers in general.</p>
+    <p class="note">That's our example. Run the same distinction on your own topic: name your real population, then the reachable slice you'll actually ask.</p>
   </div>
 
-  <p class="step">Step 1: sample vs. population</p>
-  <p>Your <button type="button" class="term" data-pop="sample">population</button> is everyone your question is about, all grocery shoppers, say. You obviously can't ask all of them, so you ask a <b>sample</b>, a smaller slice. Everything rides on whether that slice fairly stands in for the whole. Ask the wrong slice and your findings quietly shrink to "what my friends think," even though your report says "what shoppers think."</p>
-
-  <p class="step">Step 2: choose who you'll ask, on purpose</p>
+  <h2>3 · Choose who you'll ask, on purpose</h2>
+  <p>Who ends up in your sample is a choice, whether you make it deliberately or let it happen by default. Here are the moves you can make on purpose.</p>
   <div class="box accent">
-    <ul class="princ">
-      <li><b><button type="button" class="term" data-pop="convenience">Convenience sampling</button>.</b> Whoever's easy to reach. It's what most class projects use, and it's allowed, as long as you name its limit: easy-to-reach people tend to look like you.</li>
-      <li><b><button type="button" class="term" data-pop="systematic">A simple system</button>.</b> If you recruit in person, ask every third person who passes, not the ones who "look right." That one rule strips out your own bias about who to approach.</li>
-      <li><b><button type="button" class="term" data-pop="snowball">Snowball sampling</button>.</b> Ask each participant to pass your link to someone unlike them. A cheap way to reach past your own circle.</li>
-      <li><b>Reach a few different groups on purpose.</b> Deliberately recruit from two or three unlike places (a budget-grocery group, a farm group, a general campus list). This is the single best move a class project can make toward a fair sample.</li>
+    <ul>
+      <li><b><button type="button" class="term" data-pop="convenience">Convenience sampling</button>.</b> Whoever's easy to reach. It's what most class projects use, and it's allowed, as long as you name its limit: easy-to-reach people tend to look like&nbsp;you.</li>
+      <li><b><button type="button" class="term" data-pop="systematic">A simple system</button>.</b> If you recruit in person, ask every third person who passes, not the ones who "look right." That one rule strips out your own bias about who to&nbsp;approach.</li>
+      <li><b><button type="button" class="term" data-pop="snowball">Snowball sampling</button>.</b> Ask each participant to pass your link to someone unlike them. A cheap way to reach past your own&nbsp;circle.</li>
+      <li><b>Reach a few different groups on purpose.</b> Deliberately recruit from two or three unlike places (a budget-grocery group, a farm group, a general campus list). This is the single best move a class project can make toward a fair&nbsp;sample.</li>
     </ul>
   </div>
-  <p>Here's where our lens does real work. Before you hit send, ask: <b>whose voices am I missing?</b> If your sample is all students, all one age, all people who already care about food labels, you're answering a smaller question than you think. <button type="button" class="term" data-pop="representative">Reaching wider</button> isn't just fairer, it makes your findings mean more.</p>
+  <p>Here's where our lens does real work. Before you hit send, ask: <b>whose voices am I missing?</b> If your sample is all students, all one age, all people who already care about your topic, you're answering a smaller question than you think. <button type="button" class="term" data-pop="representative">Reaching wider</button> is both fairer and more meaningful, it makes your findings mean more.</p>
+  <div class="read">
+    <div class="t">Read the real thing · 6 min</div>
+    <p><a href="https://www.pewresearch.org/short-reads/2023/05/08/when-surveying-small-populations-some-approaches-are-more-inclusive-than-others/" target="_blank" rel="noopener">When Surveying Small Populations, Some Approaches Are More Inclusive</a> &mdash; Andrew Mercer &amp; Arnold Lau, Pew Research Center, 2023. A non-technical look at how your sampling method decides who gets represented, and who gets left out. Pew does this at national scale; the logic scales right down to your class study.</p>
+  </div>
+  <div class="read">
+    <div class="t">Try the tool · 12 min</div>
+    <p>Before you set your own recruitment live, pressure-test your judgment on eight real recruiting choices. <a href="sampling-clinic.html" target="_blank" rel="noopener">Who Gets Asked?</a> gives you eight scenarios; for each you decide whether it represents the topic fairly, is too narrow, or crosses a line, then open the verdict. The scenarios use our food-label example, but you're building the instinct you'll use on your own recruiting plan in the next step.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 11b</b>, name the sampling moves you'll use (convenience is fine, but say so), and list two or three <i>different</i> places you'll recruit so you don't just catch one type of person. Then look at that plan and picture the people who'll never see your survey there. Name one group you're missing and one concrete way to reach them, and actually do it before you close collection.</p>
+  </div>
 
-  <p class="step">Step 3: how many is enough?</p>
-  <p>There's no magic number, but the honest guidance: for a <b>survey</b>, aim for a few dozen responses, more if you can get them, because too few and you can't tell a real pattern from random noise. For <b>interviews</b>, five to eight good conversations is often plenty, since depth is the point, not count. You'll likely end up with a small sample, and that's fine for a class study. What matters is that you <button type="button" class="term" data-pop="limits">report it honestly</button> and don't overclaim.</p>
+  <h2>4 · How many is enough?</h2>
+  <p>There's no magic number, but here's the working guidance. For a <b>survey</b>, aim for a few dozen responses, more if you can get them, because too few and you can't tell a real pattern from random noise. For <b>interviews</b>, five to eight good conversations is often plenty, since depth is the point, not count. You'll likely end up with a small sample, and that's fine for a class study. What matters is that you <button type="button" class="term" data-pop="limits">report it plainly</button> and don't overclaim.</p>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In Entry 11b, write down your <b>target number</b> and the date you plan to close collection. A target you can see makes it easier to push for a few more responses when you're short.</p>
+  </div>
 
-  <p class="step">Step 4: get the word out (with consent attached)</p>
+  <h2>5 · Get the word out (with consent attached)</h2>
+  <p>Push your instrument out through more than one channel so you don't just catch one type of person.</p>
   <div class="box">
-    <p>Push your instrument out through more than one channel so you don't just catch one type of person:</p>
     <ul>
-      <li><b>A link or <button type="button" class="term" data-pop="qr">QR code</button></b> shared in a few different online groups.</li>
-      <li><b>In person,</b> at a spot where varied people pass through, using your every-nth rule.</li>
-      <li><b>Email or text</b> to a list, then a single friendly reminder.</li>
+      <li><b>A link or <button type="button" class="term" data-pop="qr">QR code</button></b> shared in a few different online&nbsp;groups.</li>
+      <li><b>In person,</b> at a spot where varied people pass through, using your every-nth&nbsp;rule.</li>
+      <li><b>Email or text</b> to a list, then a single friendly&nbsp;reminder.</li>
     </ul>
     <p>Whatever the channel, your <button type="button" class="term" data-pop="consent">consent language</button> from Week 9 rides along every time. People should always know what they're joining before they answer.</p>
   </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In Entry 11b, list the <b>channels</b> you'll use and confirm your consent language is attached to each one. Then set your recruitment live.</p>
+  </div>
 
-  <p class="step">Step 5: collect clean</p>
+  <h2>6 · Collect clean</h2>
+  <p>Once responses start coming in, your job is to protect the data from your own thumb on the scale.</p>
   <div class="box accent">
-    <ul class="princ">
-      <li><b>Keep it anonymous</b> if that's what you promised. Don't quietly add a name field mid-stream.</li>
-      <li><b>Don't coach.</b> If someone asks what an answer "should" be, tell them there's no right answer. The moment you nudge, you've contaminated the data.</li>
-      <li><b>Don't fudge.</b> You will be tempted to drop responses you don't like. Don't. Bad-for-your-hypothesis is not the same as invalid.</li>
-      <li><b>Watch for junk.</b> Bots and joke responses happen with public links. It's okay to remove obvious garbage (gibberish, impossible answers), just write down what you removed and why.</li>
-      <li><b>Back it up.</b> Download your responses (export the sheet) more than once as they come in. Losing your only copy the night before P3 is a real and avoidable tragedy.</li>
+    <ul>
+      <li><b>Keep it anonymous</b> if that's what you promised. Don't quietly add a name field&nbsp;mid-stream.</li>
+      <li><b>Don't coach.</b> If someone asks what an answer "should" be, tell them there's no right answer. The moment you nudge, you've contaminated the&nbsp;data.</li>
+      <li><b>Don't fudge.</b> You will be tempted to drop responses you don't like. Don't. Bad-for-your-hypothesis is not the same as&nbsp;invalid.</li>
+      <li><b>Watch for junk.</b> Bots and joke responses happen with public links. It's okay to remove obvious garbage (gibberish, impossible answers), just write down what you removed and&nbsp;why.</li>
+      <li><b>Back it up.</b> Download your responses (export the sheet) more than once as they come in. Losing your only copy the night before P3 is a real and avoidable&nbsp;tragedy.</li>
     </ul>
   </div>
 
-  <p class="step">Step 6: know when to stop</p>
+  <h2>7 · Know when to stop</h2>
   <p>Stop when you've hit a reasonable number and fresh responses stop changing the picture. For interviews, that's <button type="button" class="term" data-pop="saturation">saturation</button>, when new conversations mostly echo ones you've already had. Give it the time it needs (a few days to a week of live collecting), then close it so you have room to analyze next week.</p>
 
-  <div class="reflect">
-    <span class="lab">✍ On your own</span>
-    <p>Look at where you're recruiting and picture the people who'll never see your survey there. Who are they? Name one group you're missing and one concrete way to reach them, then actually do it before you close collection.</p>
+  <h2>8 · Launch and log it</h2>
+  <p>Open your Research Notebook and finish <b>Entry 11b</b>: record your recruitment plan going live, keep a short running log of responses and any problems, and note when you'll stop. Do <b>not</b> analyze yet, that's next week. This week you just gather clean data.</p>
+  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
+  <div class="box accent">
+    <p><b>Coming up: this is your P3 data.</b> P3 (Quantitative Analysis) is due at the end of Week 12, and this week's responses <i>are</i> that data. Collect enough, keep it clean, and back it up. Next week you make it countable.</p>
   </div>
 
-  <p class="step">Now: launch and log it (Notebook Entry 11b)</p>
-  <p>Record your recruitment plan going live, keep a short running log of responses and any problems, and note when you'll stop. Do <b>not</b> analyze yet, that's next week. This week you just gather clean data.</p>
-  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
-
-  <div class="duebox">
-    <span class="lab">Coming up</span>
-    <p><b>P3 (Quantitative Analysis)</b> is due at the end of Week 12. This week's responses <i>are</i> your P3 data, so collect enough, keep it clean, and back it up. Next week you make it countable.</p>
+  <div class="debrief">
+    <span class="lab">Class debrief · together at the end</span>
+    <p>We'll come back together as a class to close. Come ready to say, in one breath: <b>your population, the sample you're actually reaching, and the one group you're most worried you're missing.</b> If you can't name who's missing yet, that's the tell for where your recruitment plan still needs a pass.</p>
   </div>
 
   <div class="close">
-    <p><b>Watch the pieces converge:</b> the gap from your lit review shaped the question, the question shaped the instrument, and now the instrument is bringing back data that's entirely yours. Week 12 you turn those responses into charts and see what you actually found, the first time your study answers its own question.</p>
+    <p><b>One reminder.</b> You'll turn your whole notebook in twice all semester, at the midterm and end-of-term check-ins. When each comes up, you gather everything from your notebook into a Google Doc and upload that to Canvas. Nothing to upload today.</p>
+    <p><b>A 10-minute prime for next week.</b> Once a handful of responses are in, open your export and just look at it. Which one question already looks like it has a pattern? Jot one guess in your notebook. That's where next Thursday starts: <b>analyzing and visualizing your data</b>, turning those raw responses into charts and seeing what you actually found.</p>
   </div>
 
   <dialog class="pop" id="pop-primary"><h3>Primary vs. secondary research</h3><p><b>Secondary research</b> means working with what already exists: reading, evaluating, and analyzing sources other people produced. Your literature review and your analysis of food labels were both secondary. <b>Primary research</b> means generating new data yourself, by surveying, interviewing, or observing real people. Collecting responses this week is primary research in its purest form, you're the one producing the knowledge.</p><form method="dialog"><button>Got it</button></form></dialog>
@@ -145,7 +184,7 @@
   <dialog class="pop" id="pop-systematic"><h3>A simple sampling rule</h3><p>When you recruit in person, decide a rule in advance, ask every third person who walks by, for example, and stick to it. It sounds trivial, but it takes the choice of "who looks approachable" out of your hands, and that choice is where a lot of bias sneaks in. A rule recruits more fairly than your gut does.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-snowball"><h3>Snowball sampling</h3><p>You ask each participant to pass your survey along to others. It's an easy way to grow a sample and reach people you couldn't find yourself. The catch: friends refer friends, so the snowball tends to stay similar. Nudge it wider by asking people to share with someone <i>unlike</i> them.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-representative"><h3>Representative sample</h3><p>A sample that mirrors the larger group you care about, so what you find in the sample is a fair guess about the population. Big professional studies use random sampling to get there. Class projects rarely can, so you aim for <i>reasonable spread</i> instead: deliberately reach several different kinds of people, and be honest about who you did and didn't reach.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-limits"><h3>Naming your limitations</h3><p>Every study has them, and saying so out loud makes you <i>more</i> credible, not less. A small or convenience sample is a limitation, so in your report you write a sentence like, "This sample of 34 mostly-student shoppers can't represent all consumers, so these findings are suggestive, not conclusive." Honest limits are the mark of a real researcher.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-limits"><h3>Naming your limitations</h3><p>Every study has them, and saying so out loud makes you <i>more</i> credible, not less. A small or convenience sample is a limitation, so in your report you write a sentence like, "This sample of 34 mostly-student shoppers can't represent all consumers, so these findings are suggestive, not conclusive." Plainly named limits are the mark of a real researcher.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-qr"><h3>QR code</h3><p>A scannable square that opens your survey link when someone points a phone camera at it. Google Forms and Qualtrics both give you a shareable link you can turn into a free QR code (search "free QR code generator"). Handy for in-person recruiting, print it on a half-sheet and let people scan and take the survey on their own phone.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-consent"><h3>Informed consent</h3><p>Before anyone takes part, they get a plain-language explanation of what the study is, what you'll ask, how their data will be used and protected, and that they can stop anytime, and then they freely agree. You wrote this in Week 9. It travels with your survey through every channel, no consent, no data.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-saturation"><h3>Saturation</h3><p>The point in interview research where new conversations mostly repeat what you've already heard, so more interviews stop teaching you much. It's a common, defensible reason to stop collecting qualitative data. For surveys the logic is looser, but the same idea applies: when fresh responses stop shifting the overall picture, you've likely got enough.</p><form method="dialog"><button>Got it</button></form></dialog>

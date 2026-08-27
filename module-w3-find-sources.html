@@ -8,40 +8,46 @@
   :root{
     --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
     --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
-    --good:#2f7d54; --warn:#a3541f; --warnsoft:#f6ebe1; --reflect:#3a5d86; --reflectsoft:#e8eef6;
+    --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --warn:#e0a878; --warnsoft:#2c2013; --reflect:#9cc0e6; --reflectsoft:#16202c; }
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
   #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:30px 0 8px}
   #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
   #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
   #mod .sub{color:var(--muted); margin:6px 0 0}
-  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:26px}
-  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:4px 0 8px}
-  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
   #mod .box.accent{border-left:5px solid var(--accent)}
-  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.4rem 0}
-  #mod a{color:var(--accent)}
-  #mod .tool{margin:.5rem 0}
-  #mod .tool b{color:var(--ink)}
-  #mod .caveat{background:var(--warnsoft); border:1px solid var(--line); border-left:5px solid var(--warn); border-radius:12px; padding:14px 16px; margin:14px 0}
-  #mod .caveat .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--warn); display:block; margin-bottom:3px}
-  #mod .prompt{background:var(--field); border:1px solid var(--line); border-radius:8px; padding:8px 11px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.86rem; margin:.4rem 0}
-  #mod .reflect{background:var(--reflectsoft); border:1px solid var(--line); border-left:5px solid var(--reflect); border-radius:12px; padding:14px 16px; margin:16px 0}
-  #mod .reflect .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--reflect); display:block; margin-bottom:3px}
-  #mod .sift-moves{list-style:none; padding-left:0}
-  #mod .sift-moves li{display:flex; gap:10px; align-items:flex-start; margin:.55rem 0}
-  #mod .sift-moves .k{flex:none; width:26px; height:26px; border-radius:7px; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.35rem 0}
+  #mod .check{list-style:none; padding-left:0}
+  #mod .check li{display:flex; gap:10px; align-items:flex-start; margin:.5rem 0}
+  #mod .check .n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.9rem}
+  #mod .debrief{background:var(--talksoft); border:1px solid var(--line); border-left:5px solid var(--talk); border-radius:12px; padding:14px 16px; margin:18px 0}
+  #mod .debrief .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--talk); display:block; margin-bottom:3px}
+  #mod .debrief p{margin:.2rem 0}
   #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
   #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
   #mod .note{color:var(--muted); font-size:.9rem}
-  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:24px}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:22px}
   #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
   #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  /* ===== lesson-flow components ===== */
+  #mod .ground{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:14px 0}
+  #mod .bridge{color:var(--muted); font-style:italic; margin:16px 0 4px}
+  #mod .ex{background:var(--field); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .ex .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--good); margin-bottom:5px}
+  #mod .ex p{margin:.35rem 0}
+  #mod .read{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .read .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:5px}
+  #mod .read a{color:var(--accent); font-weight:700}
+  #mod .do{background:var(--card); border:1px dashed var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .do .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:4px}
+  #mod .do p{margin:.2rem 0}
   dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   dialog.pop::backdrop{background:rgba(12,16,24,.55)}
   dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
@@ -49,7 +55,7 @@
   dialog.pop a{color:var(--accent)}
   dialog.pop form{margin-top:16px;text-align:right}
   dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
-  /* ===== shared course nav (injected on every page) ===== */
+  /* ===== shared course nav ===== */
   .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
   .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
@@ -76,60 +82,106 @@
   <header class="masthead">
     <p class="kicker">ENG 3090 · Week 3 · Thursday Module</p>
     <h1>Find &amp; Vet Your Sources</h1>
-    <p class="sub">Your first module on your own. Same rhythm as always: read a little, do a little, and it lands in your notebook. Budget about 45 minutes.</p>
+    <p class="sub">Your first module on your own over Zoom. Same rhythm as always: read a little, do a little, and it lands in your notebook.</p>
   </header>
 
-  <p class="step">Step 1, where to actually look</p>
-  <p>Regular Google is where research goes to get shallow. Start in places built for real sources:</p>
+  <div class="ground"><b>Arrive.</b> Open your Research Notebook in another tab and take a breath. Last week you locked your topic: the texts you'll analyze, the people you could ask, the justice angle. Today you go find the <b>sources</b> that tell you what's already known, and you learn to tell the trustworthy ones from the junk before any of it lands in your paper.</div>
+
+  <p class="bridge">A locked topic is a good question with nowhere to stand yet. Sources are the ground under it. Finding them is easy; deciding which ones to trust is the real skill, and that's today's work.</p>
+
+  <h2>1 · Where to actually look</h2>
+  <p>Regular Google is where research goes to get shallow. It's built to sell and to please, not to vet. Start instead in places built for real sources, where something has already cleared a bar before it reached you.</p>
   <div class="box accent">
-    <p class="tool"><b>Belk Library <button type="button" class="term" data-pop="database">databases</button>.</b> The good stuff you can't get free on the open web, and it's already paid for by your tuition. <a href="https://library.appstate.edu" target="_blank" rel="noopener">library.appstate.edu</a></p>
-    <p class="tool"><b>Google Scholar.</b> Searches scholarly work specifically. <a href="https://scholar.google.com" target="_blank" rel="noopener">scholar.google.com</a>, and see that "Cited by" link under each result? That's a shortcut to newer work built on it.</p>
-    <p class="tool"><b>AI research tools.</b> <a href="https://www.perplexity.ai" target="_blank" rel="noopener">Perplexity</a> is strong for research because it searches the live web and shows you its sources. <b>Elicit</b> and <b>Consensus</b> are built specifically to surface real academic papers. General chatbots (ChatGPT, Claude) are best for brainstorming search terms and explaining a hard concept, not for citations.</p>
-  </div>
-
-  <div class="caveat">
-    <span class="lab">⚠ The one rule about AI and sources</span>
-    <p>AI will hand you a confident, perfectly formatted citation for a study that <b>does not exist.</b> It happens constantly. So: use AI to <em>point</em> you toward real work, then go find that work, open it, and read it yourself. <b>Never cite anything you haven't actually read.</b> If you can't find it, it doesn't go in your paper.</p>
-  </div>
-
-  <p><b>A few prompts worth trying</b> (then verify everything they give you):</p>
-  <div class="prompt">Find <button type="button" class="term" data-pop="peer-reviewed">peer-reviewed</button> studies on how shoppers interpret "natural" claims on food labels. List each with a link, and only include ones you can confirm exist.</div>
-  <div class="prompt">I'm researching [your question]. Suggest 8 search terms and 3 databases I should try.</div>
-  <div class="prompt">Put this abstract in plain language for me: [paste it]. (For understanding, not for citing.)</div>
-
-  <p class="step">Step 2, the breadcrumb trick</p>
-  <p>Found one genuinely good source? <b>Open its bibliography.</b> Everything that author cited is a curated list of the best related work, handed to you for free. Follow those breadcrumbs and you'll find five more sources fast.</p>
-  <div class="box">
-    <p>This is also the deeper reason we cite at all. A reference list isn't busywork or a way to avoid plagiarism, it's a <b>trail of breadcrumbs</b> you leave for the next researcher, so they can retrace your steps, check your claims, and build on or replicate what you did. You're following other people's trails right now. Leave a clear one of your own.</p>
-  </div>
-
-  <p class="step">Step 3, how to vet what you find: SIFT</p>
-  <p>Before you trust any source, run it through four quick moves. This is <a href="https://hapgood.us/2019/06/19/sift-the-four-moves/" target="_blank" rel="noopener">Mike Caulfield's SIFT method</a> (free to read, and the short version is right here):</p>
-  <div class="box">
-    <ul class="sift-moves">
-      <li><span class="k">S</span><div><b>Stop.</b> Before you read or share, notice what you're looking at and whether you even know the source.</div></li>
-      <li><span class="k">I</span><div><b>Investigate the source.</b> Who made this, and why? A quick search <em>about</em> them (this is <button type="button" class="term" data-pop="lateral-reading">lateral reading</button>, leaving the page to see what others say) tells you more than the page's own "About Us."</div></li>
-      <li><span class="k">F</span><div><b>Find better coverage.</b> Is there a stronger, more independent source for the same claim? Use it.</div></li>
-      <li><span class="k">T</span><div><b>Trace</b> claims, quotes, and data back to where they started. News about a study is not the study. An AI's summary is not the source.</div></li>
+    <ul>
+      <li><b>Belk Library <button type="button" class="term" data-pop="database">databases</button>.</b> The good material you can't get free on the open web, already paid for by your tuition. <a href="https://library.appstate.edu" target="_blank" rel="noopener">library.appstate.edu</a></li>
+      <li><b>Google Scholar.</b> Searches scholarly work specifically. <a href="https://scholar.google.com" target="_blank" rel="noopener">scholar.google.com</a> &mdash; and that "Cited by" link under each result is a shortcut to newer work built on it.</li>
+      <li><b>AI research tools.</b> <a href="https://www.perplexity.ai" target="_blank" rel="noopener">Perplexity</a> is strong here because it searches the live web and shows you its sources. <b>Elicit</b> and <b>Consensus</b> are built specifically to surface real academic papers. General chatbots (ChatGPT, Claude) are best for brainstorming search terms and explaining a hard concept, not for citations.</li>
     </ul>
   </div>
-  <div class="reflect">
-    <span class="lab">✍ On your own</span>
-    <p>Our lens question rides along with SIFT: when you investigate a source, ask <b>whose interest it serves</b> and <b>whose voice is missing</b> from the conversation. A trade group and an independent researcher can make the same claim for very different reasons.</p>
+
+  <div class="box accent">
+    <p style="margin:.2rem 0 .5rem"><b>&#9888; The one rule about AI and sources.</b></p>
+    <p style="margin:.2rem 0">AI will hand you a confident, perfectly formatted citation for a study that <b>does not exist.</b> It happens constantly. So use AI to <em>point</em> you toward real work, then go find that work, open it, and read it yourself. <b>Never cite anything you haven't actually read.</b> If you can't find it, it doesn't go in your paper.</p>
   </div>
 
-  <p class="step">Now: do it (Notebook Entry 3)</p>
-  <p>Open your Research Notebook and fill out <b>Entry 3</b>: find and log <b>five</b> sources for your own topic. Vet each with SIFT, note why it's useful, and use the breadcrumb trick on at least one.</p>
-  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook →</a></p>
+  <div class="ex">
+    <div class="t">See it &mdash; the same three prompts, verify everything they return</div>
+    <p>The first prompt below uses <b>our running example</b> (food-label claims). It's here to show the shape of a good prompt, not because eggs are your topic. Swap in your own question and run the same moves.</p>
+    <p><i>&ldquo;Find <button type="button" class="term" data-pop="peer-reviewed">peer-reviewed</button> studies on how shoppers interpret &lsquo;natural&rsquo; claims on food labels. List each with a link, and only include ones you can confirm exist.&rdquo;</i> &nbsp;<span class="note">(our example)</span></p>
+    <p><i>&ldquo;I'm researching [your question]. Suggest 8 search terms and 3 databases I should try.&rdquo;</i></p>
+    <p><i>&ldquo;Put this abstract in plain language for me: [paste it].&rdquo;</i> &nbsp;<span class="note">(for understanding, not for citing)</span></p>
+  </div>
+
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>Open one library database and one AI tool. Run a search on <b>your own</b> topic. In <b>Entry 3</b>, drop in two promising links you can actually open. You'll vet them in a few minutes; right now just start the pile.</p>
+  </div>
+
+  <h2>2 · The breadcrumb trick</h2>
+  <p>Found one genuinely good source? <b>Open its bibliography.</b> Everything that author cited is a curated list of the best related work, handed to you for free. Follow those breadcrumbs and you'll find five more sources fast, and better ones than a cold search turns up.</p>
+  <div class="ex">
+    <div class="t">See it</div>
+    <p>Say a strong article on our food-label example cites a 2019 study on how "organic" is regulated and a 2021 survey of shopper trust. You didn't have to find either one; the author already vetted them and put them in the list. Two clicks, two new leads. Now do that on <b>your</b> best source.</p>
+  </div>
+  <div class="box">
+    <p>This is also the deeper reason we cite at all. A reference list isn't busywork or a way to dodge plagiarism. It's a <b>trail of breadcrumbs</b> you leave for the next researcher, so they can retrace your steps, check your claims, and build on what you did. You're following other people's trails right now. Leave a clear one of your own.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>Pick the strongest source you've found so far. Open its bibliography, and in <b>Entry 3</b> add at least <b>two</b> new leads you got from it. Note which source they came from, so you remember the trail.</p>
+  </div>
+
+  <h2>3 · Vet what you find: the SIFT moves</h2>
+  <p>A source in your pile is a lead, not yet evidence. Before you trust any of it, run it through four quick moves. This is the SIFT method, and the short version is right here, followed by the real thing.</p>
+  <div class="read">
+    <div class="t">Read the real thing · 5 min</div>
+    <p><a href="https://hapgood.us/2019/06/19/sift-the-four-moves/" target="_blank" rel="noopener">SIFT (The Four Moves)</a> &mdash; Mike Caulfield, a digital-literacy researcher who introduced SIFT in a 2019 post on his blog <i>Hapgood</i>, after years of watching students judge sources by how polished they looked. His four moves are the quick, canonical way to decide whether a source is trustworthy.</p>
+  </div>
+  <div class="box">
+    <ul class="check">
+      <li><span class="n">S</span><div><b>Stop.</b> Before you read or share, notice what you're looking at and whether you even know the source.</div></li>
+      <li><span class="n">I</span><div><b>Investigate the source.</b> Who made this, and why? A quick search <em>about</em> them (this is <button type="button" class="term" data-pop="lateral-reading">lateral reading</button>, leaving the page to see what others say) tells you more than the page's own "About Us."</div></li>
+      <li><span class="n">F</span><div><b>Find better coverage.</b> Is there a stronger, more independent source for the same claim? Use it.</div></li>
+      <li><span class="n">T</span><div><b>Trace</b> claims, quotes, and data back to where they started. News about a study is not the study. An AI's summary is not the source.</div></li>
+    </ul>
+  </div>
+  <div class="box accent">
+    <p style="margin:.2rem 0"><b>Ride our lens along with SIFT.</b> When you investigate a source, add two questions: <b>whose interest does it serve,</b> and <b>whose voice is missing</b> from the conversation? A trade group and an independent researcher can make the exact same claim for very different reasons. That doesn't make either one useless; it tells you how to weigh it.</p>
+  </div>
+
+  <div class="read">
+    <div class="t">Try the tool · 10 min</div>
+    <p>Practice the judgment before you spend it on your own pile. <a href="source-triage.html" target="_blank" rel="noopener">Source Triage</a> gives you six real things you might turn up while researching our food-label example, an industry association, a no-name blog, a federal page, an AI answer, and asks you to decide for each: <b>trust it, it depends, or skip it as evidence?</b> Commit an answer, then check. The point isn't the eggs; it's the move you'll run on every source you find.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>Back to <b>your</b> sources. Run SIFT on the leads in <b>Entry 3</b>. For each keeper, jot one line on why you trust it and one line on whose interest it serves. Cut anything you can't trace to where the claim started.</p>
+  </div>
+
+  <div class="read">
+    <div class="t">Try the move · optional, 10 min</div>
+    <p>Want to sharpen the same eye further? <a href="source-transfer-drill.html" target="_blank" rel="noopener">The Source &amp; Claim Transfer Drill</a> has you catch the weak spots in a stranger's use of sources first, where it's easy because you're not attached, then turn that eye on your own. It's a preview of the writing you'll do for the Literature Review, so it's optional today and worth a look.</p>
+  </div>
+
+  <h2>4 · Now do it: log five sources</h2>
+  <p>Open your Research Notebook and finish <b>Entry 3</b>: find and log <b>five</b> sources for your own topic. Vet each one with SIFT, note why it's useful and whose interest it serves, and use the breadcrumb trick on at least one.</p>
+  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
+  <p class="note">Five is the floor for today, not the finish line. Save happens automatically on your own computer.</p>
+
+  <div class="debrief">
+    <span class="lab">Class debrief · together at the end</span>
+    <p>We'll come back together as a class to close. Come ready to say, in one breath: <b>one source you're keeping and why you trust it, and one you cut and what SIFT caught.</b> The cut is often the more interesting story, so bring the one that fooled you for a second.</p>
+  </div>
 
   <div class="close">
-    <p><b>Why this matters:</b> these are the first of the sources that become your <b>Literature Review (P1)</b>, due Week 5. Five gets you started. You'll want at least 10 for P1 and 15 to 20 by the final report (not all scholarly), so keep adding to Entry 3 as you go. Do the finding now and the writing gets much easier.</p>
-    <p class="note">When you're done, your work is already saved on this computer. No need to submit anything today, it all goes in at the midterm check-in.</p>
+    <p><b>Why this matters.</b> These five are the first of the sources that become your <b>Literature Review (P1)</b>, due Week 5. Five gets you started; you'll want at least 10 for P1 and 15 to 20 (not all scholarly) by the final report, so keep adding to Entry 3 as you go. Do the finding now and the writing gets much easier.</p>
+    <p><b>One reminder.</b> Your notebook is collected only twice all semester, at the midterm and end-of-term check-ins, when you gather everything into a Google Doc and upload that to Canvas. Nothing to submit today; it's already saved on this computer.</p>
+    <p><b>A 10-minute prime for next week.</b> Before Tuesday, pull up the two strongest sources you logged today and read their opening paragraphs side by side. Where do they agree, and where do they push against each other? Jot one line in Entry 3. That tension is exactly where next week starts: <b>Synthesis</b>, putting sources in conversation instead of listing them one by one.</p>
   </div>
 
   <dialog class="pop" id="pop-peer-reviewed"><h3>Peer-reviewed</h3><p>Before a study runs in a scholarly journal, other experts in the field read it and check the methods and the reasoning. That vetting is peer review.</p><p>It doesn't make a study perfect, but it means the work cleared a bar a random blog post never faces. That's why peer-reviewed sources are your strongest evidence.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-lateral-reading"><h3>Lateral reading</h3><p>Instead of judging a source by its own slick page, you open new tabs and see what other people say about it. You read across sources, not down the one in front of you.</p><p>It's the core SIFT move, and it's how fact-checkers size up an unfamiliar site in seconds.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-database"><h3>Database</h3><p>A library database is a searchable collection of vetted scholarly sources that the library pays for, so it isn't free on the open web. Your tuition already covers it.</p><p>Unlike plain Google, what's inside has usually cleared an editorial or peer-review bar, so you start from better material.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-lateral-reading"><h3>Lateral reading</h3><p>Instead of judging a source by its own slick page, you open new tabs and see what other people say about it. You read across sources, not down the one in front of you.</p><p>It's the core SIFT move, and it's how fact-checkers size up an unfamiliar site in seconds. Example: a health site looks official, but one search shows it's run by a supplement company, so now you know how to weigh it.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-database"><h3>Database</h3><p>A library database is a searchable collection of vetted scholarly sources that the library pays for, so it isn't free on the open web. Your tuition already covers it.</p><p>Unlike plain Google, what's inside has usually cleared an editorial or peer-review bar, so you start from better material. Example: searching Academic Search Complete through Belk Library instead of Googling the same terms.</p><form method="dialog"><button>Got it</button></form></dialog>
 
 </div>
 <script>

@@ -8,37 +8,46 @@
   :root{
     --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
     --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
-    --good:#2f7d54; --due:#7a3b1f; --duesoft:#f6ebe1; --reflect:#3a5d86; --reflectsoft:#e8eef6;
+    --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --due:#e0a878; --duesoft:#2c2013; --reflect:#9cc0e6; --reflectsoft:#16202c; }
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
   #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:30px 0 8px}
   #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
   #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
   #mod .sub{color:var(--muted); margin:6px 0 0}
-  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:26px}
-  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:4px 0 8px}
-  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
   #mod .box.accent{border-left:5px solid var(--accent)}
-  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.45rem 0}
-  #mod ol.steps{margin:.4rem 0; padding-left:1.3rem} #mod ol.steps li{margin:.5rem 0}
-  #mod a{color:var(--accent)}
-  #mod .princ li b{color:var(--accent)}
-  #mod .reflect{background:var(--reflectsoft); border:1px solid var(--line); border-left:5px solid var(--reflect); border-radius:12px; padding:14px 16px; margin:16px 0}
-  #mod .reflect .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--reflect); display:block; margin-bottom:3px}
-  #mod .duebox{background:var(--duesoft); border:1px solid var(--line); border-left:5px solid var(--due); border-radius:12px; padding:14px 16px; margin:14px 0}
-  #mod .duebox .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--due); display:block; margin-bottom:3px}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.35rem 0}
+  #mod .check{list-style:none; padding-left:0}
+  #mod .check li{display:flex; gap:10px; align-items:flex-start; margin:.5rem 0}
+  #mod .check .n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.9rem}
+  #mod .debrief{background:var(--talksoft); border:1px solid var(--line); border-left:5px solid var(--talk); border-radius:12px; padding:14px 16px; margin:18px 0}
+  #mod .debrief .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--talk); display:block; margin-bottom:3px}
+  #mod .debrief p{margin:.2rem 0}
   #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
   #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
-  #mod a.btn.ghost{background:transparent; color:var(--accent); border:1.5px solid var(--accent)}
   #mod .note{color:var(--muted); font-size:.9rem}
-  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:24px}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:22px}
   #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
   #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  /* ===== lesson-flow components ===== */
+  #mod .ground{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:14px 0}
+  #mod .bridge{color:var(--muted); font-style:italic; margin:16px 0 4px}
+  #mod .ex{background:var(--field); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .ex .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--good); margin-bottom:5px}
+  #mod .ex p{margin:.35rem 0}
+  #mod .read{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .read .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:5px}
+  #mod .read a{color:var(--accent); font-weight:700}
+  #mod .do{background:var(--card); border:1px dashed var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .do .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:4px}
+  #mod .do p{margin:.2rem 0}
   dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   dialog.pop::backdrop{background:rgba(12,16,24,.55)}
   dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
@@ -46,7 +55,7 @@
   dialog.pop a{color:var(--accent)}
   dialog.pop form{margin-top:16px;text-align:right}
   dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
-  /* ===== shared course nav (injected on every page) ===== */
+  /* ===== shared course nav ===== */
   .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
   .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
@@ -73,41 +82,68 @@
   <header class="masthead">
     <p class="kicker">ENG 3090 · Week 12 · Thursday Module</p>
     <h1>Analyzing &amp; Visualizing Your Data</h1>
-    <p class="sub">This is the payoff. The responses you gathered become findings, charts, and, by Sunday, your P3. Budget about ninety minutes, plus time to write it up.</p>
+    <p class="sub">The payoff. The responses you gathered become findings, charts, and, by Sunday, your P3.</p>
   </header>
 
-  <div class="box accent">
-    <p><b>The moment your study answers its own question.</b> All semester you found a gap, framed a question, built an instrument, and gathered data. Today those responses finally talk back. As the <button type="button" class="term" data-pop="primary">primary investigator</button>, you're the first person on earth to see what your data says. Your job now is to read it honestly and show it clearly.</p>
+  <div class="ground"><b>Arrive.</b> Open your Research Notebook and your exported spreadsheet in other tabs, and take a breath. On Tuesday you closed your survey and pulled the responses. Today you make them talk: counts, a few honest numbers, a clear chart, and a write-up. As the <button type="button" class="term" data-pop="primary">primary investigator</button>, you're the first person on earth to see what your data says. Your job now is to read it honestly and show it clearly.</div>
+
+  <p class="bridge">All semester you found a gap, framed a question, built an instrument, and gathered data. That was the long, patient half. Today the responses finally answer back, and you turn them into a finding you can stand behind.</p>
+
+  <h2>1 · Turn responses into counts</h2>
+  <p>Start plain. For each closed question, count how many people chose each answer. That's a <button type="button" class="term" data-pop="frequency">frequency table</button>, and it's the foundation of everything else. You can tally by hand for a small survey, or let the sheet do it: <button type="button" class="term" data-pop="countif">COUNTIF</button> counts matching answers for you. Do this for every closed question before you chart anything.</p>
+  <div class="ex">
+    <div class="t">See it</div>
+    <p>In our running food-label study, one question asks how often shoppers read sustainability claims. Of 42 responses, 14 said "Sometimes," 11 "Often," 9 "Rarely," 8 "Never." Four numbers, and the column of raw answers is suddenly something you can compare.</p>
+    <p class="note">The food-label survey is our <b>running example</b>, not your topic. Watch the move, then run it on your own responses.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 12a</b>, record your frequency counts: for each main question, how many people chose each answer.</p>
   </div>
 
-  <p class="step">Step 1: turn responses into counts</p>
-  <p>Open your exported spreadsheet. For each question, count how many people chose each answer, that's a <button type="button" class="term" data-pop="frequency">frequency table</button>, and it's the foundation of everything else. You can tally by hand for a small survey, or let the sheet do it: <button type="button" class="term" data-pop="countif">COUNTIF</button> counts matching answers automatically. Do this for every closed question before you chart anything.</p>
-
-  <p class="step">Step 2: describe it, simply</p>
+  <h2>2 · Describe it, simply</h2>
+  <p>You don't need advanced statistics. For a class project, three <button type="button" class="term" data-pop="descriptive">descriptive numbers</button> carry most of the weight.</p>
   <div class="box">
-    <p>You don't need advanced statistics. For a class project, three <button type="button" class="term" data-pop="descriptive">descriptive numbers</button> carry most of the weight:</p>
     <ul>
       <li><b>Count (N):</b> how many people answered. Report it every time.</li>
       <li><b>Percentage:</b> what share picked each answer. Easier to compare than raw counts.</li>
-      <li><b>Mode:</b> the most common answer. For truly numeric data (age, price), you can add a <button type="button" class="term" data-pop="meanmedian">mean or median</button>.</li>
+      <li><b>Mode:</b> the most common answer. For truly numeric data like age or price, you can add a <button type="button" class="term" data-pop="meanmedian">mean or median</button>.</li>
     </ul>
     <p class="note">A note on <button type="button" class="term" data-pop="likertavg">averaging a Likert scale</button>: reporting "the average was 3.8 out of 5" is common, but it's a shortcut worth flagging, since the gap between "agree" and "strongly agree" isn't guaranteed to be the same size as the gap between "neutral" and "agree." Showing the full distribution in a bar chart is usually more honest.</p>
   </div>
+  <div class="ex">
+    <div class="t">See it</div>
+    <p>Back to the 42 shoppers: N = 42; "Sometimes" is the mode at 14 of 42, or 33%. One sentence, and you've summarized a whole question without a single advanced formula.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 12a</b>, write your N, the key percentages, and the most common answer for each question.</p>
+  </div>
 
-  <p class="step">Step 3: pick the chart that fits the data</p>
-  <p>The <button type="button" class="term" data-pop="chartfit">chart type</button> should match what you're showing, not just what looks cool:</p>
+  <h2>3 · Pick the chart that fits the data</h2>
+  <p>The <button type="button" class="term" data-pop="chartfit">chart type</button> should match what you're showing, not just what looks cool.</p>
   <ul>
     <li><b>Bar chart:</b> comparing answer choices or categories. The workhorse, and almost always a safe choice.</li>
     <li><b>Pie chart:</b> parts of a single whole that add to 100%, and only with a few slices. Skip it if you have many categories.</li>
     <li><b>Line chart:</b> change over time (less common for a one-shot survey).</li>
-    <li><b>Grouped or stacked bars:</b> comparing groups, do younger and older shoppers answer differently?</li>
+    <li><b>Grouped or stacked bars:</b> comparing groups. Do younger and older shoppers answer differently?</li>
   </ul>
-  <p>Build yours in the tool from class. Load your own counts, try bar versus pie, and download the chart straight into your report.</p>
-  <p><a class="btn ghost" href="chart-your-data.html" target="_blank" rel="noopener">Open Chart Your Data &rarr;</a></p>
+  <div class="ex">
+    <div class="t">See it</div>
+    <p>Those four "how often" answers are categories, so a bar chart is the honest fit. A pie would work too since they add to 100%, but four slices is about the ceiling before a pie turns to mush. When in doubt, the bar chart is rarely wrong.</p>
+  </div>
+  <div class="read">
+    <div class="t">Try the tool · 10 min</div>
+    <p>Build yours in the tool from class. <a href="chart-your-data.html" target="_blank" rel="noopener">Chart Your Data</a> lets you load your own counts, try bar versus pie, toggle the axis, and download the chart straight into your report. Run it on your real numbers, not the example.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 12a</b>, note which chart you'll use for which question, and why.</p>
+  </div>
 
-  <p class="step">Step 4: don't be the misleading label</p>
+  <h2>4 · Don't be the misleading label</h2>
+  <p>You've spent a whole semester on how food labels can mislead. A chart can do the exact same thing, and usually by accident. The honesty rules:</p>
   <div class="box accent">
-    <p>You've spent a whole semester on how food labels can mislead. A chart can do the exact same thing, and usually by accident. The honesty rules:</p>
     <ul>
       <li><b>Start bars at zero.</b> A <button type="button" class="term" data-pop="truncate">truncated axis</button> turns a 4-point gap into a fake landslide.</li>
       <li><b>Label everything:</b> axes, units, categories, and your N.</li>
@@ -116,30 +152,56 @@
     </ul>
     <p>If your reader would walk away believing something your data doesn't actually support, the chart is lying, even if every number in it is true.</p>
   </div>
-
-  <p class="step">Step 5: read the results honestly</p>
-  <p>Two traps catch new researchers. First, <button type="button" class="term" data-pop="causation">correlation is not causation</button>: if label-readers also eat more vegetables, reading labels didn't necessarily cause it. Second, a small sample is <b>suggestive, not proof</b>. Say what you found, then say plainly what your data can and can't claim. Naming your <button type="button" class="term" data-pop="limits">limitations</button> makes you more trustworthy, not less.</p>
-
-  <p class="step">Step 6: bring the words back in</p>
-  <p>Your numbers show the <i>what</i>. Your open-ended responses show the <i>why</i>. Pull one or two real quotes from participants and set them beside the relevant chart. That pairing, a number plus a voice, is the heart of a <button type="button" class="term" data-pop="mixed">mixed-methods</button> write-up, and it's what turns a stack of percentages into an argument.</p>
-
-  <div class="reflect">
-    <span class="lab">✍ On your own</span>
-    <p>Look at your finished chart and ask: if a stranger saw only this, with no explanation, what would they conclude? If that conclusion is truer than your data supports, fix the chart. If it's exactly right, you've done the job.</p>
+  <div class="read">
+    <div class="t">Read the real thing · 8 min</div>
+    <p><a href="https://handsondataviz.org/how-to-lie-with-charts.html" target="_blank" rel="noopener">How to Lie with Charts</a> &mdash; Jack Dougherty &amp; Ilya Ilyankou, <i>Hands-On Data Visualization</i> (open web book). Truncated axes and other tricks that mislead, so you learn to make honest charts by spotting the dishonest ones.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>Look at your finished chart and run the stranger test: if someone saw only this, with no explanation, what would they conclude? If that conclusion is truer than your data supports, fix the chart. If it's exactly right, you've done the job. Jot the fix (or the all-clear) in <b>Entry 12a</b>.</p>
   </div>
 
-  <p class="step">Now: write up P3 (Notebook Entry 12b)</p>
-  <p>Pull your findings, charts, a quote or two, and your limitations into your P3 draft (about two pages plus visuals). Before you submit, walk it through the Editor's Passes: the hedging pass flags any place you say "proves" or "always" when your data only suggests.</p>
-  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a>
-     <a class="btn ghost" href="academic-editors-passes.html" target="_blank" rel="noopener">Run the Editor's Passes &rarr;</a></p>
+  <h2>5 · Read the results honestly</h2>
+  <p>Two traps catch new researchers. First, <button type="button" class="term" data-pop="causation">correlation is not causation</button>: if label-readers also eat more vegetables, reading labels didn't necessarily cause it. Second, a small sample is <b>suggestive, not proof</b>. Say what you found, then say plainly what your data can and can't claim. Naming your <button type="button" class="term" data-pop="limits">limitations</button> makes you more trustworthy, not less.</p>
+  <div class="ex">
+    <div class="t">See it</div>
+    <p>Weak: "Shoppers who read labels trust brands more, so reading labels builds trust." Honest: "In this sample of 42, label-readers reported more trust. The two are associated; I can't say one caused the other, and 42 mostly-student shoppers can't stand in for all consumers."</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 12b</b>, name your honest limitations, then answer: does your data answer your question and fill the gap you found? What can you claim, and what can't you?</p>
+  </div>
 
-  <div class="duebox">
-    <span class="lab">⚠ Due this week</span>
-    <p><b>P3: Quantitative Analysis</b> is due Sunday, about two pages plus your visuals. It's 15% of your grade and the last of the three projects before the final report.</p>
+  <h2>6 · Bring the words back in</h2>
+  <p>Your numbers show the <i>what</i>. Your open-ended responses show the <i>why</i>. Pull one or two real quotes from participants and set them beside the relevant chart. That pairing, a number plus a voice, is the heart of a <button type="button" class="term" data-pop="mixed">mixed-methods</button> write-up, and it's what turns a stack of percentages into an argument.</p>
+  <div class="ex">
+    <div class="t">See it</div>
+    <p>The 33% who read claims "sometimes" is a number. Beside it, one shopper wrote: "I read them when I have time, but honestly the words all blur together." The stat shows the pattern; the quote shows the reason. Together they make a point neither could make alone.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 12b</b>, pull a participant quote or two from your open responses that adds the <i>why</i> behind a number, and write your key findings in plain sentences, each tied to a number and a chart.</p>
+  </div>
+
+  <h2>7 · Write up P3</h2>
+  <p>Pull your findings, charts, a quote or two, and your limitations into your P3 draft (about two pages plus visuals) in <b>Entry 12b</b>. Before you submit, walk it through the Editor's Passes: the hedging pass flags any place you say "proves" or "always" when your data only suggests.</p>
+  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
+  <div class="read">
+    <div class="t">Try the tool · 10 min</div>
+    <p>Run your draft through the <a href="academic-editors-passes.html" target="_blank" rel="noopener">Academic Editor's Passes</a> before you turn it in. The hedging pass, especially, catches the overclaiming that new researchers slip into without noticing.</p>
+  </div>
+  <div class="box accent">
+    <p><b>Due this week.</b> <b>P3: Quantitative Analysis</b> is due Sunday, about two pages plus your visuals. It has its own Canvas dropbox and deadline. It's the last of the three projects before the final report.</p>
+  </div>
+
+  <div class="debrief">
+    <span class="lab">Class debrief · together at the end</span>
+    <p>We'll come back together as a class to close. Come ready to say, in one breath: <b>your single clearest finding, the chart you chose to show it, and one limitation you're naming out loud.</b> If you can't say the limitation yet, that's the tell for where your write-up still needs a pass.</p>
   </div>
 
   <div class="close">
-    <p><b>Watch the pieces converge:</b> you now hold all three parts, your literature review (P1), your qualitative analysis (P2), and your quantitative findings (P3). Week 13 you learn the format that fuses them into one professional report: IMRAD. The study is nearly whole.</p>
+    <p><b>One reminder.</b> P3 goes in its own Canvas dropbox by Sunday. Your Research Notebook is different: you turn the whole thing in only twice all semester, at the midterm and end-of-term check-ins, when you gather everything into a Google Doc and upload that to Canvas. Nothing else to turn in week to week.</p>
+    <p><b>A 10-minute prime for next week.</b> You now hold all three pieces: your literature review (P1), your qualitative analysis (P2), and your quantitative findings (P3). Before Tuesday, skim your three drafts and notice how differently each one is shaped. Next Thursday is the format that fuses them into one professional report: <b>IMRAD</b> (Introduction, Methods, Results, and Discussion). The study is nearly whole.</p>
   </div>
 
   <dialog class="pop" id="pop-primary"><h3>Primary vs. secondary research</h3><p><b>Secondary research</b> means analyzing sources other people produced (your literature review, your food-label analysis). <b>Primary research</b> means generating and analyzing new data yourself. Charting your own survey results is primary analysis: nobody has seen these findings before you, because you made them.</p><form method="dialog"><button>Got it</button></form></dialog>

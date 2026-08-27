@@ -8,40 +8,46 @@
   :root{
     --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
     --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
-    --good:#2f7d54; --due:#7a3b1f; --duesoft:#f6ebe1; --reflect:#3a5d86; --reflectsoft:#e8eef6;
+    --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --due:#e0a878; --duesoft:#2c2013; --reflect:#9cc0e6; --reflectsoft:#16202c; }
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
   #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:30px 0 8px}
   #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
   #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
   #mod .sub{color:var(--muted); margin:6px 0 0}
-  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:26px}
-  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:4px 0 8px}
-  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
   #mod .box.accent{border-left:5px solid var(--accent)}
-  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.45rem 0}
-  #mod ol.beats{list-style:none; padding-left:0; counter-reset:b}
-  #mod ol.beats li{counter-increment:b; position:relative; padding:8px 0 8px 40px; border-top:1px solid var(--line)}
-  #mod ol.beats li:first-child{border-top:0}
-  #mod ol.beats li::before{content:counter(b); position:absolute; left:0; top:8px; width:26px; height:26px; border-radius:50%; background:var(--accent); color:#fff; font-weight:800; font-size:.85rem; display:flex; align-items:center; justify-content:center}
-  #mod ol.beats b{color:var(--accent)}
-  #mod a{color:var(--accent)}
-  #mod .reflect{background:var(--reflectsoft); border:1px solid var(--line); border-left:5px solid var(--reflect); border-radius:12px; padding:14px 16px; margin:16px 0}
-  #mod .reflect .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--reflect); display:block; margin-bottom:3px}
-  #mod .duebox{background:var(--duesoft); border:1px solid var(--line); border-left:5px solid var(--due); border-radius:12px; padding:14px 16px; margin:14px 0}
-  #mod .duebox .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--due); display:block; margin-bottom:3px}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.35rem 0}
+  #mod .check{list-style:none; padding-left:0}
+  #mod .check li{display:flex; gap:10px; align-items:flex-start; margin:.5rem 0}
+  #mod .check .n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.9rem}
+  #mod .debrief{background:var(--talksoft); border:1px solid var(--line); border-left:5px solid var(--talk); border-radius:12px; padding:14px 16px; margin:18px 0}
+  #mod .debrief .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--talk); display:block; margin-bottom:3px}
+  #mod .debrief p{margin:.2rem 0}
   #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
-  #mod a.btn.ghost{background:transparent; color:var(--accent); border:1.5px solid var(--accent)}
   #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
   #mod .note{color:var(--muted); font-size:.9rem}
-  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:24px}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:22px}
   #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
   #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  /* ===== lesson-flow components ===== */
+  #mod .ground{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:14px 0}
+  #mod .bridge{color:var(--muted); font-style:italic; margin:16px 0 4px}
+  #mod .ex{background:var(--field); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .ex .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--good); margin-bottom:5px}
+  #mod .ex p{margin:.35rem 0}
+  #mod .read{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .read .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:5px}
+  #mod .read a{color:var(--accent); font-weight:700}
+  #mod .do{background:var(--card); border:1px dashed var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .do .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:4px}
+  #mod .do p{margin:.2rem 0}
   dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   dialog.pop::backdrop{background:rgba(12,16,24,.55)}
   dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
@@ -49,7 +55,7 @@
   dialog.pop a{color:var(--accent)}
   dialog.pop form{margin-top:16px;text-align:right}
   dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
-  /* ===== shared course nav (injected on every page) ===== */
+  /* ===== shared course nav ===== */
   .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
   .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
@@ -74,73 +80,100 @@
 <div id="mod">
 
   <header class="masthead">
-    <p class="kicker">ENG 3090 · Week 15 · Presentation Prep</p>
+    <p class="kicker">ENG 3090 · Week 15 · Thursday Module</p>
     <h1>Present Your Research</h1>
-    <p class="sub">The last step: you stand up and tell us what you found. It's about five minutes. Work through this before you present, then build your talk in the planner. (No Thursday module this week, it's the holiday.)</p>
+    <p class="sub">The last step. You stand up and tell us what you found, in about five minutes. Today you build that talk.</p>
   </header>
 
-  <div class="box accent">
-    <p><b>You are the authority in the room.</b> Nobody else collected your data, read your labels, or talked to your participants. For your five minutes, you know more about your question than anyone here, including me. A presentation is just you, the <button type="button" class="term" data-pop="primary">investigator</button>, telling us what you learned.</p>
+  <div class="ground"><b>Arrive.</b> Open your Research Notebook in another tab and take a breath. This is the last module of the semester. You have a finished study behind you, a real one you designed, ran, analyzed, and wrote up. Today's job is to turn it into a five-minute talk you can stand up and give.</div>
+
+  <p class="bridge">Your report is fifteen pages a reader moves through slowly. A talk is five minutes an audience hears once, live. Different medium, different rules, and building yours is today's work.</p>
+
+  <h2>1 · You're the authority in the room</h2>
+  <p>Nobody else collected your data, read your texts, or talked to your participants. For your five minutes, you know more about your question than anyone here, including me. A presentation is just you, the <button type="button" class="term" data-pop="primary">investigator</button>, telling us what you learned. Walk in believing that, because it's true.</p>
+
+  <h2>2 · A talk is not your paper read aloud</h2>
+  <p>Your report is built for a reader who can slow down, back up, and reread. Your talk is built for an audience who gets one pass, at your pace, out loud. You <b>can't</b> say everything in five minutes, so don't try. A good talk is a compressed <button type="button" class="term" data-pop="talk">IMRAD</button> built to land <button type="button" class="term" data-pop="one">one</button> main point.</p>
+
+  <h2>3 · The six beats</h2>
+  <p>Most strong research talks move through the same six beats. Think of them as the spine of your five minutes.</p>
+  <div class="box">
+    <ul class="check">
+      <li><span class="n">1</span><div><b>Hook.</b> Open so the room cares: a striking number, a question, a quick real moment. Not "Hi, my project is about&hellip;"</div></li>
+      <li><span class="n">2</span><div><b>The question &amp; why it matters.</b> What you set out to find, and the gap that made it worth finding.</div></li>
+      <li><span class="n">3</span><div><b>What you did.</b> Your method, in a sentence or two. Enough that they trust it, not every detail.</div></li>
+      <li><span class="n">4</span><div><b>What you found.</b> One or two key findings, with your single best <button type="button" class="term" data-pop="visual">visual</button> on screen.</div></li>
+      <li><span class="n">5</span><div><b>So what.</b> Your recommendation, the "now what." This is where your work earns its point.</div></li>
+      <li><span class="n">6</span><div><b>Close.</b> One memorable last line, then "thank you." End clean; don't trail off.</div></li>
+    </ul>
+  </div>
+  <div class="ex">
+    <div class="t">See it &mdash; a hook, from our example</div>
+    <p>Instead of opening with "My project looked at egg-carton labels," our running example talk might open: <i>"Nine cartons sat on one shelf. Every one said natural. Not one of them meant the same thing."</i> A number, a small real moment, and the room leans in before you've even said your question.</p>
+    <p class="note">Eggs are our <b>running example</b>, not your topic. Watch the move, then build your own hook from your own finding.</p>
+  </div>
+  <div class="read">
+    <div class="t">Read the real thing · 8 min</div>
+    <p><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0030077" target="_blank" rel="noopener">Ten Simple Rules for Making Good Oral Presentations</a> &mdash; Philip E. Bourne, <i>PLOS Computational Biology</i>, 2007 (open access). Ten quick, memorable rules (know your audience, less is more, tell a story, practice) that turn straight into a good talk. Read it with your own six beats in mind.</p>
+  </div>
+  <div class="read">
+    <div class="t">Try the tool · 15 min</div>
+    <p>The <a href="presentation-prep.html" target="_blank" rel="noopener">Talk Planner</a> walks you beat by beat and drafts your speaker notes as you go. Build your talk there now, working from your own finished study, not the egg example.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 15</b>, write your <b>one takeaway</b> in a single sentence, the idea you most want the room to remember. Then draft your <b>first line</b> (the hook) and your <b>last line</b> (the close). Nail those two and the middle has somewhere to start and somewhere to land.</p>
   </div>
 
-  <p class="step">Step 1: a talk is not your paper read aloud</p>
-  <p>Your report is fifteen pages a reader can move through slowly. Your talk is five minutes an audience hears once, live. Different medium, different rules. You <b>can't</b> say everything, so don't try. A good talk is a compressed <button type="button" class="term" data-pop="talk">IMRAD</button> built to land <button type="button" class="term" data-pop="one">one</button> main point.</p>
-
-  <p class="step">Step 2: the six beats</p>
-  <ol class="beats">
-    <li><b>Hook.</b> Open so the room cares, a striking number, a question, a quick real moment. Not "Hi, my project is about…"</li>
-    <li><b>The question &amp; why it matters.</b> What you set out to find, and the gap that made it worth finding.</li>
-    <li><b>What you did.</b> Your method, in a sentence or two. Enough that they trust it, not every detail.</li>
-    <li><b>What you found.</b> One or two key findings, with your single best <button type="button" class="term" data-pop="visual">visual</button> on screen.</li>
-    <li><b>So what.</b> Your recommendation, the "now what." This is where your work earns its point.</li>
-    <li><b>Close.</b> One memorable last line, then "thank you." End clean; don't trail off.</li>
-  </ol>
-  <p>Build yours in the planner, it drafts your speaker notes as you go.</p>
-  <p><a class="btn ghost" href="presentation-prep.html" target="_blank" rel="noopener">Open the Talk Planner &rarr;</a></p>
-
-  <p class="step">Step 3: slides that help, not hurt</p>
+  <h2>4 · Slides that help, not hurt</h2>
+  <p>Slides are a backdrop, not your script. Keep them light and let your voice carry the talk.</p>
   <div class="box">
     <ul>
-      <li><b>Few words per slide.</b> Your audience can read or listen, not both. Slides are a backdrop, not your script.</li>
-      <li><b>One strong <button type="button" class="term" data-pop="visual">figure</button>,</b> big, with its caption. The chart you made in Week 12 is perfect. Let it do the talking for your Results.</li>
+      <li><b>Few words per slide.</b> Your audience can read or listen, not both. If a slide needs a paragraph, it's a handout, not a slide.</li>
+      <li><b>One strong <button type="button" class="term" data-pop="visual">figure</button>,</b> big, with its caption. The chart you made in Week 12 is perfect here. Let it do the talking for your Results.</li>
       <li><b>Readable from the back.</b> Large type, high contrast, no tiny tables.</li>
     </ul>
-    <p class="note">A handful of clean slides beats a dense deck. If a slide needs a paragraph, it's a handout, not a slide.</p>
+    <p class="note">A handful of clean slides beats a dense deck every time.</p>
   </div>
 
-  <p class="step">Step 4: talk, don't read</p>
-  <p>Reading a script word for word drains the life out of a talk and loses the room. Use a few <button type="button" class="term" data-pop="deliver">notes</button> as reminders, look up, and talk to us like people. Know your <b>first line and last line cold</b> so you start and end strong even if the middle wobbles. Slow down, it always feels faster to you than to us, and breathe.</p>
+  <h2>5 · Talk, don't read</h2>
+  <p>Reading a script word for word drains the life out of a talk and loses the room. Use a few <button type="button" class="term" data-pop="deliver">notes</button> as reminders, look up, and talk to us like people. Know your <b>first line and last line cold</b> so you start and end strong even if the middle wobbles. Slow down (it always feels faster to you than to us), and breathe.</p>
 
-  <p class="step">Step 5: practice out loud and time it</p>
+  <h2>6 · Practice out loud and time it</h2>
   <p>Rehearse the whole talk <button type="button" class="term" data-pop="practice">aloud</button>, on a clock, at least twice. It's the only way to know your true length (talks always run long) and to smooth the rough patches before you're in front of anyone. If you're over time, cut a detail, not your takeaway. Practicing in your head does not count.</p>
-
-  <p class="step">Step 6: the questions after</p>
-  <p>A short <button type="button" class="term" data-pop="qa">Q&amp;A</button> follows. You can prepare for it: almost every research talk gets some version of "what surprised you?", "what would you do differently?", and "what are the limitations?" Have a genuine answer ready for each. And "that's a good question, I'm not sure, but here's my guess" is a completely respectable answer. You don't have to know everything.</p>
-
-  <div class="reflect">
-    <span class="lab">✍ On your own</span>
-    <p>Say your talk out loud once, right now, start to finish, on a timer. Not in your head, out loud. Note where you ran long, where you stumbled, and what your actual time was. That one run will teach you more than another hour of tweaking slides.</p>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>Say your talk out loud once, right now, start to finish, on a timer. Out loud, not in your head. In <b>Entry 15</b>, note where you ran long, where you stumbled, and your actual time. That one run will teach you more than another hour of tweaking slides.</p>
   </div>
 
-  <div class="duebox">
-    <span class="lab">⚠ Due</span>
-    <p>Your <b>final IMRAD report</b> is due the <b>Sunday before presentations</b>, upload it to <b>Canvas</b> (all sections, title page, captioned figures, 15 to 20 references, appendix). Your <b>notebook check-in #2</b> is also due, open your Research Notebook, hit "Download everything," and submit it to Canvas too (as a PDF or Google Doc). Not sure what goes where? See the <a href="turn-in-guide.html" target="_blank" rel="noopener">What's Due &amp; Where guide</a>.</p>
-  </div>
+  <h2>7 · The questions after</h2>
+  <p>A short <button type="button" class="term" data-pop="qa">Q&amp;A</button> follows each talk. You can prepare for it: almost every research talk gets some version of "what surprised you?", "what would you do differently?", and "what are the limitations?" Have a genuine answer ready for each. And "that's a good question, I'm not sure, but here's my guess" is a completely respectable answer. You don't have to know everything.</p>
 
-  <p class="step">Wrap up your notebook (Entry 15)</p>
+  <h2>8 · Finish your notebook</h2>
+  <p>Complete <b>Entry 15</b> with your takeaway, your first and last lines, and your timed-rehearsal notes. Bring the whole thing with you when you present.</p>
   <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
 
+  <div class="box accent">
+    <p><b>What's due.</b> Your <b>final IMRAD report</b> is due the <b>Sunday before presentations</b>: upload it to Canvas with all sections, a title page, captioned figures, 15 to 20 references, and your appendix. Not sure what goes where? See the <a href="turn-in-guide.html" target="_blank" rel="noopener">What's Due &amp; Where guide</a>.</p>
+  </div>
+
+  <div class="debrief">
+    <span class="lab">Class debrief · together at the end</span>
+    <p>We'll come back together as a class to close out the semester. Come ready to say your <b>one takeaway in a single breath</b>, the sentence you most want the room to remember when you present. If you can't say it in one breath yet, that's the tell for where your talk still needs a pass.</p>
+  </div>
+
   <div class="close">
-    <p><b>Look what you did.</b> You started the semester reading other people's research. You're ending it presenting your own, a real study you designed, ran, analyzed, and wrote up, from a gap you found to a recommendation you're making. Walk up there and tell us about it. You earned this.</p>
+    <p><b>One reminder.</b> Your notebook gets collected twice all semester, and this is the second and last time. Open it, hit "Download everything," gather it into a Google Doc, and upload that to Canvas by the end-of-term check-in. Nothing to turn in week to week beyond that.</p>
+    <p><b>Look what you did.</b> You started the semester reading other people's research. You're ending it presenting your own: a real study you designed, ran, analyzed, and wrote up, from a gap you found to a recommendation you're making. Walk up there and tell us about it. You earned this.</p>
   </div>
 
   <dialog class="pop" id="pop-primary"><h3>You're the investigator</h3><p>All semester you moved from secondary research (reading what others made) to primary research (making your own knowledge). Presenting is the last move: you stand in front of a room as the person who produced these findings. That authority is real, you did the work, so own it.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-talk"><h3>A talk is a compressed IMRAD</h3><p>Your report's structure runs underneath the talk, just shorter. Hook and question do the work of the <b>Introduction</b>; "what you did" is <b>Methods</b>; "what you found" is <b>Results</b>; "so what" is <b>Discussion</b>. Same arc, about five minutes, one clear point.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-one"><h3>One takeaway</h3><p>An audience forgets nearly everything in a short talk except, if you're lucky, one idea. So choose that idea deliberately and say it twice, near the start and again at the close. If the room walks out remembering only your takeaway, you succeeded. Trying to deliver everything usually delivers nothing.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-visual"><h3>Show one strong visual</h3><p>Put your single best chart or table on a slide, large, with its caption ("Figure 1. …, N = 42"). A clear visual lands in three seconds what a paragraph of talking can't. Avoid text-heavy slides; the audience can't read and listen at once. One figure they grasp beats five bullets they don't.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-visual"><h3>Show one strong visual</h3><p>Put your single best chart or table on a slide, large, with its caption ("Figure 1. &hellip;, N = 42"). A clear visual lands in three seconds what a paragraph of talking can't. Avoid text-heavy slides; the audience can't read and listen at once. One figure they grasp beats five bullets they don't.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-deliver"><h3>Talk, don't read</h3><p>Reading a script flattens your voice and loses eye contact. Keep a few notes as reminders and speak to the audience. You know this material better than anyone in the room; trust that. Talking to people beats a perfect paragraph read to the floor.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-practice"><h3>Practice out loud and time it</h3><p>Rehearse the whole thing aloud at least twice, on a clock. It's the only way to learn your real length (talks always run long) and to smooth the rough spots before you're in front of people. Practicing silently doesn't count; your mouth needs the reps. Finish comfortably under your limit.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-qa"><h3>Handling questions</h3><p>The Q&amp;A isn't a trap; people ask because they're interested. Prepare for the usual three, what surprised you, what you'd do differently, what your limitations are, and you'll field most of what comes. If you don't know, say so honestly and offer your best guess. Confident uncertainty reads far better than bluffing.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-qa"><h3>Handling questions</h3><p>The Q&amp;A isn't a trap; people ask because they're interested. Prepare for the usual three, what surprised you, what you'd do differently, what your limitations are, and you'll field most of what comes. If you don't know, say so and offer your best guess. Confident uncertainty reads far better than bluffing.</p><form method="dialog"><button>Got it</button></form></dialog>
 
 </div>
 

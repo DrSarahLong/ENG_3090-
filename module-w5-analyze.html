@@ -8,32 +8,46 @@
   :root{
     --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
     --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
-    --good:#2f7d54; --reflect:#3a5d86; --reflectsoft:#e8eef6;
+    --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --reflect:#9cc0e6; --reflectsoft:#16202c; }
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
   #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:30px 0 8px}
   #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
   #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
   #mod .sub{color:var(--muted); margin:6px 0 0}
-  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:26px}
-  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:4px 0 8px}
-  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
   #mod .box.accent{border-left:5px solid var(--accent)}
-  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.4rem 0}
-  #mod a{color:var(--accent)}
-  #mod .reflect{background:var(--reflectsoft); border:1px solid var(--line); border-left:5px solid var(--reflect); border-radius:12px; padding:14px 16px; margin:16px 0}
-  #mod .reflect .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--reflect); display:block; margin-bottom:3px}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.35rem 0}
+  #mod .check{list-style:none; padding-left:0}
+  #mod .check li{display:flex; gap:10px; align-items:flex-start; margin:.5rem 0}
+  #mod .check .n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.9rem}
+  #mod .debrief{background:var(--talksoft); border:1px solid var(--line); border-left:5px solid var(--talk); border-radius:12px; padding:14px 16px; margin:18px 0}
+  #mod .debrief .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--talk); display:block; margin-bottom:3px}
+  #mod .debrief p{margin:.2rem 0}
   #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
   #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
   #mod .note{color:var(--muted); font-size:.9rem}
-  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:24px}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:22px}
   #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
   #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  /* ===== lesson-flow components ===== */
+  #mod .ground{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:14px 0}
+  #mod .bridge{color:var(--muted); font-style:italic; margin:16px 0 4px}
+  #mod .ex{background:var(--field); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .ex .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--good); margin-bottom:5px}
+  #mod .ex p{margin:.35rem 0}
+  #mod .read{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .read .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:5px}
+  #mod .read a{color:var(--accent); font-weight:700}
+  #mod .do{background:var(--card); border:1px dashed var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .do .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:4px}
+  #mod .do p{margin:.2rem 0}
   dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   dialog.pop::backdrop{background:rgba(12,16,24,.55)}
   dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
@@ -41,7 +55,7 @@
   dialog.pop a{color:var(--accent)}
   dialog.pop form{margin-top:16px;text-align:right}
   dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
-  /* ===== shared course nav (injected on every page) ===== */
+  /* ===== shared course nav ===== */
   .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
   .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
@@ -67,55 +81,89 @@
 
   <header class="masthead">
     <p class="kicker">ENG 3090 · Week 5 · Thursday Module</p>
-    <h1>Gather Your Corpus &amp; Start Analyzing</h1>
-    <p class="sub">You designed your analysis on Tuesday (Entry 5a). Now you go get the texts and take your first pass. Budget about 45 minutes.</p>
+    <h1>Gather Your Corpus, and Start Analyzing</h1>
+    <p class="sub">On Tuesday you designed your analysis (Entry 5a). Today you go get the real texts and take your first close-reading pass. Budget about 75 minutes.</p>
   </header>
 
-  <p class="step">Step 1: remember what you're doing</p>
-  <p>You're running a <button type="button" class="term" data-pop="discourse">discourse analysis</button>: reading a set of real texts closely for how their language makes meaning and moves power. (Its cousin, <button type="button" class="term" data-pop="content">content analysis</button>, leans more on counting; you'll do a little of that later. This week is about reading closely.)</p>
+  <div class="ground"><b>Arrive.</b> Open your Research Notebook in another tab and take a breath. Tuesday you decided <i>how</i> you'd study your texts. Today that plan turns into an actual stack of real documents you can read, and you take your first pass through them. This is the day your analysis stops being a plan and starts being research.</div>
 
-  <p class="step">Step 2: gather your corpus</p>
-  <p>Go collect your <button type="button" class="term" data-pop="corpus">corpus</button>: aim for <b>15 to 20 texts of the same kind</b>, enough that patterns can surface. Save each one so you can actually work with it.</p>
+  <p class="bridge">A design on paper is a promise. Today you keep it: you go gather the texts, then read them closely enough to notice what their language is doing.</p>
+
+  <h2>1 · Remember what you're doing</h2>
+  <p>You're running a <button type="button" class="term" data-pop="discourse">discourse analysis</button>: reading a set of real texts closely for how their language makes meaning and moves power. Its cousin, <button type="button" class="term" data-pop="content">content analysis</button>, leans more on counting, and you'll do a little of that later. This week is about reading closely.</p>
+  <p>Before you gather anything, it helps to see this choice as part of a bigger design. Every qualitative study picks an approach that fits its question, and close reading of texts is one such approach among several. Knowing why yours fits keeps you from grabbing the wrong kind of evidence.</p>
+  <div class="read">
+    <div class="t">Read the real thing · 8 min</div>
+    <p><a href="https://open.oregonstate.education/qualresearchmethods/chapter/ch2-research-design/" target="_blank" rel="noopener">Research Design</a> &mdash; Allison Hurst, <i>Introduction to Qualitative Research Methods</i> (Oregon State University open textbook), 2023. How a qualitative study gets designed, and how you choose an approach that fits your question, before diving into a method. Read it with your own question in mind: does close reading of texts actually fit what you're asking?</p>
+  </div>
+
+  <h2>2 · Gather your corpus</h2>
+  <p>Go collect your <button type="button" class="term" data-pop="corpus">corpus</button>: aim for <b>15 to 20 texts of the same kind</b>, enough that patterns can surface instead of one-off quirks. Save each one so you can actually work with it later.</p>
   <div class="box accent">
     <ul>
-      <li><b>Same kind throughout.</b> All newspaper articles, or all egg labels, or all ads, or all policies. Mixing types muddies your patterns.</li>
-      <li><b>At least 15 (aim for 15 to 20).</b> These texts are usually short, a headline, a label, a caption, so sifting 15 goes fast. Don't stop short.</li>
-      <li><b>Save it as searchable text.</b> Later you'll feed these to software and AI, which can only read real text, not a picture of one. Copy the words into a plain-text (.txt) file or a Google Doc. A photo or a scanned PDF is an <em>image</em>, useless to the tools until you run <button type="button" class="term" data-pop="ocr">OCR</button> to pull the text out. Newspaper articles and labels are easy: just copy the words.</li>
+      <li><b>Same kind throughout.</b> All newspaper articles, or all product labels, or all ads, or all policies. Mixing types muddies your&nbsp;patterns.</li>
+      <li><b>At least 15 (aim for 15 to 20).</b> These texts are usually short, a headline, a label, a caption, so sifting 15 goes fast. Don't stop&nbsp;short.</li>
+      <li><b>Save it as searchable text.</b> Later you'll feed these to software and AI, which can only read real text, not a picture of one. Copy the words into a plain-text (.txt) file or a Google Doc. A photo or a scanned PDF is an <em>image</em>, useless to the tools until you run <button type="button" class="term" data-pop="ocr">OCR</button> to pull the text out. Articles and labels are easy: just copy the&nbsp;words.</li>
     </ul>
   </div>
+  <div class="ex">
+    <div class="t">See it &mdash; one topic, a whole stack</div>
+    <p>In our running example, the egg-carton topic isn't one text, it's a corpus waiting to be gathered: the front-of-carton claims from fifteen different brands, or every "farm fresh / natural / pasture-raised" label on one store's shelf. Same kind of text, gathered on purpose, enough of them that a pattern can show itself.</p>
+    <p class="note">The carton is <b>our</b> example, not your topic. Watch the move, then run it on the texts <b>you</b> chose.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>Go gather your own corpus now, then open <b>Entry 5b</b> and list what you collected: how many texts, what kind, and where they came from. Aim for 15 to 20 of the same kind, saved as searchable text.</p>
+  </div>
 
-  <p class="step">Step 3: take a first pass</p>
-  <p>Read through your corpus once, noticing, not judging yet. This first pass is the start of <button type="button" class="term" data-pop="coding">coding</button>: spotting the moves that repeat. Look for:</p>
+  <h2>3 · Warm up your eye</h2>
+  <p>Before you read your own stack, it helps to practice the core move once on a text you don't have to care about: reading closely for the choices a document makes and who they serve. That single move, done again and again, is the whole method.</p>
+  <div class="read">
+    <div class="t">Try the tool · 8 min</div>
+    <p>The carton in this tool is <b>our</b> example, you don't have to care about eggs. What matters is the move: reading a text line by line for what its language is doing and whose interest it serves. <a href="analyze-the-label.html" target="_blank" rel="noopener">Read Like an Analyst</a> walks you through it on our carton, and you'll run this <b>same close-reading move</b> on every text in your own corpus.</p>
+  </div>
+
+  <h2>4 · Take your first pass</h2>
+  <p>Now read through your own corpus once, noticing, not judging yet. This first pass is the start of <button type="button" class="term" data-pop="coding">coding</button>: spotting the moves that repeat. Look for:</p>
   <div class="box">
     <ul>
-      <li><b>Recurring words and phrases.</b> What language shows up again and again?</li>
-      <li><b><button type="button" class="term" data-pop="framing">Framing</button>.</b> What picture does the wording paint? What feeling does it reach for?</li>
-      <li><b>Present and absent.</b> What do these texts always mention? What do they never say?</li>
-      <li><b>The appeals.</b> Emotion, nature, authority, family, tradition, fear.</li>
-      <li><b>Whose interest.</b> Who benefits if you believe this language? Who's missing from it?</li>
+      <li><b>Recurring words and phrases.</b> What language shows up again and&nbsp;again?</li>
+      <li><b><button type="button" class="term" data-pop="framing">Framing</button>.</b> What picture does the wording paint? What feeling does it reach&nbsp;for?</li>
+      <li><b>Present and absent.</b> What do these texts always mention? What do they never&nbsp;say?</li>
+      <li><b>The appeals.</b> Emotion, nature, authority, family, tradition,&nbsp;fear.</li>
+      <li><b>Whose interest.</b> Who benefits if you believe this language? Who's missing from&nbsp;it?</li>
     </ul>
   </div>
-
-  <div class="reflect">
-    <span class="lab">✍ On your own</span>
-    <p>Pick the single most interesting pattern you noticed on this first pass. Don't polish it. Just name it in a sentence. That hunch is the seed of your whole analysis.</p>
+  <div class="ex">
+    <div class="t">See it &mdash; a first-pass hunch</div>
+    <p>Reading our carton corpus, you might notice the word "fresh" on nearly every label and "cage" almost never, even though cages are the thing shoppers most want to know about. That gap, always "fresh," never "cage," is a pattern. It's rough, unproven, and exactly the kind of hunch a first pass is supposed to surface.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 5b</b>, jot the patterns you're noticing across your corpus, then pick the <b>single most interesting one</b> and name it in one sentence. Don't polish it. That hunch is the seed of your whole analysis. Then read one text closely, the way you read the carton in the tool, and write down what its language is actually doing.</p>
   </div>
 
-  <p class="step">Now: do it (Notebook Entry 5b)</p>
-  <p>Open your Research Notebook and fill out <b>Entry 5b</b>: list your corpus, jot the patterns you're noticing, and read one text closely, what is its language actually doing?</p>
+  <h2>5 · Land it in your notebook</h2>
+  <p>Open your Research Notebook and complete <b>Entry 5b</b>: your corpus, the patterns you noticed, your one-sentence hunch, and one text read closely.</p>
   <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
+  <p class="note">Everything saves automatically on your own computer. Nothing is transmitted anywhere.</p>
+
+  <div class="debrief">
+    <span class="lab">Class debrief · together at the end</span>
+    <p>We'll come back together as a class to close. Come ready to say, in one breath: <b>what kind of texts you gathered, how many, and the one pattern that surprised you most.</b> If you can't name a pattern yet, that's the tell that your corpus is either too small or too mixed, and it's a quick fix before next week.</p>
+  </div>
 
   <div class="close">
-    <p><b>Where this goes:</b> these patterns become your <b>Qualitative / Discourse Analysis (P2)</b>, due in Week 8. The more real texts you gather now, the more you'll have to say.</p>
-    <p class="note">Nothing to submit today, it all saves on your computer for the next check-in.</p>
+    <p><b>Where this goes.</b> These patterns become your <b>Qualitative / Discourse Analysis (P2)</b>, due in Week 8. The more real texts you gather now, the more you'll have to say later. You turn your whole notebook in only twice all semester, at the midterm and end-of-term check-ins, when you gather everything into a Google Doc and upload that to Canvas. Nothing to submit today.</p>
+    <p><b>A 10-minute prime for next week.</b> Before Tuesday, look back at your first-pass hunch and ask: how would I <i>prove</i> it? Jot one guess in your notebook about how you'd count it, how often does that word actually appear, and where? That's exactly where next Thursday starts: <b>content analysis</b>, turning a hunch into something you can measure.</p>
   </div>
 
-  <dialog class="pop" id="pop-discourse"><h3>Discourse analysis</h3><p>A close, systematic look at how real texts make meaning: word choices, framing, what they include and leave out, and how they move power. You read like a detective to see what the language is doing, not just what it says. (Linguist James Paul Gee treats language as always <em>doing</em> something; Norman Fairclough's "critical discourse analysis" focuses on how it does power.)</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-content"><h3>Content analysis</h3><p>The close cousin of discourse analysis that leans on counting: how often a word, theme, or move appears across your texts. Discourse analysis asks "how is this language working?"; content analysis asks "how often, and where?" Most good projects use a little of both. (Klaus Krippendorff's <em>Content Analysis</em> is the standard handbook.)</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-corpus"><h3>Corpus</h3><p>Your set of texts to analyze, gathered on purpose. Aim for 15 to 20 items of the same kind (news articles, labels, ads, policies, posts) so real patterns show up instead of one-off quirks. "Corpus" just means a "body" of texts, and corpus linguists like Paul Baker study language exactly this way.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-coding"><h3>Coding</h3><p>Tagging your texts for the things that repeat, a recurring word, a type of appeal, a framing, so you can see patterns instead of drowning in detail. On your first pass you're just noticing; later you name your patterns and count how often each shows up. (Johnny Saldaña's <em>Coding Manual for Qualitative Researchers</em> is the go-to guide.)</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-framing"><h3>Framing</h3><p>How word choice steers what you notice and feel. Call something "farm fresh" and you picture a meadow; call the same eggs "mass-produced" and you don't. From the news: "estate tax" and "death tax" name the same policy but pull opposite feelings. (Sociologist Erving Goffman named framing; George Lakoff showed how politics runs on it.)</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-ocr"><h3>OCR (optical character recognition)</h3><p>Software that reads the letters inside an image or a scanned PDF and turns them back into real, searchable text. Your phone's camera, Google Drive, and Adobe Acrobat can all do it. You need OCR whenever your source is a picture of words rather than the words themselves.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-discourse"><h3>Discourse analysis</h3><p>A close, systematic look at how real texts make meaning: word choices, framing, what they include and leave out, and how they move power. You read like a detective to see what the language is doing, not just what it says. (Linguist James Paul Gee, whose <i>An Introduction to Discourse Analysis</i> appeared in 1999, treats language as always <em>doing</em> something; Norman Fairclough's "critical discourse analysis," named in the 1990s, focuses on how it does power.)</p><p>Reading how a carton says "farm fresh" is exactly this: watching language do work in the world.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-content"><h3>Content analysis</h3><p>The close cousin of discourse analysis that leans on counting: how often a word, theme, or move appears across your texts. Discourse analysis asks "how is this language working?"; content analysis asks "how often, and where?" Most good projects use a little of both. (Klaus Krippendorff's <i>Content Analysis</i>, first published in 1980, is the standard handbook.)</p><p>Example: counting that "fresh" appears on 14 of 15 cartons and "cage" on 2 is content analysis; explaining what that silence around cages <em>does</em> is discourse analysis.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-corpus"><h3>Corpus</h3><p>Your set of texts to analyze, gathered on purpose. Aim for 15 to 20 items of the same kind (news articles, labels, ads, policies, posts) so real patterns show up instead of one-off quirks. "Corpus" just means a "body" of texts. Corpus linguists like Paul Baker, whose <i>Using Corpora in Discourse Analysis</i> came out in 2006, study language exactly this way.</p><p>Example: fifteen egg-carton front labels copied into one Google Doc is a corpus; a single label is not.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-coding"><h3>Coding</h3><p>Tagging your texts for the things that repeat, a recurring word, a type of appeal, a framing, so you can see patterns instead of drowning in detail. On your first pass you're just noticing; later you name your patterns and count how often each shows up. (Johnny Saldaña's <i>The Coding Manual for Qualitative Researchers</i>, first published in 2009, is the go-to guide.)</p><p>Example: marking every carton that uses a nature word (fresh, farm, pasture, natural) with the tag "nature appeal" is one line of coding.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-framing"><h3>Framing</h3><p>How word choice steers what you notice and feel. Call something "farm fresh" and you picture a meadow; call the same eggs "mass-produced" and you don't. From the news: "estate tax" and "death tax" name the same policy but pull opposite feelings. (Sociologist Erving Goffman named framing in his 1974 book <i>Frame Analysis</i>; linguist George Lakoff, from the 2000s on, showed how politics runs on it.)</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-ocr"><h3>OCR (optical character recognition)</h3><p>Software that reads the letters inside an image or a scanned PDF and turns them back into real, searchable text. Your phone's camera, Google Drive, and Adobe Acrobat can all do it. You need OCR whenever your source is a picture of words rather than the words themselves.</p><p>Example: a photo of an egg carton is just pixels to a computer until OCR pulls "Grade A Large · Farm Fresh" out of it as text you can search and count.</p><form method="dialog"><button>Got it</button></form></dialog>
 
 </div>
 

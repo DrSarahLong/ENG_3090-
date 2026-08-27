@@ -8,49 +8,54 @@
   :root{
     --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
     --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
-    --good:#2f7d54; --due:#7a3b1f; --duesoft:#f6ebe1; --reflect:#3a5d86; --reflectsoft:#e8eef6;
+    --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --due:#e0a878; --duesoft:#2c2013; --reflect:#9cc0e6; --reflectsoft:#16202c; }
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
   #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:30px 0 8px}
   #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
   #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
   #mod .sub{color:var(--muted); margin:6px 0 0}
-  #mod .step{font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:800; margin-top:26px}
-  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:4px 0 8px}
-  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:12px 0}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
   #mod .box.accent{border-left:5px solid var(--accent)}
-  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.4rem 0}
-  #mod ol.parts{margin:.4rem 0; padding-left:1.3rem} #mod ol.parts li{margin:.5rem 0}
-  #mod a{color:var(--accent)}
-  #mod table.map{width:100%; border-collapse:collapse; font-size:.93rem; margin:.4rem 0}
-  #mod table.map td,#mod table.map th{text-align:left; padding:7px 8px; border-bottom:1px solid var(--line); vertical-align:top}
-  #mod table.map th{font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted)}
-  #mod table.map td.e{font-weight:700; white-space:nowrap; color:var(--accent)}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.35rem 0}
   #mod .check{list-style:none; padding-left:0}
-  #mod .check li{padding-left:26px; position:relative; margin:.45rem 0}
-  #mod .check li::before{content:"☐"; position:absolute; left:0; color:var(--accent); font-weight:800}
-  #mod .duebox{background:var(--duesoft); border:1px solid var(--line); border-left:5px solid var(--due); border-radius:12px; padding:14px 16px; margin:14px 0}
-  #mod .duebox .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--due); display:block; margin-bottom:3px}
-  #mod .reflect{background:var(--reflectsoft); border:1px solid var(--line); border-left:5px solid var(--reflect); border-radius:12px; padding:14px 16px; margin:16px 0}
-  #mod .reflect .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--reflect); display:block; margin-bottom:3px}
+  #mod .check li{display:flex; gap:10px; align-items:flex-start; margin:.5rem 0}
+  #mod .check .n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.9rem}
+  #mod .debrief{background:var(--talksoft); border:1px solid var(--line); border-left:5px solid var(--talk); border-radius:12px; padding:14px 16px; margin:18px 0}
+  #mod .debrief .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--talk); display:block; margin-bottom:3px}
+  #mod .debrief p{margin:.2rem 0}
   #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
   #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
   #mod .note{color:var(--muted); font-size:.9rem}
-  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:24px}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:22px}
   #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
   #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  /* ===== lesson-flow components ===== */
+  #mod .ground{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:14px 0}
+  #mod .bridge{color:var(--muted); font-style:italic; margin:16px 0 4px}
+  #mod .ex{background:var(--field); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .ex .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--good); margin-bottom:5px}
+  #mod .ex p{margin:.35rem 0}
+  #mod .read{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .read .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:5px}
+  #mod .read a{color:var(--accent); font-weight:700}
+  #mod .do{background:var(--card); border:1px dashed var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .do .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:4px}
+  #mod .do p{margin:.2rem 0}
   dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   dialog.pop::backdrop{background:rgba(12,16,24,.55)}
   dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
   dialog.pop p{margin:.4rem 0}
+  dialog.pop a{color:var(--accent)}
   dialog.pop form{margin-top:16px;text-align:right}
   dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
-  /* ===== shared course nav (injected on every page) ===== */
+  /* ===== shared course nav ===== */
   .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
   .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
@@ -77,75 +82,113 @@
   <header class="masthead">
     <p class="kicker">ENG 3090 · Week 8 · Thursday Module</p>
     <h1>Write Up Your Discourse Analysis (P2)</h1>
-    <p class="sub">Fall Break took Tuesday, so this module is the whole week. Good news: you're not starting from a blank page. Everything you need is already in your notebook. Today you arrange it into a paper. Budget about an hour.</p>
+    <p class="sub">Fall Break took Tuesday, so this module carries the whole week. You're not starting from a blank page: everything the paper needs is already in your notebook. Today you arrange it. Budget about an hour.</p>
   </header>
 
-  <p class="step">Step 1: the shape of the report</p>
-  <p>A discourse-analysis paper has four moving parts. You've met them before in the lit review; here they wrap around your own analysis:</p>
+  <div class="ground"><b>Arrive.</b> Open your Research Notebook in another tab and take a breath. Your last four entries already hold this paper in pieces: your question, your corpus, your codes, your counts, your quotes. Today's job isn't to invent anything new. It's to put those pieces in the right order and turn them into your Project 2 write-up, the qualitative discourse analysis.</div>
+
+  <p class="bridge">The slow, careful half, reading and coding your texts, is behind you. A paper is those same pieces set in order, and setting that order is today's work.</p>
+
+  <h2>1 · The shape of the report</h2>
+  <p>A discourse-analysis paper has four moving parts. You met them in the lit review; here they wrap around your own analysis instead of someone else's.</p>
   <div class="box accent">
-    <ol class="parts">
-      <li><b>Introduction.</b> Your question, why it matters, and a sentence or two of context (what others have said about labels like yours).</li>
-      <li><b><button type="button" class="term" data-pop="methods">Methods</button>.</b> What you actually did: your corpus (how many texts, what kind, from where), your codebook, and any tools.</li>
+    <ol>
+      <li><b>Introduction.</b> Your question, why it matters, and a sentence or two of context (what others have said about texts like yours).</li>
+      <li><b><button type="button" class="term" data-pop="methods">Methods</button>.</b> What you actually did: your <button type="button" class="term" data-pop="corpus">corpus</button> (how many texts, what kind, from where), your <button type="button" class="term" data-pop="codebook">codebook</button>, and any tools.</li>
       <li><b><button type="button" class="term" data-pop="findings">Findings</button>.</b> The patterns you found, each with a <em>number</em> and a <em>quote</em>. This is the evidence.</li>
       <li><b><button type="button" class="term" data-pop="discussion">Discussion</button>.</b> What the patterns mean, whose interest they serve, who's missing, and what your analysis can't claim (<button type="button" class="term" data-pop="limitations">limitations</button>).</li>
     </ol>
   </div>
-
-  <p class="step">Step 2: your notebook already wrote most of it</p>
-  <p>You've been drafting this paper for four weeks without calling it that. Here's where each piece lives:</p>
-  <div class="box">
-    <table class="map">
-      <tr><th>From your notebook</th><th>Goes into</th></tr>
-      <tr><td class="e">Entry 5a</td><td>Introduction (your question, why it matters) + Methods (your corpus)</td></tr>
-      <tr><td class="e">Entry 6a</td><td>Methods (your codebook: the codes and their definitions)</td></tr>
-      <tr><td class="e">Entry 6b</td><td>Findings (counts + quotes) + Discussion (what it means, the justice reading)</td></tr>
-      <tr><td class="e">Entry 7b</td><td>Findings (what the tools showed, a telling concordance)</td></tr>
-      <tr><td class="e">Entry 8</td><td>The skeleton of the whole thing, in order</td></tr>
-    </table>
+  <div class="ex">
+    <div class="t">See it &mdash; the four parts in our example</div>
+    <p>Take our running egg-carton example. The <b>introduction</b> asks whether the sustainability words on cartons tell shoppers the truth. <b>Methods</b> says "eighteen cartons from two Boone groceries, coded for claim type." <b>Findings</b> report the counts and the exact wording. <b>Discussion</b> says who those words serve and who they mislead.</p>
+    <p class="note">That's our example, not your topic. Your paper runs the same four parts on the texts <b>you</b> gathered.</p>
   </div>
 
-  <p class="step">Step 3: findings need a number AND a quote</p>
-  <p>This is where papers live or die. A finding isn't "the labels felt manipulative." A finding is: <b>the pattern, how often it appeared, and the exact words that show it.</b> "Eleven of eighteen labels used an appeal to nature, including one that read 'gathered the way nature intended.'" Number plus quote, every time. Don't paraphrase your evidence; use the real words.</p>
-
-  <p class="step">Step 4: the discussion is the analysis</p>
-  <p>Anyone can report counts. Your discussion says what they <em>mean</em>: why the pattern is there, whose interest it serves, who the language leaves out. This is your justice reading, and it's the heart of the grade. Then be honest about <button type="button" class="term" data-pop="limitations">limitations</button>, a small corpus, one region, labels rather than shoppers, so a reader trusts you.</p>
-
-  <div class="reflect">
-    <span class="lab">✍ On your own</span>
-    <p>Open <b>Entry 8</b> and fill the skeleton first, one line per section. Then, and only then, expand each line into a paragraph. Outlining before drafting is the difference between an afternoon and a nightmare.</p>
-  </div>
-
-  <p class="step">Do it (Notebook Entry 8), then write the paper</p>
-  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
-
-  <p class="step">Before you submit, check</p>
+  <h2>2 · Your notebook already wrote most of it</h2>
+  <p>You've been drafting this paper for four weeks without calling it that. Here's where each piece already lives:</p>
   <div class="box">
-    <ul class="check">
-      <li>Every finding has a count <b>and</b> a real quote.</li>
-      <li>The discussion says what the patterns <em>mean</em>, not just what they are.</li>
-      <li>The justice reading is there: whose interest, who's missing.</li>
-      <li>Your limitations are named honestly.</li>
-      <li>Your corpus is cited in APA (you did this back in Entry 5b).</li>
-      <li>It reads as one argument, not a list of counts.</li>
+    <ul>
+      <li><b>Entry 5a</b> &rarr; Introduction (your question, why it matters) and Methods (your corpus).</li>
+      <li><b>Entry 6a</b> &rarr; Methods (your codebook: the codes and their definitions).</li>
+      <li><b>Entry 6b</b> &rarr; Findings (counts and quotes) and Discussion (what it means, the justice reading).</li>
+      <li><b>Entry 7b</b> &rarr; Findings (what the tools showed, a telling concordance).</li>
+      <li><b>Entry 8</b> &rarr; the skeleton of the whole thing, in order.</li>
     </ul>
   </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>Open your notebook and skim those five entries back to back, in order, so you can see the paper hiding in them. Don't write yet. Just confirm every piece is there. If Entry 7b or 6b looks thin, that's the section to shore up first.</p>
+  </div>
 
-  <p class="note" style="margin:8px 0 0">Fastest self-check: run your draft through <a href="academic-editors-passes.html" target="_blank" rel="noopener">The Editor's Passes</a> before you submit. It hands you each finding's quote to frame and interpret, and flags any absolute word so your claims match your evidence.</p>
+  <h2>3 · A finding needs a number AND a quote</h2>
+  <p>This is where papers live or die. A finding isn't "the labels felt manipulative." A finding is the pattern, how often it appeared, and the exact words that show it. Don't paraphrase your evidence; use the real words.</p>
+  <div class="ex">
+    <div class="t">See it &mdash; number plus quote</div>
+    <p>From our egg-carton example: <i>"Eleven of eighteen cartons used an appeal to nature, including one that read 'gathered the way nature intended.'"</i> The count tells the reader how common the pattern is. The quote lets them hear it for themselves. Every finding in your paper carries both.</p>
+  </div>
+  <div class="read">
+    <div class="t">Read the real thing · 8 min</div>
+    <p><a href="https://viva.pressbooks.pub/sociology-research-methods/chapter/11-3-writing-up-qualitative-results/" target="_blank" rel="noopener">Writing Up Qualitative Results</a> &mdash; Victor Tan Chen and colleagues, <i>The Craft of Sociological Research</i> (open OER textbook). Read it now, right where you need it: it shows how to organize a findings section <b>by theme</b> and weave quotes into your own sentences, instead of dumping raw data on the reader.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>Back in <b>Entry 6b and 7b</b>, go finding by finding. Confirm each one carries a count <b>and</b> a real quote from your corpus. Anywhere you only have a hunch, return to your texts and pull the exact words before you write it up.</p>
+  </div>
 
-  <div class="duebox">
-    <span class="lab">⚠ Two things due this week</span>
-    <p><b>1. P2, your Qualitative / Discourse Analysis</b>, is due Sunday. <b>2. Your midterm notebook check-in:</b> scroll to the bottom of your notebook, hit <b>Download everything</b>, and upload that file to Canvas. That's the first of your two notebook turn-ins.</p>
+  <h2>4 · The discussion is where you think</h2>
+  <p>Anyone can report counts. Your discussion says what they <em>mean</em>: why the pattern is there, whose interest it serves, who the language leaves out. This is your justice reading, and it's the heart of the grade. Then be honest about your <button type="button" class="term" data-pop="limitations">limitations</button> so a reader trusts you.</p>
+  <div class="ex">
+    <div class="t">See it &mdash; the justice reading, then the limits</div>
+    <p><b>What it means (our example):</b> the "natural" appeal serves the brands writing it and the shoppers who can already decode a label; it misleads shoppers who pay more for a word that means little, and it prices out small farms that can't afford certification.</p>
+    <p><b>Its limits (our example):</b> eighteen cartons, two stores, one week, and it studies the labels rather than the shoppers who read them. Naming that doesn't weaken the paper. It shows you know what you found and what you'd need a bigger study to prove.</p>
+  </div>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>In <b>Entry 6b</b>, write the discussion for your own topic: what your strongest pattern means, whose interest it serves, whose voice is missing. Then name your limitations plainly, the size of your corpus, the one region or one source, whatever a careful reader would want you to admit.</p>
+  </div>
+
+  <h2>5 · Outline before you draft</h2>
+  <p>Fill the skeleton first, one line per section, before you expand anything into paragraphs. Outlining before drafting is the difference between an afternoon and a nightmare.</p>
+  <div class="do">
+    <div class="t">Your turn</div>
+    <p>Open <b>Entry 8</b> and fill the skeleton: one line each for introduction, methods, findings, and discussion, in order. Only once the skeleton holds do you expand each line into a paragraph. Then write the paper.</p>
+  </div>
+  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
+
+  <h2>6 · Before you submit</h2>
+  <div class="box">
+    <ul class="check">
+      <li><span class="n">1</span><div>Every finding has a count <b>and</b> a real quote.</div></li>
+      <li><span class="n">2</span><div>The discussion says what the patterns <em>mean</em>, not just what they are.</div></li>
+      <li><span class="n">3</span><div>The justice reading is there: whose interest, who's missing.</div></li>
+      <li><span class="n">4</span><div>Your limitations are named honestly.</div></li>
+      <li><span class="n">5</span><div>Your corpus is cited in APA (you did this back in Entry 5b).</div></li>
+      <li><span class="n">6</span><div>It reads as one argument, not a list of counts.</div></li>
+    </ul>
+  </div>
+  <div class="read">
+    <div class="t">Try the tool · 10 min</div>
+    <p>Run your draft through <a href="academic-editors-passes.html" target="_blank" rel="noopener">The Editor's Passes</a> before you submit. It's a set of self-review passes that runs on your own computer, nothing is transmitted. It hands you each finding's quote to frame and interpret in your own words, and flags any absolute word (<i>always</i>, <i>proves</i>, <i>every</i>) so your claims stay matched to your evidence.</p>
+  </div>
+
+  <div class="debrief">
+    <span class="lab">Class debrief · together at the end</span>
+    <p>We'll come back together as a class to close. Come ready to say, in one breath: <b>your sharpest finding (its number and its quote) and the one thing it means.</b> If you can't say the meaning without just repeating the count, that's the tell your discussion still needs a pass.</p>
   </div>
 
   <div class="close">
-    <p><b>What's next:</b> you've analyzed the words. Next you become the one asking the questions, we turn to surveys and interviews (the quantitative side), starting with the ethics training that has to come first.</p>
+    <p><b>Two things this week.</b> First, your <b>Project 2, the qualitative discourse analysis, is due Sunday</b> (it has its own Canvas dropbox). Second, this week is your <b>midterm notebook check-in</b>, the first of only two notebook turn-ins all semester. Scroll to the bottom of your notebook, hit <b>Download everything</b>, and upload that file to Canvas. Nothing else is collected week to week.</p>
+    <p><b>A 10-minute prime for next week.</b> You've spent this project analyzing words other people wrote. Next you become the one asking the questions: surveys and interviews, the quantitative side. That starts with research ethics, because studying human beings requires permission first. Before Tuesday, jot one guess in your notebook: why would a researcher need approval before asking real people real questions?</p>
     <p class="note">That's your second project done. Nicely done, this was the hard one.</p>
   </div>
 
-  <dialog class="pop" id="pop-methods"><h3>Methods</h3><p>The section that tells a reader exactly what you did, clearly enough that they could repeat it: what your corpus was (how many texts, what kind, gathered from where), how you coded it (your codebook), and any tools you used. Methods is about transparency, not persuasion. Say what you did, plainly.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-findings"><h3>Findings</h3><p>What your analysis actually turned up, reported as evidence: the patterns, how often each appeared (the count), and exact quotes that show them. Findings are just the facts of your corpus. You save the meaning for the discussion. A finding without a number or without a quote is only a hunch.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-discussion"><h3>Discussion</h3><p>The section where your findings become meaning. It answers "so what?", why the pattern exists, whose interest it serves, what it does to a reader, and how it connects to the bigger conversation. This is the thinking the tools and counts can't do for you, and it's where the real credit lives.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-limitations"><h3>Limitations</h3><p>An honest statement of what your analysis can't claim: a small corpus, one region or one store, labels rather than the shoppers who read them. Naming your limits doesn't weaken your paper, it strengthens it. It shows you know the difference between what you found and what you'd need a bigger study to prove.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-methods"><h3>Methods</h3><p>The section that tells a reader exactly what you did, clearly enough that they could repeat it: what your corpus was (how many texts, what kind, gathered from where), how you coded it (your codebook), and any tools you used.</p><p>Example: "I analyzed eighteen egg cartons photographed at two Boone groceries over one week, coding each sustainability claim as vague, certified, or unverifiable." Methods is about transparency, not persuasion. Say what you did, plainly.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-corpus"><h3>Corpus</h3><p>The full set of texts you gathered and analyzed, your evidence pile. It can be small, but a reader needs to know its size and shape: how many texts, what kind, and where they came from.</p><p>Example: "eighteen egg cartons from two Boone groceries" is a corpus. So is "one landlord's lease plus the city's tenant-rights page." Name yours exactly; a vague corpus makes every finding vague.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-codebook"><h3>Codebook</h3><p>Your list of codes and what each one means, the rulebook you used to sort the language in your corpus. Built in Entry 6a, it's what makes your counting consistent instead of a gut call that shifts as you go.</p><p>Example: a code named "appeal to nature" defined as "any claim that treats natural or wild as automatically better or safer," so you tag it the same way on carton one and carton eighteen.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-findings"><h3>Findings</h3><p>What your analysis actually turned up, reported as evidence: the patterns, how often each appeared (the count), and exact quotes that show them. Findings are just the facts of your corpus. You save the meaning for the discussion.</p><p>Example: "Eleven of eighteen cartons used an appeal to nature, including one reading 'gathered the way nature intended.'" A finding without a number or without a quote is only a hunch.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-discussion"><h3>Discussion</h3><p>The section where your findings become meaning. It answers "so what?": why the pattern exists, whose interest it serves, what it does to a reader, and how it connects to the bigger conversation.</p><p>Example: moving from "eleven of eighteen cartons appealed to nature" to "that word reassures shoppers who can't verify it and lets brands charge more for a term that means little." This is the thinking the tools and counts can't do for you, and it's where the real credit lives.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-limitations"><h3>Limitations</h3><p>An honest statement of what your analysis can't claim: a small corpus, one region or one store, labels rather than the shoppers who read them.</p><p>Example: "With eighteen cartons from two Boone stores, I can describe how these labels talk, but not how shoppers across the country actually read them." Naming your limits strengthens the paper. It shows you know the difference between what you found and what you'd need a bigger study to prove.</p><form method="dialog"><button>Got it</button></form></dialog>
 
 </div>
 
