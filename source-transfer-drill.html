@@ -84,8 +84,8 @@
   <div class="honest">This has known answers built in for Part 1, so it can check your diagnosis there. For your own writing in Part 2, it only structures your judgment. It does not read your prose for meaning or grade it. This runs on your computer. Nothing you type leaves it.</div>
 
   <p class="part">Part 1 · Diagnose a stranger's draft</p>
-  <p>Here are five lines from a weak draft about food labels. Name the problem in each. Clear all five to unlock Part 2.</p>
-  <p class="prog" id="prog">0 of 5 correct</p>
+  <p>Here are five lines from a weak draft about food labels. For each, pick the problem and hit <b>Check</b>. Get all five right (fix any you miss, the counter tracks you) and <b>Part 2, working on your own draft, appears right below.</b></p>
+  <p class="prog" id="prog">0 of 5 correct. Part 2 unlocks below once all five are right.</p>
 
   <div class="q" data-a="overclaim">
     <p class="line">"Studies prove organic food is always healthier than conventional food."</p>
@@ -163,7 +163,7 @@
   var K="e3td:";
   var OPTS=[['overclaim','Overclaim (says more than the evidence can)'],['uncited','Uncited assertion (a fact or number with no source)'],['dumped','Dumped quote (no signal phrase, no interpretation)'],['biased','Biased or unvetted source'],['hedge','Over-hedged (so vague it says nothing)'],['fine','Nothing wrong']];
   var done={}, total=5, prog=document.getElementById('prog');
-  function updateProg(){ var n=Object.keys(done).length; prog.textContent=n+' of '+total+' correct'; if(n>=total){ document.getElementById('gate').hidden=false; document.getElementById('mine').hidden=false; } }
+  function updateProg(){ var n=Object.keys(done).length; var gate=document.getElementById('gate'), mine=document.getElementById('mine'); if(n>=total){ prog.textContent='\u2713 All 5 correct. Part 2 is unlocked below.'; var wasHidden=gate.hidden; gate.hidden=false; mine.hidden=false; if(wasHidden){ gate.scrollIntoView({behavior:'smooth', block:'start'}); } } else { prog.textContent=n+' of '+total+' correct. Fix any you miss and Part 2 unlocks below.'; } }
 
   document.querySelectorAll('.q').forEach(function(q){
     var box=q.querySelector('.opts');
