@@ -9,9 +9,10 @@
     --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
     --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
     --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
+    --due:#a8332f; --duesoft:#fbeceb;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; --due:#f0a29d; --duesoft:#2d1817; }
   }
   *{box-sizing:border-box} html,body{margin:0}
   body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
@@ -48,6 +49,9 @@
   #mod .do{background:var(--card); border:1px dashed var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
   #mod .do .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:4px}
   #mod .do p{margin:.2rem 0}
+  #mod .due{background:var(--duesoft); border:1px solid var(--line); border-left:5px solid var(--due); border-radius:12px; padding:14px 17px; margin:16px 0}
+  #mod .due b{color:var(--due)}
+  #mod .due a{color:var(--due); font-weight:700}
   dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
   dialog.pop::backdrop{background:rgba(12,16,24,.55)}
   dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
@@ -74,6 +78,7 @@
 <a class="lnk" href="projects.html">Major Project Rubrics</a>
 <a class="lnk" href="readings.html">Readings</a>
 <a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lnk" href="week07-corpus.html">Week 7 Corpus</a>
 <a class="lms" href="https://appstate.instructure.com/" target="_blank" rel="noopener">Canvas &rarr;</a>
 </div></nav>
 
@@ -86,6 +91,8 @@
   </header>
 
   <div class="ground"><b>Arrive.</b> Open your Research Notebook in another tab and take a breath. On Tuesday you built your <button type="button" class="term" data-pop="codebook">codebook</button> in Entry 6a: your named codes, each with a definition and an example. Today you put it to work on every text you've gathered. There's no new theory to learn, this is the day the setup pays off.</div>
+
+  <div class="due"><b>Your Literature Review is due Sunday.</b> P1 goes in Canvas as a Google Doc, shared so it can be commented on, which is how my notes land on your actual lines. If you ran the checklist in last week's module you're most of the way there. Check the Canvas assignment page for the submission details, then come back and finish this module. Coding your corpus should not eat the deadline.</div>
 
   <p class="bridge">The codebook was the careful, slow half, and you've done it. Now it goes to work. By the end you'll have counts, a pattern, and one sentence that turns a pile of texts into an argument.</p>
 
@@ -166,7 +173,6 @@
   </div>
 
   <div class="close">
-    <p><b>One reminder.</b> You'll turn your whole notebook in twice all semester, at the midterm and end-of-term check-ins. When each comes up, you gather everything from your notebook into a Google Doc and upload that to Canvas. Nothing to submit today.</p>
     <p><b>A 10-minute prime for next week.</b> You coded your corpus by hand today. Before Tuesday, drop the plain text of two or three of your texts into a single note or doc so it's ready to paste. Next Thursday we speed all of this up with <b>digital text-analysis tools</b>, feeding your corpus to Voyant to read hundreds of words at a distance and check the patterns your own eyes found.</p>
   </div>
 

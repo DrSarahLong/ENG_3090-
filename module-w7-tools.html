@@ -63,6 +63,24 @@
   .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
   .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
   .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+
+  #mod table{width:100%; border-collapse:collapse; margin:8px 0 16px; font-size:.95rem}
+  #mod th,#mod td{border:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top}
+  #mod th{background:var(--accent-soft); color:var(--accent); font-size:.74rem; letter-spacing:.09em; text-transform:uppercase; font-weight:800}
+  #mod td.fn{font-weight:700; color:var(--accent); white-space:nowrap}
+  #mod .tw{overflow-x:auto}
+  #mod .steps{counter-reset:st; margin:10px 0 18px}
+  #mod .steps .st{background:var(--card); border:1px solid var(--line); border-left:4px solid var(--good); border-radius:10px; padding:12px 16px; margin:9px 0; font-size:.98rem; line-height:1.5}
+  #mod .steps .st::before{counter-increment:st; content:"Step " counter(st) " · "; font-weight:800; color:var(--good)}
+  #mod .steps .st.done{opacity:.62; border-left-color:var(--muted)}
+  #mod .steps .st.done::before{color:var(--muted)}
+  #mod .steps .st.now{border-left-width:6px; background:var(--accent-soft)}
+  #mod .tmpl{background:var(--field); border:1px dashed var(--accent); border-radius:10px; padding:14px 18px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.9rem; line-height:1.85; margin:10px 0}
+  #mod .tmpl b{color:var(--good)}
+  #mod .warn{background:#fdf1f0; border:1px solid #e9c3c0; border-left:5px solid #c0524d; border-radius:10px; padding:14px 18px; margin:12px 0}
+  @media (prefers-color-scheme: dark){ #mod .warn{background:#2a1a19; border-color:#6a3a36} }
+  #mod .warn b{color:#c0524d}
+  @media (prefers-color-scheme: dark){ #mod .warn b{color:#f2a49e} }
 </style>
 </head>
 <body>
@@ -74,104 +92,161 @@
 <a class="lnk" href="projects.html">Major Project Rubrics</a>
 <a class="lnk" href="readings.html">Readings</a>
 <a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lnk" href="week07-corpus.html">Week 7 Corpus</a>
 <a class="lms" href="https://appstate.instructure.com/" target="_blank" rel="noopener">Canvas &rarr;</a>
 </div></nav>
 
 <div id="mod">
 
   <header class="masthead">
-    <p class="kicker">ENG 3090 · Week 7 · Thursday Module</p>
-    <h1>Run Your Corpus Through the Tools</h1>
-    <p class="sub">Let the machine count what would take you hours, so you can spend your time on the meaning. Work through this at your own pace; budget about 75 minutes.</p>
+    <p class="kicker">ENG 3090 &middot; Week 7 &middot; Thursday Module</p>
+    <h1>Finish the Analysis</h1>
+    <p class="sub">Tuesday we ran the whole process together on the Asheville corpus. Today you run it on your own. Work at your own pace; budget about 75 minutes.</p>
   </header>
 
-  <div class="ground"><b>Arrive.</b> Open your Research Notebook in another tab and take a breath. In Week 6 you coded your corpus by hand and named your patterns. Today you hand that same corpus to a free text tool, read what it counts back, and fold its findings into the analysis you're already building. The tool does the counting; the meaning stays yours.</div>
+  <div class="ground"><b>Arrive.</b> Open your Research Notebook in another tab. On Tuesday we loaded three Asheville texts into Voyant, described the corpus, used the word cloud to check our codes, built a lexical footprint from the concordance, found that "safe" meant three incompatible things, and wrote a finding about power. Today you do those same moves on the texts you gathered. I'm in the Zoom room while you work.</div>
 
-  <p class="bridge">By now you have a coded corpus and a codebook. Today you let a machine count all of it in seconds, then you do the reading it can't.</p>
+  <p class="bridge">Same seven steps as Tuesday, same order. What you're doing is <button type="button" class="term" data-pop="distant">distant reading</button>: counting patterns across a whole body of texts instead of reading one closely. The only thing that changes is whose corpus is in the machine.</p>
 
-  <h2>1 &middot; The move: reading at a distance</h2>
-  <p>Close reading means going through a text line by line with your own eyes. That's what you did in Week 6, and it's irreplaceable. But your eyes get tired, and they miss things across fifteen or twenty texts. A text tool reads the other direction: it counts every word in the whole <button type="button" class="term" data-pop="corpus">corpus</button> at once and shows you patterns from a height. Researchers call this <button type="button" class="term" data-pop="distant">distant reading</button>, and it's the engine under this week.</p>
-  <div class="ex">
-    <div class="t">See it</div>
-    <p>Read one egg carton by hand and you notice the word "natural." Run our whole example corpus of a dozen food-labeling news articles through a tool and you learn that "natural" appears 61 times, always near "means," "assume," and "regulated," while "worker" and "cost" barely show up at all. One is a close read. The other is a pattern you could never hold in your head. Both are real evidence.</p>
-    <p class="note">Heads up: those food-labeling articles are our <b>running example</b> all semester, not your topic. Watch the move on the example, then run it on the texts you actually gathered.</p>
+  <h2>1 &middot; Where you are in the process</h2>
+  <p>This is the whole arc of the text-analysis half of your study, the part that works on documents you did not create. You've done the first three. Today is four through seven.</p>
+  <div class="steps">
+    <div class="st done">Find the gap, and name the injustice. What has the literature not answered, and what is at stake? If your study never happened, what would the world lose? That's your "so what," and it came out of P1.</div>
+    <div class="st done">Build the corpus. Gather the texts, decide what's in and out, and be able to say why.</div>
+    <div class="st done">Define the codes. Frame-level labels with definitions and include/exclude rules.</div>
+    <div class="st now">Describe the corpus. How many texts, how long, how varied. This is part of your Methods.</div>
+    <div class="st now">Find each code's lexical footprint. Which words actually signal the frame in your texts.</div>
+    <div class="st now">Apply the codes, passage by passage. AI can take the first pass. You are the coder of record.</div>
+    <div class="st now">Count, normalize, interpret, write. Turn coded passages into a finding about power and justice.</div>
   </div>
+  <div class="warn">
+    <b>One thing about Methods.</b> You are not writing your whole Methods section today. You're writing two paragraphs of it: <b>how you built your corpus</b>, and <b>how you built your codebook</b>. Label them that way in your notebook.<p style="margin:.5rem 0 0">Your IMRAD Methods section will need more than this. P3 asks you to design an instrument, recruit participants, and collect your own data from people, and that work gets its own Methods paragraphs you can't write yet. Two paragraphs today, more later.</p>
+  </div>
+
+  <h2>2 &middot; The functions, and what each one is for</h2>
+  <p>Keep this section open in a tab while you work. It's the reference for what we clicked through on Tuesday, so you don't have to remember which panel does what.</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:22%">Function</th><th>What it gives you, and what it's for</th></tr></thead>
+    <tbody>
+      <tr><td class="fn">Documents</td><td>How many separate texts you loaded. Your corpus size. Goes in Methods.</td></tr>
+      <tr><td class="fn">Total words</td><td>Every word counted every time it appears. The scale of what you read, and the denominator when you turn counts into rates.</td></tr>
+      <tr><td class="fn">Unique words</td><td>How many <i>different</i> words appear. "Shelter" ten times counts once.</td></tr>
+      <tr><td class="fn"><button type="button" class="term" data-pop="density">Vocabulary density</button></td><td>Unique words divided by total words. A register signal, but length-sensitive: short texts look denser automatically. Only compare documents of similar length.</td></tr>
+      <tr><td class="fn">Document length</td><td>Word count per text. Shows whether your corpus is lopsided, and warns you when one long document is about to dominate every raw count.</td></tr>
+      <tr><td class="fn">Words per sentence</td><td>Average sentence length. A register signal: official statements run long and subordinate, letters to the editor run short.</td></tr>
+      <tr><td class="fn"><button type="button" class="term" data-pop="freq">Frequency list</button></td><td>Your most common words, ranked. Where you start looking, not what you report.</td></tr>
+      <tr><td class="fn">Cirrus (word cloud)</td><td>The frequency list as a picture. Use it to <b>design and check your codebook</b>, never as evidence. See Section 4.</td></tr>
+      <tr><td class="fn"><button type="button" class="term" data-pop="concordance">Concordance</button></td><td>Every appearance of a word with the words around it. <b>Your most useful view</b>, and the only one that shows how a word is actually used.</td></tr>
+      <tr><td class="fn"><button type="button" class="term" data-pop="collocation">Collocation</button></td><td>Words that repeatedly appear near each other. Finds phrase-level patterns you'd never catch by hand.</td></tr>
+      <tr><td class="fn"><button type="button" class="term" data-pop="trends">Trends</button></td><td>Where a word falls document by document. Tells you whether you have a corpus-wide pattern or one loud text, which changes what you're allowed to claim.</td></tr>
+    </tbody>
+  </table></div>
   <div class="read">
-    <div class="t">Read the real thing &middot; 12 min</div>
-    <p><a href="https://programminghistorian.org/en/lessons/corpus-analysis-voyant-tools" target="_blank" rel="noopener">Corpus Analysis with Voyant Tools</a> &mdash; Silvia Guti&eacute;rrez De la Torre, <i>Programming Historian</i>, 2022. A hands-on, no-install tutorial for building a corpus and reading text at a distance, the same tool you'll use in a minute. Skim the setup, then follow along in the "reading the results" sections.</p>
-  </div>
-  <p class="note">One catch: short texts like labels won't give a tool much to chew on. If your corpus is a stack of tiny labels, gather the longer texts around them too (news articles, reports, brand web pages), or lean on your hand-coding. Tools reward length.</p>
-
-  <h2>2 &middot; What the tool hands back</h2>
-  <p>Feed a tool your searchable text and it returns three things worth knowing by name. Each one answers a different question.</p>
-  <div class="box accent">
-    <ul class="check">
-      <li><span class="n">1</span><div><b>A <button type="button" class="term" data-pop="freq">frequency</button> list and a word cloud.</b> Your most common words, ranked. This is your patterns in raw numbers, and the cloud is the same data as a fast picture.</div></li>
-      <li><span class="n">2</span><div><b>A <button type="button" class="term" data-pop="concordance">concordance</button>.</b> Click any word and see every place it appears with the words around it. Frequency tells you <em>how often</em>; a concordance tells you <em>how</em>. It's the most useful thing these tools do.</div></li>
-      <li><span class="n">3</span><div><b><button type="button" class="term" data-pop="collocation">Collocates</button>.</b> The words that keep showing up near your key words, their regular company. Company reveals what a word is really doing.</div></li>
-    </ul>
-  </div>
-  <div class="read">
-    <div class="t">Try the tool &middot; 10 min</div>
-    <p>Before you touch your own texts, see the output read closely. <a href="read-the-output.html" target="_blank" rel="noopener">Read the Tool's Output</a> walks through a real frequency list, word cloud, and concordance built from our example food-labeling corpus, and shows you how to read each one (and where a word cloud quietly lies). The eggs are just our example; you'll run this <b>same reading</b> on whatever your tool hands back for your topic.</p>
+    <div class="t">Reference, if you want the full tour &middot; skim as needed</div>
+    <p><a href="https://programminghistorian.org/en/lessons/corpus-analysis-voyant-tools" target="_blank" rel="noopener">Corpus Analysis with Voyant Tools</a> &mdash; Silvia Guti&eacute;rrez De la Torre, <i>Programming Historian</i>, 2022. A no-install walkthrough of every panel in Voyant. You do not need to read it start to finish. Use it the way you'd use a manual: when a panel confuses you, find it here.</p>
   </div>
 
-  <h2>3 &middot; Run your own corpus through Voyant</h2>
-  <p><a href="https://voyant-tools.org" target="_blank" rel="noopener">Voyant Tools</a> is free, runs in your browser, and needs nothing installed. Paste your whole corpus into the box, hit Reveal, and in seconds you get the word cloud, the frequency list, and a clickable concordance from Section 2, all at once. Start here every time.</p>
+  <h2>3 &middot; Load your own corpus</h2>
+  <p>Same move as Tuesday, your own <button type="button" class="term" data-pop="corpus">corpus</button> this time. Go to Voyant, choose <b>Add Texts</b>, and paste each text into <b>its own box</b>.</p>
   <div class="do">
     <div class="t">Your turn</div>
-    <p>Go to Voyant, paste in your own corpus (saved as searchable text), and hit Reveal. In <b>Entry 7b</b>, record your <b>top words</b> and one <b>telling concordance</b>: pick a key word from your topic, click it, and write what its context reveals that the count alone didn't.</p>
+    <p>Load your corpus as <b>separate documents</b>, one per text. Not one block. If Voyant thinks you handed it a single text, Documents, Document Length, and per-document Vocabulary Density stop telling you anything, and those are three of the numbers you need for Methods.</p>
+    <p class="note">If your texts are short, gather the longer ones around them too. Tools reward length. And if Voyant is down, <a href="week07-corpus.html">the Week 7 corpus page</a> lists mirrors and fallbacks.</p>
   </div>
 
-  <h2>4 &middot; Going deeper (optional)</h2>
-  <p>Voyant covers what most of you need. If you want to push further, three tools earn the time.</p>
-  <div class="box">
-    <p><b>AntConc</b> is a free download that does heavier concordance and collocation work, and can measure which words are unusually common in your corpus compared with ordinary language. <a href="https://www.laurenceanthony.net/software/antconc/" target="_blank" rel="noopener">laurenceanthony.net</a></p>
-    <p><b>QDA Miner</b> is the industry-standard software for hands-on qualitative coding, and <b>App State has a free campus license</b> to the full version (ask Belk Library or your department for access). Fair warning: it takes real training to use well, more than an afternoon. But if you're eyeing grad school, or any job that touches research, it's worth the time. Specialized software comes up in interviews, and being able to say you have genuine familiarity with QDA Miner, even short of mastery, is a real edge. <a href="https://provalisresearch.com/products/qualitative-data-analysis-software/" target="_blank" rel="noopener">provalisresearch.com</a></p>
-    <p><b>Google Sheets</b> is all you need to turn your code counts into a clean bar chart for your paper. No new software, no learning curve.</p>
-  </div>
-
-  <h2>5 &middot; AI as an assistant, not the analyst</h2>
-  <p>AI is genuinely useful here. Paste your corpus and ask it to suggest themes, group similar codes, or summarize what stands out. It's fast, and it notices things you might not.</p>
+  <h2>4 &middot; Describe your corpus &middot; Methods, paragraph one</h2>
+  <p>Read the numbers off Voyant's summary panel and write the paragraph. This goes into P2 nearly as-is.</p>
+  <div class="tmpl">This analysis draws on a corpus of <b>[N]</b> texts totaling <b>[N]</b> words, gathered from <b>[what kinds of sources]</b> published between <b>[dates]</b>. Documents range from <b>[shortest]</b> to <b>[longest]</b> words. Texts were selected because <b>[your inclusion rule]</b>; I excluded <b>[what, and why]</b>. The corpus is small enough that I read every text closely, and I make no claim that it represents <b>[the larger population]</b>.</div>
   <div class="box accent">
-    <p><b>&#9888; Keep the wheel.</b> AI will also confidently make things up, and it will hand you a tidy reading that flattens what's actually interesting. So use it to <em>suggest</em>, then check every suggestion against your real texts. You own the analysis. If AI proposes a code, you don't keep it until you've found the examples yourself in your corpus. The thinking is the assignment.</p>
+    <p><b>Overstating is the fastest way to lose a reader you already had.</b> Claim your corpus's worth and a reader trusts your corpus. Claim that six articles reveal how America talks about your topic and they stop trusting the parts you got right.</p>
   </div>
 
-  <h2>6 &middot; Fold it into your analysis</h2>
-  <p>The tools gave you numbers and patterns. Now connect them back to the codes you named in Week 6. Three questions do the work:</p>
+  <h2>5 &middot; Check your codebook against the word cloud</h2>
+  <p>Open Cirrus. You're not looking for findings here. You're checking whether your codes have anything to grab onto in these particular texts.</p>
   <div class="box">
     <ul>
-      <li>Which counts <b>back up</b> a code you already named by hand?</li>
-      <li>Did the tool surface a pattern you <b>missed</b> on your first read?</li>
-      <li>Did anything <b>contradict</b> your first read? That's gold, not a problem. A surprise is where the interesting finding usually hides.</li>
+      <li>Which words would you build a code around that you hadn't thought of?</li>
+      <li>Which of your existing codes look like they'll find <b>nothing</b> in this corpus? Those either need rewriting or cutting.</li>
+      <li>What did you expect to dominate that turns out to be rare? That gap is worth a note.</li>
     </ul>
+  </div>
+  <p class="note">Then close it. A word cloud shows frequency and nothing else, strips every word out of context, and makes size look like importance. Never put one in P2 as evidence.</p>
+
+  <h2>6 &middot; Build each code's lexical footprint</h2>
+  <p>This is the step that makes your coding checkable by somebody else, which is what the rubric means by a codebook that's "precise and consistent."</p>
+  <div class="steps">
+    <div class="st">From the cloud and the frequency list, write down every word that might signal your code.</div>
+    <div class="st">Run <b>Concordance</b> on each one and read the actual lines. Cross out the words that turn out to mean something else.</div>
+    <div class="st">Run <b>Collocation</b> on the survivors. What keeps showing up beside them? Add those.</div>
+    <div class="st">Write the surviving list into your codebook entry as that code's footprint.</div>
+  </div>
+  <div class="ex">
+    <div class="t">Remember Tuesday</div>
+    <p>"Safe" appeared in all three Asheville texts and meant something different every time: safe <i>from</i> homeless people (the merchants), safe <i>means housed</i> (the column), a safe place to sleep <i>tonight</i> (the nonprofit). The count couldn't tell them apart. The concordance could.</p>
+    <p class="note">So a footprint is a search strategy, not an answer. It narrows your corpus to the passages worth arguing about. Arguing about them is the analysis.</p>
+  </div>
+
+  <h2>7 &middot; Apply your codes &middot; AI takes the first pass</h2>
+  <p>Two machines, two jobs. Voyant counts words and can't judge a frame. AI reads for meaning and <b>can</b> apply your codebook as a first pass. You verify it, resolve the hard cases, and decide what it all means.</p>
+  <div class="steps">
+    <div class="st">Paste your <b>full codebook</b>, definitions and include/exclude rules and all, then one text. Ask it to identify every passage matching each code and to quote them exactly.</div>
+    <div class="st">Ask it to explain <b>why</b> each passage qualifies. If the reason doesn't match your include rule, either your rule is vague or the model is guessing. Fixing the rule is the actual work.</div>
+    <div class="st">Verify. For every text, check that at least two quoted passages appear word for word and do fit the code.</div>
+    <div class="st">Build your coding table: one row per coded passage, with columns for <b>text</b>, <b>the quoted passage</b>, <b>the code</b>, and <b>why it qualifies</b>. Mark anything ambiguous as <b>contested</b> with one line about why.</div>
+  </div>
+  <div class="warn">
+    <b>Two failure modes.</b> It will produce quotations that sound right and are not in your text. And it will agree with whatever frame your codebook implies, because it's built to be agreeable. Neither is a reason to avoid it. Both are reasons to check it.
+    <p style="margin:.5rem 0 0"><b>Write what you did in Methods:</b> which model, what you asked it, and how you verified. Unreported AI coding is a hole in your method that any reader can put a finger through.</p>
+  </div>
+
+  <h2>8 &middot; Count, then normalize</h2>
+  <p>Raw counts favor long documents. Rates let you compare unlike things, and sometimes they dissolve a difference you thought you had.</p>
+  <div class="ex">
+    <div class="t">Worked example</div>
+    <p>A 370-word opinion column has 6 safety-frame passages. A 185-word news report has 3. The column looks twice as safety-framed. Divide by length and both land at 16.2 per thousand words: the same rate. The difference you thought you found was just document length.</p>
   </div>
   <div class="do">
     <div class="t">Your turn</div>
-    <p>In <b>Entry 7b</b>, write down <b>one thing the tool showed you that you would not have seen by hand</b>, in a sentence. Then note how AI helped, if you used it, and what you verified against your own texts. That one surprising thing is the payoff of the whole week.</p>
+    <p>For each code, record the <b>raw count</b>, the <b>number of documents</b> it appears in, and the <b>rate per thousand words</b>. Then check <b>Trends</b>: if a code is concentrated in one text, say so. "One of six texts emphasizes enforcement" is a defensible claim. "This coverage emphasizes enforcement" is not, if five texts don't.</p>
   </div>
 
-  <h2>7 &middot; Log it in your notebook</h2>
-  <p>Open your Research Notebook and complete <b>Entry 7b: What the tools found</b>: your top words, a telling concordance, what the tool revealed that you'd have missed, and how AI helped (and what you checked).</p>
+  <h2>9 &middot; Write one finding</h2>
+  <p>Four moves. Numbers, a quote, a complication, and what it means for power and justice.</p>
+  <div class="tmpl">Across the <b>[N]</b> texts, <b>[CODE]</b> appeared in <b>[N]</b> passages in <b>[N]</b> of <b>[N]</b> documents, at <b>[N]</b> per thousand words, concentrated in <b>[which genres]</b>. A representative instance: "<b>[quote]</b>" (<b>[text]</b>). The pattern is not uniform: <b>[the text that resists it]</b> instead <b>[what it does]</b>. Read together, these texts <b>[the claim about power]</b>. The people described in them <b>[who speaks, who is spoken about]</b>, and that matters because <b>[your "so what" from Step 1]</b>.</div>
+  <div class="box accent">
+    <p><b>The last blank is the one that counts.</b> It's where your literature review comes back: the gap you identified and the injustice you named. A findings paragraph that stops at the numbers is a report. One that lands on what's at stake is an analysis.</p>
+  </div>
+
+  <h2>10 &middot; Other tools, if you want other options</h2>
+  <p>Voyant covers what this project needs. These are here if you want to go further, not because you have to.</p>
+  <div class="box">
+    <p><b>AntConc</b> is a free download that does heavier concordance and collocation work, and can measure which words are unusually common in your corpus compared with ordinary language. <a href="https://www.laurenceanthony.net/software/antconc/" target="_blank" rel="noopener">laurenceanthony.net</a></p>
+    <p><b>QDA Miner</b> is industry-standard software for qualitative coding, and <b>App State has a free campus license</b> to the full version (ask Belk Library or your department). Fair warning: it takes serious training, more than an afternoon. But if you're eyeing grad school or any job that touches research, specialized software comes up in interviews, and familiarity with QDA Miner is an edge. <a href="https://provalisresearch.com/products/qualitative-data-analysis-software/" target="_blank" rel="noopener">provalisresearch.com</a></p>
+    <p><b>Google Sheets</b> turns your code counts into a clean bar chart for your paper. No new software, no learning curve.</p>
+  </div>
+
+  <h2>11 &middot; Log it in your notebook</h2>
+  <p>Open your Research Notebook and complete <b>Entry 7b</b> with what you built today: your corpus numbers, each code's lexical footprint, your coding table, your counts and rates, and your one written finding.</p>
   <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
   <p class="note">Everything saves on your own computer as you type. Nothing is transmitted anywhere.</p>
 
   <div class="debrief">
     <span class="lab">Class debrief &middot; together at the end</span>
-    <p>We'll come back together as a class to close. Come ready to say, in one breath: <b>the one thing your tool showed you that you couldn't have seen by hand, and whether it backed up a code, surfaced a new pattern, or contradicted your first read.</b> The contradictions are the ones we most want to hear.</p>
+    <p>Come back ready to say, in one breath: <b>one word in your corpus that turned out to mean more than one thing, and what the concordance showed you that the count couldn't.</b> That's the move the whole week is built on, and hearing six versions of it is the fastest way to see how differently it plays out across topics.</p>
   </div>
 
   <div class="close">
-    <p><b>Where this goes.</b> Between your codebook from Week 6 and these tool findings, you now have the evidence for your <b>Qualitative / Discourse Analysis (P2)</b>, due next week. You're basically drafting it already.</p>
-    <p><b>One reminder.</b> You'll turn your whole notebook in twice all semester, at the midterm and end-of-term check-ins. When each comes up, you gather everything from your notebook into a Google Doc and upload that to Canvas. Nothing to submit today.</p>
-    <p><b>A 10-minute prime for next week.</b> Before Tuesday, look back at your filled Entry 7b and pick the <b>two or three findings you'd actually put in a paper</b>. Jot why each matters. That's exactly where next Thursday starts: <b>writing up your findings</b>, turning your counts and codes into a findings section organized by theme instead of a pile of data.</p>
+    <p><b>Where this goes.</b> You now have both Methods paragraphs, a coding table, counts, and a finding. That's most of <b>P2, your Qualitative / Discourse Analysis</b>, due Sunday at the end of Week 9. What's left is writing the rest of your findings and the discussion.</p>
+    <p><b>A 10-minute prime for next week.</b> Before Tuesday, look at your coding table and pick the <b>two or three findings you'd actually put in a paper</b>. Jot why each matters. That's where next Thursday starts: turning counts and codes into a findings section organized by theme instead of a pile of data.</p>
   </div>
 
-  <dialog class="pop" id="pop-corpus"><h3>Corpus</h3><p>Your set of texts to analyze, gathered on purpose, the same body of texts you built in Week 5. "Corpus" just means a "body" of texts. For a tool to find real patterns you want at least 15 items of the same kind (news articles, labels, ads, policies, posts), and longer texts work better than short ones.</p><p>Example: eighteen egg-carton labels from three stores is a corpus. So is a dozen news articles about food labeling.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-distant"><h3>Distant reading</h3><p>Reading a whole body of texts by counting patterns across all of them, instead of reading one closely. Franco Moretti, a literary scholar, coined the phrase in a 2000 essay, arguing that some things about a large collection of texts only show up when you step back and measure the whole thing at once.</p><p>Example: no close read of a single article tells you that "natural" appears 61 times across the corpus while "worker" appears twice. Distant reading does, and that gap is a finding.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-freq"><h3>Word frequency</h3><p>A simple count of how often each word appears in your corpus, usually after dropping filler words like "the" and "of." It's the fastest way to see what a set of texts keeps returning to, and it turns "it felt like a lot" into a number.</p><p>Example: in our food-labeling corpus, "natural" tops the list at 61, "organic" at 38, "regulators" way down at 16. The ranking is the story in miniature.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-concordance"><h3>Concordance (KWIC)</h3><p>A list of every place a word appears, shown with the words on either side, so you can read how it's actually used. KWIC means "keyword in context." Frequency tells you <em>how often</em>; a concordance tells you <em>how</em>. It's the most useful thing these tools do.</p><p>Example: pull "natural" and you see "the word <b>natural</b> has no legal meaning," "shoppers assume <b>natural</b> means healthier." The count never showed you that; the concordance does.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-collocation"><h3>Collocation</h3><p>The words that tend to appear right next to a given word, its regular company. Company reveals what a word is really doing, even when the word itself claims nothing.</p><p>Example: if "natural" almost always travels with "fresh," "family," and "goodness," those collocates are setting a wholesome mood. But in news articles about labeling, "natural" travels with "means," "assume," and "regulated," a debate about the word, not an ad.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-corpus"><h3>Corpus</h3><p>Your set of texts to analyze, gathered on purpose. "Corpus" just means a "body" of texts. For a tool to find patterns you want texts of the same kind (news articles, policies, posts, transcripts), and longer texts work better than short ones.</p><p>Example: the three Asheville texts we loaded Tuesday were a corpus. So are fifteen news articles about your own topic.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-distant"><h3>Distant reading</h3><p>Reading a whole body of texts by counting patterns across all of them, instead of reading one closely. Franco Moretti, a literary scholar, coined the phrase in a 2000 essay, arguing that some things about a large collection of texts only show up when you step back and measure the whole thing at once.</p><p>Example: no close read of one Asheville article tells you that "safe" appears in all three texts meaning three different things. Counting across the corpus does, and that gap is a finding.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-freq"><h3>Word frequency</h3><p>A count of how often each word appears, usually after dropping filler words like "the" and "of." The fastest way to see what a set of texts keeps returning to, and it turns "it felt like a lot" into a number.</p><p>Example: in the Asheville corpus, "safe," "shelter," and "housing" all rank high, but the ranking alone doesn't tell you they're arguing with each other. That's what the concordance is for.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-concordance"><h3>Concordance (KWIC)</h3><p>A list of every place a word appears, shown with the words on either side, so you can read how it's actually used. KWIC means "keyword in context." Frequency tells you <em>how often</em>; a concordance tells you <em>how</em>. It's the most useful thing these tools do.</p><p>Example: pull "safe" from the Asheville corpus and you get "our visitors do not feel safe," "housing is what makes a person safe," and "a safe place to sleep that night." Three meanings the count could never separate.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-collocation"><h3>Collocation</h3><p>The words that tend to appear near a given word, its regular company. Company reveals what a word is doing, even when the word itself claims nothing.</p><p>Example: if "safe" travels with "visitors," "patrols," and "downtown" in one text and with "housing" and "door" in another, you've found two different arguments using one word.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-density"><h3>Vocabulary density</h3><p>Unique words divided by total words. Higher means more varied wording. It's a register signal, but it is very sensitive to length: a short text looks denser automatically, because it has fewer chances to repeat itself.</p><p>Example: a 185-word news report will beat a 370-word column on density for reasons that have nothing to do with style. Only compare documents of similar length, and say so in Methods.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-trends"><h3>Trends</h3><p>Where a word falls across your corpus, document by document, rather than totaled up. It answers a question the total hides: is this a pattern across my texts, or one loud text?</p><p>Example: if "patrols" appears nine times and eight are in one article, you cannot write "this coverage emphasizes enforcement." You can write "one of the three texts emphasizes enforcement," which is a smaller and much more defensible claim.</p><form method="dialog"><button>Got it</button></form></dialog>
 
 </div>
 
