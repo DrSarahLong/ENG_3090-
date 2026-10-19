@@ -63,6 +63,26 @@
   .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
   .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
   .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+
+  /* ===== 4100-style components: commit then reveal, complication, timings ===== */
+             color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:2px 9px; margin-left:9px; vertical-align:middle}
+  #mod .qa{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--good); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .qa .qq{font-weight:700; margin-bottom:6px}
+  #mod details.reveal{margin:8px 0 0; border-top:1px dashed var(--line); padding-top:8px}
+  #mod details.reveal summary{cursor:pointer; font-weight:700; color:var(--accent); font-size:.92rem}
+  #mod details.reveal summary:focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:4px}
+  #mod details.reveal .model{background:var(--field); border:1px solid var(--line); border-radius:10px; padding:11px 14px; margin-top:9px}
+  #mod .complicate{background:var(--accent-soft); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:14px 16px; margin:14px 0}
+  #mod .pick{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:12px 0}
+  #mod .pick .row{border-top:1px solid var(--line); padding-top:11px; margin-top:11px}
+  #mod .pick .row:first-of-type{border-top:0; padding-top:0; margin-top:4px}
+  #mod .pick .scn{margin:0 0 7px}
+  #mod .pick select{font:inherit; padding:7px 9px; border:1.5px solid var(--line); border-radius:8px; background:var(--field); color:var(--ink); max-width:100%}
+  #mod .pick button.go{font:inherit; font-weight:700; cursor:pointer; border-radius:9px; padding:9px 16px; border:1.5px solid var(--accent); background:var(--accent); color:#fff; margin-top:12px}
+  #mod .pick .fb{display:none; margin-top:9px; padding:10px 13px; border-radius:10px; font-size:.95rem}
+  #mod .pick .fb.on{display:block}
+  #mod .pick .fb.ok{background:var(--accent-soft); border:1px solid var(--good)}
+  #mod .pick .fb.no{background:var(--field); border:1px solid var(--line)}
 </style>
 </head>
 <body>
@@ -79,102 +99,189 @@
 </div></nav>
 
 <div id="mod">
-
-  <header class="masthead">
-    <p class="kicker">ENG 3090 · Week 9 · Thursday Module</p>
-    <h1>Research Ethics &amp; Your CITI Training</h1>
-    <p class="sub">Before you collect data from real people, this. It's the line between research and just bothering strangers.</p>
+<header class="masthead">
+    <p class="kicker">ENG 3090 &middot; Week 9 &middot; Thursday</p>
+    <h1>Before You Study People</h1>
+    <p class="sub">What gives you the right to turn another person into data? Seventy-five minutes on where research ethics came from, what it asks of a study like yours, and the two things you'll put in front of a participant.</p>
   </header>
 
-  <div class="ground"><b>Arrive.</b> Open your Research Notebook in another tab and take a breath. Soon you'll be asking real people real questions. Today you learn the rules that make that ethical, finish your <button type="button" class="term" data-pop="citi">CITI</button> training, and draft the two things you'll actually put in front of a participant: your invitation and your consent statement.</div>
+  <div class="ground">Open your Research Notebook in another tab. Everything you draft today goes into <b>Entry 9b</b>, and nothing here saves itself, so paste as you go.</div>
 
-  <p class="bridge">You have a locked topic and a question worth answering. Before anyone becomes a data point in it, you owe them a few things. Building those is today's work.</p>
+  <div class="bridge">You have a locked topic and a question worth answering. Before anybody becomes a data point inside it, you owe them something. Today is about what.</div>
 
-  <h2>1 · Why these rules exist</h2>
-  <p>Every rule in research ethics is written in someone's harm. The <b>Nuremberg Code</b> (1947) followed the Nazi medical experiments. The <b>Tuskegee syphilis study</b> (1932 to 1972) let hundreds of Black men go untreated for decades without their informed consent. Out of that came the <button type="button" class="term" data-pop="belmont">Belmont Report</button> (1979), which set the three principles all human-subjects research still follows.</p>
-  <div class="read">
-    <div class="t">Read the real thing · 6 min</div>
-    <p><a href="https://hpod.law.harvard.edu/pdf/Belmont-Report-Plain-Language-Summary.pdf" target="_blank" rel="noopener">The Belmont Report: Plain-Language Summary</a> &mdash; the actual 1979 report that human-subjects ethics rests on, rewritten in jargon-free English. The three principles behind all research with people: respect for persons, beneficence, justice. Read it now so the next section is a review, not a first meeting.</p>
+  <h2>1 &middot; The question underneath all of it</h2>
+  <p>Not the legal question. Not "which form do I file." The ethical one: <b>when am I entitled to ask you something, observe you, record you, quote you, put your words in a dataset, and publish what I learn?</b></p>
+  <div class="qa">
+    <div class="qq">Answer this before you open it. Does the fact that knowledge would be useful give me the right to go get it?</div>
+    <details class="reveal"><summary>Then open this</summary><div class="model"><b>No.</b> Usefulness is not permission. Much of the history of human-subjects research is researchers arriving at that answer after somebody else had already paid for it. And ethical failure almost never starts with "I intend to hurt people." It starts with something far more ordinary: <i>but I need the data.</i></div></details>
   </div>
 
-  <h2>2 · The three principles, applied to you</h2>
-  <p>Those three words from the reading are the whole framework. Here's what each one asks of a study like yours.</p>
-  <div class="box accent">
-    <ul>
-      <li><b>Respect for persons.</b> People decide freely whether to join, with full information. That's <button type="button" class="term" data-pop="consent">informed consent</button>.</li>
-      <li><b>Beneficence.</b> Do good, and minimize harm. Ask yourself what could go wrong for a participant, and prevent it.</li>
-      <li><b>Justice.</b> Share the burdens and benefits fairly. Don't run your study on the people who can least afford to say no. (Sound familiar? It's our justice lens, pointed at your own methods.)</li>
-    </ul>
-  </div>
+  <h2>2 &middot; The person inside the data point</h2>
+  <p>Research does a rhetorical thing to you, and it is worth noticing while it happens. The moment I call you a <b>participant</b>, I have changed what you are to me.</p>
   <div class="ex">
-    <div class="t">See it &mdash; in our running example</div>
-    <p>Say you're surveying shoppers about the sustainability claims on egg cartons. <b>Respect</b> means telling them it's a class research survey and letting them decline. <b>Beneficence</b> means not secretly recording them or asking anything that could embarrass them. <b>Justice</b> means not cornering, say, the low-wage stockers on the clock, who can least afford to brush you off, and calling that a fair sample.</p>
-    <p class="note">The egg carton is our running example all semester, not your topic. Watch the move, then run it on your own study.</p>
-  </div>
-  <div class="read">
-    <div class="t">Try the tool · 12 min</div>
-    <p>Principles get real when you have to make a call. <a href="ethics-scenarios.html" target="_blank" rel="noopener">Is This Ethical?</a> gives you six situations a lot like your own project. For each, decide on your own whether it's fine, needs fixing first, or is a hard no, then open the verdict. Bring the ones that felt genuinely gray to the class debrief.</p>
+    <div class="t">See it &mdash; the same person, twice</div>
+    <p>Five minutes ago you were Sarah, or Malik, or Jos&eacute;. Now there is a research question in the room, so you are also: <i>Participant 14. Female, age 22. Respondent. Interview subject. Data point.</i></p>
+    <p>That abstraction is useful. Research could barely function without it. It is also where the trouble starts, because <b>Participant 14 is easier to push around than Sarah is.</b> The whole apparatus of human-subjects ethics exists partly to make researchers keep remembering there is still a person inside the data point.</p>
   </div>
 
-  <h2>3 · The two tools you'll actually use</h2>
-  <p>Two moves carry most of the ethics of a small study. Learn these and you're most of the way there.</p>
+  <h2>3 &middot; Where the rules came from</h2>
+  <p>Modern research ethics exists because researchers kept demonstrating that scientific expertise on its own does not produce ethical behavior. The <b>Nuremberg Code</b> (1947) came out of the Nazi medical experiments and made voluntary consent the foundation. But American researchers could not point across the ocean and say obviously we would never. We had our own cases.</p>
+  <div class="box accent">
+    <p><b>The USPHS syphilis study at Tuskegee, 1932 to 1972.</b> The United States Public Health Service, working with the Tuskegee Institute, set out to study untreated syphilis as it progressed. Six hundred Black men took part: 399 who had syphilis and 201 who did not. They were not told what the study was. They were told they were being treated for "bad blood." They did not give informed consent.</p>
+    <p>By the 1940s penicillin was the standard effective treatment. The men in the study were not offered it. The study ran for <b>forty years</b>.</p>
+  </div>
+  <div class="qa">
+    <div class="qq">Before the reveal: what exactly went wrong? Get three answers into the room.</div>
+    <details class="reveal"><summary>Then open this</summary><div class="model">You'll get deception, absence of informed consent, withholding a treatment that existed, and racism, which is essential rather than incidental to the case. All correct. Now go one layer down: <b>why these men?</b> Why poor Black men in Alabama? One population carried every risk while physicians, institutions, and the rest of the country collected the knowledge. That turns into one of the permanent questions of the field: <b>who bears the burden of producing knowledge, and who receives its benefits?</b> Keep it. It comes back in section 6.</div></details>
+  </div>
+  <p>In 1974 Congress passed the National Research Act and created a commission to think the problem through. In 1979 it published the <button type="button" class="term" data-pop="belmont">Belmont Report</button>, which is surprisingly short, and which rests on three principles: <b>respect for persons, beneficence, justice</b>. Understand those three and you understand the logic under all of CITI and all of IRB review.</p>
+  <div class="read">
+    <div class="t">Read the source &middot; 6 min</div>
+    <p style="margin:.4em 0"><a href="https://hpod.law.harvard.edu/pdf/Belmont-Report-Plain-Language-Summary.pdf" target="_blank" rel="noopener">The Belmont Report: Plain-Language Summary</a> <span class="note">(Harvard Law School Project on Disability, free PDF). The 1979 report in ordinary English. Read it so the next three sections are a second pass, not a first meeting.</span></p>
+  </div>
+
+  <h2>4 &middot; Respect for persons</h2>
+  <p>Belmont says people should be treated as able to decide for themselves, and that people whose capacity to decide is reduced are owed additional protection. The short version: <b>people get to decide what happens to them.</b></p>
+  <p>Which means you don't trick someone into participating, don't hide a risk that matters, don't make participation effectively mandatory, and don't penalize a refusal. And here is the part students most often miss: <b><button type="button" class="term" data-pop="consent">consent</button> is not a piece of paper. Consent is a condition.</b> It depends on three things at once: <b>information, comprehension, voluntariness</b>. Enough to decide on, in a form they can actually follow, with a decision that is actually free.</p>
+  <div class="ex">
+    <div class="t">See it &mdash; the same request, two senders</div>
+    <p><b>From a classmate:</b> "Hey everyone, I need 25 people to finish this survey for my Research Methods grade. I'd really appreciate it if everybody in class helped me out." Not a catastrophe. But look at the pressure sitting inside it: <i>I need you to do this so I can succeed.</i></p>
+    <p><b>From your professor:</b> "I'm running a study and would like students in this class to participate." Now the power relationship is doing the asking. Can the student comfortably say no? Federal guidance warns researchers specifically about recruiting their own students, and if participation earns extra credit there generally has to be an equivalent non-research way to earn the same credit.</p>
+  </div>
+  <p><b>Coercion</b> involves a threat: participate or something bad happens. <b>Undue influence</b> is quieter. The reward or the circumstances get strong enough that the choice stops being as free as it looks. Money can do it. Course credit can do it. A professor's approval can do it. So can access to something scarce, which is what happened at Willowbrook.</p>
   <div class="box">
-    <p><b><button type="button" class="term" data-pop="consent">Informed consent</button>:</b> tell people, in plain language, what the study is, what you'll ask, how long it takes, how you'll protect their data, and that they can stop anytime. Then let them freely say yes.</p>
-    <p><b>Protect their privacy:</b> decide up front whether your study is <button type="button" class="term" data-pop="anon">anonymous or confidential</button>, and collect only the data you truly need. If you don't need a name, don't ask for one.</p>
+    <p><b>Willowbrook State School, 1950s onward.</b> Researchers studied hepatitis at an institution for children with intellectual disabilities in New York. Some children were deliberately infected. The argument was that hepatitis was already widespread inside the institution and that controlled study would produce useful knowledge. The children were institutionalized and cognitively disabled, and during some periods admission to a more desirable part of Willowbrook was tied to taking part in the research.</p>
   </div>
-  <div class="ex">
-    <div class="t">See it &mdash; only ask what you need</div>
-    <p>An egg-carton survey needs to know whether someone reads the claims and how they read them. It does <b>not</b> need their name, email, or address. Drop those fields and your survey is anonymous by design: there's nothing to leak, because you never collected it.</p>
+  <div class="qa">
+    <div class="qq">Your call before the reveal: how voluntary is a parent's permission when the thing their child needs may depend on saying yes?</div>
+    <details class="reveal"><summary>Then open this</summary><div class="model">It isn't, and no signature fixes it. This is vulnerability and undue influence arriving together: the consent is formally present and substantively hollow, because refusing costs the family something they cannot afford. Nothing about the paperwork would have shown that.</div></details>
   </div>
 
-  <h2>4 · Do your CITI training</h2>
-  <p>Before you collect data, App State requires the <button type="button" class="term" data-pop="citi">CITI</button> human-subjects training. It's free, it's online, and you need to <b>pass at 80% or higher</b>. This is the same training real researchers do, and it carries with you.</p>
-  <div class="box accent">
-    <ul class="check">
-      <li><span class="n">1</span><div>Start at App State's <a href="https://researchprotections.appstate.edu/human-subjects-irb/irb-training" target="_blank" rel="noopener">IRB training page</a>. It has the registration instructions and sends you to CITI. Register under <b>Appalachian State University</b> (not as an independent learner) so App State gets your completion.</div></li>
-      <li><span class="n">2</span><div>Complete the <b>Social &amp; Behavioral Research</b> course and pass at <b>80% or higher</b>.</div></li>
-      <li><span class="n">3</span><div><b>Download your completion certificate</b> and keep it. It stays on your App State record, and if you go on to grad school and run a real study, you may just need CITI's quick <b>refresher</b> (required every three years).</div></li>
+  <h2>5 &middot; Beneficence</h2>
+  <p>Beneficence means do not harm people unnecessarily: hold the possible harms down, hold the possible benefits up. Students hear <i>harm</i>, picture a needle, conclude it doesn't apply to a survey, and relax. Social and behavioral research produces a different catalogue of harms.</p>
+  <div class="ex">
+    <div class="t">See it &mdash; four harms with nobody physically injured</div>
+    <ul>
+      <li>You interview workers about harassment at their employer. The recordings leak. Somebody loses a job.</li>
+      <li>You survey students about immigration status. A data breach exposes someone legally and socially.</li>
+      <li>You interview a survivor of sexual assault and ask for detail. You cause psychological distress.</li>
+      <li>You interview three openly LGBTQ people in a small rural town and describe them as "a 53-year-old minister, a 29-year-old teacher, and the owner of a local coffee shop." You used pseudonyms and identified all three anyway.</li>
     </ul>
   </div>
-  <p class="note">Not sure which course to add or how to register? Message me first so you don't complete the wrong one.</p>
-  <div class="box"><p><b>Due this week:</b> your <b>CITI completion certificate</b>. You can't collect data without it, so don't let this be the thing you skip. Upload it where the schedule directs.</p></div>
+  <p>That last one is <b>deductive disclosure</b>: the dataset doesn't need anyone's name in order to give them away. Which produces the question to run before you collect anything: <b>what could happen to this person if the wrong person learned what they told me?</b> That is an ethical question and a research-design question at the same time.</p>
 
-  <h2>5 · A note on the IRB</h2>
-  <p>You should understand what the <button type="button" class="term" data-pop="irb">IRB</button> is, but you won't go through it. Class projects at this level are <b>exempt</b> from IRB review. The catch is that some topics are off the table: you can't study people in jails, schoolchildren, or other protected groups, because those would need a full review a class can't do. A voluntary, anonymous survey of adults is exactly the kind of study you can run.</p>
-  <div class="do">
-    <div class="t">Your turn</div>
-    <p>In <b>Entry 9b</b>, write one or two sentences confirming your study stays inside the lines: adults only, voluntary, anonymous or confidential. If you're not sure your topic qualifies, note the worry there and ask me.</p>
-  </div>
-
-  <h2>6 · Write what you'll actually say</h2>
-  <p>Two short pieces of writing make your study real: a <b>recruitment pitch</b> (the invitation) and a <b>consent statement</b> (what people read before they agree). You don't have to invent the consent form from scratch. Model it on <a href="https://researchprotections.appstate.edu/human-subjects-irb/consent-guidance-and-templates" target="_blank" rel="noopener">App State's consent templates</a> (use the <b>exempt research</b> one, since that's us).</p>
+  <h2>6 &middot; Justice</h2>
+  <p>Here is the Tuskegee question again: <b>who carries the risk of the research, and who collects the benefit?</b> Belmont ties justice directly to how you select participants. Tuskegee is the obvious case. Most justice problems are not obvious.</p>
   <div class="ex">
-    <div class="t">See it &mdash; a plain consent opener</div>
-    <p>"Hi, I'm a student at App State doing a short class research survey about how shoppers read food-label claims. It takes about five minutes, it's anonymous, and you can skip any question or stop anytime. Want to take part?" Plain, honest, and short enough that someone would actually read it.</p>
+    <div class="t">See it &mdash; a justice problem that looks like convenience</div>
+    <p>Your question is "how do Appalachian residents experience access to health information." Your recruitment plan is "I'll email everyone in my Honors seminar." You have just produced a methodological problem and an ethical one in a single move: the sample does not merely skew convenient, it systematically favors the people easiest for you to reach, and it answers a question about Appalachian residents with data about honors students.</p>
+    <p>The larger version: researchers study poor communities repeatedly because those communities are reachable, and rarely design studies that return anything usable to them. The burden lands in one place and the benefit in another.</p>
   </div>
+  <p>So ethics is not only <i>did this individual consent</i>. It is also <b>why are these the people I keep asking to carry the cost of answering my questions?</b></p>
+
+  <div class="complicate"><b>The complication:</b> the three principles can pull against each other. Protecting a vulnerable group by excluding it from your study respects them and also guarantees that nothing you learn will be about them, which is its own justice failure. Belmont does not resolve that for you. It tells you that you owe the tension an argument rather than a shrug.</div>
+
+  <h2>7 &middot; Three calls, made before you look</h2>
+  <p>Three situations close to what you're about to do. Pick which principle each one is breaking, commit, then check. The obvious answer is sometimes wrong, and more than one principle can be in play; choose the one doing the most damage.</p>
+  <div class="pick" id="pick">
+    <div class="row">
+      <p class="scn"><b>1.</b> You're studying how students use the disability-services website. To get participants fast, you ask the accessibility office to forward your survey to everyone who has an active accommodation on file.</p>
+      <select data-a="respect"><option value="">which principle is this breaking?</option><option value="respect">Respect for persons</option><option value="benef">Beneficence</option><option value="justice">Justice</option></select>
+    </div>
+    <div class="row">
+      <p class="scn"><b>2.</b> Your survey about financial stress asks for age, major, ZIP code, employer, and hours worked per week. You only plan to report averages by year in school.</p>
+      <select data-a="benef"><option value="">which principle is this breaking?</option><option value="respect">Respect for persons</option><option value="benef">Beneficence</option><option value="justice">Justice</option></select>
+    </div>
+    <div class="row">
+      <p class="scn"><b>3.</b> Your question is about how first-generation students find help. You recruit entirely from the honors college listserv because you're in it and the response rate is good.</p>
+      <select data-a="justice"><option value="">which principle is this breaking?</option><option value="respect">Respect for persons</option><option value="benef">Beneficence</option><option value="justice">Justice</option></select>
+    </div>
+    <button type="button" class="go">Check all three</button>
+    <div class="fb" id="pickfb"></div>
+  </div>
+  <div class="read">
+    <div class="t">Try the tool &middot; if you want six more</div>
+    <p style="margin:.4em 0"><a href="ethics-scenarios.html" target="_blank" rel="noopener">Is This Ethical?</a> <span class="note">Six situations like your own project. Decide on your own whether each is fine, needs fixing first, or is a clear no, then open the verdict.</span></p>
+  </div>
+
+  <h2>8 &middot; Deception, and the word "public"</h2>
+  <p>Stanley <b>Milgram</b> wanted to know how ordinary people respond to authority. Participants believed they were delivering increasingly powerful electric shocks to another person for every wrong answer. There were no shocks and the other person was in on it, but the participant didn't know that. Milgram reported participants sweating, trembling, stuttering, laughing nervously. Many continued when the experimenter told them to.</p>
+  <div class="qa">
+    <div class="qq">Could he have told them in advance what he was studying? And if not, what follows?</div>
+    <details class="reveal"><summary>Then open this</summary><div class="model">Of course not, which is exactly what makes this a difficult case instead of an easy one. The answer to "can deception be justified" is not automatically no; some social and behavioral research legitimately uses incomplete disclosure. What changes is the weight the researcher now carries: is the deception necessary, could the question be answered another way, what is the risk, how and when are participants debriefed, and could learning the truth itself cause harm? And the part that matters most here: <b>researchers do not get to decide on their own that deception is fine because their study matters to them.</b> That is what independent review is for.</div></details>
+  </div>
+  <p>None of this is history. In 2014 researchers published a study involving <b>689,003 Facebook users</b>. Facebook adjusted how much positive or negative emotional content appeared in people's feeds, then measured changes in what those people posted. The users did not know. The argument offered was that Facebook's Data Use Policy constituted consent.</p>
+  <div class="qa">
+    <div class="qq">If you click "I agree" on nine thousand words of Terms of Service, have you consented to being an experimental subject?</div>
+    <details class="reveal"><summary>Then open this</summary><div class="model">Now carry it into your own work. Someone's TikTok is public: can you study their posts? Someone writes in a public Reddit forum: can you quote them? Now make the forum about addiction, infertility, sexual identity, immigration status, or suicide. Does <b>publicly accessible</b> mean ethically consequence-free? No. <b>Legal access, technical access, and ethical permission are three separate questions</b>, and for digital research that distinction is most of the job.</div></details>
+  </div>
+
+  <h2>9 &middot; CITI, the IRB, and your own conduct are three things</h2>
+  <p>They overlap and they are not interchangeable. Passing <button type="button" class="term" data-pop="citi">CITI</button> means you finished human-subjects training; it does not pre-approve anything you invent afterward. <button type="button" class="term" data-pop="irb">IRB</button> approval means one particular protocol got reviewed. <b>Ethical conduct is what you do during the research</b>, and you can hold an approved protocol and still behave badly inside it.</p>
+  <p>The reason independent review exists is simple and slightly uncomfortable: the researcher wants the study to happen, which makes the researcher a poor judge of whether it should. So somebody outside the team asks whether risks are minimized, whether they're reasonable next to the expected benefit, whether selection is equitable, whether consent will actually be informed and voluntary, and whether extra protections are needed.</p>
+  <div class="box accent">
+    <p><b>What this means for you at App State.</b> If an undergraduate class project exists solely to satisfy a course requirement, App State currently says it does not meet the federal definition of research and does not require IRB approval. That is not a release from ethics: the university says you and I remain responsible for running it ethically and getting appropriate permission from participants.</p>
+    <p>If the project is meant to produce or contribute to <b>generalizable knowledge</b>, it may become human-subjects research, and then you cannot recruit, collect, or involve anybody until you have IRB approval or an official exemption determination. And <b>exempt does not mean exempt from ethics</b>. It means exempt from certain regulatory requirements and from levels of continuing review. App State applies autonomy and consent expectations to exempt research too.</p>
+  </div>
+  <div class="read">
+    <div class="t">Due this week &middot; your CITI certificate</div>
+    <p style="margin:.4em 0">Register through <a href="https://researchprotections.appstate.edu/human-subjects-irb/irb-training" target="_blank" rel="noopener">App State's IRB training page</a> under Appalachian State University, not as an independent learner, so your completion lands on your record. Complete the <b>Social &amp; Behavioral Research</b> course and pass at 80% or higher, then download the certificate. Certification runs three years. Message me before you start if you aren't sure which course to add, so you don't finish the wrong one.</p>
+    <p class="note" style="margin:.4em 0">Do it with the questions underneath the questions in mind. When CITI asks about consent, think Tuskegee. Vulnerable populations, think Willowbrook. Deception, think Milgram. Digital privacy, think Facebook. Justice, ask why these people.</p>
+  </div>
+
+  <h2>10 &middot; Your study: who you ask, and what you don't collect</h2>
+  <p>Recruitment is part of research design, not a chore that comes after it. A recruitment message should give somebody enough to decide whether they're interested, without misleading or pressuring them: who is running it, roughly what it's about, what taking part involves, how long it takes, whether there's compensation, who's eligible, and that it's voluntary.</p>
+  <div class="ex">
+    <div class="t">See it &mdash; the same study, two invitations</div>
+    <p><b>Don't:</b> "I desperately need six people for my research project. It only takes twenty minutes and would really help me get a good grade." The appeal there is guilt.</p>
+    <p><b>Do:</b> "You are invited to take part in a student research project about how people evaluate information on environmental websites. Participation is one session of about 20 minutes. It's voluntary and you may stop at any time."</p>
+    <p>Notice how boring the second one is. In recruitment, boring is the goal. Your job is to <b>invite</b> people, not to <b>convince</b> them, and those are different rhetorical situations. When you've drafted yours, go back and circle anything that reads as persuasion: <i>I desperately need, help me out, it's super easy, there's absolutely no risk, you'll be helping improve.</i></p>
+  </div>
+  <p>Start from the question, not from convenience: who actually has the experience or characteristic needed to answer it? Then set inclusion criteria, then ask the Belmont follow-up, <b>who am I excluding, and why?</b> Sometimes exclusion is methodologically necessary. Sometimes you simply forgot those people existed.</p>
+  <p>Be careful with power. Don't casually recruit your employees, your students, or anybody who might reasonably believe that refusing costs them something. And think about incentives: twenty dollars for an hour-long interview is a reasonable acknowledgment of somebody's time, two thousand dollars for the same interview is a different object. The risk didn't change; the participant's ability to comfortably refuse did. <b>Payment is not automatically coercive. Context decides whether an incentive has become undue influence.</b></p>
+  <div class="ex">
+    <div class="t">See it &mdash; anonymous and confidential are not synonyms</div>
+    <p><button type="button" class="term" data-pop="anon">Anonymous</button> means you cannot reasonably connect a response to the person who gave it. <b>Confidential</b> means you can, and you've agreed to protect the connection. Interviewing someone face to face is not anonymous. Audio recording is definitely not anonymous, because a voice is an identifier. Labeling somebody "Participant 7" while keeping a sheet that says Participant 7 = Jordan Smith is confidential, not anonymous.</p>
+    <p>Which leads to the most useful design decision available to you: <b>don't collect what you don't need.</b> If an age range works, skip date of birth. If you don't need names, don't ask. If you don't need IP addresses, don't store them. Every identifier you collect is something you've taken on the duty to protect. Data minimization is ethics, not paperwork.</p>
+  </div>
+  <p>The same care applies to quotations. If a participant says "I've worked at the county health department for seventeen years, and after the COVID response I no longer trust our director," removing the name may not anonymize anything, because three people have been there seventeen years. So don't write "all participants will be anonymous" in your methods unless it's accurate. Usually the accurate sentence is "identifying information will be removed from reports and participants will be referred to by pseudonyms."</p>
+  <p>And on sensitive questions: asking age is fine, asking major is probably fine, asking whether someone has been sexually assaulted changes the burden entirely. Why do you need it, what will you do with it, what risk does answering create, can they skip it, are resources available if it causes distress, and do you have the training to handle the answer? <b>Curiosity is not sufficient justification for intrusion.</b> Wanting to know does not entitle you to ask.</p>
+  <p>Some populations carry additional regulatory protection, including children and prisoners, with further federal provisions covering research involving pregnancy. App State also flags populations warranting extra precaution: trauma survivors, people with medical or psychological conditions, members of stigmatized groups, cognitively impaired people, and student athletes. Not because those people can't participate, which would be its own insult, but because circumstances may change how freely they can choose or how much participation could cost them.</p>
+
+  <h2>11 &middot; The seven questions, then write it</h2>
+  <p>Before you recruit anybody, you should be able to answer all seven. If you can't, your methodology isn't finished yet.</p>
+  <ul class="check">
+    <li><span class="n">1</span><div>Why do I need human participants at all?</div></li>
+    <li><span class="n">2</span><div>Why these participants?</div></li>
+    <li><span class="n">3</span><div>What exactly am I asking them to do?</div></li>
+    <li><span class="n">4</span><div>What is the worst reasonably foreseeable thing that could happen to somebody because they took part?</div></li>
+    <li><span class="n">5</span><div>What have I done to make that less likely?</div></li>
+    <li><span class="n">6</span><div>How will they know they can say no, skip something, or stop?</div></li>
+    <li><span class="n">7</span><div>What am I collecting that I could simply choose not to collect?</div></li>
+  </ul>
   <div class="do">
-    <div class="t">Your turn</div>
-    <p>In <b>Entry 9b</b>, draft <b>both</b> for your own study: your recruitment pitch and your consent statement. Write the consent statement the way you'd want it written if a stranger were about to study you. Save happens automatically.</p>
+    <div class="t">Your turn &middot; Entry 9b</div>
+    <p>Four things, in your notebook:</p>
+    <p><b>1.</b> Finish both sentences. <i>I need participants who ______ because ______.</i> Then the one that's more difficult: <i>I do not need to know ______ about them because ______.</i> The second sentence is worth as much as the first, because ethical research is partly a decision about what not to collect.</p>
+    <p><b>2.</b> One or two sentences confirming your study stays inside the lines: adults only, voluntary, anonymous or confidential. If you're unsure your topic qualifies, write the worry down and ask me.</p>
+    <p><b>3.</b> Your recruitment message. Then reread it and circle the persuasion.</p>
+    <p><b>4.</b> Your consent statement. Model it on <a href="https://researchprotections.appstate.edu/human-subjects-irb/consent-guidance-and-templates" target="_blank" rel="noopener">App State's consent templates</a>, the exempt-research one. Write it the way you'd want it written if a stranger were about to study you. Answer at minimum: what is this, why me, what will happen, how long, what are the foreseeable risks, will you record me, who sees it, will you quote me, could the quote identify me, can I skip a question, can I leave, who do I contact. And <b>what happens if I say no</b>, where the answer should be: nothing.</p>
   </div>
-
-  <h2>7 · Do it now</h2>
-  <p>Open your Research Notebook and complete <b>Entry 9b</b>: your IRB confirmation, your recruitment pitch, and your consent statement.</p>
-  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
-
-  <div class="debrief">
-    <span class="lab">Class debrief · together at the end</span>
-    <p>We'll come back together as a class to close. Come ready with <b>the scenario from the tool that felt genuinely gray to you</b> and how you'd fix it, plus <b>the one line of your consent statement you're least sure about</b>. Those two things are where the real ethical judgment lives, and arguing them out loud is how we sharpen it.</p>
-  </div>
+  <p><a class="btn" href="research-notebook.html#entry-9b" target="_blank" rel="noopener">Open Entry 9b &rarr;</a></p>
 
   <div class="close">
-    <p><b>A 10-minute prime for next week.</b> Before Tuesday, look at your locked question and jot the <b>one thing you most want to ask your people</b>, the single question you'd hate to walk away without. That's exactly where next Thursday starts: <b>designing surveys and interviews</b>, turning your topic into questions that get you real, usable data.</p>
+    <p><b>Where we started.</b> What gives you the right to turn another person into data? Not curiosity. Not the assignment. Not that you're a researcher, and not even that the knowledge might be useful.</p>
+    <p>What makes it defensible is a relationship. The participant lends you something: their time, their experience, their words, their behavior, sometimes very private parts of their life. The three principles are an instruction to behave as though that loan matters. <b>Respect:</b> this is a person capable of choosing. <b>Beneficence:</b> their welfare outranks my convenience. <b>Justice:</b> I have to think about whose life pays for what I learn.</p>
+    <p>The forms come later. The IRB comes later. CITI comes later. The obligation starts the moment you decide you want to know something about another human being.</p>
+    <p class="note"><b>A ten-minute prime for next week.</b> Look at your locked question and write down the one thing you most want to ask your people, the single question you'd hate to walk away without. That is where next Thursday starts: turning a topic into questions that produce usable data.</p>
   </div>
 
+
   <dialog class="pop" id="pop-belmont"><h3>The Belmont Report</h3><p>A 1979 U.S. report, written after abuses like the Tuskegee study, that set the three principles all human-subjects research now follows: <b>respect for persons</b> (informed, voluntary participation), <b>beneficence</b> (maximize good, minimize harm), and <b>justice</b> (fairly share risks and benefits, don't exploit the vulnerable). Your CITI training is built on it.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-consent"><h3>Informed consent</h3><p>Before anyone takes part, they get a plain-language explanation of what the study is, what you'll ask, how their data will be used and protected, and that they can stop anytime, and then they freely agree. "Informed" and "voluntary" are the whole idea. No consent, no data.</p><p>Example: a one-paragraph note at the top of your survey that says who you are, what the survey is about, how long it takes, that it's anonymous, and that they can quit anytime.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-consent"><h3>Informed consent</h3><p>Before anyone takes part, they get a plain-language explanation of what the study is, what you'll ask, how their data will be used and protected, and that they can stop anytime, and then they freely agree. "Informed" and "voluntary" are what the standard rests on. No consent, no data.</p><p>Example: a one-paragraph note at the top of your survey that says who you are, what the survey is about, how long it takes, that it's anonymous, and that they can quit anytime.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-anon"><h3>Anonymous vs. confidential</h3><p>Not the same thing. <b>Anonymous</b> means you never collect anything that could identify a person, not even you can link a response to a name. <b>Confidential</b> means you might know who said what, but you protect it and never reveal it. If your form asks for a name or email, you can only promise confidentiality.</p><p>Example: a survey with no name field is anonymous; an interview where you know who you talked to is, at best, confidential.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-irb"><h3>IRB (Institutional Review Board)</h3><p>A committee at a university that reviews research with human participants before it begins, to keep it ethical. The key thing for you: student projects for a class at this level are <b>exempt</b>, so you will not go through IRB review. That's also why some topics are off the table: you can't study people in jails, schoolchildren, or other protected groups, because those need a full review a class project can't do. A short anonymous survey of adults is exactly the kind of thing that's fine.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-citi"><h3>CITI</h3><p>The Collaborative Institutional Training Initiative, the standard online training in research ethics that most universities require before you work with human participants. You read short modules and pass quizzes (80% or higher), then download a completion certificate that's good for about three years.</p><p>Example: the <b>Social &amp; Behavioral Research</b> course you'll complete this week is the same training real researchers do, so it's another line for your resume.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-citi"><h3>CITI</h3><p>The Collaborative Institutional Training Initiative, the standard online training in research ethics that most universities require before you work with human participants. You read short modules and pass quizzes (80% or higher), then download a completion certificate that's good for about three years.</p><p>Example: the <b>Social &amp; Behavioral Research</b> course you'll complete this week is the same training professional researchers do, so it's another line for your resume.</p><form method="dialog"><button>Got it</button></form></dialog>
 
 </div>
 
@@ -186,5 +293,27 @@
     d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
   });
 </script>
+
+<script>
+(function(){
+  var box=document.getElementById('pick'); if(!box) return;
+  var NAME={respect:'Respect for persons',benef:'Beneficence',justice:'Justice'};
+  var WHY=[
+   'Respect for persons. Forwarding through the accessibility office means the invitation arrives from the office that controls the accommodation, so a student may not feel free to ignore it. That is undue influence, and it also discloses who has a file on record.',
+   'Beneficence. Every identifier you collect is a harm you now have to prevent, and ZIP code plus employer plus hours plus major can single somebody out even with no name attached. You are reporting averages by year, so most of that data has no job except to leak. Collect less.',
+   'Justice. The honors listserv is reachable, not representative. You would be answering a question about first-generation students with data from the group least likely to need what you are studying, and the burden and the benefit come apart.'];
+  box.querySelector('.go').addEventListener('click',function(){
+    var sels=box.querySelectorAll('select'), fb=document.getElementById('pickfb'), n=0, out='';
+    for(var i=0;i<sels.length;i++){ if(!sels[i].value){ fb.className='fb no on'; fb.innerHTML='<b>Pick all three first.</b> Commit before you check; the point is to be wrong on purpose where it costs nothing.'; return; } }
+    for(var i=0;i<sels.length;i++){
+      var ok=sels[i].value===sels[i].getAttribute('data-a'); if(ok) n++;
+      out+='<p style="margin:.45rem 0"><b>'+(i+1)+'. '+(ok?'Yes':'Not quite')+'.</b> '+(ok?'':'You said '+NAME[sels[i].value]+'. ')+WHY[i]+'</p>';
+    }
+    fb.className='fb '+(n===3?'ok':'no')+' on';
+    fb.innerHTML='<p style="margin:.2rem 0"><b>'+n+' of 3.</b> More than one principle is usually in play; these are the ones doing the most damage.</p>'+out;
+  });
+})();
+</script>
+
 </body>
 </html>

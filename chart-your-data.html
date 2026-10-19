@@ -105,7 +105,7 @@
   <h2 class="sec">1 · Your data</h2>
   <div class="panel">
     <label class="fld" for="qTitle">Chart title (usually your survey question)</label>
-    <input type="text" id="qTitle" value="How often do you look for a 'certified organic' seal?">
+    <input type="text" id="qTitle" value="How often do you read local coverage of homelessness?">
     <p style="font-size:.88rem;color:var(--muted);margin:2px 0 8px">Sample data is loaded. Replace the labels and counts with your own tallies, one row per answer choice.</p>
     <table>
       <thead><tr><th>Answer choice</th><th>Count</th><th></th></tr></thead>
@@ -135,7 +135,7 @@
     <b>Before this goes in your report:</b> does the chart start at a fair baseline, is every axis and slice labeled, and did you state your <button type="button" class="term" data-pop="n">N</button>? A reader should get the true story at a glance, not the story you wish were true. That's the whole difference between analysis and spin.</div>
 
   <dialog class="pop" id="pop-frequency"><h3>Frequency table</h3><p>A simple count of how many people chose each answer. If 14 of your 42 respondents picked "Sometimes," that's a frequency. Building one is the first step of any quantitative analysis: it turns a column of individual responses into countable totals you can compare and chart. In Google Sheets, <b>COUNTIF</b> tallies them for you.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-descriptive"><h3>Descriptive statistics</h3><p>Plain numbers that summarize your data, no advanced math required. The ones you'll actually use: the <b>count</b> (how many, your N), the <b>percentage</b> for each answer, and the <b>mode</b> (the most common answer). For genuinely numeric data you can add a <b>mean</b> (average) or <b>median</b> (middle value). You do not need regression or p-values for this project.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-descriptive"><h3>Descriptive statistics</h3><p>Simple numbers that summarize your data, no advanced math required. The ones you'll actually use: the <b>count</b> (how many, your N), the <b>percentage</b> for each answer, and the <b>mode</b> (the most common answer). For numeric data you can add a <b>mean</b> (average) or <b>median</b> (middle value). You do not need regression or p-values for this project.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-chartfit"><h3>Match the chart to the data</h3><p><b>Bar chart:</b> comparing separate categories or answer choices (the workhorse, almost always safe). <b>Pie chart:</b> parts of one whole that add to 100%, and only when you have a few slices. <b>Line chart:</b> change over time. <b>Stacked or grouped bars:</b> comparing groups against each other. When in doubt, a clean bar chart is rarely wrong.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-truncate"><h3>The truncated-axis trick</h3><p>The most common way charts lie: instead of starting the vertical axis at zero, you start it near the data so small differences look enormous. A jump from 48% to 52% can be drawn to look like a landslide. Flip the toggle to see it happen to your own data. Then never do it, start bars at zero, and you can't accidentally deceive anyone.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-n"><h3>N (your sample size)</h3><p>N is how many responses your chart is built on. Always report it ("N = 42"), because a percentage means something very different at N = 8 than at N = 800. A small N isn't shameful, it's normal for a class project, but hiding it lets a reader assume more certainty than your data can support. State it, own it.</p><form method="dialog"><button>Got it</button></form></dialog>
@@ -287,7 +287,7 @@
   document.getElementById('mislead').addEventListener('change', render);
   document.getElementById('qTitle').addEventListener('input', render);
   document.getElementById('addRow').addEventListener('click', function(){ addRow('',''); });
-  document.getElementById('reset').addEventListener('click', function(){ loadSample(); document.getElementById('qTitle').value="How often do you look for a 'certified organic' seal?"; render(); });
+  document.getElementById('reset').addEventListener('click', function(){ loadSample(); document.getElementById('qTitle').value="How often do you read local coverage of homelessness?"; render(); });
 
   document.getElementById('download').addEventListener('click', function(){
     var svg=document.querySelector('#chartWrap svg');

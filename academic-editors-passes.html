@@ -20,7 +20,7 @@
   #ep .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
   #ep .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px}
   #ep .sub{color:var(--muted); margin:8px 0 0}
-  #ep .honest{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:11px 14px; font-size:.92rem; margin:14px 0}
+  #ep .complicate{background:var(--accent-soft); border:1px solid var(--line); border-radius:10px; padding:11px 14px; font-size:.92rem; margin:14px 0}
   #ep label.fld{font-weight:600; display:block; margin-bottom:6px}
   #ep textarea{width:100%; background:var(--field); color:var(--ink); border:1.5px solid var(--line); border-radius:10px; padding:11px 13px; font:inherit; line-height:1.6; resize:vertical}
   #ep #draft{min-height:200px}
@@ -90,11 +90,11 @@
   <header class="masthead">
     <p class="kicker">ENG 3090 · Revision Tool</p>
     <h1>The Editor's Passes</h1>
-    <p class="sub">One research-writing move at a time. The tool pulls a real piece of your draft and asks you to make the call, then rewrite it. It never judges your writing. You do.</p>
+    <p class="sub">One research-writing move at a time. The tool pulls an actual piece of your draft and asks you to make the call, then rewrite it. It never judges your writing. You do.</p>
   </header>
 
   <div id="start">
-    <div class="honest">This walks you through five editing passes on your own draft: your <b>claim</b>, your <b>quotes</b>, your <b>hedging</b>, your <b>strongest source</b>, and your <b>signposting</b>. It pulls parts out by position and pattern so you can look at each with fresh eyes. It does not read your writing for meaning or grade it. Every judgment is yours to make. This runs on your computer, and nothing you paste leaves it. It saves only in this browser.</div>
+    <div class="complicate">This walks you through five editing passes on your own draft: your <b>claim</b>, your <b>quotes</b>, your <b>hedging</b>, your <b>strongest source</b>, and your <b>signposting</b>. It pulls parts out by position and pattern so you can look at each with fresh eyes. It does not read your writing for meaning or grade it. Every judgment is yours to make. This runs on your computer, and nothing you paste leaves it. It saves only in this browser.</div>
     <label class="fld" for="draft">Paste your draft</label>
     <textarea id="draft" placeholder="Paste your whole draft. Leave a blank line between paragraphs so it can split cleanly…"></textarea>
     <div class="row"><button type="button" id="begin">Begin the passes</button></div>
@@ -114,8 +114,8 @@
 
 <dialog class="pop" id="pop-signal"><h3>Signal phrase</h3><p>A few words that name whose voice you are quoting and frame their point before the quotation lands: "Smith argues that…," "According to the FDA…," "As Nestle notes…." It hands the reader the source's identity and your take in one move, so a quote never appears out of nowhere.</p><form method="dialog"><button>Got it</button></form></dialog>
 <dialog class="pop" id="pop-sandwich"><h3>The quote sandwich</h3><p>Three layers: a signal phrase to introduce it, the quote itself, and then your own sentence saying what it means and why it matters for your argument. A quote dropped in with no top and no bottom slice makes the reader do your interpreting for you. Example bottom slice: "That phrasing matters because it lets a label imply a health benefit the product never earned."</p><form method="dialog"><button>Got it</button></form></dialog>
-<dialog class="pop" id="pop-hedge"><h3>Hedging</h3><p>Language that matches a claim to the strength of its evidence: "suggests," "is associated with," "in this sample," "tends to." The opposite is overclaiming ("proves," "always," "everyone"). Data from one small study rarely proves anything. WITHOUT hedge: "Organic labels always fool shoppers." WITH hedge: "In this sample, the word 'organic' was more likely to be read as a health claim." The hedged version is the one a careful reader trusts.</p><form method="dialog"><button>Got it</button></form></dialog>
-<dialog class="pop" id="pop-peer"><h3>Peer-reviewed</h3><p>Vetted by other experts in the field before publication. It is not a guarantee of truth, but it is a real filter. An industry marketing blog, a press release, or a company's own "research" page has not been through that filter, so it needs more scrutiny before you lean on it, especially when the source profits from the claim.</p><form method="dialog"><button>Got it</button></form></dialog>
+<dialog class="pop" id="pop-hedge"><h3>Hedging</h3><p>Language that matches a claim to the strength of its evidence: "suggests," "is associated with," "in this sample," "tends to." The opposite is overclaiming ("proves," "always," "everyone"). Data from one small study rarely proves anything. WITHOUT hedge: "Calling people 'the homeless' always dehumanizes them." WITH hedge: "In this sample, 'the homeless' was more likely to be read as a condition than as a group of people." The hedged version is the one a careful reader trusts.</p><form method="dialog"><button>Got it</button></form></dialog>
+<dialog class="pop" id="pop-peer"><h3>Peer-reviewed</h3><p>Vetted by other experts in the field before publication. It is not a guarantee of truth, but it is a useful filter. An industry marketing blog, a press release, or a company's own "research" page has not been through that filter, so it needs more scrutiny before you lean on it, especially when the source profits from the claim.</p><form method="dialog"><button>Got it</button></form></dialog>
 <dialog class="pop" id="pop-signpost"><h3>Signposting</h3><p>The topic sentences and transitions that tell a reader where they are and where they are headed. Read only the first sentence of each paragraph in a row: if that chain still tells the story of your argument, your signposting is doing its job. If the chain reads as disconnected facts, the reader is doing the connecting you should have done.</p><form method="dialog"><button>Got it</button></form></dialog>
 
 <script>
@@ -130,7 +130,7 @@
   function sents(p){ return (p.match(/[^.!?]+[.!?]+["'”’)]?/g)||[p]).map(function(s){return s.trim();}).filter(Boolean); }
   function lastSentOfFirstPara(t){ var ps=paras(t); if(!ps.length) return ''; var s=sents(ps[0]); return s.length?s[s.length-1]:ps[0].slice(0,180); }
   function extractQuotes(t){ var out=[]; var re=/[“"]([^“”"]{6,400})[”"]/g, m; while((m=re.exec(t))){ out.push(m[1].trim()); } return out; }
-  var ABS=/\b(prove[sd]?|proof|obviously|clearly|undeniably|definitely|certainly|without a doubt|always|never|everyone|everybody|nobody|no one|all shoppers|impossible|guarantee[sd]?|the only|completely|totally|entirely)\b/i;
+  var ABS=/\b(prove[sd]?|proof|obviously|clearly|undeniably|definitely|certainly|without a doubt|always|never|everyone|everybody|nobody|no one|all residents|impossible|guarantee[sd]?|the only|completely|totally|entirely)\b/i;
   function absSentences(t){ return sents(t.replace(/\n/g,' ')).filter(function(s){ return ABS.test(s); }); }
   function firstSents(t){ return paras(t).map(function(p){ var s=sents(p); return s.length?s[0]:p.slice(0,120); }); }
 
@@ -178,7 +178,7 @@
     h+='<p>Most research drafts state the controlling claim at the end of the opening paragraph. Here is that sentence. If your real claim lives somewhere else, paste it into the box below.</p>';
     h+='<div class="quote plain">'+esc(extracted.claim||'(nothing pulled yet)')+'</div>';
     h+=fld('claim_actual','If that is not your claim, paste your actual claim here (optional):','Your central claim…',60);
-    h+='<div class="model"><b>Arguable and qualified:</b> "In this sample of eighteen local labels, appeals to nature were more common than any verifiable health claim." &nbsp; <b>Overclaimed / not arguable:</b> "This paper is about food labels." or "Organic food is always healthier."</div>';
+    h+='<div class="model"><b>Arguable and qualified:</b> "In this sample of eighteen local labels, appeals to nature were more common than any verifiable health claim." &nbsp; <b>Overclaimed / not arguable:</b> "This paper is about homelessness coverage." or "Local reporting is always dehumanizing."</div>';
     h+='<p style="font-weight:600;margin-bottom:2px">Your call: is it an arguable, <button type="button" class="term" data-pop="hedge">qualified</button> claim, or is it an announcement or an overclaim?</p>';
     h+=judgeBlock('claim',[['arg','Arguable + qualified'],['ann','Just announces the topic'],['over','Overclaimed']],
       {arg:'If a reasonable person could disagree with it and your evidence could support it, keep it. Check that it is scoped ("in this sample," "these labels"), not a claim about all food everywhere.',
@@ -212,7 +212,7 @@
   function renderHedge(){
     var h='<div class="no">Pass 3 of 5</div><h2>Your hedging and register</h2>';
     h+='<p>The tool searched for absolute words ("proves," "always," "never," "everyone," "obviously"). Finding the word is reliable. Whether it is warranted is your call: does your evidence really reach that far?</p>';
-    h+='<div class="model"><b>Overclaimed:</b> "This proves organic labels always mislead everyone." &nbsp; <b>Matched to the evidence:</b> "In this sample, organic labels were often read as health claims, which suggests they can mislead."</div>';
+    h+='<div class="model"><b>Overclaimed:</b> "This proves local reporting always dehumanizes everyone." &nbsp; <b>Matched to the evidence:</b> "In this sample, 'the homeless' was often read as a condition rather than as people, which suggests they can mislead."</div>';
     if(!extracted.abs.length){
       h+='<p class="note">No absolute or overclaiming words turned up. That is a good sign for register. Read your strongest claim once more and confirm it says "suggests" or "is associated with" rather than "proves."</p>';
       h+=fld('hedge_note','Paste your single strongest claim and check it is scoped to your evidence:','Your strongest claim…',70);
@@ -239,7 +239,7 @@
       +chk('pub','Do you know where it was published, and is it a serious venue?','A journal, university press, government agency, or established news outlet, not an anonymous page.')
       +chk('peer','Is it <button type="button" class="term" data-pop="peer">peer-reviewed</button> or evidence-based (data, cited sources)?','A marketing blog or press release is neither.')
       +chk('date','Do you know the date, and is it current enough for your question?','Recent where recency matters; a landmark older work can still count.')
-      +chk('bias','Have you checked who funded or benefits from it?','A claim about organic food from an organic-industry group needs corroboration.')
+      +chk('bias','Have you checked who funded or benefits from it?','A claim about homelessness from a downtown business association needs corroboration.')
       +'</div>';
     h+='<div class="rating" id="srcRating" hidden></div>';
     h+=judgeBlock('src',[['keep','Keep it as is'],['corrob','Keep but corroborate'],['replace','Replace it']],
@@ -257,7 +257,7 @@
     h+='<div class="card">';
     (extracted.firsts||[]).forEach(function(s,i){ h+='<div style="border-top:1px solid var(--line);padding:7px 0"><b style="color:var(--accent)">'+(i+1)+'.</b> '+esc(s)+'</div>'; });
     h+='</div>';
-    h+='<div class="model"><b>Connected chain:</b> "Labels lean on nature… These nature claims cluster on three products… The pattern serves the seller, not the shopper… One limitation is the small corpus." Each opener ties back and moves forward.</div>';
+    h+='<div class="model"><b>Connected chain:</b> "Labels lean on nature… These nature claims cluster on three products… The pattern serves the people who want the camp gone, not the people in it… One limitation is the small corpus." Each opener ties back and moves forward.</div>';
     h+='<p style="font-weight:600;margin-bottom:2px">Your call: does that chain read as one connected argument, or as disconnected facts?</p>';
     h+=judgeBlock('sign',[['flow','Connected argument'],['jump','Disconnected facts']],
       {flow:'Good. Confirm no two openers repeat the same move, and that a stranger could guess your through-line from the chain alone.',
