@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENG 3090 · Worksheet: From Data to Display</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
+    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
+    --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
+  }
+  #mod .pr{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0}
+  @media (max-width:680px){ #mod .pr{grid-template-columns:1fr} }
+  #mod .pr>div{border:1px solid var(--line); border-radius:11px; padding:12px 15px; background:var(--card)}
+  #mod .pr .bad{border-left:4px solid #a33}
+  #mod .pr .good{border-left:4px solid var(--good)}
+  #mod .pr .lab{display:block; font-size:.68rem; letter-spacing:.11em; text-transform:uppercase; font-weight:800; margin-bottom:5px; color:#a33}
+  #mod .pr .good .lab{color:var(--good)}
+  #mod .pr q{font-style:italic; display:block; font-size:1rem; line-height:1.45}
+  #mod .tbl{width:100%; border-collapse:collapse; margin:12px 0; font-size:.93rem}
+  #mod .tbl th,#mod .tbl td{border:1px solid var(--line); padding:9px 11px; text-align:left; vertical-align:top}
+  #mod .tbl th{background:var(--accent-soft); color:var(--accent); font-size:.72rem; letter-spacing:.09em; text-transform:uppercase}
+  #mod .tbl td b{color:var(--accent)}
+  #mod .tblwrap{overflow-x:auto; margin:12px 0}
+  #mod .quiz{margin:14px 0}
+  #mod .quiz .it{background:var(--card); border:1px solid var(--line); border-radius:11px; padding:12px 15px; margin:10px 0}
+  #mod .quiz .it p{margin:0 0 8px; font-size:.97rem}
+  #mod .quiz .it select{width:100%; max-width:380px; padding:8px 10px; border:1px solid var(--line); border-radius:7px; font:inherit; font-size:.92rem; background:var(--field); color:var(--ink)}
+  #mod .quiz .fb{display:none; margin-top:9px; font-size:.92rem; line-height:1.45; border-radius:7px; padding:9px 12px}
+  #mod .quiz .it.right .fb{display:block; background:var(--accent-soft); border-left:3px solid var(--good)}
+  #mod .quiz .it.wrong .fb{display:block; background:#fdeeee; border-left:3px solid #a33}
+  #mod .score{display:none; margin:10px 0 0; font-weight:700; font-size:.95rem}
+  #mod .four{display:grid; grid-template-columns:repeat(4,1fr); gap:11px; margin:14px 0}
+  @media (max-width:760px){ #mod .four{grid-template-columns:1fr 1fr} }
+  #mod .four>div{background:var(--card); border:1px solid var(--line); border-top:4px solid var(--accent); border-radius:11px; padding:12px 13px}
+  #mod .four h4{margin:0 0 5px; color:var(--accent); font-size:.86rem; letter-spacing:.1em; text-transform:uppercase}
+  #mod .four p{margin:0; font-size:.92rem; line-height:1.42}
+  #mod .bars{display:flex; gap:34px; align-items:flex-end; justify-content:center; flex-wrap:wrap; margin:14px 0}
+  #mod .bars .col{display:flex; flex-direction:column; align-items:center; gap:8px}
+  #mod .bars .plot{display:flex; gap:16px; align-items:flex-end; height:150px; padding:0 12px 0 8px; border-left:2px solid var(--line); border-bottom:2px solid var(--line)}
+  #mod .bars .bar{width:48px; background:var(--accent); border-radius:4px 4px 0 0; position:relative}
+  #mod .bars .bar span{position:absolute; top:-1.5em; left:0; right:0; text-align:center; font-weight:800; font-size:.78rem; color:var(--ink)}
+  #mod .bars .cap{font-size:.78rem; color:var(--muted); text-align:center; max-width:14em; line-height:1.4}
+  #mod .audit{margin:12px 0}
+  #mod .audit li{list-style:none; display:block; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:11px 14px; margin:8px 0; font-size:.95rem; line-height:1.45}
+  #mod .audit ul{padding-left:0; margin:0}
+  #mod .audit label{display:block; cursor:pointer; padding-left:28px; position:relative}
+  #mod .audit input{position:absolute; left:0; top:.25em; width:17px; height:17px; accent-color:var(--accent)}
+  #mod .audit .w{display:block; margin-top:4px; font-size:.86rem; color:var(--muted)}
+  #mod .verdict{display:none; border-radius:11px; padding:13px 16px; margin:12px 0; font-size:.96rem; line-height:1.5}
+  #mod .flow{display:flex; align-items:center; gap:9px; flex-wrap:wrap; margin:14px 0}
+  #mod .flow .st{background:var(--accent-soft); border:1px solid var(--line); border-radius:999px; padding:7px 15px; font-weight:700; color:var(--accent); font-size:.9rem}
+  #mod .flow .ar{color:var(--muted); font-weight:800}
+  #mod .wsname{display:flex; gap:10px; align-items:baseline; margin:14px 0 18px; font-size:.95rem; color:var(--muted)}
+  #mod .wsname .rule{flex:1; border-bottom:1px solid var(--ink); height:1.3em}
+  #mod .ws{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:15px 18px; margin:16px 0}
+  #mod .ws h3{margin:0 0 4px; font-size:1.02rem; color:var(--accent)}
+  #mod .ws .meta{font-size:.84rem; color:var(--muted); margin:0 0 10px}
+  #mod .ws ol{padding-left:1.3rem; margin:8px 0 0}
+  #mod .ws ol>li{margin:0 0 14px; font-size:.97rem; line-height:1.5}
+  #mod .lines{display:block; margin-top:6px}
+  #mod .lines i{display:block; border-bottom:1px solid var(--line); height:1.55em}
+  #mod .wsq{width:100%; min-height:62px; border:1px solid var(--line); border-radius:8px; padding:8px 10px; font:inherit; font-size:.94rem; background:var(--field); color:var(--ink); resize:vertical; margin-top:6px}
+  #mod .pbtns{display:flex; gap:10px; flex-wrap:wrap; margin:18px 0}
+  @media print{
+    .coursenav, #mod .pbtns, #mod .noprint{display:none !important}
+    #mod .wsq{border:none; border-bottom:1px solid #999; border-radius:0; background:#fff; min-height:0; height:3.4em}
+    #mod .quiz .it select{border:1px solid #999; background:#fff}
+    body, #mod{background:#fff !important; color:#000 !important}
+    #mod .ws, #mod .quiz .it{break-inside:avoid; page-break-inside:avoid}
+    #mod h2{page-break-after:avoid}
+    a[href]:after{content:""}
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+  #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
+  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:30px 0 8px}
+  #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
+  #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
+  #mod .sub{color:var(--muted); margin:6px 0 0}
+  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
+  #mod .box.accent{border-left:5px solid var(--accent)}
+  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.35rem 0}
+  #mod .check{list-style:none; padding-left:0}
+  #mod .check li{display:flex; gap:10px; align-items:flex-start; margin:.5rem 0}
+  #mod .check .n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.9rem}
+  #mod .debrief{background:var(--talksoft); border:1px solid var(--line); border-left:5px solid var(--talk); border-radius:12px; padding:14px 16px; margin:18px 0}
+  #mod .debrief .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--talk); display:block; margin-bottom:3px}
+  #mod .debrief p{margin:.2rem 0}
+  #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
+  #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  #mod .note{color:var(--muted); font-size:.9rem}
+  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:22px}
+  #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  /* ===== lesson-flow components ===== */
+  #mod .ground{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:14px 0}
+  #mod .bridge{color:var(--muted); font-style:italic; margin:16px 0 4px}
+  #mod .ex{background:var(--field); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .ex .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--good); margin-bottom:5px}
+  #mod .ex p{margin:.35rem 0}
+  #mod .read{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .read .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:5px}
+  #mod .read a{color:var(--accent); font-weight:700}
+  #mod .do{background:var(--card); border:1px dashed var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
+  #mod .do .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:4px}
+  #mod .do p{margin:.2rem 0}
+  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
+  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
+  dialog.pop p{margin:.4rem 0}
+  dialog.pop a{color:var(--accent)}
+  dialog.pop form{margin-top:16px;text-align:right}
+  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
+  /* ===== shared course nav ===== */
+  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
+  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
+  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
+  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="coursenav"><div class="inner">
+<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
+<a class="lnk" href="index.html">Home</a>
+<a class="lnk" href="syllabus.html">Syllabus</a>
+<a class="lnk" href="schedule.html">Schedule</a>
+<a class="lnk" href="projects.html">Major Project Rubrics</a>
+<a class="lnk" href="readings.html">Readings</a>
+<a class="lnk" href="research-notebook.html">Notebook</a>
+<a class="lnk" href="week07-corpus.html">Week 7 Corpus</a>
+<a class="lms" href="https://appstate.instructure.com/" target="_blank" rel="noopener">Canvas &rarr;</a>
+</div></nav>
+
+<div id="mod">
+
+  <header class="masthead">
+    <p class="kicker">ENG 3090 &middot; Week 12 &middot; Tuesday worksheet</p>
+    <h1>From Data to Display</h1>
+    <p class="sub">Fill this in during class. Nothing here is collected, and all of it feeds your P3, which is due Sunday by 11:59 p.m.</p>
+  </header>
+
+  <div class="wsname"><b>Name</b><span class="rule"></span></div>
+
+  <div class="pbtns noprint">
+    <a class="btn" href="#" onclick="window.print();return false">Print this worksheet</a>
+    <a class="btn" href="module-w12-visualize.html">Thursday's module &rarr;</a>
+  </div>
+
+  <div class="ws">
+    <h3>While watching Chris Jordan</h3>
+    <p class="meta">&ldquo;Turning Powerful Stats into Art,&rdquo; about 11 minutes. <a href="https://www.ted.com/talks/chris_jordan_turning_powerful_stats_into_art" target="_blank" rel="noopener">ted.com/talks/chris_jordan_turning_powerful_stats_into_art</a></p>
+    <ol>
+      <li>What does the visualization allow you to understand or feel that the number alone does not?
+        <textarea class="wsq" data-ws="j1"></textarea></li>
+      <li>Identify one visual choice Jordan makes that changes how you perceive the statistic.
+        <textarea class="wsq" data-ws="j2"></textarea></li>
+      <li>Complete the sentence: <b>Visualization becomes unethical when&hellip;</b>
+        <textarea class="wsq" data-ws="j3"></textarea></li>
+    </ol>
+  </div>
+
+  <div class="ws">
+    <h3>While watching David McCandless</h3>
+    <p class="meta">&ldquo;The Beauty of Data Visualization,&rdquo; about 18 minutes. <a href="https://www.ted.com/talks/david_mccandless_the_beauty_of_data_visualization" target="_blank" rel="noopener">ted.com/talks/david_mccandless_the_beauty_of_data_visualization</a></p>
+    <ol>
+      <li>Find one example where comparison changes the meaning of a number.
+        <textarea class="wsq" data-ws="m1"></textarea></li>
+      <li>Find one example where design reveals a pattern that would have been difficult to see in the raw data.
+        <textarea class="wsq" data-ws="m2"></textarea></li>
+      <li>What is one design principle you could use in your own report?
+        <textarea class="wsq" data-ws="m3"></textarea></li>
+    </ol>
+  </div>
+
+  <h2>Choose the display</h2>
+  <p>For each kind of finding, choose the display you would most likely use. Commit to an answer before you check, and we will go through them out loud.</p>
+
+  <div class="quiz" id="q3">
+    <div class="it" data-a="bar" data-fb="Bar chart. You are comparing categories, so you want length. Order highest to lowest and label the bars directly instead of using a legend.">
+      <p><b>1.</b> The percentage choosing each possible cause of homelessness.</p>
+      <select><option value="">Which display?</option><option value="bar">Bar chart</option><option value="line">Line graph</option><option value="hist">Histogram</option><option value="scat">Scatterplot</option><option value="stack">100% stacked bar</option><option value="table">Table</option><option value="none">No visual</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="stack" data-fb="100% stacked bar. Three related statements on the same five-point scale is exactly where stacking helps, because it lets a reader compare the response pattern across questions. A plain bar chart is fine if you only have one statement.">
+      <p><b>2.</b> Strongly disagree through strongly agree responses to three policy statements.</p>
+      <select><option value="">Which display?</option><option value="bar">Bar chart</option><option value="line">Line graph</option><option value="hist">Histogram</option><option value="scat">Scatterplot</option><option value="stack">100% stacked bar</option><option value="table">Table</option><option value="none">No visual</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="line" data-fb="Line graph. Six consecutive years is change over time, and connecting them is what a line is for. Time runs left to right, and the axis starts at zero unless you have a stated reason.">
+      <p><b>3.</b> The number of shelter admissions each year from 2021 to 2026.</p>
+      <select><option value="">Which display?</option><option value="bar">Bar chart</option><option value="line">Line graph</option><option value="hist">Histogram</option><option value="scat">Scatterplot</option><option value="stack">100% stacked bar</option><option value="table">Table</option><option value="none">No visual</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="none" data-fb="No visual, or at most a thematic table. Three themes from six people is not a quantity. Use subheadings, quotations, and the interaction between participants. A percentage here would weaken the report.">
+      <p><b>4.</b> A six-person focus group's three major themes.</p>
+      <select><option value="">Which display?</option><option value="bar">Bar chart</option><option value="line">Line graph</option><option value="hist">Histogram</option><option value="scat">Scatterplot</option><option value="stack">100% stacked bar</option><option value="table">Table</option><option value="none">No visual</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="none" data-fb="No visual. This is one participant's explanation and its value is in her words. Quote it, give it room, and say what it adds. Charting a single account would imply a frequency you do not have.">
+      <p><b>5.</b> One participant's particularly important explanation of why she distrusts local homelessness statistics.</p>
+      <select><option value="">Which display?</option><option value="bar">Bar chart</option><option value="line">Line graph</option><option value="hist">Histogram</option><option value="scat">Scatterplot</option><option value="stack">100% stacked bar</option><option value="table">Table</option><option value="none">No visual</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="hist" data-fb="Histogram. Age is a numerical variable and you are asking how 250 respondents spread across it. This is the one item in the set where a histogram is right, and most of you will not have 250 respondents.">
+      <p><b>6.</b> The age distribution of 250 survey respondents.</p>
+      <select><option value="">Which display?</option><option value="bar">Bar chart</option><option value="line">Line graph</option><option value="hist">Histogram</option><option value="scat">Scatterplot</option><option value="stack">100% stacked bar</option><option value="table">Table</option><option value="none">No visual</option></select>
+      <div class="fb"></div>
+    </div>
+  </div>
+  <a class="btn noprint" id="q3check" href="#q3" onclick="return false">Check my six</a>
+  <p class="score" id="q3score"></p>
+
+  <div class="note noprint">
+    <p><b>Thursday's module</b> carries the four ethical rules in detail, the joint display, what goes in Results versus Discussion, the focus-group section, and a nine-item ethics audit you run on your own figure. <a href="module-w12-visualize.html">Open it &rarr;</a></p>
+  </div>
+
+  <p class="noprint" style="font-size:.86rem; color:var(--muted)">Anything you type here is saved in this browser on this computer only. Nothing is transmitted, and nothing is collected.</p>
+
+
+  </div>
+
+<script>
+  // on-device drafting so a typed worksheet survives a refresh
+  document.querySelectorAll('[data-ws]').forEach(function(ta){
+    var key = 'e3_ws_dd_' + ta.getAttribute('data-ws');
+    try{ var v = localStorage.getItem(key); if(v){ ta.value = v; } }catch(e){}
+    ta.addEventListener('input', function(){ try{ localStorage.setItem(key, ta.value); }catch(e){} });
+  });
+
+  document.getElementById('q3check').addEventListener('click', function(){
+    var box = document.getElementById('q3'), items = box.querySelectorAll('.it');
+    var n = items.length, right = 0, answered = 0;
+    items.forEach(function(it){
+      var sel = it.querySelector('select'), fb = it.querySelector('.fb');
+      it.classList.remove('right','wrong');
+      if(!sel.value){ return; }
+      answered++;
+      if(sel.value === it.dataset.a){ it.classList.add('right'); right++; fb.textContent = it.dataset.fb; }
+      else { it.classList.add('wrong'); fb.textContent = 'Not that one. Ask what relationship the finding contains: a comparison, a change over time, a distribution, or no quantity at all.'; }
+    });
+    var sc = document.getElementById('q3score'); sc.style.display = 'block';
+    if(answered < n){ sc.textContent = 'Answer all six first (' + answered + '/' + n + ' done).'; sc.style.color = '#8a5a1f'; }
+    else if(right === n){ sc.textContent = 'All six. Two of them needed no chart at all, which is the answer students reach for last.'; sc.style.color = 'var(--good)'; }
+    else { sc.textContent = right + ' of ' + n + '. Fix the ones in red and check again.'; sc.style.color = 'var(--accent)'; }
+  });
+</script>
+</body>
+</html>

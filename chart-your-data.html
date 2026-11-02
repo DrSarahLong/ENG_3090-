@@ -95,12 +95,12 @@
 <div id="ch">
 
   <header class="masthead">
-    <p class="kicker">ENG 3090 · Week 12, Tuesday</p>
+    <p class="kicker">ENG 3090 · Week 12 · the tool that builds your P3 figure</p>
     <h1>Chart Your Data</h1>
     <p class="sub">Your responses are just a pile of answers until you turn them into a picture. Type your tallies below, watch the chart build, and then make the honest version. Everything runs on your own device, nothing is uploaded.</p>
   </header>
 
-  <div class="prin">Three moves turn raw responses into a result: <b>count</b> them into a <button type="button" class="term" data-pop="frequency">frequency table</button>, describe them with a <button type="button" class="term" data-pop="descriptive">number or two</button>, then pick the <button type="button" class="term" data-pop="chartfit">chart that fits</button>. And the rule that matters most in this class: a chart can mislead as easily as a food label can. <b>Don't be the label.</b></div>
+  <div class="prin">Three moves turn raw responses into a result: <b>count</b> them into a <button type="button" class="term" data-pop="frequency">frequency table</button>, describe them with a <button type="button" class="term" data-pop="descriptive">number or two</button>, then build the figure. <b>Which</b> chart you should use is decided in <a href="module-w12-visualize.html">Thursday's module</a>, section 2. This page is where you make the one you chose, and where you can watch a <button type="button" class="term" data-pop="truncate">truncated axis</button> lie about your own numbers.</div>
 
   <h2 class="sec">1 · Your data</h2>
   <div class="panel">
@@ -121,6 +121,7 @@
       <button type="button" id="typeBar" aria-pressed="true">Bar chart</button>
       <button type="button" id="typePie" aria-pressed="false">Pie chart</button>
     </div>
+    <p style="font-size:.88rem;color:var(--muted);margin:4px 0 8px">Two types, because those are the two most of you will use. If your finding needs a line graph, a histogram, or no chart at all, build it in Sheets or write it as prose. <a href="module-w12-visualize.html">Thursday's module, section 2</a> decides which.</p>
     <label class="toggle"><input type="checkbox" id="mislead"> Show a <button type="button" class="term" data-pop="truncate">misleading</button> version (bar chart only, for learning, never for your report)</label>
     <div id="chartWrap" aria-live="polite"></div>
     <button type="button" class="minibtn" id="download">⬇ Download chart (.svg)</button>
@@ -132,11 +133,10 @@
   <ul class="notes" id="notes"></ul>
 
   <div class="done">
-    <b>Before this goes in your report:</b> does the chart start at a fair baseline, is every axis and slice labeled, and did you state your <button type="button" class="term" data-pop="n">N</button>? A reader should get the true story at a glance, not the story you wish were true. That's the whole difference between analysis and spin.</div>
+    <b>Before this goes in your report:</b> does the chart start at a fair baseline, is every axis and slice labeled, and did you state your <button type="button" class="term" data-pop="n">N</button>? A reader should get the true story at a glance, not the story you wish were true. That is the difference between analysis and spin.</div>
 
   <dialog class="pop" id="pop-frequency"><h3>Frequency table</h3><p>A simple count of how many people chose each answer. If 14 of your 42 respondents picked "Sometimes," that's a frequency. Building one is the first step of any quantitative analysis: it turns a column of individual responses into countable totals you can compare and chart. In Google Sheets, <b>COUNTIF</b> tallies them for you.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-descriptive"><h3>Descriptive statistics</h3><p>Simple numbers that summarize your data, no advanced math required. The ones you'll actually use: the <b>count</b> (how many, your N), the <b>percentage</b> for each answer, and the <b>mode</b> (the most common answer). For numeric data you can add a <b>mean</b> (average) or <b>median</b> (middle value). You do not need regression or p-values for this project.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-chartfit"><h3>Match the chart to the data</h3><p><b>Bar chart:</b> comparing separate categories or answer choices (the workhorse, almost always safe). <b>Pie chart:</b> parts of one whole that add to 100%, and only when you have a few slices. <b>Line chart:</b> change over time. <b>Stacked or grouped bars:</b> comparing groups against each other. When in doubt, a clean bar chart is rarely wrong.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-truncate"><h3>The truncated-axis trick</h3><p>The most common way charts lie: instead of starting the vertical axis at zero, you start it near the data so small differences look enormous. A jump from 48% to 52% can be drawn to look like a landslide. Flip the toggle to see it happen to your own data. Then never do it, start bars at zero, and you can't accidentally deceive anyone.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-n"><h3>N (your sample size)</h3><p>N is how many responses your chart is built on. Always report it ("N = 42"), because a percentage means something very different at N = 8 than at N = 800. A small N isn't shameful, it's normal for a class project, but hiding it lets a reader assume more certainty than your data can support. State it, own it.</p><form method="dialog"><button>Got it</button></form></dialog>
 

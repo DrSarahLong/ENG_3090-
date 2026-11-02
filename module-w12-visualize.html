@@ -3,13 +3,48 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ENG 3090 · Module: Analyzing &amp; Visualizing Your Data</title>
+<title>ENG 3090 · Module: Making the Data Visible</title>
 <style>
   :root{
     --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
     --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
     --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
   }
+  #mod .pr{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0}
+  @media (max-width:680px){ #mod .pr{grid-template-columns:1fr} }
+  #mod .pr>div{border:1px solid var(--line); border-radius:11px; padding:12px 15px; background:var(--card)}
+  #mod .pr .bad{border-left:4px solid #a33}
+  #mod .pr .good{border-left:4px solid var(--good)}
+  #mod .pr .lab{display:block; font-size:.68rem; letter-spacing:.11em; text-transform:uppercase; font-weight:800; margin-bottom:5px; color:#a33}
+  #mod .pr .good .lab{color:var(--good)}
+  #mod .pr q{font-style:italic; display:block; font-size:1rem; line-height:1.45}
+  #mod .tbl{width:100%; border-collapse:collapse; margin:12px 0; font-size:.93rem}
+  #mod .tbl th,#mod .tbl td{border:1px solid var(--line); padding:9px 11px; text-align:left; vertical-align:top}
+  #mod .tbl th{background:var(--accent-soft); color:var(--accent); font-size:.72rem; letter-spacing:.09em; text-transform:uppercase}
+  #mod .tbl td b{color:var(--accent)}
+  #mod .tblwrap{overflow-x:auto; margin:12px 0}
+  #mod .quiz{margin:14px 0}
+  #mod .quiz .it{background:var(--card); border:1px solid var(--line); border-radius:11px; padding:12px 15px; margin:10px 0}
+  #mod .quiz .it p{margin:0 0 8px; font-size:.97rem}
+  #mod .quiz .it select{width:100%; max-width:380px; padding:8px 10px; border:1px solid var(--line); border-radius:7px; font:inherit; font-size:.92rem; background:var(--field); color:var(--ink)}
+  #mod .quiz .fb{display:none; margin-top:9px; font-size:.92rem; line-height:1.45; border-radius:7px; padding:9px 12px}
+  #mod .quiz .it.right .fb{display:block; background:var(--accent-soft); border-left:3px solid var(--good)}
+  #mod .quiz .it.wrong .fb{display:block; background:#fdeeee; border-left:3px solid #a33}
+  #mod .score{display:none; margin:10px 0 0; font-weight:700; font-size:.95rem}
+  #mod .four{display:grid; grid-template-columns:repeat(4,1fr); gap:11px; margin:14px 0}
+  @media (max-width:760px){ #mod .four{grid-template-columns:1fr 1fr} }
+  #mod .four>div{background:var(--card); border:1px solid var(--line); border-top:4px solid var(--accent); border-radius:11px; padding:12px 13px}
+  #mod .four h4{margin:0 0 5px; color:var(--accent); font-size:.86rem; letter-spacing:.1em; text-transform:uppercase}
+  #mod .four p{margin:0; font-size:.92rem; line-height:1.42}
+  #mod .bars{display:flex; gap:34px; align-items:flex-end; justify-content:center; flex-wrap:wrap; margin:14px 0}
+  #mod .bars .col{display:flex; flex-direction:column; align-items:center; gap:8px}
+  #mod .bars .plot{display:flex; gap:16px; align-items:flex-end; height:150px; padding:0 12px 0 8px; border-left:2px solid var(--line); border-bottom:2px solid var(--line)}
+  #mod .bars .bar{width:48px; background:var(--accent); border-radius:4px 4px 0 0; position:relative}
+  #mod .bars .bar span{position:absolute; top:-1.5em; left:0; right:0; text-align:center; font-weight:800; font-size:.78rem; color:var(--ink)}
+  #mod .bars .cap{font-size:.78rem; color:var(--muted); text-align:center; max-width:14em; line-height:1.4}
+                #mod .flow{display:flex; align-items:center; gap:9px; flex-wrap:wrap; margin:14px 0}
+  #mod .flow .st{background:var(--accent-soft); border:1px solid var(--line); border-radius:999px; padding:7px 15px; font-weight:700; color:var(--accent); font-size:.9rem}
+  #mod .flow .ar{color:var(--muted); font-weight:800}
   @media (prefers-color-scheme: dark){
     :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
   }
@@ -81,143 +116,351 @@
 <div id="mod">
 
   <header class="masthead">
-    <p class="kicker">ENG 3090 · Week 12 · Thursday Module</p>
-    <h1>Analyzing &amp; Visualizing Your Data</h1>
-    <p class="sub">The payoff. The responses you gathered become findings, charts, and, by Sunday, your P3.</p>
+    <p class="kicker">ENG 3090 &middot; Week 12 &middot; Thursday Module</p>
+    <h1>Making the Data Visible</h1>
+    <p class="sub">Your responses become findings. This is the module that decides whether your Results section is fair to the people who answered you.</p>
   </header>
 
-  <div class="ground"><b>Arrive.</b> Open your Research Notebook and your exported spreadsheet in other tabs, and take a breath. On Tuesday you closed your survey and pulled the responses. Today you make them talk: counts, a few careful numbers, a clear chart, and a write-up. As the <button type="button" class="term" data-pop="primary">primary investigator</button>, you're the first person on earth to see what your data says. Your job now is to read it straight and show it clearly.</div>
+  <div class="ground"><b>Arrive.</b> Open your Research Notebook and your exported responses in other tabs, and have your actual survey or focus-group questions in front of you. As the <button type="button" class="term" data-pop="primary">primary investigator</button>, you are the first person to see what your data says. Today is about saying it accurately, showing it clearly, and putting your numbers and your participants' words in the same room. <b>P3 is due Sunday by 11:59 p.m.</b></div>
 
-  <p class="bridge">All semester you found a gap, framed a question, built an instrument, and gathered data. That was the long, patient half. Today the responses finally answer back, and you turn them into a finding you can stand behind.</p>
+  <p class="bridge">On Tuesday you watched two people turn numbers into things a human being can perceive, and you wrote down four ethical rules on <a href="worksheet-data-display.html">the From Data to Display worksheet</a>. Today you apply those rules to your own data, and you build the architecture of your Results section before all of your results are even in.</p>
 
-  <h2>1 · Turn responses into counts</h2>
-  <p>Start simple. For each closed question, count how many people chose each answer. That's a <button type="button" class="term" data-pop="frequency">frequency table</button>, and it's the foundation of everything else. You can tally by hand for a small survey, or let the sheet do it: <button type="button" class="term" data-pop="countif">COUNTIF</button> counts matching answers for you. Do this for every closed question before you chart anything.</p>
-  <div class="ex">
-    <div class="t">See it</div>
-    <p>In our running study, one question asks how often residents read local coverage of homelessness. Of 42 responses, 14 said "Sometimes," 11 "Often," 9 "Rarely," 8 "Never." Four numbers, and the column of raw answers is suddenly something you can compare.</p>
-    <p class="note">The food-label survey is our <b>running example</b>, not your topic. Watch the move, then run it on your own responses.</p>
+  <h2>1 &middot; Ethics did not end when you finished collecting data</h2>
+  <p>You did your CITI training. You got consent. You tried to write neutral questions. Good. You are still completely capable of treating your participants unethically in the Results section.</p>
+  <p>Suppose 40 people take your homelessness survey, and 22 of them identify housing costs as an important cause of homelessness. You write:</p>
+
+  <div class="pr">
+    <div class="bad"><span class="lab">What you wrote</span><q>Americans believe housing costs are the primary cause of homelessness.</q></div>
+    <div class="good"><span class="lab">What your data supports</span><q>Of the 40 respondents in this study, 22 identified housing costs as an important contributor to homelessness.</q></div>
   </div>
+
+  <p>What is wrong with the first one? Everything after the number. Your participants were not &ldquo;Americans.&rdquo; They were 40 people you managed to recruit, and most of them were probably App State students. <b>Your data can only represent the population you actually sampled.</b></p>
+
+  <div class="box accent">
+    <p><b>Rule one: do not make your data carry more weight than it can hold.</b></p>
+    <p>If your sample is 37 students, write <i>Of the 37 respondents in this study&hellip;</i> Not <i>People today believe&hellip;</i> Not <i>Society thinks&hellip;</i> Not <i>Americans agree&hellip;</i></p>
+  </div>
+
+  <h3 style="margin:22px 0 6px; font-size:1.05rem; color:var(--accent)">Small samples and false precision</h3>
+  <p>Imagine you have 17 responses and eleven respondents choose housing affordability. You could write <i>64.7% of respondents&hellip;</i> Is that mathematically correct? Yes. Does 64.7% make a convenience sample of 17 people scientific? No. A decimal place can manufacture a sense of precision the sample cannot support.</p>
+
+  <div class="pr">
+    <div class="bad"><span class="lab">Hides the scale</span><q>64.7% of respondents identified housing affordability.</q></div>
+    <div class="good"><span class="lab">Shows the scale</span><q>11 of 17 respondents (65%) identified housing affordability.</q></div>
+  </div>
+  <p>With a small sample, report both. Your reader deserves to know how many human beings are hiding behind the percentage.</p>
+
+  <h3 style="margin:22px 0 6px; font-size:1.05rem; color:var(--accent)">Missing responses are part of the truth</h3>
+  <p>Suppose 40 people took your survey but only 31 answered Question 8. Your graph should not quietly imply that N&nbsp;=&nbsp;40. Say so: <b>n&nbsp;=&nbsp;31</b>, or <i>Nine respondents skipped this question.</i> Denominators are part of the data, not a footnote to it.</p>
+
+  <h3 style="margin:22px 0 6px; font-size:1.05rem; color:var(--accent)">And do not turn correlation into causation</h3>
+  <p>If students who report knowing someone who has experienced homelessness also express more favorable attitudes toward housing assistance, here is what you can and cannot say.</p>
+
+  <div class="pr">
+    <div class="bad"><span class="lab">You cannot say</span><q>Knowing someone who experiences homelessness causes people to support housing assistance.</q></div>
+    <div class="good"><span class="lab">You can say</span><q>Respondents reporting personal contact with homelessness also reported greater support for housing assistance.</q></div>
+  </div>
+  <p>Your survey found a relationship. It did not run an experiment. <button type="button" class="term" data-pop="causation">Correlation is not causation</button>, and the difference is the difference between a careful researcher and an overreaching one.</p>
+
   <div class="do">
-    <div class="t">Your turn</div>
-    <p>In <b>Entry 12a</b>, record your frequency counts: for each main question, how many people chose each answer.</p>
+    <div class="t">Try it: what is wrong with each sentence?</div>
+    <p>Six sentences of the kind that turn up in student Results sections. Each one breaks exactly one of the four rules. Pick which, then check. Commit to an answer before you look.</p>
   </div>
 
-  <h2>2 · Describe it, simply</h2>
-  <p>You don't need advanced statistics. For a class project, three <button type="button" class="term" data-pop="descriptive">descriptive numbers</button> carry most of the weight.</p>
+  <div class="quiz" id="q1">
+    <div class="it" data-a="gen" data-fb="It generalizes beyond the sample. Thirty-one people in one county cannot speak for &ldquo;people in this region,&rdquo; let alone anyone else. Fix: &ldquo;Of the 31 respondents, 24 said local shelters are inadequate.&rdquo;">
+      <p><b>1.</b> &ldquo;People in this region believe local shelters are inadequate (77%, n = 31).&rdquo;</p>
+      <select><option value="">Which rule does this break?</option><option value="gen">Generalizing beyond the sample</option><option value="prec">False precision from a small sample</option><option value="den">Hiding the denominator or the missing responses</option><option value="cause">Turning correlation into causation</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="cause" data-fb="It turns a relationship into a cause. A survey can show that two answers travel together; it cannot show that one produced the other. Fix: &ldquo;Respondents who had volunteered also reported higher support for funding increases.&rdquo;">
+      <p><b>2.</b> &ldquo;Volunteering at a shelter makes students more supportive of funding increases.&rdquo;</p>
+      <select><option value="">Which rule does this break?</option><option value="gen">Generalizing beyond the sample</option><option value="prec">False precision from a small sample</option><option value="den">Hiding the denominator or the missing responses</option><option value="cause">Turning correlation into causation</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="den" data-fb="The denominator shifted and the sentence does not say so. If 40 people took the survey and 28 answered this question, the percentage is out of 28, and the reader has to be told. Fix: &ldquo;21 of the 28 respondents who answered this question (75%); 12 skipped it.&rdquo;">
+      <p><b>3.</b> &ldquo;Seventy-five percent of our 40 respondents supported permanent supportive housing.&rdquo; (Twenty-eight people answered that question.)</p>
+      <select><option value="">Which rule does this break?</option><option value="gen">Generalizing beyond the sample</option><option value="prec">False precision from a small sample</option><option value="den">Hiding the denominator or the missing responses</option><option value="cause">Turning correlation into causation</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="prec" data-fb="Two decimal places on a sample of 13. The arithmetic is right and the impression is wrong, because that many digits signals a precision 13 people cannot deliver. Fix: &ldquo;6 of 13 respondents (46%).&rdquo;">
+      <p><b>4.</b> &ldquo;46.15% of respondents selected substance use as a contributing factor (n = 13).&rdquo;</p>
+      <select><option value="">Which rule does this break?</option><option value="gen">Generalizing beyond the sample</option><option value="prec">False precision from a small sample</option><option value="den">Hiding the denominator or the missing responses</option><option value="cause">Turning correlation into causation</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="gen" data-fb="Same error in a friendlier costume. &ldquo;Society&rdquo; and &ldquo;today&rdquo; are doing exactly what &ldquo;Americans&rdquo; did. The sample is 22 undergraduates. Fix: &ldquo;Most respondents in this sample described homelessness as a structural problem rather than an individual one.&rdquo;">
+      <p><b>5.</b> &ldquo;Society today understands homelessness as a structural problem rather than an individual failing.&rdquo; (Sample: 22 undergraduates.)</p>
+      <select><option value="">Which rule does this break?</option><option value="gen">Generalizing beyond the sample</option><option value="prec">False precision from a small sample</option><option value="den">Hiding the denominator or the missing responses</option><option value="cause">Turning correlation into causation</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="cause" data-fb="&ldquo;Leads to&rdquo; is a causal verb wearing a hedge. Age and policy support may move together in your data, and your instrument cannot tell you which way the arrow points or whether something else explains both. Fix: &ldquo;Older respondents in this sample reported lower support for the proposed ordinance.&rdquo;">
+      <p><b>6.</b> &ldquo;Being older leads to less support for the proposed ordinance.&rdquo;</p>
+      <select><option value="">Which rule does this break?</option><option value="gen">Generalizing beyond the sample</option><option value="prec">False precision from a small sample</option><option value="den">Hiding the denominator or the missing responses</option><option value="cause">Turning correlation into causation</option></select>
+      <div class="fb"></div>
+    </div>
+  </div>
+  <a class="btn" id="q1check" href="#q1" onclick="return false">Check my six</a>
+  <p class="score" id="q1score"></p>
+
+  <h2>2 &middot; Choose the graph from the data, not because you like the graph</h2>
+  <p>Students often do this backward. They think <i>I want a pie chart.</i> The question is not which chart you want. It is <b>what relationship in my data am I trying to show?</b> Then you pick the form that shows that relationship.</p>
+  <p>Here is the short version, and for most of you it is the only version you need.</p>
+
+  <div class="tblwrap">
+  <table class="tbl">
+    <tr><th>You want to show&hellip;</th><th>Use&hellip;</th><th>Because</th></tr>
+    <tr><td>Differences between categories</td><td><b>Bar chart</b></td><td>Length is easy for the eye to compare. Order the bars meaningfully, usually highest to lowest.</td></tr>
+    <tr><td>Responses across a scale, strongly disagree to strongly agree</td><td><b>Bar chart, or a stacked bar</b></td><td>A 100% stacked bar lets a reader compare response patterns across several related questions at once.</td></tr>
+    <tr><td>Change over time</td><td><b>Line graph</b></td><td>A line connects things, and the connection should mean something. Time moves left to right.</td></tr>
+    <tr><td>Exact values, or only a little information</td><td><b>Table</b></td><td>Three numbers do not need a chart. A table respects the reader's time.</td></tr>
+    <tr><td>Themes, quotations, qualitative findings</td><td><b>Text, or a thematic table</b></td><td>These are findings, not quantities. Forcing them into a chart loses the thing that made them useful.</td></tr>
+    <tr><td>The distribution of one numerical variable</td><td><b>Histogram</b></td><td>Ages, scores, counts. Most of you will not need one.</td></tr>
+    <tr><td>Whether two numerical variables move together</td><td><b>Scatterplot</b></td><td>Also probably not you, and remember what it cannot claim.</td></tr>
+  </table>
+  </div>
+
+  <div class="ex">
+    <div class="t">See it: comparing categories</div>
+    <p>Begin with a <button type="button" class="term" data-pop="frequency">frequency count</button> for each closed question, then decide what to show. <i>Which factor do you believe contributes most to homelessness in our region?</i> Housing costs 18, mental-health challenges 9, substance-use disorders 7, job loss 4, other 2.</p>
+    <p>What do we care about here? Comparison. So: a bar chart, with the bars ordered highest to lowest, so a reader sees the ranking without hunting for it.</p>
+  </div>
+
   <div class="box">
-    <ul>
-      <li><b>Count (N):</b> how many people answered. Report it every time.</li>
-      <li><b>Percentage:</b> what share picked each answer. Easier to compare than raw counts.</li>
-      <li><b>Mode:</b> the most common answer. For truly numeric data like age or price, you can add a <button type="button" class="term" data-pop="meanmedian">mean or median</button>.</li>
-    </ul>
-    <p class="note">A note on <button type="button" class="term" data-pop="likertavg">averaging a Likert scale</button>: reporting "the average was 3.8 out of 5" is common, but it's a shortcut worth flagging, since the gap between "agree" and "strongly agree" isn't guaranteed to be the same size as the gap between "neutral" and "agree." Showing the full distribution in a bar chart is usually more honest.</p>
-  </div>
-  <div class="ex">
-    <div class="t">See it</div>
-    <p>Back to the 42 residents: N = 42; "Sometimes" is the mode at 14 of 42, or 33%. One sentence, and you've summarized a whole question without a single advanced formula.</p>
-  </div>
-  <div class="do">
-    <div class="t">Your turn</div>
-    <p>In <b>Entry 12a</b>, write your N, the key percentages, and the most common answer for each question.</p>
+    <p><b>And the pie chart.</b> You knew we were getting here. Pie charts show parts of one whole, and they are not evil. They get hard to read as soon as you have more than a few slices. Compare these five: housing 38%, mental health 24%, substance use 19%, employment 12%, other 7%. A bar chart lets your eye rank those in about a second.</p>
+    <p>General advice: <b>when in doubt, use a bar chart.</b> Do not turn your paper into a pie-chart buffet. And no 3-D pie charts. We are not making slide decks in 1998.</p>
   </div>
 
-  <h2>3 · Pick the chart that fits the data</h2>
-  <p>The <button type="button" class="term" data-pop="chartfit">chart type</button> should match what you're showing, not just what looks cool.</p>
-  <ul>
-    <li><b>Bar chart:</b> comparing answer choices or categories. The workhorse, and almost always a safe choice.</li>
-    <li><b>Pie chart:</b> parts of a single whole that add to 100%, and only with a few slices. Skip it if you have many categories.</li>
-    <li><b>Line chart:</b> change over time (less common for a one-shot survey).</li>
-    <li><b>Grouped or stacked bars:</b> comparing groups. Do longtime residents and newcomers answer differently?</li>
-  </ul>
-  <div class="ex">
-    <div class="t">See it</div>
-    <p>Those four "how often" answers are categories, so a bar chart is the honest fit. A pie would work too since they add to 100%, but four slices is about the ceiling before a pie turns to mush. When in doubt, the bar chart is rarely wrong.</p>
-  </div>
-  <div class="read">
-    <div class="t">Try the tool · 10 min</div>
-    <p>Build yours in the tool from class. <a href="chart-your-data.html" target="_blank" rel="noopener">Chart Your Data</a> lets you load your own counts, try bar versus pie, toggle the axis, and download the chart straight into your report. Run it on your own numbers, not the example.</p>
-  </div>
-  <div class="do">
-    <div class="t">Your turn</div>
-    <p>In <b>Entry 12a</b>, note which chart you'll use for which question, and why.</p>
+  <div class="box">
+    <p><b>A note on Likert questions,</b> which most of you have. <i>Local government should increase funding for permanent supportive housing:</i> strongly disagree, disagree, neither, agree, strongly agree.</p>
+    <p>A simple bar chart works. A stacked bar works. With several related statements, a 100% stacked bar lets the reader compare patterns across questions. But remember: <button type="button" class="term" data-pop="likertavg">&ldquo;Strongly agree&rdquo; is not five times &ldquo;strongly disagree.&rdquo;</button> Those are ordered categories, not inches on a ruler, and you should not average them without a methodological reason.</p>
   </div>
 
-  <h2>4 · Don't be the misleading label</h2>
-  <p>You've spent a whole semester on how food labels can mislead. A chart can do the exact same thing, and usually by accident. The honesty rules:</p>
+  <div class="box">
+    <p><b>One special survey problem: &ldquo;select all that apply.&rdquo;</b> Ask <i>Which factors do you believe contribute to homelessness? Select all that apply,</i> and you might get housing affordability 72%, mental illness 61%, substance use 58%, low wages 49%.</p>
+    <p>Somebody will say those add up to more than 100%. Correct, because participants could pick more than one, and that is fine. Just label the chart so nobody has to reverse-engineer your method from it: <i>Percentage of respondents selecting each factor; respondents could select more than one.</i></p>
+  </div>
+
+  <div class="do">
+    <div class="t">Try it: choose the display</div>
+    <p>Six findings, none of them the ones you worked on Tuesday. Pick the display you would most likely use for each, and commit before you check.</p>
+  </div>
+
+  <div class="quiz" id="q2">
+    <div class="it" data-a="table" data-fb="Table. Three exact numbers do not need a chart, and a three-bar chart of 18, 4, and 2 would look like a finding when it is really just a description of who answered. Put it in a small table in your Methods section and move on.">
+      <p><b>1.</b> Who your respondents were: 18 undergraduates, 4 graduate students, 2 staff.</p>
+      <select><option value="">Which display?</option><option value="bar">Bar chart</option><option value="line">Line graph</option><option value="hist">Histogram</option><option value="scat">Scatterplot</option><option value="stack">100% stacked bar</option><option value="table">Table</option><option value="none">No visual</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="bar" data-fb="Bar chart, ordered highest to lowest. You are comparing five categories against each other, which is what length is for. Label the bars directly rather than using a legend, and say in the caption how many respondents ranked anything at all.">
+      <p><b>2.</b> Which of five possible responses to homelessness respondents said they would prioritize first.</p>
+      <select><option value="">Which display?</option><option value="bar">Bar chart</option><option value="line">Line graph</option><option value="hist">Histogram</option><option value="scat">Scatterplot</option><option value="stack">100% stacked bar</option><option value="table">Table</option><option value="none">No visual</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="none" data-fb="No visual. A contradiction between two people is not a quantity, and charting it would imply a frequency you do not have. Quote both, side by side, and say what the disagreement tells you. This is one of the most useful things a mixed-methods report can do, and it has no chart.">
+      <p><b>3.</b> A contradiction you noticed between what two respondents wrote in the open-ended box.</p>
+      <select><option value="">Which display?</option><option value="bar">Bar chart</option><option value="line">Line graph</option><option value="hist">Histogram</option><option value="scat">Scatterplot</option><option value="stack">100% stacked bar</option><option value="table">Table</option><option value="none">No visual</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="line" data-fb="Line graph. Eleven consecutive years is change over time, and the line's job is to connect them. This one is not your survey data, so cite the source in the caption and do not let the figure imply you collected it.">
+      <p><b>4.</b> Median county rent for each year from 2015 to 2025, from a source you are citing.</p>
+      <select><option value="">Which display?</option><option value="bar">Bar chart</option><option value="line">Line graph</option><option value="hist">Histogram</option><option value="scat">Scatterplot</option><option value="stack">100% stacked bar</option><option value="table">Table</option><option value="none">No visual</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="scat" data-fb="Scatterplot. Two numerical variables, and you are asking whether they move together. Remember what it cannot claim: a pattern on a scatterplot is a relationship, not a cause, and with a small N a few points can produce a shape that means nothing.">
+      <p><b>5.</b> Whether the number of years a respondent has lived in the county relates to their 1&ndash;10 policy-support score.</p>
+      <select><option value="">Which display?</option><option value="bar">Bar chart</option><option value="line">Line graph</option><option value="hist">Histogram</option><option value="scat">Scatterplot</option><option value="stack">100% stacked bar</option><option value="table">Table</option><option value="none">No visual</option></select>
+      <div class="fb"></div>
+    </div>
+    <div class="it" data-a="stack" data-fb="100% stacked bar. You are comparing the composition of three groups, so what you want is three bars of equal length broken into the same four segments. That makes the pattern across groups visible, which separate bar charts would not. Watch your N in each group, because 2 staff members cannot carry a percentage.">
+      <p><b>6.</b> How undergraduates, graduate students, and staff each spread their answers across the same four categories.</p>
+      <select><option value="">Which display?</option><option value="bar">Bar chart</option><option value="line">Line graph</option><option value="hist">Histogram</option><option value="scat">Scatterplot</option><option value="stack">100% stacked bar</option><option value="table">Table</option><option value="none">No visual</option></select>
+      <div class="fb"></div>
+    </div>
+  </div>
+  <a class="btn" id="q2check" href="#q2" onclick="return false">Check my six</a>
+  <p class="score" id="q2score"></p>
+
+  <h2>3 &middot; How graphs lie</h2>
+  <p>You can lie without falsifying a single number. Support for Policy A is 51%. Support for Policy B is 55%. Watch what happens when the vertical axis starts at 50 instead of at zero.</p>
+
+  <div class="bars">
+    <div class="col">
+      <div class="plot">
+        <div class="bar" style="height:14%"><span>51%</span></div>
+        <div class="bar" style="height:90%"><span>55%</span></div>
+      </div>
+      <div class="cap"><b>Axis starts at 50%.</b> A four-point gap reads as a landslide.</div>
+    </div>
+    <div class="col">
+      <div class="plot">
+        <div class="bar" style="height:85%"><span>51%</span></div>
+        <div class="bar" style="height:92%"><span>55%</span></div>
+      </div>
+      <div class="cap"><b>Axis starts at zero.</b> Same two numbers, accurate impression.</div>
+    </div>
+  </div>
+
+  <div class="do">
+    <div class="t">Now do it to your own numbers</div>
+    <p>Those two charts above are somebody else's. Open <a href="chart-your-data.html">Chart Your Data</a>, type in your actual tallies, and flip the <b>misleading version</b> toggle. Watch your own finding get exaggerated, then turn it off and leave it off.</p>
+    <p>That tool is also where you <b>build the figure you will actually paste into P3</b>, and it downloads as an .svg. It does not decide which chart you need; section 2 above did that. It runs on your own device and nothing you type into it is transmitted.</p>
+  </div>
+
+  <p>For a bar chart, the numerical axis should ordinarily begin at zero, because <b>the physical length of the bar is what represents the quantity</b>. Cut the bottom off and the lengths stop meaning what the eye assumes.</p>
+
+  <div class="note">
+    <p><b>The ways a chart misleads without lying.</b> <b>Truncated axes.</b> Inconsistent intervals. Giant icons standing for small differences. Three-dimensional effects. Showing only the convenient categories. Leaving out the missing data. Changing scales between two graphs you are asking a reader to compare side by side.</p>
+    <p>A technically correct number can be visually dishonest.</p>
+  </div>
+
+  <h2>4 &middot; Beautiful does not mean decorated</h2>
+  <p>Two different ideas. Decoration asks <i>what can I add?</i> Design usually asks <i>what can I remove?</i></p>
+  <p>A good chart almost certainly does not need a textured background, drop shadows, clip art, a rainbow palette, twelve fonts, six kinds of grid line, a giant legend, or a photograph behind the bars. The data are what a reader came for. Give them room.</p>
+
   <div class="box accent">
-    <ul>
-      <li><b>Start bars at zero.</b> A <button type="button" class="term" data-pop="truncate">truncated axis</button> turns a 4-point gap into a fake landslide.</li>
-      <li><b>Label everything:</b> axes, units, categories, and your N.</li>
-      <li><b>Don't cherry-pick.</b> Show all the answer choices, not just the flattering ones.</li>
-      <li><b>Match the visual to the size.</b> Don't make a 3-vote difference look like a movement.</li>
-    </ul>
-    <p>If your reader would walk away believing something your data doesn't actually support, the chart is lying, even if every number in it is true.</p>
-  </div>
-  <div class="read">
-    <div class="t">Read the source · 8 min</div>
-    <p><a href="https://handsondataviz.org/how-to-lie-with-charts.html" target="_blank" rel="noopener">How to Lie with Charts</a> &mdash; Jack Dougherty &amp; Ilya Ilyankou, <i>Hands-On Data Visualization</i> (open web book). Truncated axes and other tricks that mislead, so you learn to make honest charts by spotting the dishonest ones.</p>
-  </div>
-  <div class="do">
-    <div class="t">Your turn</div>
-    <p>Look at your finished chart and run the stranger test: if someone saw only this, with no explanation, what would they conclude? If that conclusion is truer than your data supports, fix the chart. If it's exactly right, you've done the job. Jot the fix (or the all-clear) in <b>Entry 12a</b>.</p>
+    <p><b>Five things I want from every chart in your P3.</b></p>
   </div>
 
-  <h2>5 · Read the results straight</h2>
-  <p>Two traps catch new researchers. First, <button type="button" class="term" data-pop="causation">correlation is not causation</button>: if label-readers also eat more vegetables, reading labels didn't necessarily cause it. Second, a small sample is <b>suggestive, not proof</b>. Say what you found, then say outright what your data can and can't claim. Naming your <button type="button" class="term" data-pop="limits">limitations</button> makes you more trustworthy, not less.</p>
+  <ol class="check">
+    <li><span class="n">1</span><div><b>A meaningful title.</b> Not &ldquo;Survey Results.&rdquo; Try &ldquo;Housing affordability was the most frequently identified contributor to homelessness.&rdquo; The second one helps me read the graph.</div></li>
+    <li><span class="n">2</span><div><b>Labels I can understand.</b> Do not make the reader decode <code>Q17_RESP_3</code>. Label it &ldquo;Housing affordability.&rdquo;</div></li>
+    <li><span class="n">3</span><div><b>Minimal visual clutter.</b> Do I need this grid line? This border? A legend, if I could label the bars directly? If not, remove it.</div></li>
+    <li><span class="n">4</span><div><b>Color with a job.</b> Maybe one bar is the finding; highlight that one. Everything does not need its own color. And never make color the only way to tell categories apart, because your chart still has to work for someone who cannot distinguish those colors.</div></li>
+    <li><span class="n">5</span><div><b>Context, so the figure stands on its own.</b> What the data represent, the number of respondents, units, and any methodological note. For example: <i>Figure 2. Factors respondents identified as contributing to homelessness (n = 42). Participants could select more than one response.</i></div></li>
+  </ol>
+
+  <h2>5 &middot; The part your mixed-methods report actually needs</h2>
+  <p>Your survey produces numbers. Most of you also have an open-ended question, something like <i>Is there anything you wish people better understood about homelessness in this region?</i> And you get answers like these.</p>
+
   <div class="ex">
-    <div class="t">See it</div>
-    <p>Weak: "Residents who read local coverage support shelter funding more, so coverage builds support." Better: "In this sample of 42, regular readers reported more support. The two are associated; I can't say one caused the other, and 42 mostly-student respondents can't stand in for all residents."</p>
-  </div>
-  <div class="do">
-    <div class="t">Your turn</div>
-    <p>In <b>Entry 12b</b>, name your limitations, then answer: does your data answer your question and fill the gap you found? What can you claim, and what can't you?</p>
+    <div class="t">Three open responses</div>
+    <p><i>&ldquo;Rent is higher than people realize, especially if you're working for $12 an hour.&rdquo;</i></p>
+    <p><i>&ldquo;People talk like everybody living outside is addicted to drugs.&rdquo;</i></p>
+    <p><i>&ldquo;A lot of people are one medical emergency away from losing their housing.&rdquo;</i></p>
   </div>
 
-  <h2>6 · Bring the words back in</h2>
-  <p>Your numbers show the <i>what</i>. Your open-ended responses show the <i>why</i>. Pull one or two actual quotes from participants and set them beside the relevant chart. That pairing, a number plus a voice, is the heart of a <button type="button" class="term" data-pop="mixed">mixed-methods</button> write-up, and it's what turns a stack of percentages into an argument.</p>
-  <div class="ex">
-    <div class="t">See it</div>
-    <p>The 33% who read coverage "sometimes" is a number. Beside it, one resident wrote: "I read them when I have time, but the words all start to sound the same." The stat shows the pattern; the quote shows the reason. Together they make a point neither could make alone.</p>
-  </div>
-  <div class="do">
-    <div class="t">Your turn</div>
-    <p>In <b>Entry 12b</b>, pull a participant quote or two from your open responses that adds the <i>why</i> behind a number, and write your key findings in simple sentences, each tied to a number and a chart.</p>
+  <p>So what do you do with them? Two things you do not do. You do not drop 27 quotations into your Results section. And you do not read through them, pick the three you personally like best, and call that qualitative analysis.</p>
+  <p>Remember coding, from Week 6? The same principles apply here. Read across the responses, look for patterns, and develop categories.</p>
+
+  <div class="box">
+    <p><b>Say your responses produce three themes.</b></p>
+    <p><b>Housing affordability.</b> Participants discuss rent, deposits, wages, housing shortages.</p>
+    <p><b>Stereotypes about homelessness.</b> Participants describe assumptions about addiction, employment, or personal responsibility.</p>
+    <p><b>Economic vulnerability.</b> Participants discuss medical bills, layoffs, transportation, childcare, and other events that destabilize housing.</p>
+    <p>Now you have qualitative findings. Then select quotations because they are <b>representative of the theme</b>, not because they are the most dramatic. That is an ethical question too: one bizarre response from one participant should not be used to make your whole sample look bizarre.</p>
   </div>
 
-  <h2>7 · Write up P3</h2>
-  <p>Pull your findings, charts, a quote or two, and your limitations into your P3 draft (about two pages plus visuals) in <b>Entry 12b</b>. Before you submit, walk it through the Editor's Passes: the hedging pass flags any place you say "proves" or "always" when your data only suggests.</p>
-  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
-  <div class="read">
-    <div class="t">Try the tool · 10 min</div>
-    <p>Run your draft through the <a href="academic-editors-passes.html" target="_blank" rel="noopener">Academic Editor's Passes</a> before you turn it in. The hedging pass, especially, catches the overclaiming that new researchers slip into without noticing.</p>
+  <h3 style="margin:22px 0 6px; font-size:1.05rem; color:var(--accent)">Your numbers and your words have to talk to each other</h3>
+  <p>This is what makes a report actually <button type="button" class="term" data-pop="mixed">mixed methods</button>. Here is what it looks like when they do not.</p>
+
+  <div class="pr">
+    <div class="bad"><span class="lab">Two methods sharing an apartment</span><q>Here are my survey results. [Three pages.] Here are some comments people wrote. [Two pages.]</q></div>
+    <div class="good"><span class="lab">Integrated</span><q>Twenty-nine of 42 respondents identified housing affordability. Open responses repeatedly connected rent to local wages, suggesting respondents understood affordability as a mismatch rather than simply as high rent.</q></div>
   </div>
+
+  <p>So ask four questions of your open responses. Do they <b>explain</b> the quantitative pattern? Do they <b>complicate</b> it? Do they <b>contradict</b> it? Do they reveal something the closed-ended question could not capture?</p>
+
+  <h3 style="margin:22px 0 6px; font-size:1.05rem; color:var(--accent)">Use a joint display</h3>
+  <p>This can be very simple. Three columns, one row per finding. The third column is the one students leave out, and it is the one doing the analysis.</p>
+
+  <div class="tblwrap">
+  <table class="tbl">
+    <tr><th>Quantitative finding</th><th>Qualitative finding</th><th>What we learn by combining them</th></tr>
+    <tr>
+      <td>68% identified housing affordability as a major contributor</td>
+      <td>Respondents repeatedly described rent rising faster than local wages</td>
+      <td><b>Housing concerns were not abstract. Respondents connected affordability specifically to the relationship between wages and rent.</b></td>
+    </tr>
+    <tr>
+      <td>54% identified substance use as a contributor</td>
+      <td>Several open responses objected to the stereotype that addiction explains all homelessness</td>
+      <td><b>Participants may recognize substance use as one contributor while resisting a single-cause explanation.</b></td>
+    </tr>
+    <tr>
+      <td>43% supported more emergency shelter capacity</td>
+      <td>Several respondents emphasized permanent housing instead of temporary shelter</td>
+      <td><b>Support for intervention does not mean respondents agree about which intervention.</b></td>
+    </tr>
+  </table>
+  </div>
+
+  <p>Read down that third column. What becomes visible only when you put both kinds of evidence together? That is mixed-methods analysis, and none of those three sentences could have been written from either column alone.</p>
+
+  <h3 style="margin:22px 0 6px; font-size:1.05rem; color:var(--accent)">What goes in Results versus Discussion</h3>
+  <p>This will save you time on Sunday, and it will save you again on the final report.</p>
+
+  <div class="pr">
+    <div class="good" style="border-left-color:var(--accent)"><span class="lab" style="color:var(--accent)">Results: what did you find?</span><q>Housing affordability was the most commonly selected factor, identified by 29 of 42 respondents (69%). [Figure 1.] Open-ended responses reinforced this pattern, particularly through comments about the gap between wages and rental costs. [One representative quotation.]</q></div>
+    <div class="good" style="border-left-color:var(--talk)"><span class="lab" style="color:var(--talk)">Discussion: so what does it mean?</span><q>Connect back to your research question. Compare the finding with your literature review. Consider explanations. State your <button type="button" class="term" data-pop="limits">limitations</button>. Talk about implications.</q></div>
+  </div>
+  <p>And do not make your graph do the discussion for you. A figure shows a pattern; only your prose can say what it means.</p>
+
+  <h2>6 &middot; A special note for the focus-group project</h2>
   <div class="box accent">
-    <p><b>Due this week.</b> <b>P3: Quantitative Analysis</b> is due Sunday, about two pages plus your visuals. It has its own Canvas dropbox and deadline. It's the last of the three projects before the final report.</p>
+    <p><b>You are not required to have a graph.</b></p>
+  </div>
+  <p>If six people participated, I do not want <i>33.3% of participants believed&hellip;</i> That is two people. Just tell me: <i>Two participants expressed&hellip;</i> Or, if the frequency is not the point, <i>Housing affordability emerged as one of the strongest themes in the discussion.</i> Then show the evidence.</p>
+  <p>More importantly, <b>the interaction itself is data.</b> Your Results section can be organized around themes, and each theme does three things: describe the pattern, give a representative quotation, then show where another participant expanded, complicated, or disagreed with it.</p>
+
+  <div class="ex">
+    <div class="t">What that looks like</div>
+    <p><b>Theme 2: Tension between personal responsibility and structural explanation.</b> One participant initially emphasized individual choices. Another challenged that explanation by discussing wages and rent. The conversation shifted, and a third participant returned to the first position with a qualification.</p>
+    <p>That exchange is one of your findings. You cannot put it in a pie chart, and you should not try.</p>
   </div>
 
-  <div class="debrief">
-    <span class="lab">Class debrief · together at the end</span>
-    <p>We'll come back together as a class to close. Come ready to say, in one breath: <b>your single clearest finding, the chart you chose to show it, and one limitation you're naming out loud.</b> If you can't say the limitation yet, that's the tell for where your write-up still needs a pass.</p>
+  <p>If you do want a display, you have three options, and the first one is completely acceptable.</p>
+
+  <div class="box">
+    <p><b>Option 1: no visualization.</b> Strong thematic subheadings and well-chosen quotations.</p>
+    <p><b>Option 2: a thematic table.</b> A legitimate data display, and often the right one.</p>
+    <p><b>Option 3: a thematic map,</b> but only if your themes actually relate to one another and the visual communicates that relationship. Housing cost leads to housing instability leads to homelessness, with a health crisis, a job loss, or a transportation failure interacting with that pathway. Do not make a diagram because everybody else has a graph.</p>
+  </div>
+
+  <div class="tblwrap">
+  <table class="tbl">
+    <tr><th>Theme</th><th>What participants emphasized</th><th>Example</th></tr>
+    <tr><td><b>Housing affordability</b></td><td>Rent and wages were repeatedly connected</td><td>Representative quotation</td></tr>
+    <tr><td><b>Stigma</b></td><td>Participants challenged assumptions about addiction and employment</td><td>Representative quotation</td></tr>
+    <tr><td><b>Local resources</b></td><td>Participants disagreed about availability and adequacy of services</td><td>Representative quotation</td></tr>
+  </table>
+  </div>
+
+  <div class="note">
+    <p><b>And demographics from six participants?</b> Probably a table, not a graph. Four undergraduates, two graduate students. But ask first whether the demographic information is doing any work at all, and then think about privacy. With a sample this small, combining characteristics can accidentally identify someone. If there is exactly one <i>52-year-old graduate student who works at a local shelter</i>, you have practically named her.</p>
+    <p>Qualitative research does not owe the reader every demographic detail you collected.</p>
+  </div>
+
+  <h2>7 &middot; The final rule</h2>
+  <p>Keep four words in mind as you build your Results section.</p>
+
+  <div class="four">
+    <div><h4>Show</h4><p>Show me the pattern with a visualization, when a visualization actually helps.</p></div>
+    <div><h4>Tell</h4><p>Tell me the finding in prose. Never make your reader interpret the graph alone.</p></div>
+    <div><h4>Explain</h4><p>Explain with the qualitative evidence that gives the numbers depth, complexity, or contradiction.</p></div>
+    <div><h4>Connect</h4><p>Connect the quantitative and qualitative findings to each other.</p></div>
+  </div>
+
+  <p>Numbers without people become abstraction. Stories without patterns become anecdote. Mixed-methods research gives you both, and the point is not to decide which one is telling the truth. The point is to ask: <b>what can I understand by seeing them together that I could not understand from either one alone?</b></p>
+
+  <div class="note">
+    <p><b>When your figures exist, audit them.</b> There is a nine-point ethics audit in the Week 14 module, built to run on a finished figure: sample size visible, denominators right, axis at zero, precision matched to your N, title claiming only what the sample allows, color not carrying the meaning alone, and nothing decorative left in. Run it on every figure before the final report, and run it on your P3 figures this weekend if you have time.</p>
   </div>
 
   <div class="close">
-    <p><b>One reminder.</b> P3 goes in its own Canvas dropbox by Sunday. Your Research Notebook is different: you turn the whole thing in only twice all semester, at the midterm and end-of-term check-ins, when you gather everything into a Google Doc and upload that to Canvas. Nothing else to turn in week to week.</p>
-    <p><b>A 10-minute prime for next week.</b> You now hold all three pieces: your literature review (P1), your qualitative analysis (P2), and your quantitative findings (P3). Before Tuesday, skim your three drafts and notice how differently each one is shaped. Next Thursday is the format that fuses them into one professional report: <b>IMRAD</b> (Introduction, Methods, Results, and Discussion). The study is nearly whole.</p>
+    <p><b>P3 is due Sunday by 11:59 p.m.,</b> in its own Canvas dropbox.</p>
+    <p><b>A 10-minute prime for next week.</b> You will then hold all three pieces: your literature review, your qualitative analysis, and your quantitative findings. Before Tuesday, skim those three drafts and notice how differently each one is shaped. Next week is the format that fuses them into one professional report: <b>IMRAD</b>, meaning Introduction, Methods, Results, and Discussion.</p>
   </div>
 
+
+  </div>
+
+  <!-- POPUPS -->
   <dialog class="pop" id="pop-primary"><h3>Primary vs. secondary research</h3><p><b>Secondary research</b> means analyzing sources other people produced (your literature review, your food-label analysis). <b>Primary research</b> means generating and analyzing new data yourself. Charting your own survey results is primary analysis: nobody has seen these findings before you, because you made them.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-frequency"><h3>Frequency table</h3><p>A simple count of how many people chose each answer. If 14 of 42 respondents picked "Sometimes," that's a frequency. It turns a column of individual responses into countable totals you can compare and chart, the first step of any quantitative analysis.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-countif"><h3>COUNTIF</h3><p>A spreadsheet formula that counts cells matching a condition. In Google Sheets, <code>=COUNTIF(B2:B200,"Often")</code> tells you how many people answered "Often." Run it once per answer choice and you've built your frequency table in seconds, no hand-tallying, no miscounts.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-descriptive"><h3>Descriptive statistics</h3><p>Simple numbers that summarize your data, no advanced math. The ones you'll use: the <b>count</b> (N), the <b>percentage</b> for each answer, and the <b>mode</b> (most common answer). For numeric data you can add a mean or median. You do not need regression or p-values for this project.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-meanmedian"><h3>Mean vs. median</h3><p>The <b>mean</b> is the average (add them up, divide by how many). The <b>median</b> is the middle value when you line them up. Use them for numeric answers like age or how many articles someone reads. The median is sturdier when a few extreme values would drag the average around, one respondent who reads thirty articles a month shouldn't define "typical."</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-likertavg"><h3>Averaging a Likert scale</h3><p>People often report "the average agreement was 3.8 of 5," and it's common enough to be acceptable. Just know the caveat: a Likert scale is <i>ordered</i> (agree is more than neutral) but the steps aren't guaranteed to be evenly spaced, so an average can smooth over a split. Showing the full distribution in a bar chart usually tells a truer story.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-chartfit"><h3>Match the chart to the data</h3><p><b>Bar:</b> comparing categories (the safe default). <b>Pie:</b> parts of one whole adding to 100%, with only a few slices. <b>Line:</b> change over time. <b>Grouped/stacked bars:</b> comparing groups against each other. When in doubt, a clean bar chart is rarely wrong.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-truncate"><h3>The truncated-axis trick</h3><p>The most common way charts mislead: starting the vertical axis near the data instead of at zero, so small differences look huge. A move from 48% to 52% gets drawn as a landslide. Start your bars at zero and you can't make this mistake. The class tool has a toggle that shows the trick on your own data.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-causation"><h3>Correlation vs. causation</h3><p>Two things moving together doesn't mean one caused the other. If label-readers also happen to exercise more, reading labels didn't necessarily cause the exercise, some third thing (health-consciousness) might drive both. Report what's <i>associated</i> in your data, and resist writing that one thing <i>made</i> another happen unless you truly tested it.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-limits"><h3>Naming your limitations</h3><p>Every study has them, and saying so out loud makes you more credible. A small or convenience sample is a limitation: "This sample of 34 mostly-student respondents can't represent all residents, so these findings are suggestive." Stating your limits is what separates a careful researcher from someone overselling their data.</p><form method="dialog"><button>Got it</button></form></dialog>
+  <dialog class="pop" id="pop-limits"><h3>Stating your limitations</h3><p>Every study has them, and saying so makes you more credible. A small or convenience sample is a limitation: "This sample of 34 mostly-student respondents can't represent all residents, so these findings are suggestive." Stating your limits is what separates a careful researcher from someone overselling their data.</p><form method="dialog"><button>Got it</button></form></dialog>
   <dialog class="pop" id="pop-mixed"><h3>Mixed methods</h3><p>Combining numbers and words so each covers the other's blind spot. Your closed questions give the <i>what</i> (percentages, charts); your open responses and any interviews give the <i>why</i> (quotes, reasons). Setting a participant's own words next to the matching statistic is the move that makes a quantitative write-up feel human and convincing.</p><form method="dialog"><button>Got it</button></form></dialog>
-
-</div>
 
 <script>
   document.querySelectorAll('[data-pop]').forEach(function(b){
@@ -226,6 +469,29 @@
   document.querySelectorAll('dialog.pop').forEach(function(d){
     d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
   });
+
+  // commit-then-feedback quizzes
+  function wireQuiz(boxId, btnId, scoreId, tail){
+    var box = document.getElementById(boxId);
+    document.getElementById(btnId).addEventListener('click', function(){
+      var items = box.querySelectorAll('.it'), n = items.length, right = 0, answered = 0;
+      items.forEach(function(it){
+        var sel = it.querySelector('select'), fb = it.querySelector('.fb');
+        it.classList.remove('right','wrong');
+        if(!sel.value){ return; }
+        answered++;
+        if(sel.value === it.dataset.a){ it.classList.add('right'); right++; fb.textContent = it.dataset.fb; }
+        else { it.classList.add('wrong'); fb.textContent = 'Not that one. Read it again and ask what the sentence claims that the data cannot support.'; }
+      });
+      var sc = document.getElementById(scoreId); sc.style.display = 'block';
+      if(answered < n){ sc.textContent = 'Answer all ' + n + ' first (' + answered + '/' + n + ' done).'; sc.style.color = '#8a5a1f'; }
+      else if(right === n){ sc.textContent = 'All ' + n + '. ' + tail; sc.style.color = 'var(--good)'; }
+      else { sc.textContent = right + ' of ' + n + '. Fix the ones marked in red and check again.'; sc.style.color = 'var(--accent)'; }
+    });
+  }
+  wireQuiz('q1','q1check','q1score','Now read your own Results draft looking for these four, because they are easier to spot in somebody else\u2019s writing than in your own.');
+  wireQuiz('q2','q2check','q2score','Note which ones needed no chart and which needed a plain table. Those are the answers students reach for last.');
+
 </script>
 </body>
 </html>
