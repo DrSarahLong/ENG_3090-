@@ -54,6 +54,11 @@
   #pw button.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
   #pw button:hover{filter:brightness(1.08)}
   #pw .end{margin-top:46px;padding-top:22px;border-top:3px solid var(--accent);color:var(--soft);font-size:.92rem}
+
+  #pw .nbox{border:2px solid var(--accent);border-radius:14px;padding:20px 22px;margin:40px 0 10px;background:var(--panel)}
+  #pw .nbox h3{margin-top:0}
+  #pw .nbox .btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+  #pw .nbox .ok{font-size:.9rem;color:var(--good);font-weight:700}
   @media print{
     #pw .bar{display:none} #pw{max-width:none;padding:0}
     #pw textarea,#pw input[type=text]{border:none;border-bottom:1px solid #999;border-radius:0;min-height:0}
@@ -75,6 +80,7 @@
   <div class="kick">ENG 3090 &middot; Week 14 &middot; In class Tuesday</div>
   <h1>Final Presentation Worksheet</h1>
   <p class="lede">We build this together in class. Everything you type saves on your own device, and nothing is sent anywhere. Download a copy before you leave, because this is what you will work from when you build your slides.</p>
+<div class="teach" style="margin-top:18px"><p><b>This goes in your Research Notebook.</b> Fill it in here during class, then hit <b>Copy for my notebook</b> at the bottom and paste the whole thing into your notebook under this week&rsquo;s heading. That is how I see that you did it.</p></div>
 
 <h2>Why we are doing this</h2>
 <p>This is rehearsal for the room where someone decides whether to hire you, fund your cause, hand you a campaign, or admit you to graduate school. The people making those decisions are mostly Gen X and Boomers, and they learned a different set of presentation rules than you did.</p>
@@ -195,7 +201,18 @@
 <label for="f2">Instead</label><textarea id="f2" data-k="exit_instead" rows="2"></textarea>
 
 
-  <div class="end">ENG 3090 &middot; Research Methods in Rhetoric &amp; Technical Writing &middot; Dr. Sarah Long &middot; Appalachian State University. Your answers are stored only in this browser on this device. Use <b>Download my worksheet</b> to keep a copy.</div>
+
+  <div class="nbox">
+    <h3>Put this in your Research Notebook</h3>
+    <p>Everything you typed goes in as one entry. Hit the button, then paste it into your notebook under this week&rsquo;s heading. If you would rather keep a file, use <b>Download my worksheet</b> instead, but the notebook copy is the one I check.</p>
+    <div class="btns">
+      <button type="button" id="cp">Copy for my notebook</button>
+      <button type="button" class="ghost" id="dl2">Download instead</button>
+      <span class="ok" id="cpok"></span>
+    </div>
+  </div>
+
+  <div class="end">Your answers are stored only in this browser on this device. Use <b>Download my worksheet</b> to keep a copy.</div>
 </div>
 
 <script>
@@ -235,8 +252,12 @@
     }, 350);
   }
 
-  document.getElementById('dl').addEventListener('click', function(){
-    var lines = ['Final Presentation Worksheet', 'ENG 3090 &middot; Week 14 &middot; In class Tuesday', 'Downloaded ' + new Date().toLocaleString(), ''];
+  var HEADLINE = 'Final Presentation Worksheet';
+  var KICKER = 'ENG 3090 &middot; Week 14 &middot; In class Tuesday';
+  var DLNAME = 'ENG3090-presentation-worksheet.txt';
+
+  function entryText(verb){
+    var lines = [HEADLINE, KICKER, verb + ' ' + new Date().toLocaleString(), ''];
     var secs = root.querySelectorAll('h2, h3, label');
     secs.forEach(function(node){
       if (node.tagName === 'H2'){ lines.push(''); lines.push('==== ' + node.textContent.trim() + ' ===='); return; }
@@ -245,14 +266,37 @@
       if (!f || !f.getAttribute('data-k')) return;
       var lab = node.textContent.trim().replace(/\s+/g,' ');
       if (f.type === 'checkbox'){ lines.push((f.checked ? '[x] ' : '[ ] ') + lab); }
-      else { lines.push(lab + ':'); lines.push('   ' + (f.value || '').replace(/\n/g,'\n   ')); }
+      else { lines.push(lab + ':'); lines.push('   ' + ((f.value || '(blank)')).replace(/\n/g,'\n   ')); }
     });
-    var blob = new Blob([lines.join('\n')], {type:'text/plain'});
+    return lines.join('\n');
+  }
+
+  function doDownload(){
+    var blob = new Blob([entryText('Downloaded')], {type:'text/plain'});
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'ENG3090-presentation-worksheet.txt';
+    a.download = DLNAME;
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  }
+  document.getElementById('dl').addEventListener('click', doDownload);
+  var dl2 = document.getElementById('dl2'); if (dl2) dl2.addEventListener('click', doDownload);
+
+  document.getElementById('cp').addEventListener('click', function(){
+    var txt = entryText('Completed'), tag = document.getElementById('cpok');
+    function done(){ tag.textContent = 'Copied. Paste it into your notebook.'; setTimeout(function(){ tag.textContent=''; }, 4000); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = txt; ta.setAttribute('readonly','');
+      ta.style.position='fixed'; ta.style.top='-1000px';
+      document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, txt.length);
+      try { document.execCommand('copy'); done(); }
+      catch(e){ tag.textContent = 'Copy did not work here. Use Download instead.'; }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(done, fallback);
+    } else { fallback(); }
   });
 
   document.getElementById('pr').addEventListener('click', function(){ window.print(); });
