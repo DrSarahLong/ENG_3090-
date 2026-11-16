@@ -3,257 +3,266 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ENG 3090 · Module: Revise, Review &amp; Polish</title>
+<title>ENG 3090 &middot; Final Presentation Worksheet</title>
 <style>
-  :root{
-    --paper:#fbfaf7; --card:#ffffff; --ink:#1c2230; --muted:#5b6472;
-    --accent:#1f6b86; --accent-soft:#e7f1f5; --line:#e5e0d6; --field:#fffdf9;
-    --good:#2f7d54; --talk:#7a4da3; --talksoft:#efe8f6;
+
+  #pw{
+    --ink:#1f2933; --soft:#5b6673; --line:#dbe1e8; --paper:#ffffff; --panel:#f4f7fa;
+    --accent:#2b6d8c; --accentsoft:rgba(43,109,140,.10); --gold:#8a5a1f; --good:#2c6b52; --field:#ffffff;
+    color:var(--ink); background:var(--paper);
+    font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    max-width:860px; margin:0 auto; padding:0 20px 120px;
   }
-#mod .audit{margin:12px 0}
-#mod .audit li{list-style:none; display:block; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:11px 14px; margin:8px 0; font-size:.95rem; line-height:1.45}
-#mod .audit ul{padding-left:0; margin:0}
-#mod .audit label{display:block; cursor:pointer; padding-left:28px; position:relative}
-#mod .audit input{position:absolute; left:0; top:.25em; width:17px; height:17px; accent-color:var(--accent)}
-#mod .audit .w{display:block; margin-top:4px; font-size:.86rem; color:var(--muted)}
-#mod .verdict{display:none; border-radius:11px; padding:13px 16px; margin:12px 0; font-size:.96rem; line-height:1.5}
-  @media (prefers-color-scheme: dark){
-    :root{ --paper:#12151a; --card:#191d24; --ink:#e9ebee; --muted:#9aa4b2; --accent:#7fb9d4; --accent-soft:#16303b; --line:#2a3038; --field:#1e232b; --good:#7ac598; --talk:#c3a3e0; --talksoft:#231a30; }
+  @media (prefers-color-scheme:dark){
+    #pw{--ink:#e6eaef; --soft:#9aa5b1; --line:#38424d; --paper:#12171d; --panel:#1a2129;
+        --accent:#7fb9d4; --accentsoft:rgba(127,185,212,.14); --field:#1e232b; --good:#7ac598; background:#12171d}
   }
-  *{box-sizing:border-box} html,body{margin:0}
-  body{background:var(--paper); color:var(--ink); font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  #mod{max-width:760px; margin:0 auto; padding:28px 20px 80px}
-  #mod h1{font-family:Georgia,"Iowan Old Style",serif; font-size:1.85rem; margin:0}
-  #mod h2{font-family:Georgia,"Iowan Old Style",serif; font-size:1.3rem; margin:30px 0 8px}
-  #mod .kicker{font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 4px}
-  #mod .masthead{border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:18px}
-  #mod .sub{color:var(--muted); margin:6px 0 0}
-  #mod .box{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin:10px 0}
-  #mod .box.accent{border-left:5px solid var(--accent)}
-  #mod ul{margin:.4rem 0; padding-left:1.2rem} #mod li{margin:.35rem 0}
-  #mod .check{list-style:none; padding-left:0}
-  #mod .check li{display:flex; gap:10px; align-items:flex-start; margin:.5rem 0}
-  #mod .check .n{flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:.9rem}
-  #mod .debrief{background:var(--talksoft); border:1px solid var(--line); border-left:5px solid var(--talk); border-radius:12px; padding:14px 16px; margin:18px 0}
-  #mod .debrief .lab{font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--talk); display:block; margin-bottom:3px}
-  #mod .debrief p{margin:.2rem 0}
-  #mod a.btn{display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; border-radius:9px; padding:12px 20px; margin:6px 0}
-  #mod a.btn.ghost{background:transparent; color:var(--accent); border:1.5px solid var(--accent)}
-  #mod a.btn:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
-  #mod .note{color:var(--muted); font-size:.9rem}
-  #mod .close{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-top:22px}
-  #mod .term{background:none;border:0;padding:0;font:inherit;color:var(--accent);font-weight:700;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
-  #mod .term:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
-  /* ===== lesson-flow components ===== */
-  #mod .ground{background:var(--accent-soft); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:14px 0}
-  #mod .bridge{color:var(--muted); font-style:italic; margin:16px 0 4px}
-  #mod .ex{background:var(--field); border:1px solid var(--line); border-radius:12px; padding:13px 16px; margin:12px 0}
-  #mod .ex .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--good); margin-bottom:5px}
-  #mod .ex p{margin:.35rem 0}
-  #mod .read{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
-  #mod .read .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:5px}
-  #mod .read a{color:var(--accent); font-weight:700}
-  #mod .do{background:var(--card); border:1px dashed var(--accent); border-radius:12px; padding:13px 16px; margin:12px 0}
-  #mod .do .t{font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; font-weight:800; color:var(--accent); margin-bottom:4px}
-  #mod .do p{margin:.2rem 0}
-  dialog.pop{max-width:540px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:22px 24px;box-shadow:0 24px 60px rgba(0,0,0,.35);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  dialog.pop::backdrop{background:rgba(12,16,24,.55)}
-  dialog.pop h3{font-family:Georgia,"Iowan Old Style",serif;margin:0 0 8px;font-size:1.2rem}
-  dialog.pop p{margin:.4rem 0}
-  dialog.pop a{color:var(--accent)}
-  dialog.pop form{margin-top:16px;text-align:right}
-  dialog.pop button{font:inherit;font-weight:600;cursor:pointer;border-radius:9px;padding:9px 16px;border:1px solid var(--accent);background:var(--accent);color:#fff}
-  /* ===== shared course nav ===== */
-  .coursenav{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  .coursenav .inner{max-width:1000px;margin:0 auto;padding:9px 18px;display:flex;align-items:center;gap:7px 15px;flex-wrap:wrap}
-  .coursenav .brand{font-family:Georgia,"Iowan Old Style",serif;font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none;margin-right:auto}
-  .coursenav .brand small{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
-  .coursenav a.lnk{color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem;padding:3px 1px;border-bottom:2px solid transparent}
-  .coursenav a.lnk:hover{border-bottom-color:var(--accent);color:var(--accent)}
-  .coursenav a.lms{background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.86rem;border-radius:8px;padding:6px 12px;white-space:nowrap}
+  #pw *{box-sizing:border-box}
+  #pw .kick{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--accent);margin:34px 0 6px}
+  #pw h1{font-family:Georgia,"Iowan Old Style",serif;font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.12;margin:0 0 10px;text-wrap:balance}
+  #pw .lede{color:var(--soft);font-size:1.08rem;margin:0 0 6px;max-width:62ch}
+  #pw h2{font-family:Georgia,serif;font-size:clamp(1.35rem,3vw,1.85rem);line-height:1.2;margin:46px 0 4px;padding-top:22px;border-top:3px solid var(--accent);text-wrap:balance}
+  #pw h3{font-size:1.08rem;margin:26px 0 6px;color:var(--accent);font-weight:800;letter-spacing:.01em}
+  #pw p{margin:10px 0}
+  #pw .teach{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:16px 20px;margin:16px 0}
+  #pw .teach p:first-child{margin-top:0} #pw .teach p:last-child{margin-bottom:0}
+  #pw .note{font-size:.95rem;color:var(--soft);border-left:3px solid var(--line);padding-left:14px;margin:14px 0}
+  #pw ul,#pw ol{margin:10px 0;padding-left:1.25em} #pw li{margin:6px 0}
+  #pw b,#pw strong{color:var(--ink)}
+  #pw .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0;border:1px solid var(--line);border-radius:12px}
+  #pw table{border-collapse:collapse;width:100%;min-width:520px;font-size:.96rem}
+  #pw th,#pw td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+  #pw th{background:var(--panel);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:800;position:sticky;top:0}
+  #pw tbody tr:last-child td{border-bottom:none}
+  #pw .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0}
+  #pw .card h4{margin:0 0 2px;font-family:Georgia,serif;font-size:1.15rem}
+  #pw .card .job{color:var(--soft);font-size:.95rem;margin:0 0 10px}
+  #pw .badge{display:inline-block;background:var(--accentsoft);color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:2px 11px;font-size:.78rem;font-weight:800;letter-spacing:.04em;margin-left:8px;vertical-align:2px}
+  #pw label{display:block;font-weight:700;font-size:.93rem;margin:12px 0 5px}
+  #pw label .hint{display:block;font-weight:400;color:var(--soft);font-size:.88rem;margin-top:2px}
+  #pw textarea,#pw input[type=text],#pw select{width:100%;background:var(--field);color:var(--ink);border:1.5px solid var(--line);border-radius:9px;padding:10px 12px;font:inherit;font-size:1rem}
+  #pw textarea{resize:vertical;min-height:62px}
+  #pw textarea:focus,#pw input:focus,#pw select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accentsoft)}
+  #pw .fg{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+  @media (max-width:700px){#pw .fg{grid-template-columns:1fr}}
+  #pw .chk{display:flex;gap:11px;align-items:flex-start;margin:8px 0;font-size:.98rem}
+  #pw .chk input{margin-top:5px;width:18px;height:18px;flex:0 0 auto;accent-color:var(--accent)}
+  #pw .bar{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--line);
+          display:flex;gap:9px;align-items:center;flex-wrap:wrap;padding:10px 0;margin-bottom:4px}
+  #pw .bar .st{font-size:.85rem;color:var(--soft);margin-right:auto}
+  #pw button{background:var(--accent);color:#fff;border:none;border-radius:9px;padding:9px 15px;font:inherit;font-weight:700;font-size:.9rem;cursor:pointer}
+  #pw button.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  #pw button:hover{filter:brightness(1.08)}
+  #pw .end{margin-top:46px;padding-top:22px;border-top:3px solid var(--accent);color:var(--soft);font-size:.92rem}
+  @media print{
+    #pw .bar{display:none} #pw{max-width:none;padding:0}
+    #pw textarea,#pw input[type=text]{border:none;border-bottom:1px solid #999;border-radius:0;min-height:0}
+    #pw h2{break-after:avoid} #pw .card{break-inside:avoid}
+  }
+
 </style>
 </head>
 <body>
-<nav class="coursenav"><div class="inner">
-<a class="brand" href="index.html">ENG 3090<small>Research Methods</small></a>
-<a class="lnk" href="index.html">Home</a>
-<a class="lnk" href="syllabus.html">Syllabus</a>
-<a class="lnk" href="schedule.html">Schedule</a>
-<a class="lnk" href="projects.html">Major Project Rubrics</a>
-<a class="lnk" href="readings.html">Readings</a>
-<a class="lnk" href="research-notebook.html">Notebook</a>
-<a class="lnk" href="week07-corpus.html">Week 7 Corpus</a>
-<a class="lms" href="https://appstate.instructure.com/" target="_blank" rel="noopener">Canvas &rarr;</a>
-</div></nav>
+<div id="pw">
 
-<div id="mod">
-
-  <header class="masthead">
-    <p class="kicker">ENG 3090 · Week 14 · Thursday Module</p>
-    <h1>Revise, Review &amp; Polish</h1>
-    <p class="sub">You have a full draft. Today you turn it into the final, which means revision, not just fixing typos.</p>
-  </header>
-
-  <div class="ground"><b>Arrive.</b> Open your Research Notebook and your latest draft in other tabs. On Tuesday you finished a full IMRAD draft, start to finish. Today's job is to <b>re-see</b> it: the whole thing again, at the level of ideas and structure first, then sentences, then specks. Budget about ninety minutes across your own draft.</div>
-
-  <p class="bridge">A finished draft is the raw material, not the report. Today you make it read like the study you actually ran.</p>
-
-  <div class="box accent">
-    <p><b>First, permission.</b> Your draft is allowed to be rough right now. The writer Anne Lamott, in <i>Bird by Bird</i> (1994), has a famous name for the first version of anything: the <button type="button" class="term" data-pop="sfd">shitty first draft</button>. Her point is that nobody, not published researchers, not me, not you, writes a good draft first. You write a messy one so you have something to make good. The report you hand in next week won't be the one you have now, and that's exactly how it's supposed to work.</p>
+  <div class="bar">
+    <span class="st" id="st">Your answers save on this device as you type.</span>
+    <button type="button" id="dl">Download my worksheet</button>
+    <button type="button" class="ghost" id="pr">Print</button>
+    <button type="button" class="ghost" id="cl">Clear</button>
   </div>
 
-  <h2>1 · Revise, edit, and proofread are three different jobs</h2>
-  <p>Most students do only the last two and call it revising. Do all three, and do them <b>big to small</b>, so you're not perfecting sentences you may end up cutting.</p>
-  <div class="box">
-    <ul class="check">
-      <li><span class="n">1</span><div><b><button type="button" class="term" data-pop="revise">Revise</button> (ideas &amp; structure).</b> Is the argument clear? Is anything missing, repeated, or out of order? Does each section do its job? This is where a draft actually gets better.</div></li>
-      <li><span class="n">2</span><div><b>Edit (sentences).</b> Tighten wordy sentences, fix awkward phrasing, smooth transitions, warm up the academic tone.</div></li>
-      <li><span class="n">3</span><div><b>Proofread (errors).</b> Typos, citation formatting, page numbers, figure captions. Last, because there's no sense polishing a paragraph you might&nbsp;cut.</div></li>
-    </ul>
-  </div>
+  <div class="kick">ENG 3090 &middot; Week 14 &middot; In class Tuesday</div>
+  <h1>Final Presentation Worksheet</h1>
+  <p class="lede">We build this together in class. Everything you type saves on your own device, and nothing is sent anywhere. Download a copy before you leave, because this is what you will work from when you build your slides.</p>
 
-  <h2>2 · Fix the big things first</h2>
-  <p>Writing centers call this <button type="button" class="term" data-pop="hoc">higher-order concerns before lower-order concerns</button>. Sort your problems and start at the top.</p>
-  <div class="box">
-    <p><b>Higher-order (do first):</b> focus and argument, organization, whether each claim has evidence, whether the report answers its own question.</p>
-    <p><b>Lower-order (do after):</b> grammar, word choice, citation style, formatting, typos.</p>
-    <p class="note">There's no point perfecting the commas in a paragraph you're about to delete. Structure first, sentences second, specks last.</p>
-  </div>
-  <div class="read">
-    <div class="t">Read the source · 6 min</div>
-    <p><a href="https://writingcenter.unc.edu/tips-and-tools/revising-drafts/" target="_blank" rel="noopener">Revising Drafts</a> &mdash; UNC Chapel Hill Writing Center. Draws the line between revising and proofreading, and shows why you fix the big things (focus, organization) before the small ones.</p>
-  </div>
+<h2>Why we are doing this</h2>
+<p>This is rehearsal for the room where someone decides whether to hire you, fund your cause, hand you a campaign, or admit you to graduate school. The people making those decisions are mostly Gen X and Boomers, and they learned a different set of presentation rules than you did.</p>
+<p>Here is one gap in perception as an example:</p>
+<div class="teach"><p><b>Their side.</b> In a December 2023 survey of 800 U.S. hiring managers, more than half said Gen Z candidates struggle most with eye contact in interviews, and 21% said some candidates refused to turn on their cameras in virtual interviews (Intelligent survey, reported by Fox).</p><p><b>Your side.</b> In a 2023 survey of 1,015 Gen Z workers, 44% said they are uneasy or nervous about delivering presentations at work, and 42% named soft skills training as the top thing they want from employers (Kahoot! and Researchscape survey, reported by Agility PR).</p></div>
+<div class="teach"><p>By the end of today you will have: one takeaway sentence, a six-beat map of your talk, two planned audience questions, and a memorized first and last line.</p></div>
+<h2>Warm-up: The generational decoder</h2>
+<p>None of your habits are wrong. They are tuned for a different audience. The middle column is how the habit often lands with someone who learned to present before smartphones.</p>
+<div class="tw"><table><thead><tr><th>Common Gen Z default</th><th>How a Gen X decision-maker may read it</th><th>The move they are looking for</th></tr></thead><tbody><tr><td>Reading from a phone or laptop</td><td>Unprepared, hiding</td><td>A note card with keywords, eyes up</td></tr><tr><td>&ldquo;So, um, yeah, my project is about&hellip;&rdquo;</td><td>Not sure they want to be here</td><td>A planned first line, delivered after a pause</td></tr><tr><td>&ldquo;And, yeah, that&rsquo;s it.&rdquo;</td><td>Ran out of road</td><td>A planned last line, then &ldquo;Thank you&rdquo;</td></tr><tr><td>Apologizing up front (&ldquo;This probably isn&rsquo;t great, but&hellip;&rdquo;)</td><td>Told me not to take it seriously</td><td>Say nothing about quality. Let the work speak</td></tr><tr><td>Hedges: &ldquo;kind of,&rdquo; &ldquo;I feel like,&rdquo; &ldquo;basically&rdquo;</td><td>Not confident in the findings</td><td>State the claim. &ldquo;We found&hellip;&rdquo;</td></tr><tr><td>Talking fast to get it over with</td><td>Nervous, hard to follow</td><td>Pause after each main point. Silence reads as control</td></tr><tr><td>Slides full of text, or slides styled like a feed</td><td>The slides are the script, or the style is the point</td><td>One idea per slide, large type, one strong visual</td></tr><tr><td>Camera off, or eyes on your own video tile</td><td>Disengaged</td><td>Camera on, eyes on the lens</td></tr><tr><td>Running over time</td><td>Disrespect for the room</td><td>Finish 20 seconds early</td></tr><tr><td>&ldquo;I don&rsquo;t know&rdquo; and a shrug in Q&amp;A</td><td>Did not do the work</td><td>&ldquo;I&rsquo;m not sure, but here is my best guess.&rdquo;</td></tr></tbody></table></div>
+<p><b>What your generation does better.</b> This runs both ways. You are often comfortable on camera, fluent in visuals, and trained by short video to hook an audience in three seconds and cut what is boring. Many Gen X presenters still bury the point on slide 14. So keep your strengths and add their formality.</p>
+<h3>Circle and translate (3 minutes)</h3>
+<p>Pick the two defaults above that sound most like you, then translate each line below into what you would say to a hiring committee.</p>
+<label for="f109">The two that sound most like me</label><textarea id="f109" data-k="t30_mine" rows="2"></textarea>
+<label for="f110">&ldquo;So basically I kind of looked at how people feel about this.&rdquo;<span class="hint">Translation</span></label><textarea id="f110" data-k="t30_a" rows="2"></textarea>
+<label for="f111">&ldquo;Sorry, I&rsquo;m really nervous, this might be bad.&rdquo;<span class="hint">Translation</span></label><textarea id="f111" data-k="t30_b" rows="2"></textarea>
+<label for="f112">&ldquo;I don&rsquo;t know, I didn&rsquo;t really look at that.&rdquo;<span class="hint">Translation</span></label><textarea id="f112" data-k="t30_c" rows="2"></textarea>
+<h2>Part 1 &middot; Start with one sentence</h2>
+<p>A talk is not your project read aloud. It is one idea, delivered so the room remembers it. Think of a TED or TEDx talk. The whole format is built on a single &ldquo;idea worth spreading,&rdquo; and the talks people remember can be summed up in a sentence. Yours should work the same way. Fill this in before you open Canva.</p>
+<h3>The basics</h3>
+<div class="fg"><label for="f113">Project title</label><textarea id="f113" data-k="b30_title" rows="1"></textarea>
+<label for="f114">My target time<span class="hint">Limit is 10 to 12 minutes, plus Q&amp;A</span></label><input type="text" id="f114" data-k="b30_time">
+<label for="f115">My date and slot</label><input type="text" id="f115" data-k="b30_slot">
+<label for="f116">In person or online</label><input type="text" id="f116" data-k="b30_mode">
+</div><h3>Who is listening?</h3>
+<p>Your classmates are in the room, but that&rsquo;s not really your audience. Write for the person who will one day decide whether to hire, fund, or promote you. Picture someone your professor&rsquo;s age in the back row.</p>
+<label for="f117">What does that person already know about my topic?</label><textarea id="f117" data-k="w30_know" rows="2"></textarea>
+<label for="f118">What do they not know that I do?</label><textarea id="f118" data-k="w30_not" rows="2"></textarea>
+<label for="f119">What should they do, decide, or believe when I finish?</label><textarea id="f119" data-k="w30_do" rows="2"></textarea>
+<label for="f120">My one takeaway<span class="hint">If the audience remembers only one thing, it is&hellip; Under 20 words, one idea, no jargon.</span></label><textarea id="f120" data-k="w30_take" rows="2"></textarea>
+<h2>Part 2 &middot; Map your six beats</h2>
+<p>Every strong talk moves through the same six beats. Write <b>keywords only</b>, never full sentences. If you write sentences, you will read them, and the idea is to give a talk, not a reading.</p>
+<div class="card"><h4>1. Hook<span class="badge">0:45</span></h4><p class="job">Earn attention with a number, a question, or a short moment</p><label for="f121">My keywords</label><textarea id="f121" data-k="beat30_0" rows="2"></textarea>
+</div>
+<div class="card"><h4>2. Question and why it matters<span class="badge">1:30</span></h4><p class="job">The gap in the literature, who it affects, and your justice lens</p><label for="f122">My keywords</label><textarea id="f122" data-k="beat30_1" rows="2"></textarea>
+</div>
+<div class="card"><h4>3. What I did<span class="badge">2:00</span></h4><p class="job">Both methods: your corpus and codebook, then your instrument, sample, and recruitment</p><label for="f123">My keywords</label><textarea id="f123" data-k="beat30_2" rows="2"></textarea>
+</div>
+<div class="card"><h4>4. What I found<span class="badge">4:00</span></h4><p class="job">One qualitative and one quantitative finding, each with a visual or a quotation</p><label for="f124">My keywords</label><textarea id="f124" data-k="beat30_3" rows="2"></textarea>
+</div>
+<div class="card"><h4>5. So what<span class="badge">2:00</span></h4><p class="job">Specific recommendations tied to your findings, plus one limitation you raise yourself</p><label for="f125">My keywords</label><textarea id="f125" data-k="beat30_4" rows="2"></textarea>
+</div>
+<div class="card"><h4>6. Close<span class="badge">0:30</span></h4><p class="job">Takeaway again, one memorable last line, thank you</p><label for="f126">My keywords</label><textarea id="f126" data-k="beat30_5" rows="2"></textarea>
+</div>
+<div class="note">Your window is 10 to 12 minutes, talks run long, and going over reads as unprepared, which is why following this script should land you somewhere around <b>10 minutes 45 seconds</b>.</div>
+<div class="teach"><p><b>The beats are a compressed IMRAD.</b> Beat 3 is your Methods, beat 4 your Results, beat 5 your Discussion.</p><p><b>Your rubric:</b> the report is graded on integration, so the talk should sound like one study, not three projects in a row. Say how the literature review led to the discourse analysis, and how that led to the survey.</p></div>
+<h3>Script only two sentences</h3>
+<p>Memorize these. Everything else you speak from keywords.</p>
+<label for="f127">My first line<span class="hint">Not &ldquo;Hi, my project is about&hellip;&rdquo;</span></label><textarea id="f127" data-k="s30_first" rows="2"></textarea>
+<label for="f128">My last line<span class="hint">Not &ldquo;And, yeah, that&rsquo;s it&rdquo;</span></label><textarea id="f128" data-k="s30_last" rows="2"></textarea>
+<label for="f129">What I am cutting<span class="hint">Even 11 minutes cannot hold a semester of work. List two things that are true, interesting, but don&rsquo;t belong in the talk. It&rsquo;s tough, but you have to sometimes &ldquo;kill your darlings,&rdquo; as they say.</span></label><textarea id="f129" data-k="s30_cut" rows="3"></textarea>
+<h2>Part 3 &middot; Turn the audience into participants</h2>
+<p>The video we watched argues for building questions into your talk. A question changes the audience&rsquo;s job from sitting through it to thinking with you. In a 10 to 12 minute talk, plan two or three and space them out. Each one should cost you under 30 seconds.</p>
+<div class="tw"><table><thead><tr><th>Type of question</th><th>Example</th><th>Best beat</th></tr></thead><tbody><tr><td>Show of hands</td><td>&ldquo;Raise your hand if you have ever&hellip;&rdquo;</td><td>Hook</td></tr><tr><td>Guess before the reveal</td><td>&ldquo;What percent of respondents do you think said yes?&rdquo;</td><td>Just before your key finding</td></tr><tr><td>This or that</td><td>Show two versions. &ldquo;Which one would you stop scrolling for?&rdquo;</td><td>Finding or example</td></tr><tr><td>Think, do not answer</td><td>&ldquo;Ask yourself when you last&hellip;&rdquo;</td><td>Hook or So what</td></tr><tr><td>Seed the Q&amp;A</td><td>&ldquo;The thing I still can&rsquo;t explain is&hellip; I&rsquo;d like your read on it.&rdquo;</td><td>Close</td></tr></tbody></table></div>
+<h3>Rules that make questions work</h3>
+<ul><li>Make it answerable in five seconds.</li><li>Ask, then wait three full seconds. Count them silently. It will feel long to you but normal to them.</li><li>Do something with the answer.</li><li>Have a line ready for silence.</li><li>Online presenters: tell people exactly how to answer. &ldquo;Type 1 or 2 in the chat.&rdquo;</li></ul>
+<div class="note">If a wrong answer would derail you, turn it into a think-about-it question: &ldquo;Ask yourself what you would have guessed.&rdquo;</div>
+<h3>Plan your two questions</h3>
+<div class="card"><h4>Question 1</h4><label for="f130">Which beat?</label><textarea id="f130" data-k="q30_1_beat" rows="1"></textarea>
+<label for="f131">Exact wording</label><textarea id="f131" data-k="q30_1_word" rows="1"></textarea>
+<label for="f132">How they answer (hands, voice, chat)</label><textarea id="f132" data-k="q30_1_how" rows="1"></textarea>
+<label for="f133">What I say after they answer</label><textarea id="f133" data-k="q30_1_after" rows="1"></textarea>
+<label for="f134">What I say if nobody answers</label><textarea id="f134" data-k="q30_1_none" rows="1"></textarea>
+</div>
+<div class="card"><h4>Question 2</h4><label for="f135">Which beat?</label><textarea id="f135" data-k="q30_2_beat" rows="1"></textarea>
+<label for="f136">Exact wording</label><textarea id="f136" data-k="q30_2_word" rows="1"></textarea>
+<label for="f137">How they answer (hands, voice, chat)</label><textarea id="f137" data-k="q30_2_how" rows="1"></textarea>
+<label for="f138">What I say after they answer</label><textarea id="f138" data-k="q30_2_after" rows="1"></textarea>
+<label for="f139">What I say if nobody answers</label><textarea id="f139" data-k="q30_2_none" rows="1"></textarea>
+</div>
+<h3>Questions coming back at you</h3>
+<p>Prepare a 20-second answer for each.</p>
+<label for="f140">What surprised you?</label><textarea id="f140" data-k="qb30_a" rows="2"></textarea>
+<label for="f141">What would you do differently?</label><textarea id="f141" data-k="qb30_b" rows="2"></textarea>
+<label for="f142">What is the biggest limitation of this work?</label><textarea id="f142" data-k="qb30_c" rows="2"></textarea>
+<h2>Part 4 &middot; Build it in Canva</h2>
+<p>Use Canva. It is free through the university, the templates handle fonts and spacing for you, and it runs in a browser on any classroom computer. <b>Do not open it until Parts 1 to 3 are filled in.</b> Slides come last because they support the talk. They are not the talk.</p>
+<h3>Setup</h3>
+<div class="chk"><input type="checkbox" id="c143" data-k="cv30_0"><label for="c143" style="font-weight:400;margin:0">Sign in at <a href="https://www.canva.com/" target="_blank" rel="noopener">canva.com</a> with a free account and choose Presentation (16:9).</label></div><div class="chk"><input type="checkbox" id="c144" data-k="cv30_1"><label for="c144" style="font-weight:400;margin:0">Pick a plain template: light background, dark text, one accent color. Skip anything with busy patterns or more than two fonts.</label></div><div class="chk"><input type="checkbox" id="c145" data-k="cv30_2"><label for="c145" style="font-weight:400;margin:0">Delete every slide in the template you do not need. Aim for eight to twelve slides for an 11-minute talk.</label></div><div class="chk"><input type="checkbox" id="c146" data-k="cv30_3"><label for="c146" style="font-weight:400;margin:0">Put your keywords on your paper note card, not on the slide.</label></div><div class="chk"><input type="checkbox" id="c147" data-k="cv30_4"><label for="c147" style="font-weight:400;margin:0">Make a public view link: Share, then Public view link, then Create public view link. It opens in any browser with no sign-in. Paste it into the class list before your presentation day.</label></div><div class="chk"><input type="checkbox" id="c148" data-k="cv30_5"><label for="c148" style="font-weight:400;margin:0">Download a PDF copy (Share, then Download) and post it in the same place as your link. Wi-Fi fails. The PDF is your backup.</label></div>
+<h3>Slide rules</h3>
+<ul><li>One idea per slide. If a slide makes two points, it is two slides.</li><li>Six words is plenty. The audience cannot read and listen at the same time, and they will choose reading.</li><li>One visual per finding, shown large, with a caption. Example: &ldquo;Figure 1. Survey responses by age group, N = 42.&rdquo;</li><li>Type readable from the back row: 28 point or larger. No screenshots of tiny tables.</li><li>No animations, sound effects, or memes unless one is evidence. A decision-maker reads decoration as padding.</li><li>Final slide: your takeaway sentence, not &ldquo;Questions?&rdquo; or &ldquo;Thank you.&rdquo; It stays on screen through the whole Q&amp;A.</li></ul>
+<h3>Sketch your slides</h3>
+<div class="card"><div class="fg"><label for="f149">1. Title &mdash; project title, your name<span class="hint">The one idea</span></label><textarea id="f149" data-k="sl30_0_a" rows="1"></textarea>
+<label for="f150">Visual or words on screen</label><textarea id="f150" data-k="sl30_0_b" rows="1"></textarea>
+</div></div><div class="card"><div class="fg"><label for="f151">2.<span class="hint">The one idea</span></label><textarea id="f151" data-k="sl30_1_a" rows="1"></textarea>
+<label for="f152">Visual or words on screen</label><textarea id="f152" data-k="sl30_1_b" rows="1"></textarea>
+</div></div><div class="card"><div class="fg"><label for="f153">3.<span class="hint">The one idea</span></label><textarea id="f153" data-k="sl30_2_a" rows="1"></textarea>
+<label for="f154">Visual or words on screen</label><textarea id="f154" data-k="sl30_2_b" rows="1"></textarea>
+</div></div><div class="card"><div class="fg"><label for="f155">4.<span class="hint">The one idea</span></label><textarea id="f155" data-k="sl30_3_a" rows="1"></textarea>
+<label for="f156">Visual or words on screen</label><textarea id="f156" data-k="sl30_3_b" rows="1"></textarea>
+</div></div><div class="card"><div class="fg"><label for="f157">5.<span class="hint">The one idea</span></label><textarea id="f157" data-k="sl30_4_a" rows="1"></textarea>
+<label for="f158">Visual or words on screen</label><textarea id="f158" data-k="sl30_4_b" rows="1"></textarea>
+</div></div><div class="card"><div class="fg"><label for="f159">6. Takeaway<span class="hint">The one idea</span></label><textarea id="f159" data-k="sl30_5_a" rows="1"></textarea>
+<label for="f160">Visual or words on screen</label><textarea id="f160" data-k="sl30_5_b" rows="1"></textarea>
+</div></div><h2>Part 5 &middot; Say it so they listen</h2>
+<p>Writing for the ear is different from writing for the page. A reader can go back. A listener cannot.</p>
+<h3>Write for the ear</h3>
+<ul><li>Short sentences. One breath each.</li><li>Signposts. &ldquo;Two findings. First&hellip;&rdquo; tells the room where they are.</li><li>Make numbers human. &ldquo;62%&rdquo; becomes &ldquo;nearly two out of three people in this room.&rdquo;</li><li>One specific person, post, or moment beats three general statements.</li><li>Repeat the takeaway. On the page that is redundant. Out loud it is how people remember.</li></ul>
+<h3>Rewrite for the ear</h3>
+<label for="f161">Written version<span class="hint">Copy the most important sentence from your written project</span></label><textarea id="f161" data-k="ear30_w" rows="2"></textarea>
+<label for="f162">Spoken version<span class="hint">Now say the same thing the way you would explain it to a smart friend at lunch</span></label><textarea id="f162" data-k="ear30_s" rows="2"></textarea>
+<h3>Deliver it</h3>
+<div class="tw"><table><thead><tr><th>Element</th><th>The move</th><th>Why it matters to this audience</th></tr></thead><tbody><tr><td>Before you speak</td><td>Plant your feet, look up, breathe, then begin</td><td>Starting while still walking or clicking reads as rushed</td></tr><tr><td>Eyes</td><td>Finish a whole sentence to one person, then move to another</td><td>Eye contact is the first thing hiring managers say they miss</td></tr><tr><td>Voice</td><td>Loud enough for the back row, slower than feels natural</td><td>Speed reads as nerves. Pace reads as authority</td></tr><tr><td>Pauses</td><td>Replace every &ldquo;um&rdquo; and &ldquo;like&rdquo; with silence</td><td>A pause sounds like thinking. A filler sounds like stalling</td></tr><tr><td>Statements</td><td>Let your voice drop at the end of a claim</td><td>A rising tone turns your finding into a question</td></tr><tr><td>Hands</td><td>Out of pockets, off the phone, open gestures</td><td>Visible hands read as open and prepared</td></tr><tr><td>Notes</td><td>One card, keywords only, glance and look up</td><td>Reading a script tells them you could have sent an email</td></tr><tr><td>Dress</td><td>One step more formal than the audience</td><td>It signals you took the occasion seriously</td></tr><tr><td>Ending</td><td>Last line, pause, &ldquo;Thank you,&rdquo; stay put for questions</td><td>Walking off mid-sentence throws away your strongest moment</td></tr></tbody></table></div>
+<h2>Part 6 &middot; End on purpose</h2>
+<p>The last thing you say is the thing the room carries out the door. Most talks waste it on &ldquo;So, yeah, that&rsquo;s it&rdquo; or &ldquo;Any questions?&rdquo; A planned ending tells a decision-maker you were in control from the first word to the last.</p>
+<div class="tw"><table><thead><tr><th>Type of ending</th><th>How it works</th><th>Example</th></tr></thead><tbody><tr><td>Circle back</td><td>Return to the person, number, or moment from your hook and show what has changed</td><td>&ldquo;I opened with one family&rsquo;s water bill. The next one is due in three weeks.&rdquo;</td></tr><tr><td>The takeaway, said plainly</td><td>Your one sentence from Part 1, slower and with nothing after it</td><td>&ldquo;This debate comes down to one question: who gets asked.&rdquo;</td></tr><tr><td>The ask</td><td>Tell the room exactly what should happen next</td><td>&ldquo;Before the next vote, put this survey in front of the people who live closest.&rdquo;</td></tr><tr><td>Look ahead</td><td>Leave them with a picture of what happens if your recommendation is followed, or ignored</td><td>&ldquo;In five years someone will study what this county decided. I want them to find that residents were heard.&rdquo;</td></tr></tbody></table></div>
+<h3>Rules for the last line</h3>
+<ul><li>Make it a statement, not a question.</li><li>Keep it under 15 words so you can say it without looking down.</li><li>Say it, pause for two full seconds, then say &ldquo;Thank you.&rdquo; Questions come after that.</li></ul>
+<div class="note">Never end on your limitations, your sources, or an apology.</div>
+<h3>Write yours</h3>
+<p>Draft three different endings, one line each. Do not settle for the first one.</p>
+<label for="f163">Circle back to my hook</label><textarea id="f163" data-k="end30_a" rows="2"></textarea>
+<label for="f164">My ask</label><textarea id="f164" data-k="end30_b" rows="2"></textarea>
+<label for="f165">Look ahead</label><textarea id="f165" data-k="end30_c" rows="2"></textarea>
+<div class="note">Read all three out loud to a partner. Star the one they can repeat back, then copy it into <b>My last line</b> in Part 2.</div>
+<h2>Exit ticket</h2>
+<p>Before you leave, write the one habit from the decoder you are going to change, and what you will do instead.</p>
+<label for="f1">Habit</label><textarea id="f1" data-k="exit_habit" rows="2"></textarea>
+<label for="f2">Instead</label><textarea id="f2" data-k="exit_instead" rows="2"></textarea>
 
-  <h2>3 · X-ray your structure with a reverse outline</h2>
-  <p>The fastest way to see your report's underlying bones is to <button type="button" class="term" data-pop="reverse">reverse-outline</button> it: go paragraph by paragraph and write, in one line, the job that paragraph does. Line the jobs up and the gaps, repetition, and out-of-order pieces jump out. You did this in class; do it again on your latest draft.</p>
-  <div class="read">
-    <div class="t">Read the source · 5 min</div>
-    <p><a href="https://writing.wisc.edu/handbook/process/reverseoutlines/" target="_blank" rel="noopener">Reverse Outlines</a> &mdash; UW-Madison Writing Center. The exact technique behind this week's tool: outline what you actually wrote to test whether your structure holds.</p>
-  </div>
-  <div class="read">
-    <div class="t">Try the tool · 15 min</div>
-    <p>Two tools run this move. Start with the <a href="reverse-outline-academic.html" target="_blank" rel="noopener">Reverse-Outline X-Ray</a> to confirm your sections sit in IMRAD order with nothing missing, then use the <a href="reverse-outline.html" target="_blank" rel="noopener">Reverse Outline tool</a> to lay every paragraph's job in a single skeleton you can read at a glance. Both make you name each job yourself; the tool never judges your prose for you.</p>
-  </div>
-  <div class="do">
-    <div class="t">Your turn</div>
-    <p>In <b>Entry 14b</b>, write down the two biggest structural problems the reverse outline surfaced in your own draft (a missing section, a claim with no evidence, two paragraphs doing the same job), and what you'll do about each.</p>
-  </div>
 
-  <h2>4 · Read your own draft like a skeptical stranger</h2>
-  <p>You know what you <em>meant</em> to say, which is exactly why you can't see what's missing. Read your draft the way a tired grader who knows nothing about your project would, against the same things it'll be judged on.</p>
-  <div class="box">
-    <ul>
-      <li><b>Question &amp; significance.</b> Is there a clear research question, and is it clear what is at stake in it?</li>
-      <li><b>Sections &amp; structure.</b> All of IMRAD present, in order, each doing its job? Results reports; Discussion interprets?</li>
-      <li><b>Evidence.</b> Does every claim have support (a number, a source, a quote)? Are figures captioned?</li>
-      <li><b>Claims.</b> Are limitations stated? Do claims match the evidence (suggests, not proves)?</li>
-      <li><b>Coherence &amp; voice.</b> Do the sections connect? Is the tone consistent and academic throughout?</li>
-      <li><b>Design &amp; mechanics.</b> Headings, page numbers, consistent citations (15 to 20 sources), clean&nbsp;prose?</li>
-    </ul>
-  </div>
-  <div class="do">
-    <div class="t">Your turn</div>
-    <p>In <b>Entry 14b</b>, name the one row above your draft is weakest on right now, and the first concrete change you'll make to fix it.</p>
-  </div>
-
-  <h2>5 · Read it aloud</h2>
-  <p>Your eyes skip what your ears catch. <button type="button" class="term" data-pop="aloud">Reading aloud</button> is one of the best ways to find clunky sentences, missing words, and places where two ideas don't connect. Every spot you stumble is a spot your reader will too.</p>
-  <div class="ex">
-    <div class="t">See it &mdash; the research</div>
-    <p>In a 2025 study, students who read their drafts aloud corrected about three errors per ten-minute paragraph that they'd otherwise have missed (Eckstein, Lung &amp; Gillette, <a href="https://tesl-ej.org/wordpress/issues/volume28/ej112/ej112a5/" target="_blank" rel="noopener">TESL-EJ</a>, open access). A free, five-minute habit with a clear payoff.</p>
-  </div>
-  <div class="do">
-    <div class="t">Your turn</div>
-    <p>Read one full section of your draft out loud, or let your device read it to you. Mark every place you stumble, then fix each one. If you stumbled, your reader would&nbsp;have.</p>
-  </div>
-
-  <h2>6 · Run the diagnostic passes</h2>
-  <p>Two more tools take you from structure down into claims and sentences, and each one makes <em>you</em> make the call.</p>
-  <div class="read">
-    <div class="t">Try the tools · 20 min</div>
-    <p>Diagnose weak claims and thin sources in the <a href="source-transfer-drill.html" target="_blank" rel="noopener">Source &amp; Claim Transfer Drill</a>, which has you spot the problem in a stranger's lines before you turn the same lens on your own. Then run <a href="academic-editors-passes.html" target="_blank" rel="noopener">The Editor's Passes</a>, which hands you your claim, your quotes, your hedging, your strongest source, and your signposting one at a time so you judge and tighten each.</p>
-  </div>
-  <div class="do">
-    <div class="t">Your turn</div>
-    <p>Find the weakest paragraph in your draft, the one you'd least want a stranger to read first. Don't fix a comma in it. Ask what job it's supposed to do, and whether it does it, then revise it to do that job or cut it. Note in <b>Entry 14b</b> what you decided.</p>
-  </div>
-
-  <h2>7 · Audit every figure</h2>
-  <p>Week 12 was about building figures that are fair to the people who answered you. This is where you check whether the ones in your draft actually are, now that they exist and you can look at them.</p>
-  <p>Open your report to the first figure and work through these nine. Check only the ones that are true of it <b>right now</b>, not the ones you intend to fix. Then run the list again on every other figure and table in the draft. Nothing is transmitted anywhere; this runs in your browser.</p>
-
-  <div class="audit">
-    <ul>
-      <li><label><input type="checkbox" data-aud> My reader can see the sample size on or beside the figure. <span class="w">If n appears only in your Methods section, somebody looking at the figure does not have it.</span></label></li>
-      <li><label><input type="checkbox" data-aud> The denominator on this figure is the number who actually answered this question, and skipped responses are accounted for. <span class="w">If 31 of 40 answered it, the figure says n = 31.</span></label></li>
-      <li><label><input type="checkbox" data-aud> If this is a bar chart, the numerical axis begins at zero. <span class="w">Check this if it begins at zero or if a zero axis does not apply to your figure.</span></label></li>
-      <li><label><input type="checkbox" data-aud> My percentages do not imply more precision than my sample supports, and small counts appear as counts as well as percentages. <span class="w">&ldquo;11 of 17 (65%)&rdquo; rather than &ldquo;64.7%.&rdquo;</span></label></li>
-      <li><label><input type="checkbox" data-aud> The title claims only what this sample allows, and says nothing about &ldquo;people,&rdquo; &ldquo;Americans,&rdquo; or &ldquo;society.&rdquo; <span class="w">And it states the finding rather than the topic.</span></label></li>
-      <li><label><input type="checkbox" data-aud> Color is not the only way to tell anything apart. <span class="w">Labels, ordering, or pattern carry the information too, so the figure works for a reader who cannot distinguish those colors.</span></label></li>
-      <li><label><input type="checkbox" data-aud> Somebody could understand this figure without reading the rest of my report. <span class="w">Caption, units, labels, and a methodological note where one is needed.</span></label></li>
-      <li><label><input type="checkbox" data-aud> Every visual element left in the figure carries information. <span class="w">If you added it because it looked good, delete it.</span></label></li>
-      <li><label><input type="checkbox" data-aud> I can say in one sentence what I want a reader to see in this figure, and my prose actually says it. <span class="w">A figure never does the interpreting on its own. If that sentence is missing from the Results section, write it now.</span></label></li>
-    </ul>
-  </div>
-  <a class="btn" id="audcheck" href="#" onclick="return false">Where does this figure stand?</a>
-  <div class="verdict" id="audverdict"></div>
-
-  <div class="note">
-    <p><b>The three that fail most often,</b> and all three are fast to fix: the sample size sits in the Methods section instead of the caption, the title names the topic instead of the finding, and there is no sentence in the Results section telling the reader what the figure shows. That last one is the difference between a report with figures in it and a report that uses them.</p>
-  </div>
-
-  <h2>8 · Optional: trade a draft for feedback</h2>
-  <p>This one's optional, and worth it. If you want my eyes on it before the final, <b>submit a draft this week</b> and I'll comment. A draft I read now is far more useful to you than a grade I give later. Feedback goes on the draft; the grade comes on the final.</p>
-
-  <h2>9 · Log your revision (Entry 14b)</h2>
-  <p>Record what you changed at the structure level and what you cleaned up at the sentence level, so you can see the draft actually improving.</p>
-  <p><a class="btn" href="research-notebook.html" target="_blank" rel="noopener">Open my Research Notebook &rarr;</a></p>
-  <p class="note">One line on the biggest structural fix, one line on the sentence-level cleanup. Save happens automatically.</p>
-
-  <div class="debrief">
-    <span class="lab">Class debrief · together at the end</span>
-    <p>We'll come back together as a class to close. Come ready to say, in one breath: <b>the one structural change your reverse outline made you make, and the rubric row your draft is still weakest on.</b> If you can't name a structural change yet, that's the tell that you edited sentences without re-seeing the whole thing.</p>
-  </div>
-
-  <div class="close">
-    <p><b>A 10-minute prime for next week.</b> The final IMRAD report is due at the end of Week 15 (all sections, title page, captioned figures, 15 to 20 references, appendix), and <b>presentations start Week 15</b>. Before Tuesday, jot in your notebook the one finding you most want people to remember. That single sentence is the seed of next week's work: turning your study into a short talk.</p>
-  </div>
-
-  <dialog class="pop" id="pop-sfd"><h3>Shitty first drafts</h3><p>From Anne Lamott's <i>Bird by Bird</i> (1994). She (via a friend) calls the first draft the "down draft," where you just get it down; the second the "up draft," where you fix it up; and the third the "dental draft," where you check every tooth. The idea: let yourself write badly first, because you can't revise a blank page. <a href="https://wrd.as.uky.edu/sites/default/files/1-Shitty%20First%20Drafts.pdf" target="_blank" rel="noopener">Read the essay (free PDF)</a>.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-revise"><h3>Revision vs. editing</h3><p>Different jobs. <b>Revision</b> ("re-seeing") works on ideas and structure: what's missing, repeated, out of order, unclear. <b>Editing</b> works on sentences; <b>proofreading</b> catches errors. Do them big to small. Most weak final drafts were edited and proofread but never truly revised, the sentences are clean but the structure was never re-seen.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-hoc"><h3>Higher- vs. lower-order concerns</h3><p>A writing-center framework. <b>Higher-order concerns</b>: focus, argument, organization, development, audience, the stuff that decides whether the report works. <b>Lower-order concerns</b>: grammar, spelling, citations, formatting. Fix higher-order first. Polishing sentences in a section you'll end up cutting is wasted effort.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-reverse"><h3>Reverse outlining</h3><p>Outlining a draft you've already written to reveal its actual structure. Go paragraph by paragraph and note, in one line, the job each does. Laid out together, the outline exposes gaps, repetition, and bad order that finished prose hides. It's the most reliable revision tool there is, because rearranging a skeleton beats rewriting polished paragraphs. Example: five Results paragraphs in a row, then a lone Methods paragraph stranded at the end, the skeleton makes the misfiling obvious in a way the prose never did.</p><form method="dialog"><button>Got it</button></form></dialog>
-  <dialog class="pop" id="pop-aloud"><h3>Reading aloud</h3><p>Reading your draft out loud (or having your device read it to you) forces you to process every word instead of skimming what you expect to see. It's uncannily good at surfacing clunky sentences, missing words, and joints where two ideas don't actually connect. If you stumble reading it, your reader will stumble too. A 2025 study found reading aloud caught about three errors per ten-minute paragraph (Eckstein, Lung &amp; Gillette, <i>TESL-EJ</i>).</p><form method="dialog"><button>Got it</button></form></dialog>
-
+  <div class="end">ENG 3090 &middot; Research Methods in Rhetoric &amp; Technical Writing &middot; Dr. Sarah Long &middot; Appalachian State University. Your answers are stored only in this browser on this device. Use <b>Download my worksheet</b> to keep a copy.</div>
 </div>
 
 <script>
-  document.querySelectorAll('[data-pop]').forEach(function(b){
-    b.addEventListener('click', function(){ var d=document.getElementById('pop-'+b.getAttribute('data-pop')); if(d&&d.showModal) d.showModal(); });
-  });
-  document.querySelectorAll('dialog.pop').forEach(function(d){
-    d.addEventListener('click', function(e){ if(e.target===d) d.close(); });
+(function(){
+  var KEY = 'eng3090_presentation_worksheet_v1';
+  var root = document.getElementById('pw');
+  var st = document.getElementById('st');
+  var els = root.querySelectorAll('[data-k]');
+  var save = {};
+  try { save = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ save = {}; }
+
+  els.forEach(function(el){
+    var k = el.getAttribute('data-k');
+    if (save[k] !== undefined) {
+      if (el.type === 'checkbox') el.checked = !!save[k];
+      else el.value = save[k];
+    }
+    el.addEventListener('input', flush);
+    el.addEventListener('change', flush);
   });
 
-  // ethics audit: computed from checkable statements, not a gut rating
-  document.getElementById('audcheck').addEventListener('click', function(){
-    var boxes = document.querySelectorAll('[data-aud]'), n = boxes.length, on = 0, missed = [];
-    boxes.forEach(function(cb, i){ if(cb.checked){ on++; } else { missed.push(i + 1); } });
-    var v = document.getElementById('audverdict');
-    v.style.display = 'block';
-    var msg = '<b>' + on + ' of ' + n + ' checked.</b> ';
-    if(on === n){
-      v.style.background = 'var(--accent-soft)'; v.style.borderLeft = '4px solid var(--good)';
-      msg += 'This figure is ready to go in the report. Run the same nine on your next one.';
-    } else if(on >= n - 2){
-      v.style.background = 'var(--accent-soft)'; v.style.borderLeft = '4px solid var(--accent)';
-      msg += 'Close. Items ' + missed.join(' and ') + ' are the ones left, and each is a small fix in whatever made the chart. Do them before you paste the figure into the report.';
-    } else {
-      v.style.background = '#fdeeee'; v.style.borderLeft = '4px solid #a33';
-      msg += 'Items ' + missed.join(', ') + ' are unaddressed. Every one of them is something a reader could hold against the study, and all of them are faster to fix now than to defend later.';
-    }
-    v.innerHTML = msg;
+  var t = null;
+  function flush(){
+    clearTimeout(t);
+    t = setTimeout(function(){
+      var out = {};
+      els.forEach(function(el){
+        var k = el.getAttribute('data-k');
+        out[k] = (el.type === 'checkbox') ? el.checked : el.value;
+      });
+      try {
+        localStorage.setItem(KEY, JSON.stringify(out));
+        st.textContent = 'Saved on this device.';
+      } catch(e){
+        st.textContent = 'Could not save here. Use Download before you leave.';
+      }
+    }, 350);
+  }
+
+  document.getElementById('dl').addEventListener('click', function(){
+    var lines = ['Final Presentation Worksheet', 'ENG 3090 &middot; Week 14 &middot; In class Tuesday', 'Downloaded ' + new Date().toLocaleString(), ''];
+    var secs = root.querySelectorAll('h2, h3, label');
+    secs.forEach(function(node){
+      if (node.tagName === 'H2'){ lines.push(''); lines.push('==== ' + node.textContent.trim() + ' ===='); return; }
+      if (node.tagName === 'H3'){ lines.push(''); lines.push('-- ' + node.textContent.trim() + ' --'); return; }
+      var f = node.htmlFor ? document.getElementById(node.htmlFor) : null;
+      if (!f || !f.getAttribute('data-k')) return;
+      var lab = node.textContent.trim().replace(/\s+/g,' ');
+      if (f.type === 'checkbox'){ lines.push((f.checked ? '[x] ' : '[ ] ') + lab); }
+      else { lines.push(lab + ':'); lines.push('   ' + (f.value || '').replace(/\n/g,'\n   ')); }
+    });
+    var blob = new Blob([lines.join('\n')], {type:'text/plain'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'ENG3090-presentation-worksheet.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
   });
+
+  document.getElementById('pr').addEventListener('click', function(){ window.print(); });
+  document.getElementById('cl').addEventListener('click', function(){
+    if (!confirm('Clear everything you have typed on this page? This cannot be undone.')) return;
+    els.forEach(function(el){ if (el.type === 'checkbox') el.checked = false; else el.value = ''; });
+    try { localStorage.removeItem(KEY); } catch(e){}
+    st.textContent = 'Cleared.';
+  });
+})();
 </script>
 </body>
 </html>
